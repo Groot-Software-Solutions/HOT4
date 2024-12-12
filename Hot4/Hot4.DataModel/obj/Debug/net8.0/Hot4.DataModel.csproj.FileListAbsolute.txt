@@ -1,0 +1,14 @@
+F:\Hot4-new\Hot4\Hot4.DataModel\bin\Debug\net8.0\Hot4.DataModel.deps.json
+F:\Hot4-new\Hot4\Hot4.DataModel\bin\Debug\net8.0\Hot4.DataModel.runtimeconfig.json
+F:\Hot4-new\Hot4\Hot4.DataModel\bin\Debug\net8.0\Hot4.DataModel.dll
+F:\Hot4-new\Hot4\Hot4.DataModel\bin\Debug\net8.0\Hot4.DataModel.pdb
+F:\Hot4-new\Hot4\Hot4.DataModel\obj\Debug\net8.0\Hot4.DataModel.csproj.AssemblyReference.cache
+F:\Hot4-new\Hot4\Hot4.DataModel\obj\Debug\net8.0\Hot4.DataModel.GeneratedMSBuildEditorConfig.editorconfig
+F:\Hot4-new\Hot4\Hot4.DataModel\obj\Debug\net8.0\Hot4.DataModel.AssemblyInfoInputs.cache
+F:\Hot4-new\Hot4\Hot4.DataModel\obj\Debug\net8.0\Hot4.DataModel.AssemblyInfo.cs
+F:\Hot4-new\Hot4\Hot4.DataModel\obj\Debug\net8.0\Hot4.DataModel.csproj.CoreCompileInputs.cache
+F:\Hot4-new\Hot4\Hot4.DataModel\obj\Debug\net8.0\Hot4.DataModel.dll
+F:\Hot4-new\Hot4\Hot4.DataModel\obj\Debug\net8.0\refint\Hot4.DataModel.dll
+F:\Hot4-new\Hot4\Hot4.DataModel\obj\Debug\net8.0\Hot4.DataModel.pdb
+F:\Hot4-new\Hot4\Hot4.DataModel\obj\Debug\net8.0\Hot4.DataModel.genruntimeconfig.cache
+F:\Hot4-new\Hot4\Hot4.DataModel\obj\Debug\net8.0\ref\Hot4.DataModel.dll

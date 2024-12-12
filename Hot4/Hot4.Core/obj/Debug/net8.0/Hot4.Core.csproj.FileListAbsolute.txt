@@ -1,0 +1,11 @@
+F:\Hot4-new\Hot4\Hot4.Core\bin\Debug\net8.0\Hot4.Core.deps.json
+F:\Hot4-new\Hot4\Hot4.Core\bin\Debug\net8.0\Hot4.Core.dll
+F:\Hot4-new\Hot4\Hot4.Core\bin\Debug\net8.0\Hot4.Core.pdb
+F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.GeneratedMSBuildEditorConfig.editorconfig
+F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.AssemblyInfoInputs.cache
+F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.AssemblyInfo.cs
+F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.csproj.CoreCompileInputs.cache
+F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.dll
+F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\refint\Hot4.Core.dll
+F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.pdb
+F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\ref\Hot4.Core.dll

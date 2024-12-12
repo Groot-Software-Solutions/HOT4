@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Abstract\IUnitOfWork.cs" />
+    <Compile Remove="Concrete\UnitOfWork.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hot4.Core\Hot4.Core.csproj" />
+    <ProjectReference Include="..\Hot4.DataModel\Hot4.DataModel.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Hot4.Server.props" />
+</Project>

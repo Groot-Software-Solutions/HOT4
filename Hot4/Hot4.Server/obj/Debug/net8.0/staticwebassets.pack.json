@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "F:\\Hot4-new\\Hot4\\Hot4.Server\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Hot4.Server.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Hot4.Server.bundle.scp.css"
+    },
+    {
+      "Id": "F:\\Hot4-new\\Hot4\\Hot4.Server\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "F:\\Hot4-new\\Hot4\\Hot4.Server\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "F:\\Hot4-new\\Hot4\\Hot4.Server\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "F:\\Hot4-new\\Hot4\\Hot4.Server\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Hot4.Server.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Hot4.Server.props",
+      "PackagePath": "build\\Hot4.Server.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Hot4.Server.props",
+      "PackagePath": "buildMultiTargeting\\Hot4.Server.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Hot4.Server.props",
+      "PackagePath": "buildTransitive\\Hot4.Server.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

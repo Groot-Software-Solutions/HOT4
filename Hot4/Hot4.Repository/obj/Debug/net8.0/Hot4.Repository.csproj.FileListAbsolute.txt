@@ -1,0 +1,17 @@
+F:\Hot4-new\Hot4\Hot4.Repository\bin\Debug\net8.0\Hot4.Repository.deps.json
+F:\Hot4-new\Hot4\Hot4.Repository\bin\Debug\net8.0\Hot4.Repository.dll
+F:\Hot4-new\Hot4\Hot4.Repository\bin\Debug\net8.0\Hot4.Repository.pdb
+F:\Hot4-new\Hot4\Hot4.Repository\bin\Debug\net8.0\Hot4.Core.dll
+F:\Hot4-new\Hot4\Hot4.Repository\bin\Debug\net8.0\Hot4.DataModel.dll
+F:\Hot4-new\Hot4\Hot4.Repository\bin\Debug\net8.0\Hot4.Core.pdb
+F:\Hot4-new\Hot4\Hot4.Repository\bin\Debug\net8.0\Hot4.DataModel.pdb
+F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Repository.csproj.AssemblyReference.cache
+F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Repository.GeneratedMSBuildEditorConfig.editorconfig
+F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Repository.AssemblyInfoInputs.cache
+F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Repository.AssemblyInfo.cs
+F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Repository.csproj.CoreCompileInputs.cache
+F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Rep.F0F7EA5C.Up2Date
+F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Repository.dll
+F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\refint\Hot4.Repository.dll
+F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Repository.pdb
+F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\ref\Hot4.Repository.dll
