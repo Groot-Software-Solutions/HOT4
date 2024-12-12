@@ -4,21 +4,21 @@ using Hot4.Repository.Abstract;
 
 namespace Hot4.Repository.Concrete
 {
-    public class AccessWebRepository : RepositoryBase<TblAccessWeb>, IAccessWebRepository
+    public class AccessWebRepository : RepositoryBase<AccessWeb>, IAccessWebRepository
     {
         public AccessWebRepository(HotDbContext context) : base(context) { }
-        public async Task AddAccessWeb(TblAccessWeb accessWeb)
+        public async Task AddAccessWeb(AccessWeb accessWeb)
         {
             await Create(accessWeb);
             await SaveChanges();
         }
 
-        public async Task<TblAccessWeb?> GetAccessWeb(long accessId)
+        public async Task<AccessWeb?> GetAccessWeb(long accessId)
         {
             return await GetById(accessId);
         }
 
-        public async Task UpdateAccessWeb(TblAccessWeb accessWeb)
+        public async Task UpdateAccessWeb(AccessWeb accessWeb)
         {
             await Update(accessWeb);
             await SaveChanges();

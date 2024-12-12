@@ -4,8 +4,8 @@ namespace Hot4.Repository.Abstract
 {
     public interface IAnswerRepository
     {
-        Task RespondToUnknown(TblSms sms);
+        Task RespondToUnknown(Sms sms);
 
-        Task RespondToAnswer(TblSms sms);
+        Task RespondToAnswer(Sms sms);
     }
 }

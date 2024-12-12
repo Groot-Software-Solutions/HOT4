@@ -14,121 +14,121 @@ namespace Hot4.DataModel.Data
 
         public virtual DbSet<Access> Access { get; set; }
 
-        public virtual DbSet<TblAccessWeb> AccessWeb { get; set; }
+        public virtual DbSet<AccessWeb> AccessWeb { get; set; }
 
-        public virtual DbSet<TblAccount> Account { get; set; }
+        public virtual DbSet<Account> Account { get; set; }
 
-        public virtual DbSet<TblAddress> Address { get; set; }
+        public virtual DbSet<Address> Address { get; set; }
 
-        public virtual DbSet<TblBank> Bank { get; set; }
+        public virtual DbSet<Banks> Bank { get; set; }
 
-        public virtual DbSet<TblBankTrx> BankTrx { get; set; }
+        public virtual DbSet<BankTrx> BankTrx { get; set; }
 
-        public virtual DbSet<TblBankTrxBatch> BankTrxBatch { get; set; }
+        public virtual DbSet<BankTrxBatch> BankTrxBatch { get; set; }
 
-        public virtual DbSet<TblBankTrxState> BankTrxState { get; set; }
+        public virtual DbSet<BankTrxStates> BankTrxState { get; set; }
 
-        public virtual DbSet<TblBankTrxType> BankTrxType { get; set; }
+        public virtual DbSet<BankTrxTypes> BankTrxType { get; set; }
 
-        public virtual DbSet<TblBankvPayment> BankvPayment { get; set; }
+        public virtual DbSet<BankvPayment> BankvPayment { get; set; }
 
-        public virtual DbSet<TblBrand> Brand { get; set; }
+        public virtual DbSet<Brand> Brand { get; set; }
 
-        public virtual DbSet<TblBundle> Bundle { get; set; }
+        public virtual DbSet<Bundle> Bundle { get; set; }
 
-        public virtual DbSet<TblChannel> Channel { get; set; }
+        public virtual DbSet<Channels> Channel { get; set; }
 
-        public virtual DbSet<TblConfig> Config { get; set; }
+        public virtual DbSet<Configs> Config { get; set; }
 
-        public virtual DbSet<TblConsoleAccess> ConsoleAccess { get; set; }
+        public virtual DbSet<ConsoleAccess> ConsoleAccess { get; set; }
 
-        public virtual DbSet<TblConsoleAction> ConsoleAction { get; set; }
+        public virtual DbSet<ConsoleAction> ConsoleAction { get; set; }
 
-        public virtual DbSet<TblErrorLog> ErrorLog { get; set; }
+        public virtual DbSet<ErrorLog> ErrorLog { get; set; }
 
-        public virtual DbSet<TblErrorLogContact> ErrorLogContact { get; set; }
+        public virtual DbSet<ErrorLogContact> ErrorLogContact { get; set; }
 
-        public virtual DbSet<TblErrorLogNetwork> ErrorLogNetwork { get; set; }
+        public virtual DbSet<ErrorLogNetwork> ErrorLogNetwork { get; set; }
 
-        public virtual DbSet<TblErrorLogSetup> ErrorLogSetup { get; set; }
+        public virtual DbSet<ErrorLogSetup> ErrorLogSetup { get; set; }
 
-        public virtual DbSet<TblErrorLogTestType> ErrorLogTestType { get; set; }
+        public virtual DbSet<ErrorLogTestType> ErrorLogTestType { get; set; }
 
-        public virtual DbSet<TblHotType> HotType { get; set; }
+        public virtual DbSet<HotTypes> HotType { get; set; }
 
-        public virtual DbSet<TblHotTypeCode> HotTypeCode { get; set; }
+        public virtual DbSet<HotTypeCode> HotTypeCode { get; set; }
 
-        public virtual DbSet<TblLimit> Limit { get; set; }
+        public virtual DbSet<Limit> Limit { get; set; }
 
-        public virtual DbSet<TblLimitType> LimitType { get; set; }
+        public virtual DbSet<LimitType> LimitType { get; set; }
 
-        public virtual DbSet<TblLog> Log { get; set; }
+        public virtual DbSet<Log> Log { get; set; }
 
-        public virtual DbSet<TblNetwork> Network { get; set; }
+        public virtual DbSet<Networks> Network { get; set; }
 
-        public virtual DbSet<TblPayment> Payment { get; set; }
+        public virtual DbSet<Payment> Payment { get; set; }
 
-        public virtual DbSet<TblPaymentSource> PaymentSource { get; set; }
+        public virtual DbSet<PaymentSources> PaymentSource { get; set; }
 
-        public virtual DbSet<TblPaymentType> PaymentType { get; set; }
+        public virtual DbSet<PaymentTypes> PaymentType { get; set; }
 
-        public virtual DbSet<TblPin> Pin { get; set; }
+        public virtual DbSet<Pins> Pin { get; set; }
 
-        public virtual DbSet<TblPinBatch> PinBatch { get; set; }
+        public virtual DbSet<PinBatches> PinBatch { get; set; }
 
-        public virtual DbSet<TblPinBatchType> PinBatchType { get; set; }
+        public virtual DbSet<PinBatchTypes> PinBatchType { get; set; }
 
-        public virtual DbSet<TblPinState> PinState { get; set; }
+        public virtual DbSet<PinStates> PinState { get; set; }
 
-        public virtual DbSet<TblPriority> Priority { get; set; }
+        public virtual DbSet<Priorities> Priority { get; set; }
 
-        public virtual DbSet<TblProduct> Product { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
 
-        public virtual DbSet<TblProductField> ProductField { get; set; }
+        public virtual DbSet<ProductField> ProductField { get; set; }
 
-        public virtual DbSet<TblProductMetaDataType> ProductMetaDataType { get; set; }
+        public virtual DbSet<ProductMetaDataType> ProductMetaDataType { get; set; }
 
-        public virtual DbSet<TblProductMetaData> ProductMetaData { get; set; }
+        public virtual DbSet<ProductMetaData> ProductMetaData { get; set; }
 
-        public virtual DbSet<TblProfile> Profile { get; set; }
+        public virtual DbSet<Profile> Profile { get; set; }
 
-        public virtual DbSet<TblProfileDiscount> ProfileDiscount { get; set; }
+        public virtual DbSet<ProfileDiscount> ProfileDiscount { get; set; }
 
-        public virtual DbSet<TblRechargePin> RechargePin { get; set; }
-        public virtual DbSet<TblSmsRecharge> SmsRecharge { get; set; }
-        public virtual DbSet<TblRecharge> Recharge { get; set; }
+        public virtual DbSet<RechargePin> RechargePin { get; set; }
+        public virtual DbSet<SmsRecharge> SmsRecharge { get; set; }
+        public virtual DbSet<Recharge> Recharge { get; set; }
 
-        public virtual DbSet<TblRechargePrepaid> RechargePrepaid { get; set; }
+        public virtual DbSet<RechargePrepaid> RechargePrepaid { get; set; }
 
-        public virtual DbSet<TblReservation> Reservation { get; set; }
+        public virtual DbSet<Reservation> Reservation { get; set; }
 
-        public virtual DbSet<TblReservationLog> ReservationLog { get; set; }
+        public virtual DbSet<ReservationLog> ReservationLog { get; set; }
 
-        public virtual DbSet<TblReservationState> ReservationState { get; set; }
+        public virtual DbSet<ReservationStates> ReservationState { get; set; }
 
-        public virtual DbSet<TblSelfTopUp> SelfTopUp { get; set; }
+        public virtual DbSet<SelfTopUp> SelfTopUp { get; set; }
 
-        public virtual DbSet<TblSelfTopUpState> SelfTopUpState { get; set; }
+        public virtual DbSet<SelfTopUpState> SelfTopUpState { get; set; }
 
-        public virtual DbSet<TblSms> Sms { get; set; }
+        public virtual DbSet<Sms> Sms { get; set; }
 
-        public virtual DbSet<TblSmpp> Smpp { get; set; }
+        public virtual DbSet<Smpp> Smpp { get; set; }
 
-        public virtual DbSet<TblState> State { get; set; }
+        public virtual DbSet<States> State { get; set; }
 
-        public virtual DbSet<TblStockData> StockData { get; set; }
+        public virtual DbSet<StockData> StockData { get; set; }
 
-        public virtual DbSet<TblSubscriber> Subscriber { get; set; }
+        public virtual DbSet<Subscriber> Subscriber { get; set; }
 
-        public virtual DbSet<TblTemplate> Template { get; set; }
+        public virtual DbSet<Template> Template { get; set; }
 
-        public virtual DbSet<TblTransfer> Transfer { get; set; }
+        public virtual DbSet<Transfer> Transfer { get; set; }
 
-        public virtual DbSet<TblWalletType> WalletType { get; set; }
+        public virtual DbSet<WalletType> WalletType { get; set; }
 
-        public virtual DbSet<TblWebRequest> WebRequest { get; set; }
+        public virtual DbSet<WebRequest> WebRequest { get; set; }
 
-        public virtual DbSet<TblprofileBackup> ProfileBackup { get; set; }
+        public virtual DbSet<ProfileBackup> ProfileBackup { get; set; }
 
         public virtual DbSet<VwAccess> VwAccess { get; set; }
 
@@ -202,9 +202,9 @@ namespace Hot4.DataModel.Data
 
         public virtual DbSet<VwzSm> VwzSms { get; set; }
 
-        public virtual DbSet<ZtblArchive> ZtblArchive { get; set; }
+        public virtual DbSet<ZArchive> ZtblArchive { get; set; }
 
-        public virtual DbSet<ZtblStat> ZtblStat { get; set; }
+        public virtual DbSet<ZStat> ZtblStat { get; set; }
 
         public virtual DbSet<ZvwProductlistdetail> ZvwProductlistdetail { get; set; }
 
@@ -251,18 +251,18 @@ namespace Hot4.DataModel.Data
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Account).WithMany(p => p.TblAccesses)
+                entity.HasOne(d => d.Account).WithMany(p => p.Accesses)
                     .HasForeignKey(d => d.AccountId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblAccess_tblAccount");
 
-                entity.HasOne(d => d.Channel).WithMany(p => p.TblAccesses)
+                entity.HasOne(d => d.Channel).WithMany(p => p.Accesses)
                     .HasForeignKey(d => d.ChannelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblAccess_tblChannel");
             });
 
-            modelBuilder.Entity<TblAccessWeb>(entity =>
+            modelBuilder.Entity<AccessWeb>(entity =>
             {
                 entity.HasKey(e => e.AccessId);
 
@@ -284,7 +284,7 @@ namespace Hot4.DataModel.Data
                     .HasDefaultValue("");
             });
 
-            modelBuilder.Entity<TblAccount>(entity =>
+            modelBuilder.Entity<Account>(entity =>
             {
                 entity.HasKey(e => e.AccountId);
 
@@ -315,13 +315,13 @@ namespace Hot4.DataModel.Data
                     .HasMaxLength(250)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Profile).WithMany(p => p.TblAccounts)
+                entity.HasOne(d => d.Profile).WithMany(p => p.Accounts)
                     .HasForeignKey(d => d.ProfileId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblAccount_tblProfile");
             });
 
-            modelBuilder.Entity<TblAddress>(entity =>
+            modelBuilder.Entity<Address>(entity =>
             {
                 entity.HasKey(e => e.AccountId);
 
@@ -351,13 +351,13 @@ namespace Hot4.DataModel.Data
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Account).WithOne(p => p.TblAddress)
-                    .HasForeignKey<TblAddress>(d => d.AccountId)
+                entity.HasOne(d => d.Account).WithOne(p => p.Address)
+                    .HasForeignKey<Address>(d => d.AccountId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblAddress_tblAccount1");
             });
 
-            modelBuilder.Entity<TblBank>(entity =>
+            modelBuilder.Entity<Banks>(entity =>
             {
                 entity.HasKey(e => e.BankId);
 
@@ -370,7 +370,7 @@ namespace Hot4.DataModel.Data
                 entity.Property(e => e.SageBankId).HasColumnName("SageBankID");
             });
 
-            modelBuilder.Entity<TblBankTrx>(entity =>
+            modelBuilder.Entity<BankTrx>(entity =>
             {
                 entity.HasKey(e => e.BankTrxId);
 
@@ -401,27 +401,27 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
                 entity.Property(e => e.TrxDate).HasColumnType("datetime");
 
-                entity.HasOne(d => d.BankTrxBatch).WithMany(p => p.TblBankTrxes)
+                entity.HasOne(d => d.BankTrxBatch).WithMany(p => p.BankTrxes)
                     .HasForeignKey(d => d.BankTrxBatchId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblBankTrx_tblBankTrxBatch");
 
-                entity.HasOne(d => d.BankTrxState).WithMany(p => p.TblBankTrxes)
+                entity.HasOne(d => d.BankTrxState).WithMany(p => p.BankTrxes)
                     .HasForeignKey(d => d.BankTrxStateId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblBankTrx_tblBankTrxState");
 
-                entity.HasOne(d => d.BankTrxType).WithMany(p => p.TblBankTrxes)
+                entity.HasOne(d => d.BankTrxType).WithMany(p => p.BankTrxes)
                     .HasForeignKey(d => d.BankTrxTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblBankTrx_tblBankTrxType");
 
-                entity.HasOne(d => d.Payment).WithMany(p => p.TblBankTrxes)
+                entity.HasOne(d => d.Payment).WithMany(p => p.BankTrxes)
                     .HasForeignKey(d => d.PaymentId)
                     .HasConstraintName("FK_tblBankTrx_tblPayment");
             });
 
-            modelBuilder.Entity<TblBankTrxBatch>(entity =>
+            modelBuilder.Entity<BankTrxBatch>(entity =>
             {
                 entity.HasKey(e => e.BankTrxBatchId);
 
@@ -437,13 +437,13 @@ namespace Hot4.DataModel.Data
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Bank).WithMany(p => p.TblBankTrxBatches)
+                entity.HasOne(d => d.Bank).WithMany(p => p.BankTrxBatches)
                     .HasForeignKey(d => d.BankId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblBankTrxBatch_tblBank");
             });
 
-            modelBuilder.Entity<TblBankTrxState>(entity =>
+            modelBuilder.Entity<BankTrxStates>(entity =>
             {
                 entity.HasKey(e => e.BankTrxStateId);
 
@@ -455,7 +455,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblBankTrxType>(entity =>
+            modelBuilder.Entity<BankTrxTypes>(entity =>
             {
                 entity.HasKey(e => e.BankTrxTypeId);
 
@@ -467,7 +467,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblBankvPayment>(entity =>
+            modelBuilder.Entity<BankvPayment>(entity =>
             {
                 entity
                     .HasNoKey()
@@ -492,7 +492,7 @@ namespace Hot4.DataModel.Data
                     .HasColumnName("vPaymentRef");
             });
 
-            modelBuilder.Entity<TblBrand>(entity =>
+            modelBuilder.Entity<Brand>(entity =>
             {
                 entity.HasKey(e => e.BrandId);
 
@@ -507,13 +507,13 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
                 entity.Property(e => e.NetworkId).HasColumnName("NetworkID");
 
-                entity.HasOne(d => d.Network).WithMany(p => p.TblBrands)
+                entity.HasOne(d => d.Network).WithMany(p => p.Brands)
                     .HasForeignKey(d => d.NetworkId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblBrand_tblNetwork");
             });
 
-            modelBuilder.Entity<TblBundle>(entity =>
+            modelBuilder.Entity<Bundle>(entity =>
             {
                 entity
                     .HasNoKey()
@@ -533,7 +533,7 @@ namespace Hot4.DataModel.Data
                 entity.Property(e => e.ValidityPeriod).HasComment("Validity Period in Days");
             });
 
-            modelBuilder.Entity<TblChannel>(entity =>
+            modelBuilder.Entity<Channels>(entity =>
             {
                 entity.HasKey(e => e.ChannelId);
 
@@ -545,7 +545,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblConfig>(entity =>
+            modelBuilder.Entity<Configs>(entity =>
             {
                 entity.HasKey(e => e.ConfigId);
 
@@ -559,7 +559,7 @@ namespace Hot4.DataModel.Data
                 entity.Property(e => e.ProfileIdNewWebDealer).HasColumnName("ProfileID_NewWebDealer");
             });
 
-            modelBuilder.Entity<TblConsoleAccess>(entity =>
+            modelBuilder.Entity<ConsoleAccess>(entity =>
             {
                 entity.HasKey(e => new { e.RoleName, e.ConsoleActionId });
 
@@ -567,13 +567,13 @@ namespace Hot4.DataModel.Data
 
                 entity.Property(e => e.RoleName).HasMaxLength(50);
 
-                entity.HasOne(d => d.ConsoleAction).WithMany(p => p.TblConsoleAccesses)
+                entity.HasOne(d => d.ConsoleAction).WithMany(p => p.ConsoleAccesses)
                     .HasForeignKey(d => d.ConsoleActionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblConsoleAccess_tblConsoleAction");
             });
 
-            modelBuilder.Entity<TblConsoleAction>(entity =>
+            modelBuilder.Entity<ConsoleAction>(entity =>
             {
                 entity.ToTable("tblConsoleAction");
 
@@ -581,7 +581,7 @@ namespace Hot4.DataModel.Data
                 entity.Property(e => e.ActionName).HasMaxLength(255);
             });
 
-            modelBuilder.Entity<TblErrorLog>(entity =>
+            modelBuilder.Entity<ErrorLog>(entity =>
             {
                 entity
                     .HasNoKey()
@@ -605,7 +605,7 @@ namespace Hot4.DataModel.Data
                     .HasColumnType("datetime");
             });
 
-            modelBuilder.Entity<TblErrorLogContact>(entity =>
+            modelBuilder.Entity<ErrorLogContact>(entity =>
             {
                 entity
                     .HasNoKey()
@@ -620,7 +620,7 @@ namespace Hot4.DataModel.Data
                 entity.Property(e => e.ErrorLogtypeId).HasColumnName("ErrorLogtypeID");
             });
 
-            modelBuilder.Entity<TblErrorLogNetwork>(entity =>
+            modelBuilder.Entity<ErrorLogNetwork>(entity =>
             {
                 entity
                     .HasNoKey()
@@ -633,7 +633,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblErrorLogSetup>(entity =>
+            modelBuilder.Entity<ErrorLogSetup>(entity =>
             {
                 entity
                     .HasNoKey()
@@ -668,7 +668,7 @@ namespace Hot4.DataModel.Data
                     .HasColumnName("URL");
             });
 
-            modelBuilder.Entity<TblErrorLogTestType>(entity =>
+            modelBuilder.Entity<ErrorLogTestType>(entity =>
             {
                 entity
                     .HasNoKey()
@@ -680,7 +680,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblHotType>(entity =>
+            modelBuilder.Entity<HotTypes>(entity =>
             {
                 entity.HasKey(e => e.HotTypeId);
 
@@ -692,7 +692,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblHotTypeCode>(entity =>
+            modelBuilder.Entity<HotTypeCode>(entity =>
             {
                 entity.HasKey(e => e.HotTypeCodeId);
 
@@ -704,13 +704,13 @@ namespace Hot4.DataModel.Data
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.HotType).WithMany(p => p.TblHotTypeCodes)
+                entity.HasOne(d => d.HotType).WithMany(p => p.HotTypeCodes)
                     .HasForeignKey(d => d.HotTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblHotTypeCode_tblHotType");
             });
 
-            modelBuilder.Entity<TblLimit>(entity =>
+            modelBuilder.Entity<Limit>(entity =>
             {
                 entity.HasKey(e => e.LimitId);
 
@@ -721,7 +721,7 @@ namespace Hot4.DataModel.Data
                 entity.Property(e => e.LimitTypeId).HasDefaultValue(1);
             });
 
-            modelBuilder.Entity<TblLimitType>(entity =>
+            modelBuilder.Entity<LimitType>(entity =>
             {
                 entity.HasKey(e => e.LimitTypeId);
 
@@ -732,7 +732,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblLog>(entity =>
+            modelBuilder.Entity<Log>(entity =>
             {
                 entity.HasKey(e => e.LogId);
 
@@ -759,7 +759,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblNetwork>(entity =>
+            modelBuilder.Entity<Networks>(entity =>
             {
                 entity.HasKey(e => e.NetworkId);
 
@@ -774,7 +774,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblPayment>(entity =>
+            modelBuilder.Entity<Payment>(entity =>
             {
                 entity.HasKey(e => e.PaymentId);
 
@@ -801,23 +801,23 @@ namespace Hot4.DataModel.Data
                     .HasMaxLength(250)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Account).WithMany(p => p.TblPayments)
+                entity.HasOne(d => d.Account).WithMany(p => p.Payments)
                     .HasForeignKey(d => d.AccountId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblPayment_tblAccount");
 
-                entity.HasOne(d => d.PaymentSource).WithMany(p => p.TblPayments)
+                entity.HasOne(d => d.PaymentSource).WithMany(p => p.Payments)
                     .HasForeignKey(d => d.PaymentSourceId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblPayment_tblPaymentSource");
 
-                entity.HasOne(d => d.PaymentType).WithMany(p => p.TblPayments)
+                entity.HasOne(d => d.PaymentType).WithMany(p => p.Payments)
                     .HasForeignKey(d => d.PaymentTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblPayment_tblPaymentType");
             });
 
-            modelBuilder.Entity<TblPaymentSource>(entity =>
+            modelBuilder.Entity<PaymentSources>(entity =>
             {
                 entity.HasKey(e => e.PaymentSourceId);
 
@@ -829,7 +829,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblPaymentType>(entity =>
+            modelBuilder.Entity<PaymentTypes>(entity =>
             {
                 entity.HasKey(e => e.PaymentTypeId);
 
@@ -841,7 +841,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblPin>(entity =>
+            modelBuilder.Entity<Pins>(entity =>
             {
                 entity.HasKey(e => e.PinId);
 
@@ -862,23 +862,23 @@ namespace Hot4.DataModel.Data
                 entity.Property(e => e.PinStateId).HasColumnName("PinStateID");
                 entity.Property(e => e.PinValue).HasColumnType("money");
 
-                entity.HasOne(d => d.Brand).WithMany(p => p.TblPins)
+                entity.HasOne(d => d.Brand).WithMany(p => p.Pins)
                     .HasForeignKey(d => d.BrandId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblPin_tblBrand");
 
-                entity.HasOne(d => d.PinBatch).WithMany(p => p.TblPins)
+                entity.HasOne(d => d.PinBatch).WithMany(p => p.Pins)
                     .HasForeignKey(d => d.PinBatchId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblPin_tblPinBatch");
 
-                entity.HasOne(d => d.PinState).WithMany(p => p.TblPins)
+                entity.HasOne(d => d.PinState).WithMany(p => p.Pins)
                     .HasForeignKey(d => d.PinStateId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblPin_tblPinState");
             });
 
-            modelBuilder.Entity<TblPinBatch>(entity =>
+            modelBuilder.Entity<PinBatches>(entity =>
             {
                 entity.HasKey(e => e.PinBatchId);
 
@@ -891,13 +891,13 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
                 entity.Property(e => e.PinBatchTypeId).HasColumnName("PinBatchTypeID");
 
-                entity.HasOne(d => d.PinBatchType).WithMany(p => p.TblPinBatches)
+                entity.HasOne(d => d.PinBatchType).WithMany(p => p.PinBatches)
                     .HasForeignKey(d => d.PinBatchTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblPinBatch_tblPinBatchType");
             });
 
-            modelBuilder.Entity<TblPinBatchType>(entity =>
+            modelBuilder.Entity<PinBatchTypes>(entity =>
             {
                 entity.HasKey(e => e.PinBatchTypeId);
 
@@ -909,7 +909,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblPinState>(entity =>
+            modelBuilder.Entity<PinStates>(entity =>
             {
                 entity.HasKey(e => e.PinStateId);
 
@@ -921,7 +921,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblPriority>(entity =>
+            modelBuilder.Entity<Priorities>(entity =>
             {
                 entity.HasKey(e => e.PriorityId);
 
@@ -935,7 +935,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblProduct>(entity =>
+            modelBuilder.Entity<Product>(entity =>
             {
                 entity.HasKey(e => e.ProductId);
 
@@ -947,18 +947,18 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
                 entity.Property(e => e.ProductStateId).HasDefaultValue(1);
 
-                entity.HasOne(d => d.Brand).WithMany(p => p.TblProducts)
+                entity.HasOne(d => d.Brand).WithMany(p => p.Products)
                     .HasForeignKey(d => d.BrandId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblProduct_tblBrand");
 
-                entity.HasOne(d => d.WalletType).WithMany(p => p.TblProducts)
+                entity.HasOne(d => d.WalletType).WithMany(p => p.Products)
                     .HasForeignKey(d => d.WalletTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblProduct_tblWalletType");
             });
 
-            modelBuilder.Entity<TblProductField>(entity =>
+            modelBuilder.Entity<ProductField>(entity =>
             {
                 entity.HasKey(e => e.BrandFieldId).HasName("PK_tblBrandField");
 
@@ -974,13 +974,13 @@ namespace Hot4.DataModel.Data
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Product).WithMany(p => p.TblProductFields)
+                entity.HasOne(d => d.Product).WithMany(p => p.ProductFields)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblBrandField_tblBrand");
             });
 
-            modelBuilder.Entity<TblProductMetaDataType>(entity =>
+            modelBuilder.Entity<ProductMetaDataType>(entity =>
             {
                 entity.HasKey(e => e.ProductMetaDataTypeId).HasName("PK_tblBrandMetaDataType");
 
@@ -995,7 +995,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblProductMetaData>(entity =>
+            modelBuilder.Entity<ProductMetaData>(entity =>
             {
                 entity.HasKey(e => e.ProductMetaId).HasName("PK_tblBrandMetaData");
 
@@ -1005,18 +1005,18 @@ namespace Hot4.DataModel.Data
                     .HasMaxLength(5000)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Product).WithMany(p => p.TblProductMetaData)
+                entity.HasOne(d => d.Product).WithMany(p => p.ProductMetaData)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblBrandMetaData_tblBrand");
 
-                entity.HasOne(d => d.ProductMetaDataType).WithMany(p => p.TblProductMetaData)
+                entity.HasOne(d => d.ProductMetaDataType).WithMany(p => p.ProductMetaDatas)
                     .HasForeignKey(d => d.ProductMetaDataTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblBrandMetaData_tblBrandMetaDataType");
             });
 
-            modelBuilder.Entity<TblProfile>(entity =>
+            modelBuilder.Entity<Profile>(entity =>
             {
                 entity.HasKey(e => e.ProfileId);
 
@@ -1028,7 +1028,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblProfileDiscount>(entity =>
+            modelBuilder.Entity<ProfileDiscount>(entity =>
             {
                 entity.HasKey(e => e.ProfileDiscountId);
 
@@ -1039,19 +1039,19 @@ namespace Hot4.DataModel.Data
                 entity.Property(e => e.Discount).HasColumnType("money");
                 entity.Property(e => e.ProfileId).HasColumnName("ProfileID");
 
-                entity.HasOne(d => d.Brand).WithMany(p => p.TblProfileDiscounts)
+                entity.HasOne(d => d.Brand).WithMany(p => p.ProfileDiscounts)
                     .HasForeignKey(d => d.BrandId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblProfileDiscount_tblBrand");
 
-                entity.HasOne(d => d.Profile).WithMany(p => p.TblProfileDiscounts)
+                entity.HasOne(d => d.Profile).WithMany(p => p.ProfileDiscounts)
                     .HasForeignKey(d => d.ProfileId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblProfileDiscount_tblProfile");
             });
 
 
-            modelBuilder.Entity<TblRecharge>(entity =>
+            modelBuilder.Entity<Recharge>(entity =>
         {
             entity.HasKey(e => e.RechargeId);
 
@@ -1085,17 +1085,17 @@ namespace Hot4.DataModel.Data
             entity.Property(e => e.RechargeDate).HasColumnType("datetime");
             entity.Property(e => e.StateId).HasColumnName("StateID");
 
-            entity.HasOne(d => d.Access).WithMany(p => p.TblRecharges)
+            entity.HasOne(d => d.Access).WithMany(p => p.Recharges)
                 .HasForeignKey(d => d.AccessId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_tblRecharge_tblAccess");
 
-            entity.HasOne(d => d.Brand).WithMany(p => p.TblRecharges)
+            entity.HasOne(d => d.Brand).WithMany(p => p.Recharges)
                 .HasForeignKey(d => d.BrandId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_tblRecharge_tblBrand");
 
-            entity.HasOne(d => d.State).WithMany(p => p.TblRecharges)
+            entity.HasOne(d => d.State).WithMany(p => p.Recharges)
                 .HasForeignKey(d => d.StateId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_tblRecharge_tblState");
@@ -1127,7 +1127,7 @@ namespace Hot4.DataModel.Data
             //            .HasConstraintName("FK_tblSMSRecharge_tblRecharge"));
         });
 
-            modelBuilder.Entity<TblRechargePrepaid>(entity =>
+            modelBuilder.Entity<RechargePrepaid>(entity =>
             {
                 entity.HasKey(e => e.RechargeId).HasName("PK_tblRechargePrepaid_1");
 
@@ -1159,13 +1159,13 @@ namespace Hot4.DataModel.Data
                     .HasColumnName("SMS");
                 entity.Property(e => e.Window).HasColumnType("datetime");
 
-                entity.HasOne(d => d.Recharge).WithOne(p => p.TblRechargePrepaid)
-                    .HasForeignKey<TblRechargePrepaid>(d => d.RechargeId)
+                entity.HasOne(d => d.Recharge).WithOne(p => p.RechargePrepaid)
+                    .HasForeignKey<RechargePrepaid>(d => d.RechargeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblRechargePrepaid_tblRecharge");
             });
 
-            modelBuilder.Entity<TblReservation>(entity =>
+            modelBuilder.Entity<Reservation>(entity =>
             {
                 entity.HasKey(e => e.ReservationId).HasName("PK_tblreservation");
 
@@ -1195,28 +1195,28 @@ namespace Hot4.DataModel.Data
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Access).WithMany(p => p.TblReservations)
+                entity.HasOne(d => d.Access).WithMany(p => p.Reservations)
                     .HasForeignKey(d => d.AccessId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblreservation_tblAccess");
 
-                entity.HasOne(d => d.Brand).WithMany(p => p.TblReservations)
+                entity.HasOne(d => d.Brand).WithMany(p => p.Reservations)
                     .HasForeignKey(d => d.BrandId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblReservationToBrand");
 
-                entity.HasOne(d => d.Recharge).WithMany(p => p.TblReservations)
+                entity.HasOne(d => d.Recharge).WithMany(p => p.Reservations)
                     .HasForeignKey(d => d.RechargeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblreservation_tblRecharge");
 
-                entity.HasOne(d => d.State).WithMany(p => p.TblReservations)
+                entity.HasOne(d => d.State).WithMany(p => p.Reservations)
                     .HasForeignKey(d => d.StateId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblReservation_tblReservationState");
             });
 
-            modelBuilder.Entity<TblReservationLog>(entity =>
+            modelBuilder.Entity<ReservationLog>(entity =>
             {
                 entity
                     .HasNoKey()
@@ -1247,7 +1247,7 @@ namespace Hot4.DataModel.Data
                     .HasConstraintName("FK_Reservation");
             });
 
-            modelBuilder.Entity<TblReservationState>(entity =>
+            modelBuilder.Entity<ReservationStates>(entity =>
             {
                 entity.HasKey(e => e.ReservationStateId);
 
@@ -1258,7 +1258,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblSelfTopUp>(entity =>
+            modelBuilder.Entity<SelfTopUp>(entity =>
             {
                 entity.HasKey(e => e.SelfTopUpId);
 
@@ -1285,26 +1285,26 @@ namespace Hot4.DataModel.Data
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Access).WithMany(p => p.TblSelfTopUps)
+                entity.HasOne(d => d.Access).WithMany(p => p.SelfTopUps)
                     .HasForeignKey(d => d.AccessId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblSelfTopUp_tblAccess");
 
-                entity.HasOne(d => d.BankTrx).WithMany(p => p.TblSelfTopUps)
+                entity.HasOne(d => d.BankTrx).WithMany(p => p.SelfTopUps)
                     .HasForeignKey(d => d.BankTrxId)
                     .HasConstraintName("FK_tblSelfTopUp_tblBankTrx");
 
-                entity.HasOne(d => d.Brand).WithMany(p => p.TblSelfTopUps)
+                entity.HasOne(d => d.Brand).WithMany(p => p.SelfTopUps)
                     .HasForeignKey(d => d.BrandId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__tblSelfTo__Brand__5CACADF9");
 
-                entity.HasOne(d => d.Recharge).WithMany(p => p.TblSelfTopUps)
+                entity.HasOne(d => d.Recharge).WithMany(p => p.SelfTopUps)
                     .HasForeignKey(d => d.RechargeId)
                     .HasConstraintName("FK_tblSelfTopUp_tblRecharge");
             });
 
-            modelBuilder.Entity<TblSelfTopUpState>(entity =>
+            modelBuilder.Entity<SelfTopUpState>(entity =>
             {
                 entity.HasKey(e => e.SelfTopUpStateId);
 
@@ -1316,7 +1316,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblSms>(entity =>
+            modelBuilder.Entity<Sms>(entity =>
             {
                 entity.HasKey(e => e.Smsid);
 
@@ -1349,12 +1349,12 @@ namespace Hot4.DataModel.Data
                     .HasColumnName("SMSText");
                 entity.Property(e => e.StateId).HasColumnName("StateID");
 
-                entity.HasOne(d => d.Priority).WithMany(p => p.TblSms)
+                entity.HasOne(d => d.Priority).WithMany(p => p.Sms)
                     .HasForeignKey(d => d.PriorityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblSMS_tblPriority");
 
-                entity.HasOne(d => d.Smpp).WithMany(p => p.TblSms)
+                entity.HasOne(d => d.Smpp).WithMany(p => p.Sms)
                     .HasForeignKey(d => d.SmppId)
                     .HasConstraintName("FK_tblSMS_tblSmpp");
 
@@ -1362,13 +1362,13 @@ namespace Hot4.DataModel.Data
                     .HasForeignKey(d => d.SmsidIn)
                     .HasConstraintName("FK_tblSMS_tblSMS");
 
-                entity.HasOne(d => d.State).WithMany(p => p.TblSms)
+                entity.HasOne(d => d.State).WithMany(p => p.Sms)
                     .HasForeignKey(d => d.StateId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblSMS_tblState");
             });
 
-            modelBuilder.Entity<TblSmpp>(entity =>
+            modelBuilder.Entity<Smpp>(entity =>
             {
                 entity.HasKey(e => e.SmppId);
 
@@ -1408,17 +1408,17 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblRechargePin>(entity =>
+            modelBuilder.Entity<RechargePin>(entity =>
             {
                 entity.ToTable("tblRechargePin");
                 // entity.HasKey(e => new { e.PinId, e.RechargeId });
             });
-            modelBuilder.Entity<TblSmsRecharge>(entity =>
+            modelBuilder.Entity<SmsRecharge>(entity =>
             {
                 entity.ToTable("tblSmsRecharge");
                 //  entity.HasKey(e => new { e.SmsId, e.RechargeId });
             });
-            modelBuilder.Entity<TblState>(entity =>
+            modelBuilder.Entity<States>(entity =>
             {
                 entity.HasKey(e => e.StateId);
 
@@ -1430,7 +1430,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblStockData>(entity =>
+            modelBuilder.Entity<StockData>(entity =>
             {
                 entity
                     .HasNoKey()
@@ -1446,7 +1446,7 @@ namespace Hot4.DataModel.Data
                 entity.Property(e => e.WeekSold).HasColumnType("money");
             });
 
-            modelBuilder.Entity<TblSubscriber>(entity =>
+            modelBuilder.Entity<Subscriber>(entity =>
             {
                 entity.HasKey(e => e.SubscriberId);
 
@@ -1473,18 +1473,18 @@ namespace Hot4.DataModel.Data
                     .HasMaxLength(150)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Account).WithMany(p => p.TblSubscribers)
+                entity.HasOne(d => d.Account).WithMany(p => p.Subscribers)
                     .HasForeignKey(d => d.AccountId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblSubscriber_tblAccount");
 
-                entity.HasOne(d => d.Brand).WithMany(p => p.TblSubscribers)
+                entity.HasOne(d => d.Brand).WithMany(p => p.Subscribers)
                     .HasForeignKey(d => d.BrandId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblSubscriber_tblBrand");
             });
 
-            modelBuilder.Entity<TblTemplate>(entity =>
+            modelBuilder.Entity<Template>(entity =>
             {
                 entity.HasKey(e => e.TemplateId);
 
@@ -1501,7 +1501,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblTransfer>(entity =>
+            modelBuilder.Entity<Transfer>(entity =>
             {
                 entity.HasKey(e => e.TransferId);
 
@@ -1515,23 +1515,23 @@ namespace Hot4.DataModel.Data
                 entity.Property(e => e.Smsid).HasColumnName("SMSID");
                 entity.Property(e => e.TransferDate).HasColumnType("datetime");
 
-                entity.HasOne(d => d.Channel).WithMany(p => p.TblTransfers)
+                entity.HasOne(d => d.Channel).WithMany(p => p.Transfers)
                     .HasForeignKey(d => d.ChannelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblTransfer_tblChannel");
 
-                entity.HasOne(d => d.PaymentIdFromNavigation).WithMany(p => p.TblTransferPaymentIdFromNavigations)
+                entity.HasOne(d => d.PaymentIdFromNavigation).WithMany(p => p.TransferPaymentIdFromNavigations)
                     .HasForeignKey(d => d.PaymentIdFrom)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblTransfer_tblPayment");
 
-                entity.HasOne(d => d.PaymentIdToNavigation).WithMany(p => p.TblTransferPaymentIdToNavigations)
+                entity.HasOne(d => d.PaymentIdToNavigation).WithMany(p => p.TransferPaymentIdToNavigations)
                     .HasForeignKey(d => d.PaymentIdTo)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblTransfer_tblPayment1");
             });
 
-            modelBuilder.Entity<TblWalletType>(entity =>
+            modelBuilder.Entity<WalletType>(entity =>
             {
                 entity.HasKey(e => e.WalletTypeId);
 
@@ -1543,7 +1543,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TblWebRequest>(entity =>
+            modelBuilder.Entity<WebRequest>(entity =>
             {
                 entity
                     .HasNoKey()
@@ -1575,7 +1575,7 @@ namespace Hot4.DataModel.Data
                     .HasColumnName("WebID");
             });
 
-            modelBuilder.Entity<TblprofileBackup>(entity =>
+            modelBuilder.Entity<ProfileBackup>(entity =>
             {
                 entity
                     .HasNoKey()
@@ -2624,7 +2624,7 @@ namespace Hot4.DataModel.Data
                 entity.Property(e => e.StateId).HasColumnName("StateID");
             });
 
-            modelBuilder.Entity<ZtblArchive>(entity =>
+            modelBuilder.Entity<ZArchive>(entity =>
             {
                 entity
                     .HasNoKey()
@@ -2637,7 +2637,7 @@ namespace Hot4.DataModel.Data
                 entity.Property(e => e.MaxSmsid).HasColumnName("MaxSMSID");
             });
 
-            modelBuilder.Entity<ZtblStat>(entity =>
+            modelBuilder.Entity<ZStat>(entity =>
             {
                 entity
                     .HasNoKey()

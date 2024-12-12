@@ -4,8 +4,8 @@ namespace Hot4.Repository.Abstract
 {
     public interface IProfileRepository
     {
-        Task<TblProfile?> GetProfile(int profileId);
+        Task<Profile?> GetProfile(int profileId);
 
-        Task<List<TblProfile>> ListProfile();
+        Task<List<Profile>> ListProfile();
     }
 }

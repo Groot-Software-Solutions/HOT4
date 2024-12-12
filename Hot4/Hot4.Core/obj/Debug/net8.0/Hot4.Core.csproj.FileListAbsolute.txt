@@ -5,6 +5,7 @@ F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.GeneratedMSBuildEditorConf
 F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.AssemblyInfoInputs.cache
 F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.AssemblyInfo.cs
 F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.csproj.CoreCompileInputs.cache
+F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.sourcelink.json
 F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.dll
 F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\refint\Hot4.Core.dll
 F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.pdb

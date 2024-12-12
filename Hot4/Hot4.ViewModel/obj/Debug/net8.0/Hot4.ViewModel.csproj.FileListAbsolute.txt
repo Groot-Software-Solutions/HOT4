@@ -5,6 +5,7 @@ F:\Hot4-new\Hot4\Hot4.ViewModel\obj\Debug\net8.0\Hot4.ViewModel.GeneratedMSBuild
 F:\Hot4-new\Hot4\Hot4.ViewModel\obj\Debug\net8.0\Hot4.ViewModel.AssemblyInfoInputs.cache
 F:\Hot4-new\Hot4\Hot4.ViewModel\obj\Debug\net8.0\Hot4.ViewModel.AssemblyInfo.cs
 F:\Hot4-new\Hot4\Hot4.ViewModel\obj\Debug\net8.0\Hot4.ViewModel.csproj.CoreCompileInputs.cache
+F:\Hot4-new\Hot4\Hot4.ViewModel\obj\Debug\net8.0\Hot4.ViewModel.sourcelink.json
 F:\Hot4-new\Hot4\Hot4.ViewModel\obj\Debug\net8.0\Hot4.ViewModel.dll
 F:\Hot4-new\Hot4\Hot4.ViewModel\obj\Debug\net8.0\refint\Hot4.ViewModel.dll
 F:\Hot4-new\Hot4\Hot4.ViewModel\obj\Debug\net8.0\Hot4.ViewModel.pdb

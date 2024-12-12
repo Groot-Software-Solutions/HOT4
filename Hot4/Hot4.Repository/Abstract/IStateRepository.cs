@@ -4,7 +4,7 @@ namespace Hot4.Repository.Abstract
 {
     public interface IStateRepository
     {
-        Task<List<TblState>> ListState();
-        Task<TblState?> GetState(byte stateId);
+        Task<List<States>> ListState();
+        Task<States?> GetState(byte stateId);
     }
 }

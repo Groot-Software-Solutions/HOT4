@@ -6,25 +6,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
 {
-    public class RechargePrepaidRepository : RepositoryBase<TblRechargePrepaid>, IRechargePrepaidRepository
+    public class RechargePrepaidRepository : RepositoryBase<RechargePrepaid>, IRechargePrepaidRepository
     {
         public RechargePrepaidRepository(HotDbContext context) : base(context) { }
-        public async Task InsertRechargePrepaid(TblRechargePrepaid rechargeprepaid)
+        public async Task InsertRechargePrepaid(RechargePrepaid rechargeprepaid)
         {
             await Create(rechargeprepaid);
             await SaveChanges();
         }
 
-        public async Task UpdateRechargePrepaid(TblRechargePrepaid rechargePrepaid)
+        public async Task UpdateRechargePrepaid(RechargePrepaid rechargePrepaid)
         {
             await Update(rechargePrepaid);
             await SaveChanges();
         }
-        public async Task<TblRechargePrepaid?> GetRechargePrepaid(long rechargeId)
+        public async Task<RechargePrepaid?> GetRechargePrepaid(long rechargeId)
         {
             return await GetById(rechargeId);
         }
-        public async Task<TblRechargePrepaid?> GetRechargeReversal(long rechargeId)
+        public async Task<RechargePrepaid?> GetRechargeReversal(long rechargeId)
         {
             return await GetByCondition(d => d.Reference == rechargeId.ToString()).FirstOrDefaultAsync();
         }

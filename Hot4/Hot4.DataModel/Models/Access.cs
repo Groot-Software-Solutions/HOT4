@@ -24,13 +24,13 @@ public partial class Access
 
     public DateTime? InsertDate { get; set; }
 
-    public virtual TblAccount Account { get; set; }
+    public virtual Account Account { get; set; }
 
-    public virtual TblChannel Channel { get; set; }
+    public virtual Channels Channel { get; set; }
 
-    public virtual ICollection<TblRecharge> TblRecharges { get; set; } = new List<TblRecharge>();
+    public virtual ICollection<Recharge> Recharges { get; set; } = new List<Recharge>();
 
-    public virtual ICollection<TblReservation> TblReservations { get; set; } = new List<TblReservation>();
+    public virtual ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
 
-    public virtual ICollection<TblSelfTopUp> TblSelfTopUps { get; set; } = new List<TblSelfTopUp>();
+    public virtual ICollection<SelfTopUp> SelfTopUps { get; set; } = new List<SelfTopUp>();
 }

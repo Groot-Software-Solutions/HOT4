@@ -7,21 +7,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
 {
-    public class AccountRepository : RepositoryBase<TblAccount>, IAccountRepository
+    public class AccountRepository : RepositoryBase<Account>, IAccountRepository
     {
         public AccountRepository(HotDbContext context) : base(context) { }
-        public async Task<long> AddAccount(TblAccount account)
+        public async Task<long> AddAccount(Account account)
         {
             await Create(account);
             await SaveChanges();
             return account.AccountId;
         }
-        public async Task UpdateAccount(TblAccount account)
+        public async Task UpdateAccount(Account account)
         {
             await Update(account);
             await SaveChanges();
         }
-        public async Task<TblAccount?> GetAccount(long accountId)
+        public async Task<Account?> GetAccount(long accountId)
         {
             return await GetById(accountId);
         }
@@ -77,7 +77,7 @@ namespace Hot4.Repository.Concrete
         {
             return await _context.VwAccount.FirstOrDefaultAsync(d => d.AccountId == accountId);
         }
-        public async Task<Access> AddWithAccessWithTransaction(TblAccount account, Access access)
+        public async Task<Access> AddWithAccessWithTransaction(Account account, Access access)
         {
             try
             {

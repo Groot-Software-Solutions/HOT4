@@ -10,6 +10,7 @@ F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Repository.GeneratedMSBui
 F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Repository.AssemblyInfoInputs.cache
 F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Repository.AssemblyInfo.cs
 F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Repository.csproj.CoreCompileInputs.cache
+F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Repository.sourcelink.json
 F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Rep.F0F7EA5C.Up2Date
 F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Repository.dll
 F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\refint\Hot4.Repository.dll

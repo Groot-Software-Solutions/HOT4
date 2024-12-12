@@ -4,7 +4,7 @@ namespace Hot4.Repository.Abstract
 {
     public interface IRegistrationRepository
     {
-        Task Register(TblSms sms);
-        Task<Access?> RegisterSelfTopUpUser(TblSms sms);
+        Task Register(Sms sms);
+        Task<Access?> RegisterSelfTopUpUser(Sms sms);
     }
 }

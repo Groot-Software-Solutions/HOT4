@@ -4,6 +4,6 @@ namespace Hot4.Repository.Abstract
 {
     public interface IPaymentTypeRepository
     {
-        Task<List<TblPaymentType>> ListPaymentType();
+        Task<List<PaymentTypes>> ListPaymentType();
     }
 }

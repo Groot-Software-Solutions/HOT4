@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
 {
-    public class BankRepository : RepositoryBase<TblBankTrx>, IBankRepository
+    public class BankRepository : RepositoryBase<BankTrx>, IBankRepository
     {
         public BankRepository(HotDbContext context) : base(context) { }
-        public async Task AddBankTrx(TblBankTrx bankTrx)
+        public async Task AddBankTrx(BankTrx bankTrx)
         {
             var duplicateTransaction = await GetByCondition(d =>
                      (
@@ -22,14 +22,14 @@ namespace Hot4.Repository.Concrete
                      && d.Balance == bankTrx.Balance
                      )
                  || (
-                     d.BankTrxTypeId == (byte)BankTrxTypes.EcoCashPending
+                     d.BankTrxTypeId == (byte)BankTranType.EcoCashPending
                      && d.Amount == bankTrx.Amount
                      && d.Identifier == bankTrx.Identifier
                      && d.BankRef == bankTrx.BankRef
                      && bankTrx.BankRef != "pending"
                      )
                  || (
-                     d.BankTrxTypeId == (byte)BankTrxTypes.SalaryCredit
+                     d.BankTrxTypeId == (byte)BankTranType.SalaryCredit
                      && d.Amount == bankTrx.Amount
                      && d.Identifier == bankTrx.Identifier
                      && d.BankRef == bankTrx.BankRef
@@ -49,13 +49,13 @@ namespace Hot4.Repository.Concrete
             }
         }
 
-        public async Task<TblBankTrxBatch> AddBankTrxBatch(TblBankTrxBatch tblBankTrxBatch)
+        public async Task<BankTrxBatch> AddBankTrxBatch(BankTrxBatch tblBankTrxBatch)
         {
             await _context.BankTrxBatch.AddAsync(tblBankTrxBatch);
             await _context.SaveChangesAsync();
             return tblBankTrxBatch;
         }
-        public async Task UpdateBankTrx(TblBankTrx bankTrx)
+        public async Task UpdateBankTrx(BankTrx bankTrx)
         {
             await Update(bankTrx);
             await SaveChanges();
@@ -94,7 +94,7 @@ namespace Hot4.Repository.Concrete
                 await SaveChanges();
             }
         }
-        public async Task<TblBankTrxBatch?> GetBatch(byte bankId, string BatchReference)
+        public async Task<BankTrxBatch?> GetBatch(byte bankId, string BatchReference)
         {
             return await _context.BankTrxBatch
                   .SingleOrDefaultAsync(d =>
@@ -102,7 +102,7 @@ namespace Hot4.Repository.Concrete
                   && d.BatchReference == BatchReference);
         }
 
-        public async Task<List<TblBank>> ListBanks()
+        public async Task<List<DataModel.Models.Banks>> ListBanks()
         {
             return await _context.Bank.OrderBy(d => d.Bank).ToListAsync();
         }

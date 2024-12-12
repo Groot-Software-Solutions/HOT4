@@ -4,10 +4,10 @@ namespace Hot4.Repository.Abstract
 {
     public interface IAccessWebRepository
     {
-        Task<TblAccessWeb?> GetAccessWeb(long accessId);
+        Task<AccessWeb?> GetAccessWeb(long accessId);
 
-        Task AddAccessWeb(TblAccessWeb accessWeb);
+        Task AddAccessWeb(AccessWeb accessWeb);
 
-        Task UpdateAccessWeb(TblAccessWeb accessWeb);
+        Task UpdateAccessWeb(AccessWeb accessWeb);
     }
 }

@@ -4,15 +4,15 @@ using Hot4.Repository.Abstract;
 
 namespace Hot4.Repository.Concrete
 {
-    public class AddressRepository : RepositoryBase<TblAddress>, IAddressRepository
+    public class AddressRepository : RepositoryBase<Address>, IAddressRepository
     {
         public AddressRepository(HotDbContext context) : base(context) { }
-        public async Task<TblAddress?> GetAddress(long accountId)
+        public async Task<Address?> GetAddress(long accountId)
         {
             return await GetById(accountId);
         }
 
-        public async Task InsertAddress(TblAddress address)
+        public async Task InsertAddress(Address address)
         {
             await Create(address);
             await SaveChanges();

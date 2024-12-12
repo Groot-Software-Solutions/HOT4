@@ -4,8 +4,8 @@ namespace Hot4.Repository.Abstract
 {
     public interface IAddressRepository
     {
-        Task<TblAddress?> GetAddress(long accountId);
+        Task<Address?> GetAddress(long accountId);
 
-        Task InsertAddress(TblAddress address);
+        Task InsertAddress(Address address);
     }
 }

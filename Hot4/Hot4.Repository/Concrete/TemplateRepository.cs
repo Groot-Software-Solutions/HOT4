@@ -4,10 +4,10 @@ using Hot4.Repository.Abstract;
 
 namespace Hot4.Repository.Concrete
 {
-    public class TemplateRepository : RepositoryBase<TblTemplate>, ITemplateRepository
+    public class TemplateRepository : RepositoryBase<Template>, ITemplateRepository
     {
         public TemplateRepository(HotDbContext context) : base(context) { }
-        public async Task<TblTemplate?> GetTemplate(int templateId)
+        public async Task<Template?> GetTemplate(int templateId)
         {
             return await GetById(templateId);
         }
