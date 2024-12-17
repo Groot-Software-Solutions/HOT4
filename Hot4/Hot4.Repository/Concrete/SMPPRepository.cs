@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
 {
-    public class SMPPRepository : RepositoryBase<TblSmpp>, ISMPPRepository
+    public class SMPPRepository : RepositoryBase<Smpp>, ISMPPRepository
     {
         public SMPPRepository(HotDbContext context) : base(context) { }
         public async Task<List<SMPPModel>> ListSMPP()

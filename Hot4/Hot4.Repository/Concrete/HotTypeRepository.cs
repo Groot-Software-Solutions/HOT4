@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
 {
-    public class HotTypeRepository : RepositoryBase<TblHotType>, IHotTypeRepository
+    public class HotTypeRepository : RepositoryBase<HotTypes>, IHotTypeRepository
     {
         public HotTypeRepository(HotDbContext context) : base(context) { }
-        public async Task<List<TblHotType>> ListHotType()
+        public async Task<List<HotTypes>> ListHotType()
         {
             return await GetAll().ToListAsync();
         }
 
-        public async Task<TblHotType?> GetHotType(int hotTypeId)
+        public async Task<HotTypes?> GetHotType(int hotTypeId)
         {
             return await GetById(hotTypeId);
         }

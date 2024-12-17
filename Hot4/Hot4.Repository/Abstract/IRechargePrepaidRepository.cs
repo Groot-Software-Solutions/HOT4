@@ -5,11 +5,11 @@ namespace Hot4.Repository.Abstract
 {
     public interface IRechargePrepaidRepository
     {
-        Task InsertRechargePrepaid(TblRechargePrepaid rechargeprepaid);
-        Task UpdateRechargePrepaid(TblRechargePrepaid rechargePrepaid);
+        Task InsertRechargePrepaid(RechargePrepaid rechargeprepaid);
+        Task UpdateRechargePrepaid(RechargePrepaid rechargePrepaid);
 
-        Task<TblRechargePrepaid?> GetRechargePrepaid(long rechargeId);
+        Task<RechargePrepaid?> GetRechargePrepaid(long rechargeId);
         Task<AccountRechargePrepaidModel> SelectRechargePrepaid(long rechargeId);
-        Task<TblRechargePrepaid?> GetRechargeReversal(long rechargeId);
+        Task<RechargePrepaid?> GetRechargeReversal(long rechargeId);
     }
 }

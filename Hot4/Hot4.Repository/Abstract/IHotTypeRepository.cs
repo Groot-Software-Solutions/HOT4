@@ -4,7 +4,7 @@ namespace Hot4.Repository.Abstract
 {
     public interface IHotTypeRepository
     {
-        Task<TblHotType?> GetHotType(int hotTypeId);
-        Task<List<TblHotType>> ListHotType();
+        Task<HotTypes?> GetHotType(int hotTypeId);
+        Task<List<HotTypes>> ListHotType();
     }
 }

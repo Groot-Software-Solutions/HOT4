@@ -4,13 +4,13 @@ using Hot4.Repository.Abstract;
 
 namespace Hot4.Repository.Concrete
 {
-    public class LimitRepository : RepositoryBase<TblLimit>, ILimitRepository
+    public class LimitRepository : RepositoryBase<Limit>, ILimitRepository
     {
         public LimitRepository(HotDbContext context) : base(context)
         {
 
         }
-        public async Task<long> AddLimit(TblLimit limit)
+        public async Task<long> AddLimit(Limit limit)
         {
             await Create(limit);
             await SaveChanges();
@@ -27,12 +27,12 @@ namespace Hot4.Repository.Concrete
             }
         }
 
-        public async Task<TblLimit?> GetLimit(long limitId)
+        public async Task<Limit?> GetLimit(long limitId)
         {
             return await GetById(limitId);
         }
 
-        public async Task UpdateLimit(TblLimit limit)
+        public async Task UpdateLimit(Limit limit)
         {
             await Update(limit);
             await SaveChanges();

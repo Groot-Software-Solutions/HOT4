@@ -12,14 +12,13 @@ namespace Hot4.Repository.Concrete
         private readonly ISMSRepository _smsRepository;
         private readonly ITemplateRepository _templateRepository;
         private TemplateSettings _templateSettings { get; }
-
         public AnswerRepository(ISMSRepository smsRepository, ITemplateRepository templateRepository, IOptions<TemplateSettings> templateSettings)
         {
             _smsRepository = smsRepository;
             _templateRepository = templateRepository;
             _templateSettings = templateSettings.Value;
         }
-        public async Task RespondToAnswer(TblSms sms)
+        public async Task RespondToAnswer(Sms sms)
         {
             if (sms.Smstext.ToUpper().StartsWith("OPT"))
             {
@@ -34,8 +33,8 @@ namespace Hot4.Repository.Concrete
             {
                 var answerTemplate = await _templateRepository.GetTemplate(
                     string.IsNullOrWhiteSpace(sms.Smstext)
-                    ? (int)Templates.AnswerError
-                    : (int)Templates.AnswerOK);
+                    ? (int)TemplateType.AnswerError
+                    : (int)TemplateType.AnswerOK);
                 if (answerTemplate != null && !string.IsNullOrEmpty(answerTemplate.TemplateText))
                 {
                     answerTemplate.TemplateText = answerTemplate.TemplateText.Replace("%MESSAGE%", sms.Mobile);
@@ -43,10 +42,9 @@ namespace Hot4.Repository.Concrete
                 }
             }
         }
-
-        public async Task RespondToUnknown(TblSms sms)
+        public async Task RespondToUnknown(Sms sms)
         {
-            var unknownRequest = await _templateRepository.GetTemplate((int)Templates.UnknownRequest);
+            var unknownRequest = await _templateRepository.GetTemplate((int)TemplateType.UnknownRequest);
             if (unknownRequest != null && !string.IsNullOrEmpty(unknownRequest.TemplateText))
             {
                 unknownRequest.TemplateText = unknownRequest.TemplateText.Replace("%MESSAGE%", sms.Mobile);

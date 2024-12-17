@@ -25,7 +25,7 @@ namespace Hot4.Repository.Concrete
             _hotTypeRepository = hotTypeRepository;
         }
 
-        public async Task Register(TblSms sms)
+        public async Task Register(Sms sms)
         {
             if (await RegistrationDuplicate(sms))
             {
@@ -39,9 +39,9 @@ namespace Hot4.Repository.Concrete
             var account = await ParseRegistration(sms);
             var access = BuildRegistrationAccess(sms);
 
-            access = await _accountRepository.AddWithAccessWithTransaction(account, access);
+            // access = await _accountRepository.AddWithAccessWithTransaction(account, access);
 
-            var template = await _templateRepository.GetTemplate((int)Templates.SuccessfulRegistration);
+            var template = await _templateRepository.GetTemplate((int)TemplateType.SuccessfulRegistration);
             if (template == null)
             {
                 return;
@@ -51,26 +51,26 @@ namespace Hot4.Repository.Concrete
                 template.TemplateText = template.TemplateText.Replace("%PASSWORD%", access.AccessPassword);
             }
 
-            List<TblTemplate> templates = new List<TblTemplate>
+            List<Template> templates = new List<Template>
             {
                 template,
-                await _templateRepository.GetTemplate((int)Templates.HelpEcocash),
-                await _templateRepository.GetTemplate((int)Templates.HelpBank),
-                await _templateRepository.GetTemplate((int)Templates.HelpRecharge),
+                await _templateRepository.GetTemplate((int)TemplateType.HelpEcocash),
+                await _templateRepository.GetTemplate((int)TemplateType.HelpBank),
+                await _templateRepository.GetTemplate((int)TemplateType.HelpRecharge),
             };
 
             await _smsRepository.ReplyWithTransaction(sms, templates);
         }
 
-        public Task<Access?> RegisterSelfTopUpUser(TblSms sms)
+        public Task<Access?> RegisterSelfTopUpUser(Sms sms)
         {
             throw new NotImplementedException();
         }
 
-        private async Task<TblAccount> CreateNewSelfTopUpAccount(TblSms sms)
+        private async Task<Account> CreateNewSelfTopUpAccount(Sms sms)
         {
             var config = await _configRepository.GetConfig();
-            return new TblAccount
+            return new Account
             {
                 AccountName = $"SelfTopUp-{sms.Mobile}",
                 Email = string.Empty,
@@ -81,14 +81,14 @@ namespace Hot4.Repository.Concrete
             };
         }
 
-        private async Task<TblAccount> ParseRegistration(TblSms sms)
+        private async Task<Account> ParseRegistration(Sms sms)
         {
             var config = await _configRepository.GetConfig();
-            var hotType = await _hotTypeRepository.GetHotType((int)HotTypes.Registration);
+            var hotType = await _hotTypeRepository.GetHotType((int)HotTypeState.Registration);
 
             ParseMessageFields(sms, hotType, out string firstname, out string surname, out string nationalID, out string email);
 
-            var account = new TblAccount
+            var account = new Account
             {
                 AccountName = $"{surname}, {firstname}",
                 NationalId = nationalID,
@@ -100,7 +100,7 @@ namespace Hot4.Repository.Concrete
 
             if (sms.Smstext.ToUpper().StartsWith("BA"))
             {
-                account.ProfileId = (int)Profiles.EconetBA;
+                account.ProfileId = (int)ProfileType.EconetBA;
                 account.ReferredBy = "Econet-BA";
             }
 
@@ -108,8 +108,8 @@ namespace Hot4.Repository.Concrete
         }
 
         private static void ParseMessageFields
-            (TblSms sms,
-            TblHotType hotType,
+            (Sms sms,
+            HotTypes hotType,
             out string firstname,
             out string surname,
             out string idNumber,
@@ -122,25 +122,25 @@ namespace Hot4.Repository.Concrete
             email = fields.Select(f => f.Groups["Email"].Value).ToList()[0];
         }
 
-        private Access BuildRegistrationAccess(TblSms sms)
+        private Access BuildRegistrationAccess(Sms sms)
         {
             return new Access
             {
                 AccessCode = sms.Mobile,
                 AccessPassword = Helper.CreateRandomSMSAccessCode(),
-                ChannelId = (byte)Channels.SMS,
+                ChannelId = (byte)Core.Enums.ChannelType.SMS,
             };
         }
 
-        private async Task<bool> RegistrationCorrectlyFormatted(TblSms sms)
+        private async Task<bool> RegistrationCorrectlyFormatted(Sms sms)
         {
-            var hotType = await _hotTypeRepository.GetHotType((int)HotTypes.Registration);
+            var hotType = await _hotTypeRepository.GetHotType((int)HotTypeState.Registration);
             if (!Regex.Match(sms.Smstext,/* hotType.RegexString*/"", RegexOptions.IgnoreCase).Success)
             {
-                var template = await _templateRepository.GetTemplate((int)Templates.HelpRegistration);
+                var template = await _templateRepository.GetTemplate((int)TemplateType.HelpRegistration);
                 if (template != null)
                 {
-                    await _smsRepository.ReplyWithTransaction(sms, new List<TblTemplate> { template });
+                    await _smsRepository.ReplyWithTransaction(sms, new List<Template> { template });
 
 
                     return false;
@@ -149,28 +149,28 @@ namespace Hot4.Repository.Concrete
             return true;
         }
 
-        private async Task<bool> RegistrationDuplicate(TblSms sms)
+        private async Task<bool> RegistrationDuplicate(Sms sms)
         {
             var access = await _accessRepository.GetByAccessCode(sms.Mobile);
 
             if (access != null)
             {
-                var account = await _accountRepository.GetAccount(access.AccountId);
+                var account = await _accountRepository.GetAccount(access.AccountID);
 
-                if (account != null && account.ProfileId == (int)Profiles.SelfTopUp)
+                if (account != null && account.ProfileId == (int)ProfileType.SelfTopUp)
                 {
                     //TODO - GS - Reply Templates?
                     //await RegisterSelfTopUpUserAsync(sms)
                 }
                 else
                 {
-                    var template = await _templateRepository.GetTemplate((int)Templates.FailedRegistrationDuplicate);
+                    var template = await _templateRepository.GetTemplate((int)TemplateType.FailedRegistrationDuplicate);
 
                     if (template != null)
                     {
                         template.TemplateText = template.TemplateText.Replace("%NAME%", account?.AccountName);
 
-                        await _smsRepository.ReplyWithTransaction(sms, new List<TblTemplate> { template });
+                        await _smsRepository.ReplyWithTransaction(sms, new List<Template> { template });
                     }
                 }
 

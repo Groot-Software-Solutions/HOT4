@@ -4,6 +4,6 @@ namespace Hot4.Repository.Abstract
 {
     public interface IChannelRepository
     {
-        Task<List<TblChannel>> GetChannels();
+        Task<List<Channels>> GetChannels();
     }
 }

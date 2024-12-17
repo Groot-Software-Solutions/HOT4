@@ -159,6 +159,7 @@ F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.AssemblyInfoInputs.cac
 F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.AssemblyInfo.cs
 F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.csproj.CoreCompileInputs.cache
 F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.MvcApplicationPartsAssemblyInfo.cache
+F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.sourcelink.json
 F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\staticwebassets.build.json
 F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\staticwebassets.development.json
 F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\staticwebassets\msbuild.Hot4.Server.Microsoft.AspNetCore.StaticWebAssets.props
@@ -176,3 +177,4 @@ F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\refint\Hot4.Server.dll
 F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.pdb
 F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.genruntimeconfig.cache
 F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\ref\Hot4.Server.dll
+F:\Hot4-new\Hot4\Hot4.Server\bin\Debug\net8.0\System.Linq.Dynamic.Core.dll

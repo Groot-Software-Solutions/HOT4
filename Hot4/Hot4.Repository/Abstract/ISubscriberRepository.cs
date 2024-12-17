@@ -4,10 +4,10 @@ namespace Hot4.Repository.Abstract
 {
     public interface ISubscriberRepository
     {
-        Task<List<TblSubscriber>> ListSubscriber(long accountId);
+        Task<List<Subscriber>> ListSubscriber(long accountId);
 
-        Task<TblSubscriber?> GetSubscriber(long subscriberId);
-        Task InsertSubscriber(TblSubscriber subscriber);
-        Task UpdateSubscriber(TblSubscriber subscriber);
+        Task<Subscriber?> GetSubscriber(long subscriberId);
+        Task InsertSubscriber(Subscriber subscriber);
+        Task UpdateSubscriber(Subscriber subscriber);
     }
 }

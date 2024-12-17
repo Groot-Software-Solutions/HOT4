@@ -4,22 +4,22 @@ using Hot4.Repository.Abstract;
 
 namespace Hot4.Repository.Concrete
 {
-    public class ProductRepository : RepositoryBase<TblProduct>, IProductRepository
+    public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
         public ProductRepository(HotDbContext context) : base(context) { }
 
-        public async Task<TblProduct?> GetProduct(int productId)
+        public async Task<Product?> GetProduct(int productId)
         {
             return await GetById(productId);
         }
 
-        public async Task<int> AddProduct(TblProduct product)
+        public async Task<int> AddProduct(Product product)
         {
             await Create(product);
             await SaveChanges();
             return product.ProductId;
         }
-        public async Task UpdateProduct(TblProduct product)
+        public async Task UpdateProduct(Product product)
         {
 
             await Update(product);
