@@ -8,15 +8,15 @@ namespace Hot4.Repository.Abstract
 
         Task<List<AccountRechargePinModel>> ListRechargePin(long rechargeId);
 
-        Task<TblRecharge?> GetRecharge(long rechargeId);
+        Task<Recharge?> GetRecharge(long rechargeId);
 
-        Task UpdateRecharge(TblRecharge recharge);
+        Task UpdateRecharge(Recharge recharge);
 
-        Task<TblRecharge?> InsertAndGetIdentity(TblRecharge recharge);
+        Task<Recharge?> InsertAndGetIdentity(Recharge recharge);
 
         Task<List<RechargeAccess>> ListRechargeForMobile(string mobile, DateTime date);
 
-        Task<List<TblRecharge>> GetPendingRechargesWithTransaction(int takeRows);
+        Task<List<Recharge>> GetPendingRechargesWithTransaction(int takeRows);
 
     }
 }

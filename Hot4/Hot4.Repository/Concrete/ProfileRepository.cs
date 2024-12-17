@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
 {
-    public class ProfileRepository : RepositoryBase<TblProfile>, IProfileRepository
+    public class ProfileRepository : RepositoryBase<Profile>, IProfileRepository
     {
         public ProfileRepository(HotDbContext context) : base(context) { }
-        public async Task<TblProfile?> GetProfile(int profileId)
+        public async Task<Profile?> GetProfile(int profileId)
         {
             return await GetById(profileId);
         }
 
-        public async Task<List<TblProfile>> ListProfile()
+        public async Task<List<Profile>> ListProfile()
         {
             return await GetAll().ToListAsync();
         }

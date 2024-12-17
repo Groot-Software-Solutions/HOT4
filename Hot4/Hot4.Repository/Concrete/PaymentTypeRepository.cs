@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
 {
-    public class PaymentTypeRepository : RepositoryBase<TblPaymentType>, IPaymentTypeRepository
+    public class PaymentTypeRepository : RepositoryBase<PaymentTypes>, IPaymentTypeRepository
     {
         public PaymentTypeRepository(HotDbContext context) : base(context) { }
-        public async Task<List<TblPaymentType>> ListPaymentType()
+        public async Task<List<PaymentTypes>> ListPaymentType()
         {
             return await GetAll().ToListAsync();
         }

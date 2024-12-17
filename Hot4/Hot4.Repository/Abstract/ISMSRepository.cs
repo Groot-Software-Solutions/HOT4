@@ -7,9 +7,9 @@ namespace Hot4.Repository.Abstract
 {
     public interface ISMSRepository
     {
-        Task<long> AddSMS(TblSms sms);
-        Task UpdateSMS(TblSms sms);
-        Task ResendWithTransaction(TblSms smsRequest);
+        Task<long> AddSMS(Sms sms);
+        Task UpdateSMS(Sms sms);
+        Task ResendWithTransaction(Sms smsRequest);
 
         Task<List<AccountSmsModel>> ListSMSInViewsForAccount(long accountId, DateTime dateTime);
 
@@ -19,15 +19,15 @@ namespace Hot4.Repository.Abstract
 
         Task<List<VwSm>> GetPendingSMSWithTransaction();
 
-        Task Reply(TblSms sms, List<TblTemplate> templates);
+        Task Reply(Sms sms, List<Template> templates);
 
-        Task ReplyWithTransaction(TblSms sms, List<TblTemplate> templates);
+        Task ReplyWithTransaction(Sms sms, List<Template> templates);
 
-        Task ReplyCustomer(string mobile, TblSms sms, List<TblTemplate> templates);
+        Task ReplyCustomer(string mobile, Sms sms, List<Template> templates);
 
-        Task ClearSMSPassword(TblSms sms, bool hadValidPassword, HotTypes hotTypeSMS);
+        Task ClearSMSPassword(Sms sms, bool hadValidPassword, HotTypeState hotTypeSMS);
 
-        Task<TblSms?> Duplicate(TblSms sms);
+        Task<Sms?> Duplicate(Sms sms);
 
         Task<List<AccountSmsModel>> RefreshListSMSOutViewsForAccount(long accountId, DateTime dateTime);
 

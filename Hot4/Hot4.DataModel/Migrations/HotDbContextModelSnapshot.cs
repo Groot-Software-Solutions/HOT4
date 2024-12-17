@@ -23,7 +23,7 @@ namespace Hot4.DataModel.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblAccess", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Access", b =>
                 {
                     b.Property<long>("AccessId")
                         .ValueGeneratedOnAdd()
@@ -92,7 +92,7 @@ namespace Hot4.DataModel.Migrations
                     b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblAccessWeb", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.AccessWeb", b =>
                 {
                     b.Property<long>("AccessId")
                         .HasColumnType("bigint")
@@ -128,7 +128,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblAccessWeb", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblAccount", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Account", b =>
                 {
                     b.Property<long>("AccountId")
                         .ValueGeneratedOnAdd()
@@ -187,7 +187,7 @@ namespace Hot4.DataModel.Migrations
                     b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblAddress", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Address", b =>
                 {
                     b.Property<long>("AccountId")
                         .HasColumnType("bigint")
@@ -248,28 +248,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblAddress", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBank", b =>
-                {
-                    b.Property<byte>("BankId")
-                        .HasColumnType("tinyint")
-                        .HasColumnName("BankID");
-
-                    b.Property<string>("Bank")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<int?>("SageBankId")
-                        .HasColumnType("int")
-                        .HasColumnName("SageBankID");
-
-                    b.HasKey("BankId");
-
-                    b.ToTable("tblBank", (string)null);
-                });
-
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBankTrx", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.BankTrx", b =>
                 {
                     b.Property<long>("BankTrxId")
                         .ValueGeneratedOnAdd()
@@ -343,7 +322,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblBankTrx", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBankTrxBatch", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.BankTrxBatch", b =>
                 {
                     b.Property<long>("BankTrxBatchId")
                         .ValueGeneratedOnAdd()
@@ -378,7 +357,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblBankTrxBatch", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBankTrxState", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.BankTrxStates", b =>
                 {
                     b.Property<byte>("BankTrxStateId")
                         .HasColumnType("tinyint")
@@ -395,7 +374,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblBankTrxState", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBankTrxType", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.BankTrxTypes", b =>
                 {
                     b.Property<byte>("BankTrxTypeId")
                         .HasColumnType("tinyint")
@@ -412,7 +391,28 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblBankTrxType", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBankvPayment", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Banks", b =>
+                {
+                    b.Property<byte>("BankId")
+                        .HasColumnType("tinyint")
+                        .HasColumnName("BankID");
+
+                    b.Property<string>("Bank")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<int?>("SageBankId")
+                        .HasColumnType("int")
+                        .HasColumnName("SageBankID");
+
+                    b.HasKey("BankId");
+
+                    b.ToTable("tblBank", (string)null);
+                });
+
+            modelBuilder.Entity("Hot4.DataModel.Models.BankvPayment", b =>
                 {
                     b.Property<long?>("BankTrxId")
                         .HasColumnType("bigint")
@@ -448,7 +448,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblBankvPayment", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBrand", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Brand", b =>
                 {
                     b.Property<byte>("BrandId")
                         .HasColumnType("tinyint")
@@ -480,7 +480,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblBrand", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBundle", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Bundle", b =>
                 {
                     b.Property<int>("Amount")
                         .HasColumnType("int")
@@ -525,7 +525,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblBundles", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblChannel", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Channels", b =>
                 {
                     b.Property<byte>("ChannelId")
                         .HasColumnType("tinyint")
@@ -542,7 +542,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblChannel", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblConfig", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Configs", b =>
                 {
                     b.Property<byte>("ConfigId")
                         .HasColumnType("tinyint")
@@ -573,7 +573,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblConfig", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblConsoleAccess", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ConsoleAccess", b =>
                 {
                     b.Property<string>("RoleName")
                         .HasMaxLength(50)
@@ -589,7 +589,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblConsoleAccess", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblConsoleAction", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ConsoleAction", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
@@ -604,7 +604,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblConsoleAction", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblErrorLog", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ErrorLog", b =>
                 {
                     b.Property<int>("CheckId")
                         .HasColumnType("int")
@@ -641,7 +641,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblErrorLog", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblErrorLogContact", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ErrorLogContact", b =>
                 {
                     b.Property<string>("ContactEmail")
                         .HasMaxLength(250)
@@ -663,7 +663,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblErrorLogContacts", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblErrorLogNetwork", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ErrorLogNetwork", b =>
                 {
                     b.Property<int>("ErrorLogNetworkId")
                         .HasColumnType("int")
@@ -682,7 +682,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblErrorLogNetworks", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblErrorLogSetup", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ErrorLogSetup", b =>
                 {
                     b.Property<int>("CheckInterval")
                         .ValueGeneratedOnAdd()
@@ -758,7 +758,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblErrorLogSetup", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblErrorLogTestType", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ErrorLogTestType", b =>
                 {
                     b.Property<int>("TestTypeId")
                         .HasColumnType("int")
@@ -773,27 +773,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblErrorLogTestType", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblHotType", b =>
-                {
-                    b.Property<byte>("HotTypeId")
-                        .HasColumnType("tinyint")
-                        .HasColumnName("HotTypeID");
-
-                    b.Property<string>("HotType")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<byte?>("SplitCount")
-                        .HasColumnType("tinyint");
-
-                    b.HasKey("HotTypeId");
-
-                    b.ToTable("tblHotType", (string)null);
-                });
-
-            modelBuilder.Entity("Hot4.DataModel.Models.TblHotTypeCode", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.HotTypeCode", b =>
                 {
                     b.Property<byte>("HotTypeCodeId")
                         .HasColumnType("tinyint")
@@ -816,7 +796,27 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblHotTypeCode", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblLimit", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.HotTypes", b =>
+                {
+                    b.Property<byte>("HotTypeId")
+                        .HasColumnType("tinyint")
+                        .HasColumnName("HotTypeID");
+
+                    b.Property<string>("HotType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<byte?>("SplitCount")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("HotTypeId");
+
+                    b.ToTable("tblHotType", (string)null);
+                });
+
+            modelBuilder.Entity("Hot4.DataModel.Models.Limit", b =>
                 {
                     b.Property<long>("LimitId")
                         .ValueGeneratedOnAdd()
@@ -848,7 +848,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblLimits", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblLimitType", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.LimitType", b =>
                 {
                     b.Property<int>("LimitTypeId")
                         .ValueGeneratedOnAdd()
@@ -867,7 +867,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblLimitTypes", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblLog", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Log", b =>
                 {
                     b.Property<long>("LogId")
                         .ValueGeneratedOnAdd()
@@ -919,7 +919,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblLog", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblNetwork", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Networks", b =>
                 {
                     b.Property<byte>("NetworkId")
                         .HasColumnType("tinyint")
@@ -942,7 +942,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblNetwork", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPayment", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Payment", b =>
                 {
                     b.Property<long>("PaymentId")
                         .ValueGeneratedOnAdd()
@@ -1002,7 +1002,7 @@ namespace Hot4.DataModel.Migrations
                     b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPaymentSource", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.PaymentSources", b =>
                 {
                     b.Property<byte>("PaymentSourceId")
                         .HasColumnType("tinyint")
@@ -1022,7 +1022,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblPaymentSource", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPaymentType", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.PaymentTypes", b =>
                 {
                     b.Property<byte>("PaymentTypeId")
                         .HasColumnType("tinyint")
@@ -1039,7 +1039,70 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblPaymentType", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPin", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.PinBatchTypes", b =>
+                {
+                    b.Property<byte>("PinBatchTypeId")
+                        .HasColumnType("tinyint")
+                        .HasColumnName("PinBatchTypeID");
+
+                    b.Property<string>("PinBatchType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("PinBatchTypeId");
+
+                    b.ToTable("tblPinBatchType", (string)null);
+                });
+
+            modelBuilder.Entity("Hot4.DataModel.Models.PinBatches", b =>
+                {
+                    b.Property<long>("PinBatchId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("PinBatchID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PinBatchId"));
+
+                    b.Property<DateTime>("BatchDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("PinBatch")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(250)");
+
+                    b.Property<byte>("PinBatchTypeId")
+                        .HasColumnType("tinyint")
+                        .HasColumnName("PinBatchTypeID");
+
+                    b.HasKey("PinBatchId");
+
+                    b.HasIndex("PinBatchTypeId");
+
+                    b.ToTable("tblPinBatch", (string)null);
+                });
+
+            modelBuilder.Entity("Hot4.DataModel.Models.PinStates", b =>
+                {
+                    b.Property<byte>("PinStateId")
+                        .HasColumnType("tinyint")
+                        .HasColumnName("PinStateID");
+
+                    b.Property<string>("PinState")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("PinStateId");
+
+                    b.ToTable("tblPinState", (string)null);
+                });
+
+            modelBuilder.Entity("Hot4.DataModel.Models.Pins", b =>
                 {
                     b.Property<long>("PinId")
                         .ValueGeneratedOnAdd()
@@ -1092,70 +1155,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblPin", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPinBatch", b =>
-                {
-                    b.Property<long>("PinBatchId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("PinBatchID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PinBatchId"));
-
-                    b.Property<DateTime>("BatchDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("PinBatch")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(250)");
-
-                    b.Property<byte>("PinBatchTypeId")
-                        .HasColumnType("tinyint")
-                        .HasColumnName("PinBatchTypeID");
-
-                    b.HasKey("PinBatchId");
-
-                    b.HasIndex("PinBatchTypeId");
-
-                    b.ToTable("tblPinBatch", (string)null);
-                });
-
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPinBatchType", b =>
-                {
-                    b.Property<byte>("PinBatchTypeId")
-                        .HasColumnType("tinyint")
-                        .HasColumnName("PinBatchTypeID");
-
-                    b.Property<string>("PinBatchType")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.HasKey("PinBatchTypeId");
-
-                    b.ToTable("tblPinBatchType", (string)null);
-                });
-
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPinState", b =>
-                {
-                    b.Property<byte>("PinStateId")
-                        .HasColumnType("tinyint")
-                        .HasColumnName("PinStateID");
-
-                    b.Property<string>("PinState")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.HasKey("PinStateId");
-
-                    b.ToTable("tblPinState", (string)null);
-                });
-
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPriority", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Priorities", b =>
                 {
                     b.Property<byte>("PriorityId")
                         .HasColumnType("tinyint")
@@ -1174,7 +1174,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblPriority", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblProduct", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Product", b =>
                 {
                     b.Property<byte>("ProductId")
                         .HasColumnType("tinyint");
@@ -1207,7 +1207,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblProduct", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblProductField", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ProductField", b =>
                 {
                     b.Property<int>("BrandFieldId")
                         .ValueGeneratedOnAdd()
@@ -1244,7 +1244,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblProductField", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblProductMetaData", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ProductMetaData", b =>
                 {
                     b.Property<int>("ProductMetaId")
                         .ValueGeneratedOnAdd()
@@ -1274,7 +1274,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblProductMetaData", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblProductMetaDataType", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ProductMetaDataType", b =>
                 {
                     b.Property<byte>("ProductMetaDataTypeId")
                         .ValueGeneratedOnAdd()
@@ -1300,7 +1300,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblProductMetaDataType", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblProfile", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Profile", b =>
                 {
                     b.Property<int>("ProfileId")
                         .ValueGeneratedOnAdd()
@@ -1320,7 +1320,25 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblProfile", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblProfileDiscount", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ProfileBackup", b =>
+                {
+                    b.Property<int>("ProfileId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ProfileID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProfileId"));
+
+                    b.Property<string>("ProfileName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
+
+                    b.ToTable("tblprofile_backup", (string)null);
+                });
+
+            modelBuilder.Entity("Hot4.DataModel.Models.ProfileDiscount", b =>
                 {
                     b.Property<int>("ProfileDiscountId")
                         .ValueGeneratedOnAdd()
@@ -1349,7 +1367,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblProfileDiscount", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblRecharge", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Recharge", b =>
                 {
                     b.Property<long>("RechargeId")
                         .ValueGeneratedOnAdd()
@@ -1381,26 +1399,26 @@ namespace Hot4.DataModel.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<long?>("PinsPinId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("RechargeDate")
                         .HasColumnType("datetime");
+
+                    b.Property<long?>("Smsid")
+                        .HasColumnType("bigint");
 
                     b.Property<byte>("StateId")
                         .HasColumnType("tinyint")
                         .HasColumnName("StateID");
 
-                    b.Property<long?>("TblPinPinId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("TblSmsSmsid")
-                        .HasColumnType("bigint");
-
                     b.HasKey("RechargeId");
 
                     b.HasIndex("BrandId");
 
-                    b.HasIndex("TblPinPinId");
+                    b.HasIndex("PinsPinId");
 
-                    b.HasIndex("TblSmsSmsid");
+                    b.HasIndex("Smsid");
 
                     b.HasIndex(new[] { "AccessId", "StateId", "BrandId", "RechargeDate" }, "IX_Balances")
                         .IsDescending(false, false, false, true);
@@ -1425,7 +1443,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblRecharge", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblRechargePin", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.RechargePin", b =>
                 {
                     b.Property<long>("RechargeId")
                         .HasColumnType("bigint")
@@ -1442,7 +1460,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblRechargePin", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblRechargePrepaid", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.RechargePrepaid", b =>
                 {
                     b.Property<long>("RechargeId")
                         .HasColumnType("bigint")
@@ -1502,7 +1520,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblRechargePrepaid", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblReservation", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Reservation", b =>
                 {
                     b.Property<long>("ReservationId")
                         .ValueGeneratedOnAdd()
@@ -1579,7 +1597,7 @@ namespace Hot4.DataModel.Migrations
                     b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblReservationLog", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ReservationLog", b =>
                 {
                     b.Property<string>("LastUser")
                         .IsRequired()
@@ -1618,7 +1636,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblReservationLog", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblReservationState", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ReservationStates", b =>
                 {
                     b.Property<byte>("ReservationStateId")
                         .HasColumnType("tinyint");
@@ -1634,7 +1652,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblReservationState", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblSelfTopUp", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.SelfTopUp", b =>
                 {
                     b.Property<long>("SelfTopUpId")
                         .ValueGeneratedOnAdd()
@@ -1708,7 +1726,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblSelfTopUp", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblSelfTopUpState", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.SelfTopUpState", b =>
                 {
                     b.Property<byte>("SelfTopUpStateId")
                         .HasColumnType("tinyint")
@@ -1725,7 +1743,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblSelfTopUpState", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblSmpp", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Smpp", b =>
                 {
                     b.Property<byte>("SmppId")
                         .HasColumnType("tinyint")
@@ -1827,7 +1845,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblSmpp", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblSms", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Sms", b =>
                 {
                     b.Property<long>("Smsid")
                         .ValueGeneratedOnAdd()
@@ -1894,7 +1912,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblSMS", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblSmsRecharge", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.SmsRecharge", b =>
                 {
                     b.Property<long>("RechargeId")
                         .HasColumnType("bigint")
@@ -1911,7 +1929,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblSmsRecharge", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblState", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.States", b =>
                 {
                     b.Property<byte>("StateId")
                         .HasColumnType("tinyint")
@@ -1928,7 +1946,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblState", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblStockData", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.StockData", b =>
                 {
                     b.Property<int?>("Available")
                         .HasColumnType("int");
@@ -1956,7 +1974,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblStockData", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblSubscriber", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Subscriber", b =>
                 {
                     b.Property<long>("SubscriberId")
                         .ValueGeneratedOnAdd()
@@ -2020,7 +2038,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblSubscriber", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblTemplate", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Template", b =>
                 {
                     b.Property<int>("TemplateId")
                         .HasColumnType("int")
@@ -2043,7 +2061,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("tblTemplate", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblTransfer", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Transfer", b =>
                 {
                     b.Property<long>("TransferId")
                         .ValueGeneratedOnAdd()
@@ -2083,111 +2101,6 @@ namespace Hot4.DataModel.Migrations
                     b.HasIndex("PaymentIdTo");
 
                     b.ToTable("tblTransfer", (string)null);
-                });
-
-            modelBuilder.Entity("Hot4.DataModel.Models.TblWalletType", b =>
-                {
-                    b.Property<int>("WalletTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("WalletName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.HasKey("WalletTypeId");
-
-                    b.ToTable("tblWalletType", (string)null);
-                });
-
-            modelBuilder.Entity("Hot4.DataModel.Models.TblWebRequest", b =>
-                {
-                    b.Property<long?>("AccessId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("AccessID");
-
-                    b.Property<string>("AgentReference")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<decimal?>("Amount")
-                        .HasColumnType("money");
-
-                    b.Property<byte>("ChannelId")
-                        .HasColumnType("tinyint")
-                        .HasColumnName("ChannelID");
-
-                    b.Property<decimal?>("Cost")
-                        .HasColumnType("money");
-
-                    b.Property<decimal?>("Discount")
-                        .HasColumnType("money");
-
-                    b.Property<byte?>("HotTypeId")
-                        .HasColumnType("tinyint")
-                        .HasColumnName("HotTypeID");
-
-                    b.Property<DateTime>("InsertDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<long?>("RechargeId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("RechargeID");
-
-                    b.Property<string>("Reply")
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
-
-                    b.Property<DateTime?>("ReplyDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<int?>("ReturnCode")
-                        .HasColumnType("int");
-
-                    b.Property<byte>("StateId")
-                        .HasColumnType("tinyint")
-                        .HasColumnName("StateID");
-
-                    b.Property<decimal?>("WalletBalance")
-                        .HasColumnType("money");
-
-                    b.Property<long>("WebId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("WebID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("WebId"));
-
-                    b.HasIndex(new[] { "WebId", "StateId" }, "IX-StateID")
-                        .IsUnique();
-
-                    b.HasIndex(new[] { "AccessId", "AgentReference", "WebId", "RechargeId" }, "IX_AccessID_AgentRef");
-
-                    b.HasIndex(new[] { "AgentReference", "RechargeId" }, "IX_Recharge_AgentRef");
-
-                    SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex(new[] { "AgentReference", "RechargeId" }, "IX_Recharge_AgentRef"));
-
-                    b.ToTable("tblWebRequest", (string)null);
-                });
-
-            modelBuilder.Entity("Hot4.DataModel.Models.TblprofileBackup", b =>
-                {
-                    b.Property<int>("ProfileId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("ProfileID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProfileId"));
-
-                    b.Property<string>("ProfileName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.ToTable("tblprofile_backup", (string)null);
                 });
 
             modelBuilder.Entity("Hot4.DataModel.Models.VwAccess", b =>
@@ -4303,7 +4216,94 @@ namespace Hot4.DataModel.Migrations
                     b.ToView("vwzSMS", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.ZtblArchive", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.WalletType", b =>
+                {
+                    b.Property<int>("WalletTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WalletName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("WalletTypeId");
+
+                    b.ToTable("tblWalletType", (string)null);
+                });
+
+            modelBuilder.Entity("Hot4.DataModel.Models.WebRequest", b =>
+                {
+                    b.Property<long?>("AccessId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("AccessID");
+
+                    b.Property<string>("AgentReference")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<decimal?>("Amount")
+                        .HasColumnType("money");
+
+                    b.Property<byte>("ChannelId")
+                        .HasColumnType("tinyint")
+                        .HasColumnName("ChannelID");
+
+                    b.Property<decimal?>("Cost")
+                        .HasColumnType("money");
+
+                    b.Property<decimal?>("Discount")
+                        .HasColumnType("money");
+
+                    b.Property<byte?>("HotTypeId")
+                        .HasColumnType("tinyint")
+                        .HasColumnName("HotTypeID");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<long?>("RechargeId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("RechargeID");
+
+                    b.Property<string>("Reply")
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<DateTime?>("ReplyDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<int?>("ReturnCode")
+                        .HasColumnType("int");
+
+                    b.Property<byte>("StateId")
+                        .HasColumnType("tinyint")
+                        .HasColumnName("StateID");
+
+                    b.Property<decimal?>("WalletBalance")
+                        .HasColumnType("money");
+
+                    b.Property<long>("WebId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("WebID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("WebId"));
+
+                    b.HasIndex(new[] { "WebId", "StateId" }, "IX-StateID")
+                        .IsUnique();
+
+                    b.HasIndex(new[] { "AccessId", "AgentReference", "WebId", "RechargeId" }, "IX_AccessID_AgentRef");
+
+                    b.HasIndex(new[] { "AgentReference", "RechargeId" }, "IX_Recharge_AgentRef");
+
+                    SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex(new[] { "AgentReference", "RechargeId" }, "IX_Recharge_AgentRef"));
+
+                    b.ToTable("tblWebRequest", (string)null);
+                });
+
+            modelBuilder.Entity("Hot4.DataModel.Models.ZArchive", b =>
                 {
                     b.Property<DateTime>("ArchiveEffectiveDate")
                         .HasColumnType("datetime");
@@ -4326,7 +4326,7 @@ namespace Hot4.DataModel.Migrations
                     b.ToTable("ztblArchive", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.ZtblStat", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ZStat", b =>
                 {
                     b.Property<long>("Accountid")
                         .HasColumnType("bigint")
@@ -4421,16 +4421,16 @@ namespace Hot4.DataModel.Migrations
                     b.ToView("zvwProductlistdetail", (string)null);
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblAccess", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Access", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblAccount", "Account")
-                        .WithMany("TblAccesses")
+                    b.HasOne("Hot4.DataModel.Models.Account", "Account")
+                        .WithMany("Accesses")
                         .HasForeignKey("AccountId")
                         .IsRequired()
                         .HasConstraintName("FK_tblAccess_tblAccount");
 
-                    b.HasOne("Hot4.DataModel.Models.TblChannel", "Channel")
-                        .WithMany("TblAccesses")
+                    b.HasOne("Hot4.DataModel.Models.Channels", "Channel")
+                        .WithMany("Accesses")
                         .HasForeignKey("ChannelId")
                         .IsRequired()
                         .HasConstraintName("FK_tblAccess_tblChannel");
@@ -4440,10 +4440,10 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("Channel");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblAccount", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Account", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblProfile", "Profile")
-                        .WithMany("TblAccounts")
+                    b.HasOne("Hot4.DataModel.Models.Profile", "Profile")
+                        .WithMany("Accounts")
                         .HasForeignKey("ProfileId")
                         .IsRequired()
                         .HasConstraintName("FK_tblAccount_tblProfile");
@@ -4451,39 +4451,39 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("Profile");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblAddress", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Address", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblAccount", "Account")
-                        .WithOne("TblAddress")
-                        .HasForeignKey("Hot4.DataModel.Models.TblAddress", "AccountId")
+                    b.HasOne("Hot4.DataModel.Models.Account", "Account")
+                        .WithOne("Address")
+                        .HasForeignKey("Hot4.DataModel.Models.Address", "AccountId")
                         .IsRequired()
                         .HasConstraintName("FK_tblAddress_tblAccount1");
 
                     b.Navigation("Account");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBankTrx", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.BankTrx", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblBankTrxBatch", "BankTrxBatch")
-                        .WithMany("TblBankTrxes")
+                    b.HasOne("Hot4.DataModel.Models.BankTrxBatch", "BankTrxBatch")
+                        .WithMany("BankTrxes")
                         .HasForeignKey("BankTrxBatchId")
                         .IsRequired()
                         .HasConstraintName("FK_tblBankTrx_tblBankTrxBatch");
 
-                    b.HasOne("Hot4.DataModel.Models.TblBankTrxState", "BankTrxState")
-                        .WithMany("TblBankTrxes")
+                    b.HasOne("Hot4.DataModel.Models.BankTrxStates", "BankTrxState")
+                        .WithMany("BankTrxes")
                         .HasForeignKey("BankTrxStateId")
                         .IsRequired()
                         .HasConstraintName("FK_tblBankTrx_tblBankTrxState");
 
-                    b.HasOne("Hot4.DataModel.Models.TblBankTrxType", "BankTrxType")
-                        .WithMany("TblBankTrxes")
+                    b.HasOne("Hot4.DataModel.Models.BankTrxTypes", "BankTrxType")
+                        .WithMany("BankTrxes")
                         .HasForeignKey("BankTrxTypeId")
                         .IsRequired()
                         .HasConstraintName("FK_tblBankTrx_tblBankTrxType");
 
-                    b.HasOne("Hot4.DataModel.Models.TblPayment", "Payment")
-                        .WithMany("TblBankTrxes")
+                    b.HasOne("Hot4.DataModel.Models.Payment", "Payment")
+                        .WithMany("BankTrxes")
                         .HasForeignKey("PaymentId")
                         .HasConstraintName("FK_tblBankTrx_tblPayment");
 
@@ -4496,10 +4496,10 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("Payment");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBankTrxBatch", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.BankTrxBatch", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblBank", "Bank")
-                        .WithMany("TblBankTrxBatches")
+                    b.HasOne("Hot4.DataModel.Models.Banks", "Bank")
+                        .WithMany("BankTrxBatches")
                         .HasForeignKey("BankId")
                         .IsRequired()
                         .HasConstraintName("FK_tblBankTrxBatch_tblBank");
@@ -4507,10 +4507,10 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("Bank");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBrand", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Brand", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblNetwork", "Network")
-                        .WithMany("TblBrands")
+                    b.HasOne("Hot4.DataModel.Models.Networks", "Network")
+                        .WithMany("Brands")
                         .HasForeignKey("NetworkId")
                         .IsRequired()
                         .HasConstraintName("FK_tblBrand_tblNetwork");
@@ -4518,10 +4518,10 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("Network");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblConsoleAccess", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ConsoleAccess", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblConsoleAction", "ConsoleAction")
-                        .WithMany("TblConsoleAccesses")
+                    b.HasOne("Hot4.DataModel.Models.ConsoleAction", "ConsoleAction")
+                        .WithMany("ConsoleAccesses")
                         .HasForeignKey("ConsoleActionId")
                         .IsRequired()
                         .HasConstraintName("FK_tblConsoleAccess_tblConsoleAction");
@@ -4529,10 +4529,10 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("ConsoleAction");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblHotTypeCode", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.HotTypeCode", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblHotType", "HotType")
-                        .WithMany("TblHotTypeCodes")
+                    b.HasOne("Hot4.DataModel.Models.HotTypes", "HotType")
+                        .WithMany("HotTypeCodes")
                         .HasForeignKey("HotTypeId")
                         .IsRequired()
                         .HasConstraintName("FK_tblHotTypeCode_tblHotType");
@@ -4540,22 +4540,22 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("HotType");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPayment", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Payment", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblAccount", "Account")
-                        .WithMany("TblPayments")
+                    b.HasOne("Hot4.DataModel.Models.Account", "Account")
+                        .WithMany("Payments")
                         .HasForeignKey("AccountId")
                         .IsRequired()
                         .HasConstraintName("FK_tblPayment_tblAccount");
 
-                    b.HasOne("Hot4.DataModel.Models.TblPaymentSource", "PaymentSource")
-                        .WithMany("TblPayments")
+                    b.HasOne("Hot4.DataModel.Models.PaymentSources", "PaymentSource")
+                        .WithMany("Payments")
                         .HasForeignKey("PaymentSourceId")
                         .IsRequired()
                         .HasConstraintName("FK_tblPayment_tblPaymentSource");
 
-                    b.HasOne("Hot4.DataModel.Models.TblPaymentType", "PaymentType")
-                        .WithMany("TblPayments")
+                    b.HasOne("Hot4.DataModel.Models.PaymentTypes", "PaymentType")
+                        .WithMany("Payments")
                         .HasForeignKey("PaymentTypeId")
                         .IsRequired()
                         .HasConstraintName("FK_tblPayment_tblPaymentType");
@@ -4567,22 +4567,33 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("PaymentType");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPin", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.PinBatches", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblBrand", "Brand")
-                        .WithMany("TblPins")
+                    b.HasOne("Hot4.DataModel.Models.PinBatchTypes", "PinBatchType")
+                        .WithMany("PinBatches")
+                        .HasForeignKey("PinBatchTypeId")
+                        .IsRequired()
+                        .HasConstraintName("FK_tblPinBatch_tblPinBatchType");
+
+                    b.Navigation("PinBatchType");
+                });
+
+            modelBuilder.Entity("Hot4.DataModel.Models.Pins", b =>
+                {
+                    b.HasOne("Hot4.DataModel.Models.Brand", "Brand")
+                        .WithMany("Pins")
                         .HasForeignKey("BrandId")
                         .IsRequired()
                         .HasConstraintName("FK_tblPin_tblBrand");
 
-                    b.HasOne("Hot4.DataModel.Models.TblPinBatch", "PinBatch")
-                        .WithMany("TblPins")
+                    b.HasOne("Hot4.DataModel.Models.PinBatches", "PinBatch")
+                        .WithMany("Pins")
                         .HasForeignKey("PinBatchId")
                         .IsRequired()
                         .HasConstraintName("FK_tblPin_tblPinBatch");
 
-                    b.HasOne("Hot4.DataModel.Models.TblPinState", "PinState")
-                        .WithMany("TblPins")
+                    b.HasOne("Hot4.DataModel.Models.PinStates", "PinState")
+                        .WithMany("Pins")
                         .HasForeignKey("PinStateId")
                         .IsRequired()
                         .HasConstraintName("FK_tblPin_tblPinState");
@@ -4594,27 +4605,16 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("PinState");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPinBatch", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Product", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblPinBatchType", "PinBatchType")
-                        .WithMany("TblPinBatches")
-                        .HasForeignKey("PinBatchTypeId")
-                        .IsRequired()
-                        .HasConstraintName("FK_tblPinBatch_tblPinBatchType");
-
-                    b.Navigation("PinBatchType");
-                });
-
-            modelBuilder.Entity("Hot4.DataModel.Models.TblProduct", b =>
-                {
-                    b.HasOne("Hot4.DataModel.Models.TblBrand", "Brand")
-                        .WithMany("TblProducts")
+                    b.HasOne("Hot4.DataModel.Models.Brand", "Brand")
+                        .WithMany("Products")
                         .HasForeignKey("BrandId")
                         .IsRequired()
                         .HasConstraintName("FK_tblProduct_tblBrand");
 
-                    b.HasOne("Hot4.DataModel.Models.TblWalletType", "WalletType")
-                        .WithMany("TblProducts")
+                    b.HasOne("Hot4.DataModel.Models.WalletType", "WalletType")
+                        .WithMany("Products")
                         .HasForeignKey("WalletTypeId")
                         .IsRequired()
                         .HasConstraintName("FK_tblProduct_tblWalletType");
@@ -4624,10 +4624,10 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("WalletType");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblProductField", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ProductField", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblProduct", "Product")
-                        .WithMany("TblProductFields")
+                    b.HasOne("Hot4.DataModel.Models.Product", "Product")
+                        .WithMany("ProductFields")
                         .HasForeignKey("ProductId")
                         .IsRequired()
                         .HasConstraintName("FK_tblBrandField_tblBrand");
@@ -4635,16 +4635,16 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblProductMetaData", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ProductMetaData", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblProduct", "Product")
-                        .WithMany("TblProductMetaData")
+                    b.HasOne("Hot4.DataModel.Models.Product", "Product")
+                        .WithMany("ProductMetaData")
                         .HasForeignKey("ProductId")
                         .IsRequired()
                         .HasConstraintName("FK_tblBrandMetaData_tblBrand");
 
-                    b.HasOne("Hot4.DataModel.Models.TblProductMetaDataType", "ProductMetaDataType")
-                        .WithMany("TblProductMetaData")
+                    b.HasOne("Hot4.DataModel.Models.ProductMetaDataType", "ProductMetaDataType")
+                        .WithMany("ProductMetaDatas")
                         .HasForeignKey("ProductMetaDataTypeId")
                         .IsRequired()
                         .HasConstraintName("FK_tblBrandMetaData_tblBrandMetaDataType");
@@ -4654,16 +4654,16 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("ProductMetaDataType");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblProfileDiscount", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ProfileDiscount", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblBrand", "Brand")
-                        .WithMany("TblProfileDiscounts")
+                    b.HasOne("Hot4.DataModel.Models.Brand", "Brand")
+                        .WithMany("ProfileDiscounts")
                         .HasForeignKey("BrandId")
                         .IsRequired()
                         .HasConstraintName("FK_tblProfileDiscount_tblBrand");
 
-                    b.HasOne("Hot4.DataModel.Models.TblProfile", "Profile")
-                        .WithMany("TblProfileDiscounts")
+                    b.HasOne("Hot4.DataModel.Models.Profile", "Profile")
+                        .WithMany("ProfileDiscounts")
                         .HasForeignKey("ProfileId")
                         .IsRequired()
                         .HasConstraintName("FK_tblProfileDiscount_tblProfile");
@@ -4673,33 +4673,33 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("Profile");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblRecharge", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Recharge", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblAccess", "Access")
-                        .WithMany("TblRecharges")
+                    b.HasOne("Hot4.DataModel.Models.Access", "Access")
+                        .WithMany("Recharges")
                         .HasForeignKey("AccessId")
                         .IsRequired()
                         .HasConstraintName("FK_tblRecharge_tblAccess");
 
-                    b.HasOne("Hot4.DataModel.Models.TblBrand", "Brand")
-                        .WithMany("TblRecharges")
+                    b.HasOne("Hot4.DataModel.Models.Brand", "Brand")
+                        .WithMany("Recharges")
                         .HasForeignKey("BrandId")
                         .IsRequired()
                         .HasConstraintName("FK_tblRecharge_tblBrand");
 
-                    b.HasOne("Hot4.DataModel.Models.TblState", "State")
-                        .WithMany("TblRecharges")
+                    b.HasOne("Hot4.DataModel.Models.Pins", null)
+                        .WithMany("Recharges")
+                        .HasForeignKey("PinsPinId");
+
+                    b.HasOne("Hot4.DataModel.Models.Sms", null)
+                        .WithMany("Recharges")
+                        .HasForeignKey("Smsid");
+
+                    b.HasOne("Hot4.DataModel.Models.States", "State")
+                        .WithMany("Recharges")
                         .HasForeignKey("StateId")
                         .IsRequired()
                         .HasConstraintName("FK_tblRecharge_tblState");
-
-                    b.HasOne("Hot4.DataModel.Models.TblPin", null)
-                        .WithMany("Recharges")
-                        .HasForeignKey("TblPinPinId");
-
-                    b.HasOne("Hot4.DataModel.Models.TblSms", null)
-                        .WithMany("Recharges")
-                        .HasForeignKey("TblSmsSmsid");
 
                     b.Navigation("Access");
 
@@ -4708,15 +4708,15 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("State");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblRechargePin", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.RechargePin", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblPin", "Pin")
+                    b.HasOne("Hot4.DataModel.Models.Pins", "Pin")
                         .WithMany()
                         .HasForeignKey("PinId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Hot4.DataModel.Models.TblRecharge", "Recharge")
+                    b.HasOne("Hot4.DataModel.Models.Recharge", "Recharge")
                         .WithMany()
                         .HasForeignKey("RechargeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4727,39 +4727,39 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("Recharge");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblRechargePrepaid", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.RechargePrepaid", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblRecharge", "Recharge")
-                        .WithOne("TblRechargePrepaid")
-                        .HasForeignKey("Hot4.DataModel.Models.TblRechargePrepaid", "RechargeId")
+                    b.HasOne("Hot4.DataModel.Models.Recharge", "Recharge")
+                        .WithOne("RechargePrepaid")
+                        .HasForeignKey("Hot4.DataModel.Models.RechargePrepaid", "RechargeId")
                         .IsRequired()
                         .HasConstraintName("FK_tblRechargePrepaid_tblRecharge");
 
                     b.Navigation("Recharge");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblReservation", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Reservation", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblAccess", "Access")
-                        .WithMany("TblReservations")
+                    b.HasOne("Hot4.DataModel.Models.Access", "Access")
+                        .WithMany("Reservations")
                         .HasForeignKey("AccessId")
                         .IsRequired()
                         .HasConstraintName("FK_tblreservation_tblAccess");
 
-                    b.HasOne("Hot4.DataModel.Models.TblBrand", "Brand")
-                        .WithMany("TblReservations")
+                    b.HasOne("Hot4.DataModel.Models.Brand", "Brand")
+                        .WithMany("Reservations")
                         .HasForeignKey("BrandId")
                         .IsRequired()
                         .HasConstraintName("FK_tblReservationToBrand");
 
-                    b.HasOne("Hot4.DataModel.Models.TblRecharge", "Recharge")
-                        .WithMany("TblReservations")
+                    b.HasOne("Hot4.DataModel.Models.Recharge", "Recharge")
+                        .WithMany("Reservations")
                         .HasForeignKey("RechargeId")
                         .IsRequired()
                         .HasConstraintName("FK_tblreservation_tblRecharge");
 
-                    b.HasOne("Hot4.DataModel.Models.TblReservationState", "State")
-                        .WithMany("TblReservations")
+                    b.HasOne("Hot4.DataModel.Models.ReservationStates", "State")
+                        .WithMany("Reservations")
                         .HasForeignKey("StateId")
                         .IsRequired()
                         .HasConstraintName("FK_tblReservation_tblReservationState");
@@ -4773,21 +4773,21 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("State");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblReservationLog", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ReservationLog", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblReservationState", "NewState")
+                    b.HasOne("Hot4.DataModel.Models.ReservationStates", "NewState")
                         .WithMany()
                         .HasForeignKey("NewStateId")
                         .IsRequired()
                         .HasConstraintName("FK_tblReservationLog_tblReservationState1");
 
-                    b.HasOne("Hot4.DataModel.Models.TblReservationState", "OldState")
+                    b.HasOne("Hot4.DataModel.Models.ReservationStates", "OldState")
                         .WithMany()
                         .HasForeignKey("OldStateId")
                         .IsRequired()
                         .HasConstraintName("FK_tblReservationLog_tblReservationState");
 
-                    b.HasOne("Hot4.DataModel.Models.TblReservation", "Reservation")
+                    b.HasOne("Hot4.DataModel.Models.Reservation", "Reservation")
                         .WithMany()
                         .HasForeignKey("ReservationId")
                         .IsRequired()
@@ -4800,27 +4800,27 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("Reservation");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblSelfTopUp", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.SelfTopUp", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblAccess", "Access")
-                        .WithMany("TblSelfTopUps")
+                    b.HasOne("Hot4.DataModel.Models.Access", "Access")
+                        .WithMany("SelfTopUps")
                         .HasForeignKey("AccessId")
                         .IsRequired()
                         .HasConstraintName("FK_tblSelfTopUp_tblAccess");
 
-                    b.HasOne("Hot4.DataModel.Models.TblBankTrx", "BankTrx")
-                        .WithMany("TblSelfTopUps")
+                    b.HasOne("Hot4.DataModel.Models.BankTrx", "BankTrx")
+                        .WithMany("SelfTopUps")
                         .HasForeignKey("BankTrxId")
                         .HasConstraintName("FK_tblSelfTopUp_tblBankTrx");
 
-                    b.HasOne("Hot4.DataModel.Models.TblBrand", "Brand")
-                        .WithMany("TblSelfTopUps")
+                    b.HasOne("Hot4.DataModel.Models.Brand", "Brand")
+                        .WithMany("SelfTopUps")
                         .HasForeignKey("BrandId")
                         .IsRequired()
                         .HasConstraintName("FK__tblSelfTo__Brand__5CACADF9");
 
-                    b.HasOne("Hot4.DataModel.Models.TblRecharge", "Recharge")
-                        .WithMany("TblSelfTopUps")
+                    b.HasOne("Hot4.DataModel.Models.Recharge", "Recharge")
+                        .WithMany("SelfTopUps")
                         .HasForeignKey("RechargeId")
                         .HasConstraintName("FK_tblSelfTopUp_tblRecharge");
 
@@ -4833,26 +4833,26 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("Recharge");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblSms", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Sms", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblPriority", "Priority")
-                        .WithMany("TblSms")
+                    b.HasOne("Hot4.DataModel.Models.Priorities", "Priority")
+                        .WithMany("Sms")
                         .HasForeignKey("PriorityId")
                         .IsRequired()
                         .HasConstraintName("FK_tblSMS_tblPriority");
 
-                    b.HasOne("Hot4.DataModel.Models.TblSmpp", "Smpp")
-                        .WithMany("TblSms")
+                    b.HasOne("Hot4.DataModel.Models.Smpp", "Smpp")
+                        .WithMany("Sms")
                         .HasForeignKey("SmppId")
                         .HasConstraintName("FK_tblSMS_tblSmpp");
 
-                    b.HasOne("Hot4.DataModel.Models.TblSms", "SmsidInNavigation")
+                    b.HasOne("Hot4.DataModel.Models.Sms", "SmsidInNavigation")
                         .WithMany("InverseSmsidInNavigation")
                         .HasForeignKey("SmsidIn")
                         .HasConstraintName("FK_tblSMS_tblSMS");
 
-                    b.HasOne("Hot4.DataModel.Models.TblState", "State")
-                        .WithMany("TblSms")
+                    b.HasOne("Hot4.DataModel.Models.States", "State")
+                        .WithMany("Sms")
                         .HasForeignKey("StateId")
                         .IsRequired()
                         .HasConstraintName("FK_tblSMS_tblState");
@@ -4866,15 +4866,15 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("State");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblSmsRecharge", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.SmsRecharge", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblRecharge", "Recharge")
+                    b.HasOne("Hot4.DataModel.Models.Recharge", "Recharge")
                         .WithMany()
                         .HasForeignKey("RechargeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Hot4.DataModel.Models.TblSms", "Sms")
+                    b.HasOne("Hot4.DataModel.Models.Sms", "Sms")
                         .WithMany()
                         .HasForeignKey("SmsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4885,16 +4885,16 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("Sms");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblSubscriber", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Subscriber", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblAccount", "Account")
-                        .WithMany("TblSubscribers")
+                    b.HasOne("Hot4.DataModel.Models.Account", "Account")
+                        .WithMany("Subscribers")
                         .HasForeignKey("AccountId")
                         .IsRequired()
                         .HasConstraintName("FK_tblSubscriber_tblAccount");
 
-                    b.HasOne("Hot4.DataModel.Models.TblBrand", "Brand")
-                        .WithMany("TblSubscribers")
+                    b.HasOne("Hot4.DataModel.Models.Brand", "Brand")
+                        .WithMany("Subscribers")
                         .HasForeignKey("BrandId")
                         .IsRequired()
                         .HasConstraintName("FK_tblSubscriber_tblBrand");
@@ -4904,22 +4904,22 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("Brand");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblTransfer", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Transfer", b =>
                 {
-                    b.HasOne("Hot4.DataModel.Models.TblChannel", "Channel")
-                        .WithMany("TblTransfers")
+                    b.HasOne("Hot4.DataModel.Models.Channels", "Channel")
+                        .WithMany("Transfers")
                         .HasForeignKey("ChannelId")
                         .IsRequired()
                         .HasConstraintName("FK_tblTransfer_tblChannel");
 
-                    b.HasOne("Hot4.DataModel.Models.TblPayment", "PaymentIdFromNavigation")
-                        .WithMany("TblTransferPaymentIdFromNavigations")
+                    b.HasOne("Hot4.DataModel.Models.Payment", "PaymentIdFromNavigation")
+                        .WithMany("TransferPaymentIdFromNavigations")
                         .HasForeignKey("PaymentIdFrom")
                         .IsRequired()
                         .HasConstraintName("FK_tblTransfer_tblPayment");
 
-                    b.HasOne("Hot4.DataModel.Models.TblPayment", "PaymentIdToNavigation")
-                        .WithMany("TblTransferPaymentIdToNavigations")
+                    b.HasOne("Hot4.DataModel.Models.Payment", "PaymentIdToNavigation")
+                        .WithMany("TransferPaymentIdToNavigations")
                         .HasForeignKey("PaymentIdTo")
                         .IsRequired()
                         .HasConstraintName("FK_tblTransfer_tblPayment1");
@@ -4931,189 +4931,189 @@ namespace Hot4.DataModel.Migrations
                     b.Navigation("PaymentIdToNavigation");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblAccess", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Access", b =>
                 {
-                    b.Navigation("TblRecharges");
+                    b.Navigation("Recharges");
 
-                    b.Navigation("TblReservations");
+                    b.Navigation("Reservations");
 
-                    b.Navigation("TblSelfTopUps");
+                    b.Navigation("SelfTopUps");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblAccount", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Account", b =>
                 {
-                    b.Navigation("TblAccesses");
+                    b.Navigation("Accesses");
 
-                    b.Navigation("TblAddress");
+                    b.Navigation("Address");
 
-                    b.Navigation("TblPayments");
+                    b.Navigation("Payments");
 
-                    b.Navigation("TblSubscribers");
+                    b.Navigation("Subscribers");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBank", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.BankTrx", b =>
                 {
-                    b.Navigation("TblBankTrxBatches");
+                    b.Navigation("SelfTopUps");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBankTrx", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.BankTrxBatch", b =>
                 {
-                    b.Navigation("TblSelfTopUps");
+                    b.Navigation("BankTrxes");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBankTrxBatch", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.BankTrxStates", b =>
                 {
-                    b.Navigation("TblBankTrxes");
+                    b.Navigation("BankTrxes");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBankTrxState", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.BankTrxTypes", b =>
                 {
-                    b.Navigation("TblBankTrxes");
+                    b.Navigation("BankTrxes");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBankTrxType", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Banks", b =>
                 {
-                    b.Navigation("TblBankTrxes");
+                    b.Navigation("BankTrxBatches");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblBrand", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Brand", b =>
                 {
-                    b.Navigation("TblPins");
+                    b.Navigation("Pins");
 
-                    b.Navigation("TblProducts");
+                    b.Navigation("Products");
 
-                    b.Navigation("TblProfileDiscounts");
+                    b.Navigation("ProfileDiscounts");
 
-                    b.Navigation("TblRecharges");
+                    b.Navigation("Recharges");
 
-                    b.Navigation("TblReservations");
+                    b.Navigation("Reservations");
 
-                    b.Navigation("TblSelfTopUps");
+                    b.Navigation("SelfTopUps");
 
-                    b.Navigation("TblSubscribers");
+                    b.Navigation("Subscribers");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblChannel", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Channels", b =>
                 {
-                    b.Navigation("TblAccesses");
+                    b.Navigation("Accesses");
 
-                    b.Navigation("TblTransfers");
+                    b.Navigation("Transfers");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblConsoleAction", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ConsoleAction", b =>
                 {
-                    b.Navigation("TblConsoleAccesses");
+                    b.Navigation("ConsoleAccesses");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblHotType", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.HotTypes", b =>
                 {
-                    b.Navigation("TblHotTypeCodes");
+                    b.Navigation("HotTypeCodes");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblNetwork", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Networks", b =>
                 {
-                    b.Navigation("TblBrands");
+                    b.Navigation("Brands");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPayment", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Payment", b =>
                 {
-                    b.Navigation("TblBankTrxes");
+                    b.Navigation("BankTrxes");
 
-                    b.Navigation("TblTransferPaymentIdFromNavigations");
+                    b.Navigation("TransferPaymentIdFromNavigations");
 
-                    b.Navigation("TblTransferPaymentIdToNavigations");
+                    b.Navigation("TransferPaymentIdToNavigations");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPaymentSource", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.PaymentSources", b =>
                 {
-                    b.Navigation("TblPayments");
+                    b.Navigation("Payments");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPaymentType", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.PaymentTypes", b =>
                 {
-                    b.Navigation("TblPayments");
+                    b.Navigation("Payments");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPin", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.PinBatchTypes", b =>
+                {
+                    b.Navigation("PinBatches");
+                });
+
+            modelBuilder.Entity("Hot4.DataModel.Models.PinBatches", b =>
+                {
+                    b.Navigation("Pins");
+                });
+
+            modelBuilder.Entity("Hot4.DataModel.Models.PinStates", b =>
+                {
+                    b.Navigation("Pins");
+                });
+
+            modelBuilder.Entity("Hot4.DataModel.Models.Pins", b =>
                 {
                     b.Navigation("Recharges");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPinBatch", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Priorities", b =>
                 {
-                    b.Navigation("TblPins");
+                    b.Navigation("Sms");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPinBatchType", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Product", b =>
                 {
-                    b.Navigation("TblPinBatches");
+                    b.Navigation("ProductFields");
+
+                    b.Navigation("ProductMetaData");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPinState", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ProductMetaDataType", b =>
                 {
-                    b.Navigation("TblPins");
+                    b.Navigation("ProductMetaDatas");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblPriority", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Profile", b =>
                 {
-                    b.Navigation("TblSms");
+                    b.Navigation("Accounts");
+
+                    b.Navigation("ProfileDiscounts");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblProduct", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Recharge", b =>
                 {
-                    b.Navigation("TblProductFields");
+                    b.Navigation("RechargePrepaid");
 
-                    b.Navigation("TblProductMetaData");
+                    b.Navigation("Reservations");
+
+                    b.Navigation("SelfTopUps");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblProductMetaDataType", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.ReservationStates", b =>
                 {
-                    b.Navigation("TblProductMetaData");
+                    b.Navigation("Reservations");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblProfile", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Smpp", b =>
                 {
-                    b.Navigation("TblAccounts");
-
-                    b.Navigation("TblProfileDiscounts");
+                    b.Navigation("Sms");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblRecharge", b =>
-                {
-                    b.Navigation("TblRechargePrepaid");
-
-                    b.Navigation("TblReservations");
-
-                    b.Navigation("TblSelfTopUps");
-                });
-
-            modelBuilder.Entity("Hot4.DataModel.Models.TblReservationState", b =>
-                {
-                    b.Navigation("TblReservations");
-                });
-
-            modelBuilder.Entity("Hot4.DataModel.Models.TblSmpp", b =>
-                {
-                    b.Navigation("TblSms");
-                });
-
-            modelBuilder.Entity("Hot4.DataModel.Models.TblSms", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.Sms", b =>
                 {
                     b.Navigation("InverseSmsidInNavigation");
 
                     b.Navigation("Recharges");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblState", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.States", b =>
                 {
-                    b.Navigation("TblRecharges");
+                    b.Navigation("Recharges");
 
-                    b.Navigation("TblSms");
+                    b.Navigation("Sms");
                 });
 
-            modelBuilder.Entity("Hot4.DataModel.Models.TblWalletType", b =>
+            modelBuilder.Entity("Hot4.DataModel.Models.WalletType", b =>
                 {
-                    b.Navigation("TblProducts");
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

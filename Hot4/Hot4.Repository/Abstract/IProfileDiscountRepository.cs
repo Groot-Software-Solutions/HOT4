@@ -4,9 +4,9 @@ namespace Hot4.Repository.Abstract
 {
     public interface IProfileDiscountRepository
     {
-        Task<TblProfileDiscount?> GetProfileDiscount(int discountId);
-        Task<int> AddProfileDiscount(TblProfileDiscount discount);
-        Task UpdateProfileDiscount(TblProfileDiscount discount);
+        Task<ProfileDiscount?> GetProfileDiscount(int discountId);
+        Task<int> AddProfileDiscount(ProfileDiscount discount);
+        Task UpdateProfileDiscount(ProfileDiscount discount);
         Task DeleteProfileDiscount(int discountID);
 
 

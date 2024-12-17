@@ -7,20 +7,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
 {
-    public class RechargeRepository : RepositoryBase<TblRecharge>, IRechargeRepository
+    public class RechargeRepository : RepositoryBase<Recharge>, IRechargeRepository
     {
         public RechargeRepository(HotDbContext context) : base(context) { }
-        public async Task<TblRecharge?> GetRecharge(long rechargeId)
+        public async Task<Recharge?> GetRecharge(long rechargeId)
         {
             return await GetById(rechargeId);
         }
-        public async Task<TblRecharge?> InsertAndGetIdentity(TblRecharge recharge)
+        public async Task<Recharge?> InsertAndGetIdentity(Recharge recharge)
         {
             await Create(recharge);
             await SaveChanges();
             return await GetById(recharge.RechargeId);
         }
-        public async Task UpdateRecharge(TblRecharge recharge)
+        public async Task UpdateRecharge(Recharge recharge)
         {
             await Update(recharge);
             await SaveChanges();
@@ -47,9 +47,9 @@ namespace Hot4.Repository.Concrete
                           }).ToListAsync();
         }
 
-        public async Task<List<TblRecharge>> GetPendingRechargesWithTransaction(int takeRows)
+        public async Task<List<Recharge>> GetPendingRechargesWithTransaction(int takeRows)
         {
-            var rechargeList = new List<TblRecharge>();
+            var rechargeList = new List<Recharge>();
             try
             {
                 await using var transaction = await _context.Database.BeginTransactionAsync();
@@ -83,7 +83,7 @@ namespace Hot4.Repository.Concrete
                 throw;
             }
 
-            return rechargeList ?? new List<TblRecharge>();
+            return rechargeList ?? new List<Recharge>();
         }
 
 

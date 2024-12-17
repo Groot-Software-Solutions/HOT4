@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
 {
-    public class ConfigRepository : RepositoryBase<TblConfig>, IConfigRepository
+    public class ConfigRepository : RepositoryBase<Configs>, IConfigRepository
     {
         public ConfigRepository(HotDbContext context) : base(context) { }
-        public async Task<TblConfig?> GetConfig()
+        public async Task<Configs?> GetConfig()
         {
             return await GetAll().FirstOrDefaultAsync();
         }

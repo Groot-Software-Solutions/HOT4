@@ -4,6 +4,6 @@ namespace Hot4.Repository.Abstract
 {
     public interface ITemplateRepository
     {
-        Task<TblTemplate?> GetTemplate(int templateID);
+        Task<Template?> GetTemplate(int templateID);
     }
 }

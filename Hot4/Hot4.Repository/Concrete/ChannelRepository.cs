@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
 {
-    public class ChannelRepository : RepositoryBase<TblChannel>, IChannelRepository
+    public class ChannelRepository : RepositoryBase<Channels>, IChannelRepository
     {
         public ChannelRepository(HotDbContext context) : base(context) { }
-        public async Task<List<TblChannel>> GetChannels()
+        public async Task<List<Channels>> GetChannels()
         {
             return await GetAll().ToListAsync();
         }

@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
 {
-    public class SMSRepository : RepositoryBase<TblSms>, ISMSRepository
+    public class SMSRepository : RepositoryBase<Sms>, ISMSRepository
     {
         public SMSRepository(HotDbContext context) : base(context) { }
-        public async Task<long> AddSMS(TblSms sms)
+        public async Task<long> AddSMS(Sms sms)
         {
             await Create(sms);
             //await CreateReturn(sms, "SMSID");
@@ -20,7 +20,7 @@ namespace Hot4.Repository.Concrete
             return sms.StateId;
         }
 
-        public async Task ClearSMSPassword(TblSms sms, bool hadValidPassword, HotTypes hotTypeSMS)
+        public async Task ClearSMSPassword(Sms sms, bool hadValidPassword, HotTypeState hotTypeSMS)
         {
             var hotType = await _context.HotType.FirstOrDefaultAsync(d => d.HotTypeId == (int)hotTypeSMS);
 
@@ -36,7 +36,7 @@ namespace Hot4.Repository.Concrete
             await Update(sms);
         }
 
-        public async Task<TblSms?> Duplicate(TblSms sms)
+        public async Task<Sms?> Duplicate(Sms sms)
         {
             return await GetByCondition(d =>
                        d.Smstext == sms.Smstext
@@ -65,7 +65,7 @@ namespace Hot4.Repository.Concrete
                     smsList.ForEach(d => d.StateId = (byte)SmsStates.Busy);
 
                     _context.Sms.UpdateRange(smsList.Select(d =>
-                        new TblSms
+                        new Sms
                         {
                             Direction = d.Direction,
                             InsertDate = d.InsertDate,
@@ -223,7 +223,7 @@ namespace Hot4.Repository.Concrete
             return res;
         }
 
-        public async Task Reply(TblSms sms, List<TblTemplate> templates)
+        public async Task Reply(Sms sms, List<Template> templates)
         {
             sms.StateId = (byte)SmsStates.Success;
             _context.Sms.Update(sms);
@@ -231,13 +231,13 @@ namespace Hot4.Repository.Concrete
 
             foreach (var template in templates)
             {
-                var reply = new TblSms
+                var reply = new Sms
                 {
                     Direction = false,
                     Mobile = sms.Mobile,
                     SmsidIn = sms.Smsid,
                     Smstext = template.TemplateText,
-                    PriorityId = (byte)Priorities.Normal,
+                    PriorityId = (byte)PriorityType.Normal,
                     StateId = (byte)SmsStates.Pending,
                     InsertDate = DateTime.Now,
                     Smsdate = DateTime.Now,
@@ -249,17 +249,17 @@ namespace Hot4.Repository.Concrete
             await _context.SaveChangesAsync();
         }
 
-        public async Task ReplyCustomer(string mobile, TblSms sms, List<TblTemplate> templates)
+        public async Task ReplyCustomer(string mobile, Sms sms, List<Template> templates)
         {
             foreach (var template in templates)
             {
-                var reply = new TblSms
+                var reply = new Sms
                 {
                     Direction = false,
                     Mobile = mobile,
                     SmsidIn = sms.Smsid,
                     Smstext = template.TemplateText,
-                    PriorityId = (byte)Priorities.Normal,
+                    PriorityId = (byte)PriorityType.Normal,
                     StateId = (byte)SmsStates.Pending,
                     InsertDate = DateTime.Now,
                     Smsdate = DateTime.Now,
@@ -270,7 +270,7 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
         }
 
-        public async Task ReplyWithTransaction(TblSms sms, List<TblTemplate> templates)
+        public async Task ReplyWithTransaction(Sms sms, List<Template> templates)
         {
             try
             {
@@ -291,7 +291,7 @@ namespace Hot4.Repository.Concrete
             }
         }
 
-        public async Task ResendWithTransaction(TblSms smsRequest)
+        public async Task ResendWithTransaction(Sms smsRequest)
         {
             string target = string.Empty; //By default, no target filter
 
@@ -347,7 +347,7 @@ namespace Hot4.Repository.Concrete
             int emailsSent = 0;
 
             var recentAccounts = await _context.Access
-                .Where(a => a.ChannelId == (byte)Channels.Web)
+                .Where(a => a.ChannelId == (byte)ChannelType.Web)
                 .Join(_context.Account,
                 a => a.AccountId,
                 b => b.AccountId,
@@ -374,7 +374,7 @@ namespace Hot4.Repository.Concrete
             return emailsSent;
         }
 
-        public async Task UpdateSMS(TblSms sms)
+        public async Task UpdateSMS(Sms sms)
         {
             await Update(sms);
             await SaveChanges();

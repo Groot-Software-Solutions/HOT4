@@ -5,10 +5,10 @@ namespace Hot4.Repository.Abstract
 {
     public interface IBankRepository
     {
-        Task AddBankTrx(TblBankTrx bankTrx);
+        Task AddBankTrx(BankTrx bankTrx);
 
-        Task UpdateBankTrx(TblBankTrx bankTrx);
-        Task<TblBankTrxBatch> AddBankTrxBatch(TblBankTrxBatch tblBankTrxBatch);
+        Task UpdateBankTrx(BankTrx bankTrx);
+        Task<BankTrxBatch> AddBankTrxBatch(BankTrxBatch tblBankTrxBatch);
 
 
         Task UpdatePaymentIDBankTrx(long paymentId, long bankTrxId);
@@ -23,8 +23,8 @@ namespace Hot4.Repository.Abstract
 
 
 
-        Task<List<TblBank>> ListBanks();
+        Task<List<Banks>> ListBanks();
 
-        Task<TblBankTrxBatch?> GetBatch(byte bankID, string BatchReference);
+        Task<BankTrxBatch?> GetBatch(byte bankID, string BatchReference);
     }
 }
