@@ -24,6 +24,7 @@ public partial class Access
 
     public DateTime? InsertDate { get; set; }
 
+
     public virtual Account Account { get; set; }
 
     public virtual Channels Channel { get; set; }

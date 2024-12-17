@@ -1,4 +1,5 @@
 ﻿using Hot4.Core.DataViewModels;
+using Hot4.Core.Helper;
 using Hot4.DataModel.Data;
 
 using Hot4.DataModel.Models;
@@ -27,8 +28,6 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<AccountBalanceModel?> GetAccountWithBalances(long accountId)
         {
-
-
             var result = await (from vwbal in _context.VwBalance.Where(d => d.AccountId == accountId)
                                 join acss in _context.Access
                                 on vwbal.AccountId equals acss.AccountId
@@ -47,31 +46,27 @@ namespace Hot4.Repository.Concrete
 
             return result;
         }
-        public async Task<List<AccountSearchModel>> SearchAccount(string filter, int rows)
+        public async Task<List<AccountSearchModel>> SearchAccount(string filter, int pageNumber, int pageSize)
         {
+            var res = (from acc in _context.VwAccount
+                       join acss in _context.Access
+                           on acc.AccountId equals acss.AccountId
+                       where (EF.Constant(acc.AccountName).Contains(filter, StringComparison.OrdinalIgnoreCase)
+                              || EF.Constant(acc.Email).Contains(filter, StringComparison.OrdinalIgnoreCase)
+                              || EF.Constant(acc.ReferredBy).Contains(filter, StringComparison.OrdinalIgnoreCase)
+                              || EF.Constant(acss.AccessCode).Contains(filter)
+                              || acc.AccountId.ToString() == filter)
+                       select new AccountSearchModel
+                       {
+                           AccountID = acc.AccountId,
+                           AccountName = acc.AccountName,
+                           Email = acc.Email,
+                           NationalID = acc.NationalId,
+                           ProfileName = acc.ProfileName,
+                           ReferredBy = acc.ReferredBy
+                       });
 
-            return await (from acc in _context.VwAccount
-                          join acss in _context.Access
-                              on acc.AccountId equals acss.AccountId
-                          where (EF.Constant(acc.AccountName).Contains(filter, StringComparison.OrdinalIgnoreCase)
-                                 || EF.Constant(acc.Email).Contains(filter, StringComparison.OrdinalIgnoreCase)
-                                 || EF.Constant(acc.ReferredBy).Contains(filter, StringComparison.OrdinalIgnoreCase)
-                                 || EF.Constant(acss.AccessCode).Contains(filter)
-                                 || acc.AccountId.ToString() == filter)
-                          select new AccountSearchModel
-                          {
-                              AccountID = acc.AccountId,
-                              AccountName = acc.AccountName,
-                              Email = acc.Email,
-                              NationalID = acc.NationalId,
-                              ProfileName = acc.ProfileName,
-                              ReferredBy = acc.ReferredBy
-                          })
-          .OrderByDescending(d => d.AccountName)
-          .Distinct()
-          .Take(rows)
-          .ToListAsync();
-
+            return await QuerableFilter.GetPagedData(res, pageNumber, pageSize).Queryable.ToListAsync();
         }
         public async Task<VwAccount?> GetAccountView(long accountId)
         {
@@ -96,7 +91,7 @@ namespace Hot4.Repository.Concrete
                 {
                     await _context.Database.RollbackTransactionAsync();
                 }
-                throw;
+                throw new InvalidOperationException("An error occurred while processing the transaction.", ex);
             }
             return access;
 

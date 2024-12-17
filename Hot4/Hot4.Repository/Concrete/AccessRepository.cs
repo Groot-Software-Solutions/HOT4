@@ -40,22 +40,73 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
         }
 
-        public async Task<List<AccountAccessModel>> ListAccess(long accountId)
+        public async Task<List<AccountAccessModel>> ListAccess(long accountId, bool isGetAll, bool isDeleted)
         {
 
-            return await (from acss in _context.Access
-                          join chn in _context.Channel
-                              on acss.ChannelId equals chn.ChannelId
-                          where acss.AccountId == accountId
-                          select new AccountAccessModel
-                          {
-                              AccessID = acss.AccessId,
-                              AccessCode = acss.AccessCode,
-                              Channel = chn.Channel,
-                              Deleted = acss.Deleted ?? false,
-                              AccountID = acss.AccountId,
-                          })
-                        .ToListAsync();
+            if (isGetAll)
+            {
+                return await _context.Access.Include(d => d.Channel)
+                .Where(d => d.AccountId == accountId)
+                .Select(d => new AccountAccessModel
+                {
+                    AccessID = d.AccessId,
+                    AccountID = d.AccountId,
+                    ChannelID = d.ChannelId,
+                    Channel = d.Channel.Channel,
+                    AccessCode = d.AccessCode,
+                    AccessPassword = "********",
+                    Deleted = d.Deleted ?? false,
+                    PasswordHash = "********",
+                    PasswordSalt = d.PasswordSalt
+                }).OrderBy(d => new { d.Channel, d.AccessCode }).ToListAsync();
+            }
+            else
+            {
+                if (isDeleted)
+                {
+                    return await _context.Access.Include(d => d.Channel)
+               .Where(d => d.AccountId == accountId && d.Deleted == true)
+               .Select(d => new AccountAccessModel
+               {
+                   AccessID = d.AccessId,
+                   AccountID = d.AccountId,
+                   ChannelID = d.ChannelId,
+                   Channel = d.Channel.Channel,
+                   AccessCode = d.AccessCode,
+                   AccessPassword = "********",
+                   Deleted = d.Deleted ?? false
+               }).OrderBy(d => new { d.Channel, d.AccessCode }).ToListAsync();
+                }
+                else
+                {
+                    return await _context.Access.Include(d => d.Channel)
+                   .Where(d => d.AccountId == accountId && d.Deleted == false)
+                   .Select(d => new AccountAccessModel
+                   {
+                       AccessID = d.AccessId,
+                       AccountID = d.AccountId,
+                       ChannelID = d.ChannelId,
+                       Channel = d.Channel.Channel,
+                       AccessCode = d.AccessCode,
+                       AccessPassword = "********",
+                       Deleted = d.Deleted ?? false,
+                       PasswordHash = "********",
+                       PasswordSalt = d.PasswordSalt
+
+                   }).OrderBy(d => new { d.Channel, d.AccessID, d.AccessCode }).ToListAsync();
+                }
+            }
+        }
+
+
+        public async Task<long> GetAdminIDAsync(long accountId)
+        {
+            var emailAdmin = await GetByCondition(d => d.AccountId == accountId && d.ChannelId == 2).Select(d => (long?)d.AccessId).MinAsync();
+
+            var mobileAdmin = await GetByCondition(d => d.AccountId == accountId).Select(d => (long?)d.AccessId).MinAsync();
+
+
+            return emailAdmin ?? mobileAdmin ?? 0;
         }
 
         public bool SMSLoginIsValid(Access access, string password)

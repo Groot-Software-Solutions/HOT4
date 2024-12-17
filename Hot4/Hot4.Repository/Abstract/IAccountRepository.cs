@@ -10,7 +10,7 @@ namespace Hot4.Repository.Abstract
         Task UpdateAccount(Account account);
         Task<Account?> GetAccount(long accountId);
         Task<AccountBalanceModel?> GetAccountWithBalances(long accountId);
-        Task<List<AccountSearchModel>> SearchAccount(string filter, int rows);
+        Task<List<AccountSearchModel>> SearchAccount(string filter, int pageNumber, int pageSize);
         Task<VwAccount?> GetAccountView(long accountId);
         Task<Access> AddWithAccessWithTransaction(Account account, Access access);
 

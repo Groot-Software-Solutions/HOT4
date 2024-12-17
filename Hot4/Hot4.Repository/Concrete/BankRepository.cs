@@ -12,7 +12,7 @@ namespace Hot4.Repository.Concrete
         public BankRepository(HotDbContext context) : base(context) { }
         public async Task AddBankTrx(BankTrx bankTrx)
         {
-            var duplicateTransaction = await GetByCondition(d =>
+            var duplicateTransaction = await _context.BankTrx.FirstOrDefaultAsync(d =>
                      (
                      d.TrxDate == bankTrx.TrxDate
                      && d.Amount == bankTrx.Amount
@@ -40,7 +40,7 @@ namespace Hot4.Repository.Concrete
                      && d.BankRef == bankTrx.BankRef
                      && d.Branch == bankTrx.Branch
                      && d.Balance == bankTrx.Balance
-                     )).FirstOrDefaultAsync();
+                     ));
 
             if (duplicateTransaction == null)
             {
@@ -96,10 +96,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<BankTrxBatch?> GetBatch(byte bankId, string BatchReference)
         {
-            return await _context.BankTrxBatch
-                  .SingleOrDefaultAsync(d =>
-                     d.BankId == bankId
-                  && d.BatchReference == BatchReference);
+            return await _context.BankTrxBatch.FirstOrDefaultAsync(d => d.BankId == bankId && d.BatchReference == BatchReference);
         }
 
         public async Task<List<DataModel.Models.Banks>> ListBanks()
@@ -109,44 +106,72 @@ namespace Hot4.Repository.Concrete
 
         public async Task<List<BankBatchModel>> ListBankTransactionBatches(long bankId)
         {
-            return await (from batch in _context.BankTrxBatch
-                          join bank in _context.Bank on batch.BankId equals bank.BankId
-                          where batch.BankId == bankId
-                          orderby batch.BatchDate
-                          select new BankBatchModel
-                          {
-                              BankTrxBatchID = batch.BankTrxBatchId,
-                              BankID = bank.BankId,
-                              BatchDate = batch.BatchDate,
-                              BatchReference = batch.BatchReference,
-                              LastUser = batch.LastUser
-                          }).ToListAsync();
+            //return await (from batch in _context.BankTrxBatch
+            //              join bank in _context.Bank on batch.BankId equals bank.BankId
+            //              where batch.BankId == bankId
+            //              orderby batch.BatchDate
+            //              select new BankBatchModel
+            //              {
+            //                  BankTrxBatchID = batch.BankTrxBatchId,
+            //                  BankID = bank.BankId,
+            //                  BatchDate = batch.BatchDate,
+            //                  BatchReference = batch.BatchReference,
+            //                  LastUser = batch.LastUser
+            //              }).ToListAsync();
+
+            return await _context.BankTrxBatch.Include(d => d.Bank).Where(d => d.BankId == bankId)
+                .OrderBy(d => d.BatchDate).Select(d => new BankBatchModel
+                {
+                    BankTrxBatchID = d.BankTrxBatchId,
+                    BankID = d.BankId,
+                    BatchDate = d.BatchDate,
+                    BatchReference = d.BatchReference,
+                    LastUser = d.LastUser
+                }).ToListAsync();
+
         }
 
         public async Task<List<BankTransactionModel>> ListBankTransactions(long bankTrxBatchId)
         {
-            return await (from trx in _context.BankTrx
-                          join state in _context.BankTrxState on trx.BankTrxStateId equals state.BankTrxStateId
-                          join type in _context.BankTrxType on trx.BankTrxTypeId equals type.BankTrxTypeId
-                          where trx.BankTrxBatchId == bankTrxBatchId
-                          select new BankTransactionModel
-                          {
-                              BankTrxID = trx.BankTrxId,
-                              BankTrxBatchID = trx.BankTrxBatchId,
-                              BankTrxTypeID = type.BankTrxTypeId,
-                              BankTrxType = type.BankTrxType,
-                              BankTrxStateID = state.BankTrxStateId,
-                              BankTrxState = state.BankTrxState,
-                              Amount = trx.Amount,
-                              TrxDate = trx.TrxDate,
-                              Identifier = trx.Identifier,
-                              RefName = trx.RefName,
-                              Branch = trx.Branch,
-                              BankRef = trx.BankRef,
-                              Balance = trx.Balance,
-                              PaymentID = trx.PaymentId
-                          }
-                       ).ToListAsync();
+            return await _context.BankTrx.Include(d => new { d.BankTrxState, d.BankTrxType }).Where(d => d.BankTrxBatchId == bankTrxBatchId).Select(d => new BankTransactionModel
+            {
+                BankTrxID = d.BankTrxId,
+                BankTrxBatchID = d.BankTrxBatchId,
+                BankTrxTypeID = d.BankTrxType.BankTrxTypeId,
+                BankTrxType = d.BankTrxType.BankTrxType,
+                BankTrxStateID = d.BankTrxState.BankTrxStateId,
+                BankTrxState = d.BankTrxState.BankTrxState,
+                Amount = d.Amount,
+                TrxDate = d.TrxDate,
+                Identifier = d.Identifier,
+                RefName = d.RefName,
+                Branch = d.Branch,
+                BankRef = d.BankRef,
+                Balance = d.Balance,
+                PaymentID = d.PaymentId
+            }).ToListAsync();
+            //return await (from trx in _context.BankTrx
+            //              join state in _context.BankTrxState on trx.BankTrxStateId equals state.BankTrxStateId
+            //              join type in _context.BankTrxType on trx.BankTrxTypeId equals type.BankTrxTypeId
+            //              where trx.BankTrxBatchId == bankTrxBatchId
+            //              select new BankTransactionModel
+            //              {
+            //                  BankTrxID = trx.BankTrxId,
+            //                  BankTrxBatchID = trx.BankTrxBatchId,
+            //                  BankTrxTypeID = type.BankTrxTypeId,
+            //                  BankTrxType = type.BankTrxType,
+            //                  BankTrxStateID = state.BankTrxStateId,
+            //                  BankTrxState = state.BankTrxState,
+            //                  Amount = trx.Amount,
+            //                  TrxDate = trx.TrxDate,
+            //                  Identifier = trx.Identifier,
+            //                  RefName = trx.RefName,
+            //                  Branch = trx.Branch,
+            //                  BankRef = trx.BankRef,
+            //                  Balance = trx.Balance,
+            //                  PaymentID = trx.PaymentId
+            //              }
+            //           ).ToListAsync();
         }
 
 

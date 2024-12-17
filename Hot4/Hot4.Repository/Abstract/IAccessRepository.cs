@@ -11,8 +11,10 @@ namespace Hot4.Repository.Abstract
         Task<Access?> GetByAccessCode(string accessCode);
         Task AddAccess(Access access);
         Task UpdateAccess(Access access);
-        Task<List<AccountAccessModel>> ListAccess(long accountId);
+        Task<List<AccountAccessModel>> ListAccess(long accountId, bool isGetAll, bool isDeleted);
 
         bool SMSLoginIsValid(Access access, string password);
+
+        Task<long> GetAdminIDAsync(long accountId);
     }
 }
