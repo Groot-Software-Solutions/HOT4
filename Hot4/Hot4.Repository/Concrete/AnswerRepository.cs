@@ -12,7 +12,6 @@ namespace Hot4.Repository.Concrete
         private readonly ISMSRepository _smsRepository;
         private readonly ITemplateRepository _templateRepository;
         private TemplateSettings _templateSettings { get; }
-
         public AnswerRepository(ISMSRepository smsRepository, ITemplateRepository templateRepository, IOptions<TemplateSettings> templateSettings)
         {
             _smsRepository = smsRepository;
@@ -43,7 +42,6 @@ namespace Hot4.Repository.Concrete
                 }
             }
         }
-
         public async Task RespondToUnknown(Sms sms)
         {
             var unknownRequest = await _templateRepository.GetTemplate((int)TemplateType.UnknownRequest);

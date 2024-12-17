@@ -40,7 +40,6 @@ namespace Hot4.Repository.Concrete
         {
             await Create(access);
             await SaveChanges();
-
         }
         public async Task UpdateAccess(Access access)
         {
@@ -80,16 +79,13 @@ namespace Hot4.Repository.Concrete
             var mobileAdmin = await GetByCondition(d => d.AccountId == accountId).Select(d => (long?)d.AccessId).MinAsync();
             return emailAdmin ?? mobileAdmin ?? 0;
         }
-
         public async Task PasswordChange(long accessId, string newPassword)
         {
             var access = await GetById(accessId);
             if (access != null)
             {
-
                 string salt = GenerateSalt(accessId);
                 string passwordHash = GeneratePasswordHash(salt, newPassword);
-
                 access.AccessPassword = newPassword;
                 access.PasswordHash = passwordHash;
                 access.PasswordSalt = access.PasswordSalt ?? salt;
@@ -129,7 +125,6 @@ namespace Hot4.Repository.Concrete
                 return BitConverter.ToString(hashBytes).Replace("-", "").ToLower().Substring(0, 20);
             }
         }
-
         private string GeneratePasswordHash(string salt, string newPassword)
         {
             string combined = (salt ?? "") + newPassword;
@@ -151,7 +146,7 @@ namespace Hot4.Repository.Concrete
                 {
                     sb.Append(byteValue.ToString("x2"));
                 }
-                return sb.ToString().ToLower(); // Return in lowercase format
+                return sb.ToString().ToLower();
             }
         }
     }

@@ -49,7 +49,6 @@ namespace Hot4.Repository.Concrete
                 };
             }
         }
-
         public async Task InsertAddress(Address address)
         {
             var addressExst = await GetById(address.AccountId);

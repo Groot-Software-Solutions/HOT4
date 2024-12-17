@@ -19,16 +19,16 @@
       "RelativeMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|solutionrelative:hot4.repository\\concrete\\accessrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|f:\\hot4-new\\hot4\\hot4.repository\\abstract\\iaddressrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|solutionrelative:hot4.repository\\abstract\\iaddressrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|f:\\hot4-new\\hot4\\hot4.server\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|solutionrelative:hot4.server\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|f:\\hot4-new\\hot4\\hot4.server\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|solutionrelative:hot4.server\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|f:\\hot4-new\\hot4\\hot4.repository\\abstract\\iaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|solutionrelative:hot4.repository\\abstract\\iaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|f:\\hot4-new\\hot4\\hot4.repository\\abstract\\iaccesswebrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|solutionrelative:hot4.repository\\abstract\\iaccesswebrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|f:\\hot4-new\\hot4\\hot4.repository\\abstract\\iaccessrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -62,28 +62,41 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "Hot4.Server\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "Hot4.Server\\Components\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-17T09:14:32.375Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "App.razor",
+              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Components\\App.razor",
+              "RelativeDocumentMoniker": "Hot4.Server\\Components\\App.razor",
+              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Components\\App.razor",
+              "RelativeToolTip": "Hot4.Server\\Components\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-17T09:08:45.61Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "AccessWebRepository.cs",
               "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\AccessWebRepository.cs",
               "RelativeDocumentMoniker": "Hot4.Repository\\Concrete\\AccessWebRepository.cs",
               "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\AccessWebRepository.cs",
               "RelativeToolTip": "Hot4.Repository\\Concrete\\AccessWebRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-17T08:58:43.929Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IAccessWebRepository.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Abstract\\IAccessWebRepository.cs",
-              "RelativeDocumentMoniker": "Hot4.Repository\\Abstract\\IAccessWebRepository.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Abstract\\IAccessWebRepository.cs",
-              "RelativeToolTip": "Hot4.Repository\\Abstract\\IAccessWebRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T08:56:44.745Z",
               "EditorCaption": ""
             },
             {
@@ -94,22 +107,9 @@
               "RelativeDocumentMoniker": "Hot4.Repository\\Concrete\\AccessRepository.cs",
               "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\AccessRepository.cs",
               "RelativeToolTip": "Hot4.Repository\\Concrete\\AccessRepository.cs",
-              "ViewState": "AgIAAIIAAAAAAAAAAAAAAIUAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAH8AAAAAAAAAAAAAAGIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-17T08:54:03.665Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IAddressRepository.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Abstract\\IAddressRepository.cs",
-              "RelativeDocumentMoniker": "Hot4.Repository\\Abstract\\IAddressRepository.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Abstract\\IAddressRepository.cs",
-              "RelativeToolTip": "Hot4.Repository\\Abstract\\IAddressRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T08:38:48.053Z",
               "EditorCaption": ""
             },
             {
@@ -120,7 +120,7 @@
               "RelativeDocumentMoniker": "Hot4.Repository\\Concrete\\AccountRepository.cs",
               "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\AccountRepository.cs",
               "RelativeToolTip": "Hot4.Repository\\Concrete\\AccountRepository.cs",
-              "ViewState": "AgIAAHwAAAAAAAAAAAAAAKIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADcAAAAAAAAAAAAAAEEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-17T07:46:26.178Z",
               "EditorCaption": ""
@@ -133,7 +133,7 @@
               "RelativeDocumentMoniker": "Hot4.Repository\\Concrete\\AddressRepository.cs",
               "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\AddressRepository.cs",
               "RelativeToolTip": "Hot4.Repository\\Concrete\\AddressRepository.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAAACkAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAD8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-17T08:38:02.937Z",
               "EditorCaption": ""
@@ -148,12 +148,11 @@
               "RelativeToolTip": "Hot4.Repository\\Abstract\\IAccessRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T08:53:59.142Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-17T08:53:59.142Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "IAccountRepository.cs",
               "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Abstract\\IAccountRepository.cs",
               "RelativeDocumentMoniker": "Hot4.Repository\\Abstract\\IAccountRepository.cs",
@@ -161,8 +160,7 @@
               "RelativeToolTip": "Hot4.Repository\\Abstract\\IAccountRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T08:32:06.8Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-17T08:32:06.8Z"
             },
             {
               "$type": "Document",
@@ -174,8 +172,7 @@
               "RelativeToolTip": "Hot4.Repository\\Concrete\\RegistrationRepository.cs",
               "ViewState": "AgIAACIAAAAAAAAAAAAAAC0AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T08:36:47.601Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-17T08:36:47.601Z"
             },
             {
               "$type": "Document",
@@ -187,8 +184,7 @@
               "RelativeToolTip": "Hot4.DataModel\\Data\\HotDbContext.cs",
               "ViewState": "AgIAAMEEAAAAAAAAAIAywMIEAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T11:33:20.892Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-16T11:33:20.892Z"
             }
           ]
         }
