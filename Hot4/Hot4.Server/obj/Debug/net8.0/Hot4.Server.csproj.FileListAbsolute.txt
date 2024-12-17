@@ -177,3 +177,4 @@ F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\refint\Hot4.Server.dll
 F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.pdb
 F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.genruntimeconfig.cache
 F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\ref\Hot4.Server.dll
+F:\Hot4-new\Hot4\Hot4.Server\bin\Debug\net8.0\System.Linq.Dynamic.Core.dll

@@ -39,7 +39,7 @@ namespace Hot4.Repository.Concrete
             var account = await ParseRegistration(sms);
             var access = BuildRegistrationAccess(sms);
 
-            access = await _accountRepository.AddWithAccessWithTransaction(account, access);
+            // access = await _accountRepository.AddWithAccessWithTransaction(account, access);
 
             var template = await _templateRepository.GetTemplate((int)TemplateType.SuccessfulRegistration);
             if (template == null)
@@ -155,7 +155,7 @@ namespace Hot4.Repository.Concrete
 
             if (access != null)
             {
-                var account = await _accountRepository.GetAccount(access.AccountId);
+                var account = await _accountRepository.GetAccount(access.AccountID);
 
                 if (account != null && account.ProfileId == (int)ProfileType.SelfTopUp)
                 {

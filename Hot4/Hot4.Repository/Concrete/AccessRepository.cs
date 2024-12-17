@@ -1,18 +1,17 @@
 ﻿using Hot4.Core.DataViewModels;
-using Hot4.Core.Helper;
 using Hot4.DataModel.Data;
 
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Hot4.Repository.Concrete
 {
     public class AccessRepository : RepositoryBase<Access>, IAccessRepository
     {
         public AccessRepository(HotDbContext context) : base(context) { }
-
-
         public async Task<Access?> GetAccess(long accessId)
         {
             return await GetById(accessId);
@@ -21,32 +20,9 @@ namespace Hot4.Repository.Concrete
         {
             return await GetByCondition(d => d.AccountId == accountId && d.ChannelId == channelId).OrderByDescending(d => d.AccessId).ToListAsync();
         }
-
-        public async Task<Access?> GetByAccessCode(string accessCode)
+        public async Task<AccountAccessModel?> GetByAccessCode(string accessCode)
         {
-            return await GetByCondition(d => d.AccessCode == accessCode).FirstOrDefaultAsync();
-        }
-
-        public async Task AddAccess(Access access)
-        {
-            await Create(access);
-            await SaveChanges();
-
-        }
-
-        public async Task UpdateAccess(Access access)
-        {
-            await Update(access);
-            await SaveChanges();
-        }
-
-        public async Task<List<AccountAccessModel>> ListAccess(long accountId, bool isGetAll, bool isDeleted)
-        {
-
-            if (isGetAll)
-            {
-                return await _context.Access.Include(d => d.Channel)
-                .Where(d => d.AccountId == accountId)
+            return await GetByCondition(d => d.AccessCode == accessCode)
                 .Select(d => new AccountAccessModel
                 {
                     AccessID = d.AccessId,
@@ -58,65 +34,125 @@ namespace Hot4.Repository.Concrete
                     Deleted = d.Deleted ?? false,
                     PasswordHash = "********",
                     PasswordSalt = d.PasswordSalt
-                }).OrderBy(d => new { d.Channel, d.AccessCode }).ToListAsync();
-            }
-            else
-            {
-                if (isDeleted)
-                {
-                    return await _context.Access.Include(d => d.Channel)
-               .Where(d => d.AccountId == accountId && d.Deleted == true)
-               .Select(d => new AccountAccessModel
-               {
-                   AccessID = d.AccessId,
-                   AccountID = d.AccountId,
-                   ChannelID = d.ChannelId,
-                   Channel = d.Channel.Channel,
-                   AccessCode = d.AccessCode,
-                   AccessPassword = "********",
-                   Deleted = d.Deleted ?? false
-               }).OrderBy(d => new { d.Channel, d.AccessCode }).ToListAsync();
-                }
-                else
-                {
-                    return await _context.Access.Include(d => d.Channel)
-                   .Where(d => d.AccountId == accountId && d.Deleted == false)
-                   .Select(d => new AccountAccessModel
-                   {
-                       AccessID = d.AccessId,
-                       AccountID = d.AccountId,
-                       ChannelID = d.ChannelId,
-                       Channel = d.Channel.Channel,
-                       AccessCode = d.AccessCode,
-                       AccessPassword = "********",
-                       Deleted = d.Deleted ?? false,
-                       PasswordHash = "********",
-                       PasswordSalt = d.PasswordSalt
-
-                   }).OrderBy(d => new { d.Channel, d.AccessID, d.AccessCode }).ToListAsync();
-                }
-            }
+                }).FirstOrDefaultAsync();
         }
+        public async Task AddAccess(Access access)
+        {
+            await Create(access);
+            await SaveChanges();
 
+        }
+        public async Task UpdateAccess(Access access)
+        {
+            await Update(access);
+            await SaveChanges();
+        }
+        public async Task<List<AccountAccessModel>> ListAccess(long accountId, bool isGetAll, bool isDeleted)
+        {
+            var query = _context.Access.Include(d => d.Channel).Where(d => d.AccountId == accountId);
 
-        public async Task<long> GetAdminIDAsync(long accountId)
+            if (!isGetAll)
+            {
+                query = query.Where(d => d.Deleted == isDeleted);
+            }
+
+            var accessList = await query
+        .Select(d => new AccountAccessModel
+        {
+            AccessID = d.AccessId,
+            AccountID = d.AccountId,
+            ChannelID = d.ChannelId,
+            Channel = d.Channel.Channel,
+            AccessCode = d.AccessCode,
+            AccessPassword = "********",
+            Deleted = d.Deleted ?? false,
+            PasswordHash = "********",
+            PasswordSalt = d.PasswordSalt
+        })
+        .OrderBy(d => new { d.Channel, d.AccessCode })
+        .ToListAsync();
+            return accessList;
+
+        }
+        public async Task<long> GetAdminID(long accountId)
         {
             var emailAdmin = await GetByCondition(d => d.AccountId == accountId && d.ChannelId == 2).Select(d => (long?)d.AccessId).MinAsync();
-
             var mobileAdmin = await GetByCondition(d => d.AccountId == accountId).Select(d => (long?)d.AccessId).MinAsync();
-
-
             return emailAdmin ?? mobileAdmin ?? 0;
         }
 
-        public bool SMSLoginIsValid(Access access, string password)
+        public async Task PasswordChange(long accessId, string newPassword)
         {
-            if (access.PasswordHash is not null)
+            var access = await GetById(accessId);
+            if (access != null)
             {
-                var hashedPassword = Helper.ToMD5Hash($"{access.PasswordSalt}{password}").ToLower();
-                return hashedPassword == access.PasswordHash.ToLower();
+
+                string salt = GenerateSalt(accessId);
+                string passwordHash = GeneratePasswordHash(salt, newPassword);
+
+                access.AccessPassword = newPassword;
+                access.PasswordHash = passwordHash;
+                access.PasswordSalt = access.PasswordSalt ?? salt;
+                await Update(access);
+                await SaveChanges();
             }
-            return access.AccessPassword == password;
+            else
+            {
+                throw new InvalidOperationException("Access record not found.");
+            }
+        }
+        public async Task<AccountAccessModel?> LoginSelect(string accessCode, string accessPassword)
+        {
+            string hashedPassword = GetMd5Hash(accessPassword);
+
+            return await _context.Access.Include(d => d.Channel)
+                .Select(d => new AccountAccessModel
+                {
+                    AccessID = d.AccessId,
+                    AccountID = d.AccountId,
+                    ChannelID = d.ChannelId,
+                    Channel = d.Channel.Channel,
+                    AccessCode = d.AccessCode,
+                    AccessPassword = "********",
+                    Deleted = d.Deleted ?? false,
+                    PasswordHash = "********",
+                    PasswordSalt = d.PasswordSalt
+                })
+                .FirstOrDefaultAsync(d => d.AccessCode == accessCode && d.Deleted == false
+            && d.AccessPassword == accessPassword && d.PasswordHash == hashedPassword);
+        }
+        private string GenerateSalt(long accessID)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] hashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(accessID.ToString()));
+                return BitConverter.ToString(hashBytes).Replace("-", "").ToLower().Substring(0, 20);
+            }
+        }
+
+        private string GeneratePasswordHash(string salt, string newPassword)
+        {
+            string combined = (salt ?? "") + newPassword;
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] hashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(combined));
+                return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+            }
+        }
+        private string GetMd5Hash(string input)
+        {
+            using (var md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                StringBuilder sb = new StringBuilder();
+                foreach (var byteValue in hashBytes)
+                {
+                    sb.Append(byteValue.ToString("x2"));
+                }
+                return sb.ToString().ToLower(); // Return in lowercase format
+            }
         }
     }
 }

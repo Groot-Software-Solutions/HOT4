@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hot4.DataModel.Models;
 
 public partial class States
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public byte StateId { get; set; }
 
     public required string State { get; set; }

@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hot4.DataModel.Models;
 
 public partial class Configs
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public byte ConfigId { get; set; }
 
     public int ProfileIdNewSmsdealer { get; set; }

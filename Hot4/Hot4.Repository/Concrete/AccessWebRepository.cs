@@ -12,12 +12,10 @@ namespace Hot4.Repository.Concrete
             await Create(accessWeb);
             await SaveChanges();
         }
-
         public async Task<AccessWeb?> GetAccessWeb(long accessId)
         {
             return await GetById(accessId);
         }
-
         public async Task UpdateAccessWeb(AccessWeb accessWeb)
         {
             await Update(accessWeb);

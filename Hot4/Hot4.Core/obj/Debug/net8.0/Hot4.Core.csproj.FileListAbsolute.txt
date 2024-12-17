@@ -10,3 +10,4 @@ F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.dll
 F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\refint\Hot4.Core.dll
 F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.pdb
 F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\ref\Hot4.Core.dll
+F:\Hot4-new\Hot4\Hot4.Core\obj\Debug\net8.0\Hot4.Core.csproj.AssemblyReference.cache

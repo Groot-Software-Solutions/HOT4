@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hot4.DataModel.Models;
 
 public partial class Smpp
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public byte SmppId { get; set; }
 
     public required string SmppName { get; set; }

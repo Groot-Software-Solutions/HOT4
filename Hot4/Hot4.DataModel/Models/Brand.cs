@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hot4.DataModel.Models;
 
 public partial class Brand
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public byte BrandId { get; set; }
 
     public byte NetworkId { get; set; }
