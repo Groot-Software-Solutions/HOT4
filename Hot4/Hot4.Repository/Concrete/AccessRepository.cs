@@ -38,11 +38,16 @@ namespace Hot4.Repository.Concrete
         }
         public async Task AddAccess(Access access)
         {
+            access.PasswordSalt = GenerateSalt(access.AccountId);
+            access.PasswordHash = GeneratePasswordHash(access.PasswordSalt, access.AccessPassword);
+            access.InsertDate = DateTime.Now;
             await Create(access);
             await SaveChanges();
         }
         public async Task UpdateAccess(Access access)
         {
+            access.PasswordSalt = string.IsNullOrEmpty(access.PasswordSalt) ? GenerateSalt(access.AccountId) : access.PasswordSalt;
+            access.PasswordHash = GeneratePasswordHash(access.PasswordSalt, access.AccessPassword);
             await Update(access);
             await SaveChanges();
         }
@@ -84,7 +89,7 @@ namespace Hot4.Repository.Concrete
             var access = await GetById(accessId);
             if (access != null)
             {
-                string salt = GenerateSalt(accessId);
+                string salt = string.IsNullOrEmpty(access.PasswordSalt) ? GenerateSalt(accessId) : access.PasswordSalt;
                 string passwordHash = GeneratePasswordHash(salt, newPassword);
                 access.AccessPassword = newPassword;
                 access.PasswordHash = passwordHash;
@@ -116,6 +121,26 @@ namespace Hot4.Repository.Concrete
                 })
                 .FirstOrDefaultAsync(d => d.AccessCode == accessCode && d.Deleted == false
             && d.AccessPassword == accessPassword && d.PasswordHash == hashedPassword);
+        }
+        public async Task DeleteAccess(long accessId)
+        {
+            var access = await GetById(accessId);
+            if (access != null)
+            {
+                access.Deleted = true;
+                await Update(access);
+                await SaveChanges();
+            }
+        }
+        public async Task UnDeleteAccess(long accessId)
+        {
+            var access = await GetById(accessId);
+            if (access != null)
+            {
+                access.Deleted = false;
+                await Update(access);
+                await SaveChanges();
+            }
         }
         private string GenerateSalt(long accessID)
         {

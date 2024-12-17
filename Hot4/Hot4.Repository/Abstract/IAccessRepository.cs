@@ -15,5 +15,7 @@ namespace Hot4.Repository.Abstract
         Task<long> GetAdminID(long accountId);
         Task PasswordChange(long accessId, string newPassword);
         Task<AccountAccessModel?> LoginSelect(string accessCode, string accessPassword);
+        Task DeleteAccess(long accessId);
+        Task UnDeleteAccess(long accessId);
     }
 }
