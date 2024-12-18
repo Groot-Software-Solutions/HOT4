@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = F:\Hot4-new\Hot4\Hot4.Server
 build_property._RazorSourceGeneratorDebug = 
 
+[F:/Hot4-new/Hot4/Hot4.Server/Components/Accessess.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2Nlc3Nlc3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/Hot4-new/Hot4/Hot4.Server/Components/App.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

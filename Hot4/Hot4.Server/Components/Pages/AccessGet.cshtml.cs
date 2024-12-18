@@ -53,5 +53,12 @@ namespace Hot4.Server.Components.Pages
             string accessPassword = "5555";
             accountAccessModel = await _accessRepository.GetLoginDetails(accessCode, accessPassword);
         }
+
+        public async void SaveAccess()
+        {
+            var mdl = new Access() { AccessCode = "7009373728", AccessPassword = "5555", AccountId = 10001002, ChannelId = 1 };
+            await _accessRepository.AddAccess(mdl);
+
+        }
     }
 }
