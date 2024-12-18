@@ -52,10 +52,14 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateAccess(Access access)
         {
-            access.PasswordSalt = string.IsNullOrEmpty(access.PasswordSalt) ? Helper.GenerateSalt(access.AccountId) : access.PasswordSalt;
-            access.PasswordHash = Helper.GeneratePasswordHash(access.PasswordSalt, access.AccessPassword);
-            await Update(access);
-            await SaveChanges();
+            var accessRecord = await GetById(access.AccessId);
+            if (accessRecord != null)
+            {
+                access.PasswordSalt = string.IsNullOrEmpty(access.PasswordSalt) ? Helper.GenerateSalt(access.AccountId) : access.PasswordSalt;
+                access.PasswordHash = Helper.GeneratePasswordHash(access.PasswordSalt, access.AccessPassword);
+                await Update(access);
+                await SaveChanges();
+            }
         }
         public async Task<List<AccountAccessModel>> ListAccess(long accountId, bool isGetAll, bool isDeleted)
         {
