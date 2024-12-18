@@ -9,203 +9,104 @@ namespace Hot4.DataModel.Data
         {
 
         }
-
-
-
         public virtual DbSet<Access> Access { get; set; }
-
         public virtual DbSet<AccessWeb> AccessWeb { get; set; }
-
         public virtual DbSet<Account> Account { get; set; }
-
         public virtual DbSet<Address> Address { get; set; }
-
         public virtual DbSet<Banks> Bank { get; set; }
-
         public virtual DbSet<BankTrx> BankTrx { get; set; }
-
         public virtual DbSet<BankTrxBatch> BankTrxBatch { get; set; }
-
         public virtual DbSet<BankTrxStates> BankTrxState { get; set; }
-
         public virtual DbSet<BankTrxTypes> BankTrxType { get; set; }
-
         public virtual DbSet<BankvPayment> BankvPayment { get; set; }
-
         public virtual DbSet<Brand> Brand { get; set; }
-
         public virtual DbSet<Bundle> Bundle { get; set; }
-
         public virtual DbSet<Channels> Channel { get; set; }
-
         public virtual DbSet<Configs> Config { get; set; }
-
         public virtual DbSet<ConsoleAccess> ConsoleAccess { get; set; }
-
         public virtual DbSet<ConsoleAction> ConsoleAction { get; set; }
-
         public virtual DbSet<ErrorLog> ErrorLog { get; set; }
-
         public virtual DbSet<ErrorLogContact> ErrorLogContact { get; set; }
-
         public virtual DbSet<ErrorLogNetwork> ErrorLogNetwork { get; set; }
-
         public virtual DbSet<ErrorLogSetup> ErrorLogSetup { get; set; }
-
         public virtual DbSet<ErrorLogTestType> ErrorLogTestType { get; set; }
-
         public virtual DbSet<HotTypes> HotType { get; set; }
-
         public virtual DbSet<HotTypeCode> HotTypeCode { get; set; }
-
         public virtual DbSet<Limit> Limit { get; set; }
-
         public virtual DbSet<LimitType> LimitType { get; set; }
-
         public virtual DbSet<Log> Log { get; set; }
-
         public virtual DbSet<Networks> Network { get; set; }
-
         public virtual DbSet<Payment> Payment { get; set; }
-
         public virtual DbSet<PaymentSources> PaymentSource { get; set; }
-
         public virtual DbSet<PaymentTypes> PaymentType { get; set; }
-
         public virtual DbSet<Pins> Pin { get; set; }
-
         public virtual DbSet<PinBatches> PinBatch { get; set; }
-
         public virtual DbSet<PinBatchTypes> PinBatchType { get; set; }
-
         public virtual DbSet<PinStates> PinState { get; set; }
-
         public virtual DbSet<Priorities> Priority { get; set; }
-
         public virtual DbSet<Product> Product { get; set; }
-
         public virtual DbSet<ProductField> ProductField { get; set; }
-
         public virtual DbSet<ProductMetaDataType> ProductMetaDataType { get; set; }
-
         public virtual DbSet<ProductMetaData> ProductMetaData { get; set; }
-
         public virtual DbSet<Profile> Profile { get; set; }
-
         public virtual DbSet<ProfileDiscount> ProfileDiscount { get; set; }
-
         public virtual DbSet<RechargePin> RechargePin { get; set; }
         public virtual DbSet<SmsRecharge> SmsRecharge { get; set; }
         public virtual DbSet<Recharge> Recharge { get; set; }
-
         public virtual DbSet<RechargePrepaid> RechargePrepaid { get; set; }
-
         public virtual DbSet<Reservation> Reservation { get; set; }
-
         public virtual DbSet<ReservationLog> ReservationLog { get; set; }
-
         public virtual DbSet<ReservationStates> ReservationState { get; set; }
-
         public virtual DbSet<SelfTopUp> SelfTopUp { get; set; }
-
         public virtual DbSet<SelfTopUpState> SelfTopUpState { get; set; }
-
         public virtual DbSet<Sms> Sms { get; set; }
-
         public virtual DbSet<Smpp> Smpp { get; set; }
-
         public virtual DbSet<States> State { get; set; }
-
         public virtual DbSet<StockData> StockData { get; set; }
-
         public virtual DbSet<Subscriber> Subscriber { get; set; }
-
         public virtual DbSet<Template> Template { get; set; }
-
         public virtual DbSet<Transfer> Transfer { get; set; }
-
         public virtual DbSet<WalletType> WalletType { get; set; }
-
         public virtual DbSet<WebRequest> WebRequest { get; set; }
-
         public virtual DbSet<ProfileBackup> ProfileBackup { get; set; }
-
         public virtual DbSet<VwAccess> VwAccess { get; set; }
-
         public virtual DbSet<VwAccessWeb> VwAccessWeb { get; set; }
-
         public virtual DbSet<VwAccount> VwAccount { get; set; }
-
         public virtual DbSet<VwAccountDetail> VwAccountDetail { get; set; }
-
         public virtual DbSet<VwAccountOld> VwAccountOld { get; set; }
-
         public virtual DbSet<VwAccountWeb> VwAccountWeb { get; set; }
-
         public virtual DbSet<VwBalance> VwBalance { get; set; }
-
         public virtual DbSet<VwBankTrx> VwBankTrx { get; set; }
-
         public virtual DbSet<VwBankTrxBatch> VwBankTrxBatch { get; set; }
-
         public virtual DbSet<VwBankTrxDetail> VwBankTrxDetail { get; set; }
-
         public virtual DbSet<VwBrand> VwBrand { get; set; }
-
         public virtual DbSet<VwBundle> VwBundle { get; set; }
-
         public virtual DbSet<VwErrorDetail> VwErrorDetail { get; set; }
-
         public virtual DbSet<VwErrorDetailVp> VwErrorDetailVp { get; set; }
-
         public virtual DbSet<VwErrorStatus> VwErrorStatus { get; set; }
-
         public virtual DbSet<VwPayment> VwPayment { get; set; }
-
         public virtual DbSet<VwPaymentDetail> VwPaymentDetail { get; set; }
-
         public virtual DbSet<VwPin> VwPin { get; set; }
-
         public virtual DbSet<VwPinBatch> VwPinBatch { get; set; }
-
         public virtual DbSet<VwPlatformDetail> VwPlatformDetail { get; set; }
-
         public virtual DbSet<VwProfileDiscount> VwProfileDiscount { get; set; }
-
         public virtual DbSet<VwRecharge> VwRecharge { get; set; }
-
         public virtual DbSet<VwRechargeListDetail> VwRechargeListDetail { get; set; }
-
         public virtual DbSet<VwRechargeOld> VwRechargeOld { get; set; }
-
         public virtual DbSet<VwRechargePrepaid> VwRechargePrepaid { get; set; }
-
         public virtual DbSet<VwRegistration> VwRegistration { get; set; }
-
         public virtual DbSet<VwReservation> VwReservation { get; set; }
-
         public virtual DbSet<VwSelfTopUp> VwSelfTopUp { get; set; }
-
         public virtual DbSet<VwSm> VwSms { get; set; }
-
         public virtual DbSet<VwSubscriber> VwSubscriber { get; set; }
-
         public virtual DbSet<VwTempRechargeDb> VwTempRechargeDb { get; set; }
-
         public virtual DbSet<VwTransfer> VwTransfer { get; set; }
-
         public virtual DbSet<VwzPayment> VwzPayment { get; set; }
-
         public virtual DbSet<VwzPaymentTrf> VwzPaymentTrv { get; set; }
-
         public virtual DbSet<VwzRecharge> VwzRecharge { get; set; }
-
         public virtual DbSet<VwzSm> VwzSms { get; set; }
-
         public virtual DbSet<ZArchive> ZtblArchive { get; set; }
-
         public virtual DbSet<ZStat> ZtblStat { get; set; }
-
         public virtual DbSet<ZvwProductlistdetail> ZvwProductlistdetail { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
