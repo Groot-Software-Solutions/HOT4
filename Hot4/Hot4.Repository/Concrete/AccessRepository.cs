@@ -1,11 +1,11 @@
 ﻿using Hot4.Core.DataViewModels;
+using Hot4.Core.Enums;
+using Hot4.Core.Helper;
 using Hot4.DataModel.Data;
 
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace Hot4.Repository.Concrete
 {
@@ -22,32 +22,38 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<AccountAccessModel?> GetByAccessCode(string accessCode)
         {
-            return await GetByCondition(d => d.AccessCode == accessCode)
-                .Select(d => new AccountAccessModel
+            AccountAccessModel? responseData = null;
+
+            var access = await _context.Access.Include(d => d.Channel).FirstOrDefaultAsync(d => d.AccessCode == accessCode);
+            if (access != null)
+            {
+                responseData = new AccountAccessModel
                 {
-                    AccessID = d.AccessId,
-                    AccountID = d.AccountId,
-                    ChannelID = d.ChannelId,
-                    Channel = d.Channel.Channel,
-                    AccessCode = d.AccessCode,
+                    AccessID = access.AccessId,
+                    AccountID = access.AccountId,
+                    ChannelID = access.ChannelId,
+                    Channel = access.Channel.Channel,
+                    AccessCode = access.AccessCode,
                     AccessPassword = "********",
-                    Deleted = d.Deleted ?? false,
+                    Deleted = access.Deleted ?? false,
                     PasswordHash = "********",
-                    PasswordSalt = d.PasswordSalt
-                }).FirstOrDefaultAsync();
+                    PasswordSalt = access.PasswordSalt
+                };
+            }
+            return responseData;
         }
         public async Task AddAccess(Access access)
         {
-            access.PasswordSalt = GenerateSalt(access.AccountId);
-            access.PasswordHash = GeneratePasswordHash(access.PasswordSalt, access.AccessPassword);
+            access.PasswordSalt = Helper.GenerateSalt(access.AccountId);
+            access.PasswordHash = Helper.GeneratePasswordHash(access.PasswordSalt, access.AccessPassword);
             access.InsertDate = DateTime.Now;
             await Create(access);
             await SaveChanges();
         }
         public async Task UpdateAccess(Access access)
         {
-            access.PasswordSalt = string.IsNullOrEmpty(access.PasswordSalt) ? GenerateSalt(access.AccountId) : access.PasswordSalt;
-            access.PasswordHash = GeneratePasswordHash(access.PasswordSalt, access.AccessPassword);
+            access.PasswordSalt = string.IsNullOrEmpty(access.PasswordSalt) ? Helper.GenerateSalt(access.AccountId) : access.PasswordSalt;
+            access.PasswordHash = Helper.GeneratePasswordHash(access.PasswordSalt, access.AccessPassword);
             await Update(access);
             await SaveChanges();
         }
@@ -78,9 +84,9 @@ namespace Hot4.Repository.Concrete
             return accessList;
 
         }
-        public async Task<long> GetAdminID(long accountId)
+        public async Task<long> GetAdminId(long accountId)
         {
-            var emailAdmin = await GetByCondition(d => d.AccountId == accountId && d.ChannelId == 2).Select(d => (long?)d.AccessId).MinAsync();
+            var emailAdmin = await GetByCondition(d => d.AccountId == accountId && d.ChannelId == (int)ChannelType.Web).Select(d => (long?)d.AccessId).MinAsync();
             var mobileAdmin = await GetByCondition(d => d.AccountId == accountId).Select(d => (long?)d.AccessId).MinAsync();
             return emailAdmin ?? mobileAdmin ?? 0;
         }
@@ -89,8 +95,8 @@ namespace Hot4.Repository.Concrete
             var access = await GetById(accessId);
             if (access != null)
             {
-                string salt = string.IsNullOrEmpty(access.PasswordSalt) ? GenerateSalt(accessId) : access.PasswordSalt;
-                string passwordHash = GeneratePasswordHash(salt, newPassword);
+                string salt = string.IsNullOrEmpty(access.PasswordSalt) ? Helper.GenerateSalt(accessId) : access.PasswordSalt;
+                string passwordHash = Helper.GeneratePasswordHash(salt, newPassword);
                 access.AccessPassword = newPassword;
                 access.PasswordHash = passwordHash;
                 access.PasswordSalt = access.PasswordSalt ?? salt;
@@ -102,25 +108,30 @@ namespace Hot4.Repository.Concrete
                 throw new InvalidOperationException("Access record not found.");
             }
         }
-        public async Task<AccountAccessModel?> LoginSelect(string accessCode, string accessPassword)
+        public async Task<AccountAccessModel?> GetLoginDetails(string accessCode, string accessPassword)
         {
-            string hashedPassword = GetMd5Hash(accessPassword);
+            AccountAccessModel? responseData = null;
 
-            return await _context.Access.Include(d => d.Channel)
-                .Select(d => new AccountAccessModel
+            string hashedPassword = Helper.GetMd5Hash(accessPassword);
+            var access = await _context.Access.Include(d => d.Channel).FirstOrDefaultAsync(d => d.AccessCode == accessCode && d.Deleted == false
+&& d.AccessPassword == accessPassword && d.PasswordHash == hashedPassword);
+            if (access != null)
+            {
+                responseData = new AccountAccessModel
                 {
-                    AccessID = d.AccessId,
-                    AccountID = d.AccountId,
-                    ChannelID = d.ChannelId,
-                    Channel = d.Channel.Channel,
-                    AccessCode = d.AccessCode,
+                    AccessID = access.AccessId,
+                    AccountID = access.AccountId,
+                    ChannelID = access.ChannelId,
+                    Channel = access.Channel.Channel,
+                    AccessCode = access.AccessCode,
                     AccessPassword = "********",
-                    Deleted = d.Deleted ?? false,
+                    Deleted = access.Deleted ?? false,
                     PasswordHash = "********",
-                    PasswordSalt = d.PasswordSalt
-                })
-                .FirstOrDefaultAsync(d => d.AccessCode == accessCode && d.Deleted == false
-            && d.AccessPassword == accessPassword && d.PasswordHash == hashedPassword);
+                    PasswordSalt = access.PasswordSalt
+                };
+
+            }
+            return responseData;
         }
         public async Task DeleteAccess(long accessId)
         {
@@ -142,37 +153,6 @@ namespace Hot4.Repository.Concrete
                 await SaveChanges();
             }
         }
-        private string GenerateSalt(long accessID)
-        {
-            using (MD5 md5 = MD5.Create())
-            {
-                byte[] hashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(accessID.ToString()));
-                return BitConverter.ToString(hashBytes).Replace("-", "").ToLower().Substring(0, 20);
-            }
-        }
-        private string GeneratePasswordHash(string salt, string newPassword)
-        {
-            string combined = (salt ?? "") + newPassword;
-            using (MD5 md5 = MD5.Create())
-            {
-                byte[] hashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(combined));
-                return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
-            }
-        }
-        private string GetMd5Hash(string input)
-        {
-            using (var md5 = MD5.Create())
-            {
-                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
-                byte[] hashBytes = md5.ComputeHash(inputBytes);
 
-                StringBuilder sb = new StringBuilder();
-                foreach (var byteValue in hashBytes)
-                {
-                    sb.Append(byteValue.ToString("x2"));
-                }
-                return sb.ToString().ToLower();
-            }
-        }
     }
 }

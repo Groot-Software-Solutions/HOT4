@@ -8,8 +8,6 @@ public partial class BankTrxTypes
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public byte BankTrxTypeId { get; set; }
-
     public required string BankTrxType { get; set; }
-
     public virtual ICollection<BankTrx> BankTrxes { get; set; } = new List<BankTrx>();
 }
