@@ -3,60 +3,32 @@
   "WorkspaceRootPath": "F:\\Hot4-new\\Hot4\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|f:\\hot4-new\\hot4\\hot4.repository\\concrete\\addressrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|solutionrelative:hot4.repository\\concrete\\addressrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|f:\\hot4-new\\hot4\\hot4.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|solutionrelative:hot4.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|f:\\hot4-new\\hot4\\hot4.repository\\concrete\\accountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|solutionrelative:hot4.repository\\concrete\\accountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|f:\\hot4-new\\hot4\\hot4.server\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|solutionrelative:hot4.server\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|f:\\hot4-new\\hot4\\hot4.repository\\concrete\\accesswebrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|solutionrelative:hot4.repository\\concrete\\accesswebrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|f:\\hot4-new\\hot4\\hot4.server\\components\\pages\\accesscreate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|solutionrelative:hot4.server\\components\\pages\\accesscreate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|f:\\hot4-new\\hot4\\hot4.repository\\concrete\\accessrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|solutionrelative:hot4.repository\\concrete\\accessrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|f:\\hot4-new\\hot4\\hot4.server\\components\\pages\\accessget.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|solutionrelative:hot4.server\\components\\pages\\accessget.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|f:\\hot4-new\\hot4\\hot4.repository\\concrete\\bankrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|solutionrelative:hot4.repository\\concrete\\bankrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|f:\\hot4-new\\hot4\\hot4.server\\components\\pages\\accessget.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|solutionrelative:hot4.server\\components\\pages\\accessget.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{14719104-53EC-4B13-93FE-F250AD5CD594}|Hot4.Core\\Hot4.Core.csproj|f:\\hot4-new\\hot4\\hot4.core\\helper\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14719104-53EC-4B13-93FE-F250AD5CD594}|Hot4.Core\\Hot4.Core.csproj|solutionrelative:hot4.core\\helper\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|f:\\hot4-new\\hot4\\hot4.server\\components\\pages\\accesscreate.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|solutionrelative:hot4.server\\components\\pages\\accesscreate.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{14719104-53EC-4B13-93FE-F250AD5CD594}|Hot4.Core\\Hot4.Core.csproj|f:\\hot4-new\\hot4\\hot4.core\\dataviewmodels\\accountpaymentmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14719104-53EC-4B13-93FE-F250AD5CD594}|Hot4.Core\\Hot4.Core.csproj|solutionrelative:hot4.core\\dataviewmodels\\accountpaymentmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14719104-53EC-4B13-93FE-F250AD5CD594}|Hot4.Core\\Hot4.Core.csproj|f:\\hot4-new\\hot4\\hot4.core\\enums\\channeltype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14719104-53EC-4B13-93FE-F250AD5CD594}|Hot4.Core\\Hot4.Core.csproj|solutionrelative:hot4.core\\enums\\channeltype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A0D20391-374E-45F6-85CA-973C27449B64}|Hot4.DataModel\\Hot4.DataModel.csproj|f:\\hot4-new\\hot4\\hot4.datamodel\\data\\hotdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A0D20391-374E-45F6-85CA-973C27449B64}|Hot4.DataModel\\Hot4.DataModel.csproj|solutionrelative:hot4.datamodel\\data\\hotdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|f:\\hot4-new\\hot4\\hot4.repository\\abstract\\iaccessrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|solutionrelative:hot4.repository\\abstract\\iaccessrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14719104-53EC-4B13-93FE-F250AD5CD594}|Hot4.Core\\Hot4.Core.csproj|f:\\hot4-new\\hot4\\hot4.core\\dataviewmodels\\accountbalancemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14719104-53EC-4B13-93FE-F250AD5CD594}|Hot4.Core\\Hot4.Core.csproj|solutionrelative:hot4.core\\dataviewmodels\\accountbalancemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14719104-53EC-4B13-93FE-F250AD5CD594}|Hot4.Core\\Hot4.Core.csproj|f:\\hot4-new\\hot4\\hot4.core\\dataviewmodels\\accountaccessmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14719104-53EC-4B13-93FE-F250AD5CD594}|Hot4.Core\\Hot4.Core.csproj|solutionrelative:hot4.core\\dataviewmodels\\accountaccessmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|f:\\hot4-new\\hot4\\hot4.repository\\abstract\\iaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|solutionrelative:hot4.repository\\abstract\\iaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|f:\\hot4-new\\hot4\\hot4.repository\\concrete\\registrationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}|Hot4.Repository\\Hot4.Repository.csproj|solutionrelative:hot4.repository\\concrete\\registrationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|f:\\hot4-new\\hot4\\hot4.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}|Hot4.Server\\Hot4.Server.csproj|solutionrelative:hot4.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -78,184 +50,93 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AddressRepository.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\AddressRepository.cs",
-              "RelativeDocumentMoniker": "Hot4.Repository\\Concrete\\AddressRepository.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\AddressRepository.cs",
-              "RelativeToolTip": "Hot4.Repository\\Concrete\\AddressRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-18T05:12:49.512Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BankRepository.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\BankRepository.cs",
-              "RelativeDocumentMoniker": "Hot4.Repository\\Concrete\\BankRepository.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\BankRepository.cs",
-              "RelativeToolTip": "Hot4.Repository\\Concrete\\BankRepository.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAABRAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-18T05:12:15.406Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AccountRepository.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\AccountRepository.cs",
-              "RelativeDocumentMoniker": "Hot4.Repository\\Concrete\\AccountRepository.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\AccountRepository.cs",
-              "RelativeToolTip": "Hot4.Repository\\Concrete\\AccountRepository.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAAD8AAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-18T05:12:09.375Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ChannelType.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Core\\Enums\\ChannelType.cs",
-              "RelativeDocumentMoniker": "Hot4.Core\\Enums\\ChannelType.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Core\\Enums\\ChannelType.cs",
-              "RelativeToolTip": "Hot4.Core\\Enums\\ChannelType.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-18T04:55:36.626Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Helper.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Core\\Helper\\Helper.cs",
-              "RelativeDocumentMoniker": "Hot4.Core\\Helper\\Helper.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Core\\Helper\\Helper.cs",
-              "RelativeToolTip": "Hot4.Core\\Helper\\Helper.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAAAAUAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-18T05:06:11.987Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AccessRepository.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\AccessRepository.cs",
-              "RelativeDocumentMoniker": "Hot4.Repository\\Concrete\\AccessRepository.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\AccessRepository.cs",
-              "RelativeToolTip": "Hot4.Repository\\Concrete\\AccessRepository.cs",
-              "ViewState": "AgIAAGIAAAAAAAAAAAAMwHMAAABaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T08:54:03.665Z",
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "Hot4.Server\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "Hot4.Server\\Components\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-18T07:45:27.047Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "AccountPaymentModel.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Core\\DataViewModels\\AccountPaymentModel.cs",
-              "RelativeDocumentMoniker": "Hot4.Core\\DataViewModels\\AccountPaymentModel.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Core\\DataViewModels\\AccountPaymentModel.cs",
-              "RelativeToolTip": "Hot4.Core\\DataViewModels\\AccountPaymentModel.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Server\\appsettings.json",
+              "RelativeDocumentMoniker": "Hot4.Server\\appsettings.json",
+              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Server\\appsettings.json",
+              "RelativeToolTip": "Hot4.Server\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-18T07:22:58.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AccessGet.cshtml",
+              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Components\\Pages\\AccessGet.cshtml",
+              "RelativeDocumentMoniker": "Hot4.Server\\Components\\Pages\\AccessGet.cshtml",
+              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Components\\Pages\\AccessGet.cshtml",
+              "RelativeToolTip": "Hot4.Server\\Components\\Pages\\AccessGet.cshtml",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAAA0AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-18T07:04:44.765Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AccessGet.cshtml.cs",
+              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Components\\Pages\\AccessGet.cshtml.cs",
+              "RelativeDocumentMoniker": "Hot4.Server\\Components\\Pages\\AccessGet.cshtml.cs",
+              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Components\\Pages\\AccessGet.cshtml.cs",
+              "RelativeToolTip": "Hot4.Server\\Components\\Pages\\AccessGet.cshtml.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAUwBIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T10:40:41.497Z",
+              "WhenOpened": "2024-12-18T06:02:20.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AccessCreate.cshtml.cs",
+              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Components\\Pages\\AccessCreate.cshtml.cs",
+              "RelativeDocumentMoniker": "Hot4.Server\\Components\\Pages\\AccessCreate.cshtml.cs",
+              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Components\\Pages\\AccessCreate.cshtml.cs",
+              "RelativeToolTip": "Hot4.Server\\Components\\Pages\\AccessCreate.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-18T07:04:25.671Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "AccessWebRepository.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\AccessWebRepository.cs",
-              "RelativeDocumentMoniker": "Hot4.Repository\\Concrete\\AccessWebRepository.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\AccessWebRepository.cs",
-              "RelativeToolTip": "Hot4.Repository\\Concrete\\AccessWebRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T10:02:49.643Z",
+              "Title": "AccessCreate.cshtml",
+              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Components\\Pages\\AccessCreate.cshtml",
+              "RelativeDocumentMoniker": "Hot4.Server\\Components\\Pages\\AccessCreate.cshtml",
+              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Components\\Pages\\AccessCreate.cshtml",
+              "RelativeToolTip": "Hot4.Server\\Components\\Pages\\AccessCreate.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-18T07:04:18.835Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "HotDbContext.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.DataModel\\Data\\HotDbContext.cs",
-              "RelativeDocumentMoniker": "Hot4.DataModel\\Data\\HotDbContext.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.DataModel\\Data\\HotDbContext.cs",
-              "RelativeToolTip": "Hot4.DataModel\\Data\\HotDbContext.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAAAG0AAAAIAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Program.cs",
+              "RelativeDocumentMoniker": "Hot4.Server\\Program.cs",
+              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Server\\Program.cs",
+              "RelativeToolTip": "Hot4.Server\\Program.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAC0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T11:33:20.892Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AccountBalanceModel.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Core\\DataViewModels\\AccountBalanceModel.cs",
-              "RelativeDocumentMoniker": "Hot4.Core\\DataViewModels\\AccountBalanceModel.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Core\\DataViewModels\\AccountBalanceModel.cs",
-              "RelativeToolTip": "Hot4.Core\\DataViewModels\\AccountBalanceModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T10:40:12.259Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "IAccessRepository.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Abstract\\IAccessRepository.cs",
-              "RelativeDocumentMoniker": "Hot4.Repository\\Abstract\\IAccessRepository.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Abstract\\IAccessRepository.cs",
-              "RelativeToolTip": "Hot4.Repository\\Abstract\\IAccessRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T08:53:59.142Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "AccountAccessModel.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Core\\DataViewModels\\AccountAccessModel.cs",
-              "RelativeDocumentMoniker": "Hot4.Core\\DataViewModels\\AccountAccessModel.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Core\\DataViewModels\\AccountAccessModel.cs",
-              "RelativeToolTip": "Hot4.Core\\DataViewModels\\AccountAccessModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T10:39:08.83Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "IAccountRepository.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Abstract\\IAccountRepository.cs",
-              "RelativeDocumentMoniker": "Hot4.Repository\\Abstract\\IAccountRepository.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Abstract\\IAccountRepository.cs",
-              "RelativeToolTip": "Hot4.Repository\\Abstract\\IAccountRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T08:32:06.8Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "RegistrationRepository.cs",
-              "DocumentMoniker": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\RegistrationRepository.cs",
-              "RelativeDocumentMoniker": "Hot4.Repository\\Concrete\\RegistrationRepository.cs",
-              "ToolTip": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Concrete\\RegistrationRepository.cs",
-              "RelativeToolTip": "Hot4.Repository\\Concrete\\RegistrationRepository.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAABOwC0AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T08:36:47.601Z",
+              "WhenOpened": "2024-12-18T05:45:30.773Z",
               "EditorCaption": ""
             }
           ]

@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hot4.Server", "Hot4.Server\Hot4.Server.csproj", "{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hot4.Server", "Hot4.Server\Hot4.Server.csproj", "{C3A40E38-8DBB-48D6-9CC5-853BB2B26D10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hot4.DataModel", "Hot4.DataModel\Hot4.DataModel.csproj", "{A0D20391-374E-45F6-85CA-973C27449B64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hot4.DataModel", "Hot4.DataModel\Hot4.DataModel.csproj", "{A0D20391-374E-45F6-85CA-973C27449B64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hot4.Service", "Hot4.Service\Hot4.Service.csproj", "{8588BBA8-6244-48F0-A85B-ABA2216D4EA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hot4.Service", "Hot4.Service\Hot4.Service.csproj", "{8588BBA8-6244-48F0-A85B-ABA2216D4EA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hot4.Repository", "Hot4.Repository\Hot4.Repository.csproj", "{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hot4.Repository", "Hot4.Repository\Hot4.Repository.csproj", "{9A2FBDE6-EE71-4FBA-A77D-7540FC16A93A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hot4.ViewModel", "Hot4.ViewModel\Hot4.ViewModel.csproj", "{7115059D-4A5F-4DA0-9ED2-11002516B0B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hot4.ViewModel", "Hot4.ViewModel\Hot4.ViewModel.csproj", "{7115059D-4A5F-4DA0-9ED2-11002516B0B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hot4.Core", "Hot4.Core\Hot4.Core.csproj", "{14719104-53EC-4B13-93FE-F250AD5CD594}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hot4.Core", "Hot4.Core\Hot4.Core.csproj", "{14719104-53EC-4B13-93FE-F250AD5CD594}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

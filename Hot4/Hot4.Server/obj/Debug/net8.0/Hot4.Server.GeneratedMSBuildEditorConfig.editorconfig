@@ -61,3 +61,11 @@ build_metadata.AdditionalFiles.CssScope = b-vwkltfm74v
 [F:/Hot4-new/Hot4/Hot4.Server/Components/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-vfquyybqxf
+
+[F:/Hot4-new/Hot4/Hot4.Server/Components/Pages/AccessCreate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBY2Nlc3NDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Hot4-new/Hot4/Hot4.Server/Components/Pages/AccessGet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBY2Nlc3NHZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

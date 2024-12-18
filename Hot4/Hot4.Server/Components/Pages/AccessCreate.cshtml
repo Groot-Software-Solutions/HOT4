@@ -1,0 +1,16 @@
+﻿@page
+@model Hot4.Server.Components.Pages.AccessCreateModel
+<div>
+    <p>
+        Create new Access.
+    </p>
+    <div asp-validation-summary="All"></div>
+    <form method="POST">
+        <div>Access Code: <input asp-for="Access.AccessCode" /></div>
+        <div>Password : <input asp-for="Access.AccessPassword" /></div>
+        <div>AccountId : <input asp-for="Access.AccountId" /></div>
+        <div>ChannelId : <input asp-for="Access.ChannelId" /></div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+</div>

@@ -1,0 +1,57 @@
+﻿@page
+
+ @model Hot4.Server.Components.Pages.AccessGetModel
+@{
+   
+}
+
+<div>
+    <button onclick="@Model.GetByAccessId">GetBy AccessId</button> 
+    <div>
+        @if(Model.access!=null){
+          
+            <span>
+             @Model.access.AccessId</span>
+                <span>
+                @Model.access.AccessCode
+            </span>
+
+                    <span>
+                @Model.access.Channel.Channel
+            </span>
+        }
+    </div>
+   <br />
+
+    <button onclick="listacc @Model.ListAccountChannel">List Account Channel</button>
+    <div>
+        @foreach (var itm in Model.accessesLst)
+        {
+           <span>@itm.AccessCode </span>
+            <span>@itm.AccountId </span>
+            <span>@itm.AccessId </span>
+        };
+       
+    </div>
+    <br />
+
+    <button onclick="@Model.GetByAccessCode">Get by access code</button>
+    <div>
+       @if(Model.accountAccessModel!=null){
+            <span>
+                @Model.accountAccessModel.AccessID
+            </span>
+            <span>
+                @Model.accountAccessModel.AccessCode
+            </span>
+
+            <span>
+                @Model.accountAccessModel.Channel </span>
+       };
+
+    </div>
+    <br />
+     
+  
+  
+</div>
