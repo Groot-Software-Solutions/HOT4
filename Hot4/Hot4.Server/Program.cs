@@ -21,7 +21,14 @@ builder.Services.AddDbContext<HotDbContext>(options =>
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddRazorPages().AddRazorPagesOptions(options =>
+{
+    options.RootDirectory = "/content";
+});
 builder.Services.AddItemServices();
+//builder.Services.AddRazorPages();
+
+
 builder.Services.Configure<TemplateSettings>(builder.Configuration.GetSection("TemplateSettings"));
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingProfile)));
@@ -41,6 +48,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
+
 app.UseAntiforgery();
 
 app.MapRazorComponents<App>()

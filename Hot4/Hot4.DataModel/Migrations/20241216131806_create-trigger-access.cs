@@ -32,7 +32,7 @@ BEGIN
 	SET NOCOUNT ON;
 
     
-	  update hot4.dbo.tblaccess set Deleted = 1
+	  update dbo.tblaccess set Deleted = 1
 	 where		AccessCode in (select AccessCode from inserted where deleted = 0  ) 
 		and not accessid   in (select accessid from inserted where deleted = 0  )
 
@@ -47,7 +47,7 @@ BEGIN
 	SET NOCOUNT ON;
       if ((select count(1) from inserted where deleted = 0 )>0) 
 	begin 
-		update hot4.dbo.tblaccess set Deleted = 1 
+		update dbo.tblaccess set Deleted = 1 
 		where AccessCode in (select AccessCode from inserted where deleted = 0  ) 
 		and not AccessID in (select top 1 Accessid from inserted where deleted = 0  ) 
 	end 
@@ -61,7 +61,7 @@ BEGIN
 	
 	SET NOCOUNT ON;
 
-	 update hot4.dbo.tblaccess set AccessCode = 'nonameprovided'+convert(varchar(20),accessid)+'@hot.co.zw'
+	 update dbo.tblaccess set AccessCode = 'nonameprovided'+convert(varchar(20),accessid)+'@hot.co.zw'
 	 where accessid  in ( select accessid from inserted
 	where AccessCode = '' or AccessCode is null )
 
