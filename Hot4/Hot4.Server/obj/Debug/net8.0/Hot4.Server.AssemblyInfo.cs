@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hot4.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a7054c97bbe994e9ad950ad6a9f8742c4a402b90")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+268a8f08b3534d86a0f225a008d278332d48a85c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Hot4.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hot4.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

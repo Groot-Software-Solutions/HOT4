@@ -11,14 +11,6 @@ namespace Hot4.Core.Helper
             var rnd = random.Next(1, 9999);
             return rnd.ToString().PadLeft(4, '0');
         }
-        //public static string ToMD5Hash(string input)
-        //{
-        //    using MD5 md5 = MD5.Create();
-        //    byte[] inputBytes = Encoding.ASCII.GetBytes(input);
-        //    byte[] hashBytes = md5.ComputeHash(inputBytes);
-        //    return Convert.ToHexString(hashBytes);
-        //}
-
         public static string GenerateSalt(long id)
         {
             using (MD5 md5 = MD5.Create())

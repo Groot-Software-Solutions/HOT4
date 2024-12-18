@@ -6,7 +6,7 @@ namespace Hot4.Service
     {
         public MappingProfile()
         {
-            // CreateMap<Access, AccessViewModel>().ReverseMap();
+
         }
     }
 }
