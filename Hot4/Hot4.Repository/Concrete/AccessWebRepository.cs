@@ -25,5 +25,6 @@ namespace Hot4.Repository.Concrete
                 await SaveChanges();
             }
         }
+
     }
 }

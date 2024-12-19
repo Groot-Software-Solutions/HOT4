@@ -67,6 +67,5 @@ namespace Hot4.Repository.Concrete
         {
             return await _context.VwAccount.FirstOrDefaultAsync(d => d.AccountId == accountId);
         }
-
     }
 }
