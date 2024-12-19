@@ -44,6 +44,8 @@ namespace Hot4.Repository.Concrete
         }
         public async Task AddAccess(Access access)
         {
+            access.AccessCode = access.AccessCode.Replace(" ", "");
+            access.Deleted = false;
             access.PasswordSalt = Helper.GenerateSalt(access.AccountId);
             access.PasswordHash = Helper.GeneratePasswordHash(access.PasswordSalt, access.AccessPassword);
             access.InsertDate = DateTime.Now;
@@ -55,6 +57,7 @@ namespace Hot4.Repository.Concrete
             var accessRecord = await GetById(access.AccessId);
             if (accessRecord != null)
             {
+                access.Deleted = false;
                 access.PasswordSalt = string.IsNullOrEmpty(access.PasswordSalt) ? Helper.GenerateSalt(access.AccountId) : access.PasswordSalt;
                 access.PasswordHash = Helper.GeneratePasswordHash(access.PasswordSalt, access.AccessPassword);
                 await Update(access);
