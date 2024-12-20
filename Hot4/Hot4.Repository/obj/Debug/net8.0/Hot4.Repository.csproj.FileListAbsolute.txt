@@ -16,3 +16,5 @@ F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Repository.dll
 F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\refint\Hot4.Repository.dll
 F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\Hot4.Repository.pdb
 F:\Hot4-new\Hot4\Hot4.Repository\obj\Debug\net8.0\ref\Hot4.Repository.dll
+F:\Hot4-new\Hot4\Hot4.Repository\bin\Debug\net8.0\Hot4.ViewModel.dll
+F:\Hot4-new\Hot4\Hot4.Repository\bin\Debug\net8.0\Hot4.ViewModel.pdb

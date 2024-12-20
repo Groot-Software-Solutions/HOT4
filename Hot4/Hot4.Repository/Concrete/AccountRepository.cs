@@ -1,9 +1,9 @@
-﻿using Hot4.Core.DataViewModels;
-using Hot4.Core.Helper;
+﻿using Hot4.Core.Helper;
 using Hot4.DataModel.Data;
 
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
+using Hot4.ViewModel.ApiModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
@@ -47,13 +47,13 @@ namespace Hot4.Repository.Concrete
                           orderby vwa.Balance descending
                           select new AccountSearchModel
                           {
-                              AccountID = vwa.AccountId,
+                              AccountId = vwa.AccountId,
                               AccountName = vwa.AccountName,
                               Email = vwa.Email,
-                              NationalID = vwa.NationalId,
+                              NationalId = vwa.NationalId,
                               ProfileName = vwa.ProfileName,
                               ReferredBy = vwa.ReferredBy,
-                              ProfileID = vwa.ProfileId,
+                              ProfileId = vwa.ProfileId,
                               Balance = vwa.Balance,
                               SaleValue = vwa.SaleValue,
                               USDBalance = vwa.Usdbalance,

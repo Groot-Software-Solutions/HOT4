@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Hot4.Core\Hot4.Core.csproj" />
     <ProjectReference Include="..\Hot4.DataModel\Hot4.DataModel.csproj" />
+    <ProjectReference Include="..\Hot4.ViewModel\Hot4.ViewModel.csproj" />
   </ItemGroup>
 
 </Project>

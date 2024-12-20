@@ -1,4 +1,5 @@
-﻿using Hot4.Core.DataViewModels;
+﻿
+using Hot4.Core.DataViewModels;
 using Hot4.DataModel.Models;
 
 namespace Hot4.Repository.Abstract
@@ -14,7 +15,7 @@ namespace Hot4.Repository.Abstract
 
         Task<Recharge?> InsertAndGetIdentity(Recharge recharge);
 
-        Task<List<RechargeAccess>> ListRechargeForMobile(string mobile, DateTime date);
+        // Task<List<RechargeAccess>> ListRechargeForMobile(string mobile, DateTime date);
 
         Task<List<Recharge>> GetPendingRechargesWithTransaction(int takeRows);
 

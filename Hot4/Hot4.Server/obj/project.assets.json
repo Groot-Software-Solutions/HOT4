@@ -1670,7 +1670,8 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Hot4.Core": "1.0.0",
-          "Hot4.DataModel": "1.0.0"
+          "Hot4.DataModel": "1.0.0",
+          "Hot4.ViewModel": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Hot4.Repository.dll": {}
@@ -1684,8 +1685,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AutoMapper": "13.0.1",
-          "Hot4.Repository": "1.0.0",
-          "Hot4.ViewModel": "1.0.0"
+          "Hot4.Repository": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Hot4.Service.dll": {}

@@ -41,7 +41,7 @@ namespace Hot4.Repository.Concrete
 
             // access = await _accountRepository.AddWithAccessWithTransaction(account, access);
 
-            var template = await _templateRepository.GetTemplate((int)TemplateType.SuccessfulRegistration);
+            var template = await _templateRepository.GetTemplate((int)TemplateName.SuccessfulRegistration);
             if (template == null)
             {
                 return;
@@ -54,9 +54,9 @@ namespace Hot4.Repository.Concrete
             List<Template> templates = new List<Template>
             {
                 template,
-                await _templateRepository.GetTemplate((int)TemplateType.HelpEcocash),
-                await _templateRepository.GetTemplate((int)TemplateType.HelpBank),
-                await _templateRepository.GetTemplate((int)TemplateType.HelpRecharge),
+                await _templateRepository.GetTemplate((int)TemplateName.HelpEcoCash),
+                await _templateRepository.GetTemplate((int)TemplateName.HelpBank),
+                await _templateRepository.GetTemplate((int)TemplateName.HelpRecharge),
             };
 
             await _smsRepository.ReplyWithTransaction(sms, templates);
@@ -84,7 +84,7 @@ namespace Hot4.Repository.Concrete
         private async Task<Account> ParseRegistration(Sms sms)
         {
             var config = await _configRepository.GetConfig();
-            var hotType = await _hotTypeRepository.GetHotType((int)HotTypeState.Registration);
+            var hotType = await _hotTypeRepository.GetHotType((int)HotTypeName.Registration);
 
             ParseMessageFields(sms, hotType, out string firstname, out string surname, out string nationalID, out string email);
 
@@ -100,7 +100,7 @@ namespace Hot4.Repository.Concrete
 
             if (sms.Smstext.ToUpper().StartsWith("BA"))
             {
-                account.ProfileId = (int)ProfileType.EconetBA;
+                account.ProfileId = (int)Profiles.ECONET_BA;
                 account.ReferredBy = "Econet-BA";
             }
 
@@ -128,16 +128,16 @@ namespace Hot4.Repository.Concrete
             {
                 AccessCode = sms.Mobile,
                 AccessPassword = Helper.CreateRandomSMSAccessCode(),
-                ChannelId = (byte)Core.Enums.ChannelType.SMS,
+                ChannelId = (byte)ChannelName.Sms,
             };
         }
 
         private async Task<bool> RegistrationCorrectlyFormatted(Sms sms)
         {
-            var hotType = await _hotTypeRepository.GetHotType((int)HotTypeState.Registration);
+            var hotType = await _hotTypeRepository.GetHotType((int)HotTypeName.Registration);
             if (!Regex.Match(sms.Smstext,/* hotType.RegexString*/"", RegexOptions.IgnoreCase).Success)
             {
-                var template = await _templateRepository.GetTemplate((int)TemplateType.HelpRegistration);
+                var template = await _templateRepository.GetTemplate((int)TemplateName.HelpRegister);
                 if (template != null)
                 {
                     await _smsRepository.ReplyWithTransaction(sms, new List<Template> { template });
@@ -155,16 +155,16 @@ namespace Hot4.Repository.Concrete
 
             if (access != null)
             {
-                var account = await _accountRepository.GetAccount(access.AccountID);
+                var account = await _accountRepository.GetAccount(access.AccountId);
 
-                if (account != null && account.ProfileId == (int)ProfileType.SelfTopUp)
+                if (account != null && account.ProfileId == (int)Profiles.SELF_TOP_UP)
                 {
                     //TODO - GS - Reply Templates?
                     //await RegisterSelfTopUpUserAsync(sms)
                 }
                 else
                 {
-                    var template = await _templateRepository.GetTemplate((int)TemplateType.FailedRegistrationDuplicate);
+                    var template = await _templateRepository.GetTemplate((int)TemplateName.FailedRegistrationDuplicate);
 
                     if (template != null)
                     {

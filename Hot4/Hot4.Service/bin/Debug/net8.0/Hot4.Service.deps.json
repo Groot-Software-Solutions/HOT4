@@ -9,8 +9,7 @@
       "Hot4.Service/1.0.0": {
         "dependencies": {
           "AutoMapper": "13.0.1",
-          "Hot4.Repository": "1.0.0",
-          "Hot4.ViewModel": "1.0.0"
+          "Hot4.Repository": "1.0.0"
         },
         "runtime": {
           "Hot4.Service.dll": {}
@@ -661,7 +660,8 @@
       "Hot4.Repository/1.0.0": {
         "dependencies": {
           "Hot4.Core": "1.0.0",
-          "Hot4.DataModel": "1.0.0"
+          "Hot4.DataModel": "1.0.0",
+          "Hot4.ViewModel": "1.0.0"
         },
         "runtime": {
           "Hot4.Repository.dll": {

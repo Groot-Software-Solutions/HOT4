@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Hot4.Repository\Hot4.Repository.csproj" />
-    <ProjectReference Include="..\Hot4.ViewModel\Hot4.ViewModel.csproj" />
   </ItemGroup>
 
 </Project>

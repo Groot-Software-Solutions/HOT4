@@ -25,7 +25,7 @@ namespace Hot4.Repository.Abstract
 
         Task ReplyCustomer(string mobile, Sms sms, List<Template> templates);
 
-        Task ClearSMSPassword(Sms sms, bool hadValidPassword, HotTypeState hotTypeSMS);
+        Task ClearSMSPassword(Sms sms, bool hadValidPassword, HotTypeName hotTypeSMS);
 
         Task<Sms?> Duplicate(Sms sms);
 

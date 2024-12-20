@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hot4.DataModel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a7054c97bbe994e9ad950ad6a9f8742c4a402b90")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5bab5baebce9f3b569a2c3a4526738f8874f23e1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Hot4.DataModel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hot4.DataModel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

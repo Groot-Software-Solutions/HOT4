@@ -193,6 +193,9 @@
               },
               "F:\\Hot4-new\\Hot4\\Hot4.DataModel\\Hot4.DataModel.csproj": {
                 "projectPath": "F:\\Hot4-new\\Hot4\\Hot4.DataModel\\Hot4.DataModel.csproj"
+              },
+              "F:\\Hot4-new\\Hot4\\Hot4.ViewModel\\Hot4.ViewModel.csproj": {
+                "projectPath": "F:\\Hot4-new\\Hot4\\Hot4.ViewModel\\Hot4.ViewModel.csproj"
               }
             }
           }
@@ -261,9 +264,6 @@
             "projectReferences": {
               "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Hot4.Repository.csproj": {
                 "projectPath": "F:\\Hot4-new\\Hot4\\Hot4.Repository\\Hot4.Repository.csproj"
-              },
-              "F:\\Hot4-new\\Hot4\\Hot4.ViewModel\\Hot4.ViewModel.csproj": {
-                "projectPath": "F:\\Hot4-new\\Hot4\\Hot4.ViewModel\\Hot4.ViewModel.csproj"
               }
             }
           }

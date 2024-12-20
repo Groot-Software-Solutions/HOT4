@@ -1,0 +1,17 @@
+﻿namespace Hot4.Core.Enums
+{
+    public enum BankTransactionStates
+    {
+        Pending = 0,
+        Success = 1,
+        Suspended = 2,
+        Ignore = 3,
+        Expired = 4,
+        Failed = 5,
+        BusyConfirming = 6,
+        Confirmed = 7,
+        Rejected = 8,
+        ToBeAllocated = 9,
+        ManuallyAllocated = 10
+    }
+}

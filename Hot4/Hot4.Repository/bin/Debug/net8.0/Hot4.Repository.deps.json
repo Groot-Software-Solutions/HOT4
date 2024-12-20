@@ -9,7 +9,8 @@
       "Hot4.Repository/1.0.0": {
         "dependencies": {
           "Hot4.Core": "1.0.0",
-          "Hot4.DataModel": "1.0.0"
+          "Hot4.DataModel": "1.0.0",
+          "Hot4.ViewModel": "1.0.0"
         },
         "runtime": {
           "Hot4.Repository.dll": {}
@@ -645,6 +646,14 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "Hot4.ViewModel/1.0.0": {
+        "runtime": {
+          "Hot4.ViewModel.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -1059,6 +1068,11 @@
       "sha512": ""
     },
     "Hot4.DataModel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Hot4.ViewModel/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
