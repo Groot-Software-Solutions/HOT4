@@ -33,8 +33,8 @@ namespace Hot4.Repository.Concrete
             {
                 var answerTemplate = await _templateRepository.GetTemplate(
                     string.IsNullOrWhiteSpace(sms.Smstext)
-                    ? (int)TemplateType.AnswerError
-                    : (int)TemplateType.AnswerOK);
+                    ? (int)TemplateName.AnswerWrong
+                    : (int)TemplateName.AnswerOK);
                 if (answerTemplate != null && !string.IsNullOrEmpty(answerTemplate.TemplateText))
                 {
                     answerTemplate.TemplateText = answerTemplate.TemplateText.Replace("%MESSAGE%", sms.Mobile);
@@ -44,7 +44,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task RespondToUnknown(Sms sms)
         {
-            var unknownRequest = await _templateRepository.GetTemplate((int)TemplateType.UnknownRequest);
+            var unknownRequest = await _templateRepository.GetTemplate((int)TemplateName.UnknownRequest);
             if (unknownRequest != null && !string.IsNullOrEmpty(unknownRequest.TemplateText))
             {
                 unknownRequest.TemplateText = unknownRequest.TemplateText.Replace("%MESSAGE%", sms.Mobile);

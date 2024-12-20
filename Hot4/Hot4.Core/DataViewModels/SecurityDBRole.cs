@@ -1,10 +1,8 @@
-﻿using Hot4.Core.Enums;
-
-namespace Hot4.Core.DataViewModels
+﻿namespace Hot4.Core.DataViewModels
 {
     public class SecurityDBRole
     {
-        public SecurityDBRoleTypes RoleID { get; set; }
+        // public SecurityDBRoleTypes RoleID { get; set; }
         public string RoleName { get; set; }
         public int PrincipalID { get; set; }
         public List<SecurityDBRolePermission> Permissions { get; set; }

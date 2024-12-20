@@ -93,7 +93,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<long> GetAdminId(long accountId)
         {
-            var emailAdmin = await GetByCondition(d => d.AccountId == accountId && d.ChannelId == (int)ChannelType.Web).Select(d => (long?)d.AccessId).MinAsync();
+            var emailAdmin = await GetByCondition(d => d.AccountId == accountId && d.ChannelId == (int)ChannelName.Web).Select(d => (long?)d.AccessId).MinAsync();
             var mobileAdmin = await GetByCondition(d => d.AccountId == accountId).Select(d => (long?)d.AccessId).MinAsync();
             return emailAdmin ?? mobileAdmin ?? 0;
         }

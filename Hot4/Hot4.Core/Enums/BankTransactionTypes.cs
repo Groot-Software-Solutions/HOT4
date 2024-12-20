@@ -1,6 +1,6 @@
 ﻿namespace Hot4.Core.Enums
 {
-    public enum BankTranType
+    public enum BankTransactionTypes
     {
         NotApplicable = 0,
         CashDeposit = 1,
@@ -21,7 +21,10 @@
         vPaymentsConfirmed = 16,
         EcoCashPending = 17,
         CashWithdrawal = 18,
+        BillPayment =19,
+        ZIPIT=20,
+        MobileMerchantPayment=21,
         MiscCredit = 98,
-        MiscDebit = 99
+        MiscDebit = 99,
     }
 }

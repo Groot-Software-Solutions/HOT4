@@ -53,7 +53,7 @@ namespace Hot4.Repository.Concrete
         public async Task<BankTrxBatch?> GetCurrentBatch(byte bankId, string batchReference, string lastUser)
         {
             long? bankTrxBatchId = null;
-            if (bankId == (int)BankType.EcoMerchant)
+            if (bankId == (int)BankName.EcoMerchant)
             {
                 bankTrxBatchId = await GetCurrentBatchIdByBank(bankId);
             }

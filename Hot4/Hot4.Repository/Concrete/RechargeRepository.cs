@@ -55,13 +55,13 @@ namespace Hot4.Repository.Concrete
                 await using var transaction = await _context.Database.BeginTransactionAsync();
 
                 rechargeList = await _context.Recharge
-                    .Where(d => d.StateId == (byte)SmsStates.Pending)
+                    .Where(d => d.StateId == (byte)SmsStatus.Pending)
                     .OrderBy(d => d.RechargeDate)
                     .Take(takeRows)
                     .ToListAsync();
                 if (rechargeList != null && rechargeList.Count > 0)
                 {
-                    rechargeList.ForEach(d => d.StateId = (byte)SmsStates.Busy);
+                    rechargeList.ForEach(d => d.StateId = (byte)SmsStatus.Busy);
 
                     _context.UpdateRange(rechargeList);
                     await _context.SaveChangesAsync();
@@ -106,7 +106,7 @@ namespace Hot4.Repository.Concrete
                               InsertDate = rech.InsertDate,
                               AccessChannel = chn.Channel,
                               AccessCode = acss.AccessCode,
-                              IsSuccessFul = (rech.StateId == (byte)SmsStates.Success)
+                              IsSuccessFul = (rech.StateId == (byte)SmsStatus.Success)
                           }
                           ).Take(20).ToListAsync();
         }

@@ -1,13 +1,11 @@
-﻿namespace Hot4.Core.Enums
+﻿namespace EcocashHotLib.Data.Enums
 {
-
-    public enum SmsStates
+    public enum RechargeStates
     {
         Pending = 0,
         Busy = 1,
         Success = 2,
         Failure = 3,
-        PendingVerification = 4
-
+        Investigate = 4,
     }
 }
