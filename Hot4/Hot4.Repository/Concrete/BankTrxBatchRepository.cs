@@ -44,16 +44,18 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<List<BankBatchModel>> GetBatch_by_Bank(byte bankId)
         {
-            return await _context.BankTrxBatch.Include(d => d.Bank).Where(d => d.BankId == bankId)
-            .OrderBy(d => d.BatchDate).Select(d => new BankBatchModel
-            {
-                BankTrxBatchId = d.BankTrxBatchId,
-                BankId = d.BankId,
-                BankName = d.Bank.Bank,
-                BatchDate = d.BatchDate,
-                BatchReference = d.BatchReference,
-                LastUser = d.LastUser
-            }).ToListAsync();
+            return await GetByCondition(d => d.BankId == bankId)
+                .Include(d => d.Bank)
+                .OrderBy(d => d.BatchDate)
+                               .Select(d => new BankBatchModel
+                               {
+                                   BankTrxBatchId = d.BankTrxBatchId,
+                                   BankId = d.BankId,
+                                   BankName = d.Bank.Bank,
+                                   BatchDate = d.BatchDate,
+                                   BatchReference = d.BatchReference,
+                                   LastUser = d.LastUser
+                               }).ToListAsync();
         }
         public async Task<long?> GetCurrentBatchId_by_Bank_Ref(byte bankId, string batchRef = null)
         {
@@ -63,14 +65,18 @@ namespace Hot4.Repository.Concrete
 
             if (string.IsNullOrEmpty(batchRef))
             {
-                var bankTrxBatchId = await GetByCondition(d => d.BankId == bankId && d.BatchDate >= startOfDay && d.BatchDate <= endOfDay)
-                    .OrderByDescending(d => d.BankTrxBatchId).Select(d => d.BankTrxBatchId).FirstOrDefaultAsync();
+                var bankTrxBatchId = await GetByCondition(d => d.BankId == bankId
+                && d.BatchDate >= startOfDay
+                && d.BatchDate <= endOfDay)
+                .OrderByDescending(d => d.BankTrxBatchId)
+                .Select(d => d.BankTrxBatchId).FirstOrDefaultAsync();
             }
             else
             {
-                var bankTrxBatchId = await GetByCondition(d => d.BankId == bankId && d.BatchReference == batchRef &&
-            d.BatchDate >= startOfDay && d.BatchDate <= endOfDay)
-                .OrderByDescending(d => d.BankTrxBatchId).Select(d => d.BankTrxBatchId).FirstOrDefaultAsync();
+                var bankTrxBatchId = await GetByCondition(d => d.BankId == bankId && d.BatchReference == batchRef
+                && d.BatchDate >= startOfDay && d.BatchDate <= endOfDay)
+                .OrderByDescending(d => d.BankTrxBatchId)
+                .Select(d => d.BankTrxBatchId).FirstOrDefaultAsync();
                 return bankTrxBatchId;
             }
             return null;
