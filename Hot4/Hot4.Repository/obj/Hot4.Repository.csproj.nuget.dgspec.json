@@ -193,8 +193,75 @@
               },
               "F:\\Hot4-new\\Hot4\\Hot4.DataModel\\Hot4.DataModel.csproj": {
                 "projectPath": "F:\\Hot4-new\\Hot4\\Hot4.DataModel\\Hot4.DataModel.csproj"
+              },
+              "F:\\Hot4-new\\Hot4\\Hot4.ViewModel\\Hot4.ViewModel.csproj": {
+                "projectPath": "F:\\Hot4-new\\Hot4\\Hot4.ViewModel\\Hot4.ViewModel.csproj"
               }
             }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "F:\\Hot4-new\\Hot4\\Hot4.ViewModel\\Hot4.ViewModel.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Hot4-new\\Hot4\\Hot4.ViewModel\\Hot4.ViewModel.csproj",
+        "projectName": "Hot4.ViewModel",
+        "projectPath": "F:\\Hot4-new\\Hot4\\Hot4.ViewModel\\Hot4.ViewModel.csproj",
+        "packagesPath": "C:\\Users\\Pradeep Negi\\.nuget\\packages\\",
+        "outputPath": "F:\\Hot4-new\\Hot4\\Hot4.ViewModel\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Pradeep Negi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
           }
         },
         "warningProperties": {

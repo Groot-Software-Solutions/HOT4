@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Hot4.Core.Enums
+﻿namespace Hot4.Core.Enums
 {
     public enum BankTransactionStates
     {
@@ -16,5 +12,6 @@ namespace Hot4.Core.Enums
         Confirmed = 7,
         Rejected = 8,
         ToBeAllocated = 9,
+        ManuallyAllocated = 10
     }
 }

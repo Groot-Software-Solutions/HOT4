@@ -1,9 +1,9 @@
-﻿namespace Hot4.Core.DataViewModels
+﻿namespace Hot4.ViewModel.ApiModels
 {
     public class BankBatchModel
     {
-        public long BankTrxBatchID { get; set; }
-        public byte BankID { get; set; }
+        public long BankTrxBatchId { get; set; }
+        public byte BankId { get; set; }
         public string BankName { get; set; }
         public DateTime BatchDate { get; set; }
         public string BatchReference { get; set; }

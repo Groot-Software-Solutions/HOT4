@@ -87,29 +87,29 @@ namespace Hot4.Repository.Concrete
         }
 
 
-        public async Task<List<RechargeAccess>> ListRechargeForMobile(string mobile, DateTime date)
-        {
-            return await (from rech in _context.Recharge
-                          join acss in _context.Access on rech.AccessId equals acss.AccessId
-                          join chn in _context.Channel on acss.ChannelId equals chn.ChannelId
-                          join state in _context.State on rech.StateId equals state.StateId
-                          where EF.Constant(rech.Mobile).Contains(mobile)
-                          orderby rech.RechargeId descending
-                          select new RechargeAccess()
-                          {
-                              Discount = rech.Discount,
-                              AccessID = acss.AccessId,
-                              Amount = rech.Amount, //.SalesAmount,
-                              Mobile = rech.Mobile,
-                              RechargeID = rech.RechargeId,
-                              State = state.State,
-                              InsertDate = rech.InsertDate,
-                              AccessChannel = chn.Channel,
-                              AccessCode = acss.AccessCode,
-                              IsSuccessFul = (rech.StateId == (byte)SmsStatus.Success)
-                          }
-                          ).Take(20).ToListAsync();
-        }
+        //public async Task<List<RechargeAccess>> ListRechargeForMobile(string mobile, DateTime date)
+        //{
+        //    return await (from rech in _context.Recharge
+        //                  join acss in _context.Access on rech.AccessId equals acss.AccessId
+        //                  join chn in _context.Channel on acss.ChannelId equals chn.ChannelId
+        //                  join state in _context.State on rech.StateId equals state.StateId
+        //                  where EF.Constant(rech.Mobile).Contains(mobile)
+        //                  orderby rech.RechargeId descending
+        //                  select new RechargeAccess()
+        //                  {
+        //                      Discount = rech.Discount,
+        //                      AccessID = acss.AccessId,
+        //                      Amount = rech.Amount, //.SalesAmount,
+        //                      Mobile = rech.Mobile,
+        //                      RechargeID = rech.RechargeId,
+        //                      State = state.State,
+        //                      InsertDate = rech.InsertDate,
+        //                      AccessChannel = chn.Channel,
+        //                      AccessCode = acss.AccessCode,
+        //                      IsSuccessFul = (rech.StateId == (byte)SmsStatus.Success)
+        //                  }
+        //                  ).Take(20).ToListAsync();
+        //}
 
 
     }

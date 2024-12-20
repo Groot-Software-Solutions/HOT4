@@ -1,11 +1,11 @@
-﻿namespace Hot4.Core.DataViewModels
+﻿namespace Hot4.ViewModel.ApiModels
 {
     public class AccountAccessModel
     {
-        public long AccessID { get; set; }
-        public long AccountID { get; set; }
+        public long AccessId { get; set; }
+        public long AccountId { get; set; }
         public string Channel { get; set; }
-        public long ChannelID { get; set; }
+        public long ChannelId { get; set; }
         public string AccessCode { get; set; }
         public string AccessPassword { get; set; }
         public bool Deleted { get; set; }

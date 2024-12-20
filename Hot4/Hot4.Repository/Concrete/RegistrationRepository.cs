@@ -155,7 +155,7 @@ namespace Hot4.Repository.Concrete
 
             if (access != null)
             {
-                var account = await _accountRepository.GetAccount(access.AccountID);
+                var account = await _accountRepository.GetAccount(access.AccountId);
 
                 if (account != null && account.ProfileId == (int)Profiles.SELF_TOP_UP)
                 {

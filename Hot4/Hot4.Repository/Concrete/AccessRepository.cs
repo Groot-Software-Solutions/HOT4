@@ -1,10 +1,10 @@
-﻿using Hot4.Core.DataViewModels;
-using Hot4.Core.Enums;
+﻿using Hot4.Core.Enums;
 using Hot4.Core.Helper;
 using Hot4.DataModel.Data;
 
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
+using Hot4.ViewModel.ApiModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
@@ -29,9 +29,9 @@ namespace Hot4.Repository.Concrete
             {
                 responseData = new AccountAccessModel
                 {
-                    AccessID = access.AccessId,
-                    AccountID = access.AccountId,
-                    ChannelID = access.ChannelId,
+                    AccessId = access.AccessId,
+                    AccountId = access.AccountId,
+                    ChannelId = access.ChannelId,
                     Channel = access.Channel.Channel,
                     AccessCode = access.AccessCode,
                     AccessPassword = "********",
@@ -76,9 +76,9 @@ namespace Hot4.Repository.Concrete
             var accessList = await query
         .Select(d => new AccountAccessModel
         {
-            AccessID = d.AccessId,
-            AccountID = d.AccountId,
-            ChannelID = d.ChannelId,
+            AccessId = d.AccessId,
+            AccountId = d.AccountId,
+            ChannelId = d.ChannelId,
             Channel = d.Channel.Channel,
             AccessCode = d.AccessCode,
             AccessPassword = "********",
@@ -126,9 +126,9 @@ namespace Hot4.Repository.Concrete
             {
                 responseData = new AccountAccessModel
                 {
-                    AccessID = access.AccessId,
-                    AccountID = access.AccountId,
-                    ChannelID = access.ChannelId,
+                    AccessId = access.AccessId,
+                    AccountId = access.AccountId,
+                    ChannelId = access.ChannelId,
                     Channel = access.Channel.Channel,
                     AccessCode = access.AccessCode,
                     AccessPassword = "********",

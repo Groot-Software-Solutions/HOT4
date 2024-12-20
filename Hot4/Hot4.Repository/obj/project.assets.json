@@ -1050,6 +1050,16 @@
         "runtime": {
           "bin/placeholder/Hot4.DataModel.dll": {}
         }
+      },
+      "Hot4.ViewModel/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Hot4.ViewModel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Hot4.ViewModel.dll": {}
+        }
       }
     }
   },
@@ -2910,12 +2920,18 @@
       "type": "project",
       "path": "../Hot4.DataModel/Hot4.DataModel.csproj",
       "msbuildProject": "../Hot4.DataModel/Hot4.DataModel.csproj"
+    },
+    "Hot4.ViewModel/1.0.0": {
+      "type": "project",
+      "path": "../Hot4.ViewModel/Hot4.ViewModel.csproj",
+      "msbuildProject": "../Hot4.ViewModel/Hot4.ViewModel.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "Hot4.Core >= 1.0.0",
-      "Hot4.DataModel >= 1.0.0"
+      "Hot4.DataModel >= 1.0.0",
+      "Hot4.ViewModel >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2955,6 +2971,9 @@
             },
             "F:\\Hot4-new\\Hot4\\Hot4.DataModel\\Hot4.DataModel.csproj": {
               "projectPath": "F:\\Hot4-new\\Hot4\\Hot4.DataModel\\Hot4.DataModel.csproj"
+            },
+            "F:\\Hot4-new\\Hot4\\Hot4.ViewModel\\Hot4.ViewModel.csproj": {
+              "projectPath": "F:\\Hot4-new\\Hot4\\Hot4.ViewModel\\Hot4.ViewModel.csproj"
             }
           }
         }

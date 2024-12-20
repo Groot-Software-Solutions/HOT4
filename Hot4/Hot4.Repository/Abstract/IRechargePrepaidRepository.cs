@@ -1,4 +1,5 @@
-﻿using Hot4.Core.DataViewModels;
+﻿
+using Hot4.Core.DataViewModels;
 using Hot4.DataModel.Models;
 
 namespace Hot4.Repository.Abstract
