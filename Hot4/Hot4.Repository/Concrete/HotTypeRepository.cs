@@ -1,6 +1,7 @@
 ﻿using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
+using Hot4.ViewModel.ApiModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
@@ -8,14 +9,30 @@ namespace Hot4.Repository.Concrete
     public class HotTypeRepository : RepositoryBase<HotTypes>, IHotTypeRepository
     {
         public HotTypeRepository(HotDbContext context) : base(context) { }
-        public async Task<List<HotTypes>> ListHotType()
+        public async Task<List<HotTypeModel>> ListHotType()
         {
-            return await GetAll().ToListAsync();
+            return await (from hotyp in _context.HotType
+                          join hotypCod in _context.HotTypeCode on hotyp.HotTypeId equals hotypCod.HotTypeId
+                          select new HotTypeModel
+                          {
+                              HotTypeId = hotyp.HotTypeId,
+                              HotType = hotyp.HotType,
+                              SplitCount = hotyp.SplitCount ?? 0,
+                              HotTypeCodeId = hotypCod.HotTypeCodeId,
+                              TypeCode = hotypCod.TypeCode,
+                          }).ToListAsync();
         }
 
-        public async Task<HotTypes?> GetHotType(int hotTypeId)
+        public async Task<byte?> GetHotTypeIdentity(string typeCode, byte splitCount)
         {
-            return await GetById(hotTypeId);
+            return await (from ht in _context.HotType
+                          join htcode in _context.HotTypeCode on ht.HotTypeId equals htcode.HotTypeId
+                          where htcode.TypeCode.ToUpper() == typeCode.ToUpper()
+                          && (ht.SplitCount ?? splitCount) == splitCount
+                          orderby ht.HotTypeId descending
+                          select ht.HotTypeId)
+                          .FirstOrDefaultAsync();
+
         }
     }
 }

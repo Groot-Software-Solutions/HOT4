@@ -1,12 +1,13 @@
 ﻿using Hot4.DataModel.Models;
+using Hot4.ViewModel.ApiModels;
 
 namespace Hot4.Repository.Abstract
 {
     public interface ILimitRepository
     {
-        Task<Limit?> GetLimit(long limitId);
-        Task<long> AddLimit(Limit limit);
-        Task UpdateLimit(Limit limit);
-        Task DeleteLimit(long limitId);
+        Task<long> SaveUpdateLimit(Limit limit);
+        Task<LimitModel?> GetLimit(long limitId);
+        Task<LimitPendingModel> GetLimitByNetAccountId(int networkid, long accountid);
+
     }
 }

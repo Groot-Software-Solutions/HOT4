@@ -83,28 +83,30 @@ namespace Hot4.Repository.Concrete
 
         private async Task<Account> ParseRegistration(Sms sms)
         {
-            var config = await _configRepository.GetConfig();
-            var hotType = await _hotTypeRepository.GetHotType((int)HotTypeName.Registration);
+            //var config = await _configRepository.GetConfig();
+            //var hotType = await _hotTypeRepository.GetHotType((int)HotTypeName.Registration);
 
-            ParseMessageFields(sms, hotType, out string firstname, out string surname, out string nationalID, out string email);
+            //ParseMessageFields(sms, hotType, out string firstname, out string surname, out string nationalID, out string email);
 
-            var account = new Account
-            {
-                AccountName = $"{surname}, {firstname}",
-                NationalId = nationalID,
-                Email = email,
-                ReferredBy = sms.Mobile,
-                InsertDate = DateTime.Now,
-                ProfileId = config.ProfileIdNewSmsdealer,
-            };
+            //var account = new Account
+            //{
+            //    AccountName = $"{surname}, {firstname}",
+            //    NationalId = nationalID,
+            //    Email = email,
+            //    ReferredBy = sms.Mobile,
+            //    InsertDate = DateTime.Now,
+            //    ProfileId = config.ProfileIdNewSmsdealer,
+            //};
 
-            if (sms.Smstext.ToUpper().StartsWith("BA"))
-            {
-                account.ProfileId = (int)Profiles.ECONET_BA;
-                account.ReferredBy = "Econet-BA";
-            }
+            //if (sms.Smstext.ToUpper().StartsWith("BA"))
+            //{
+            //    account.ProfileId = (int)Profiles.ECONET_BA;
+            //    account.ReferredBy = "Econet-BA";
+            //}
 
-            return account;
+            //return account;
+            var mdl = new Account() { AccountName = "", Email = "", NationalId = "", ReferredBy = "" };
+            return mdl;
         }
 
         private static void ParseMessageFields
@@ -134,7 +136,7 @@ namespace Hot4.Repository.Concrete
 
         private async Task<bool> RegistrationCorrectlyFormatted(Sms sms)
         {
-            var hotType = await _hotTypeRepository.GetHotType((int)HotTypeName.Registration);
+            // var hotType = await _hotTypeRepository.GetHotType((int)HotTypeName.Registration);
             if (!Regex.Match(sms.Smstext,/* hotType.RegexString*/"", RegexOptions.IgnoreCase).Success)
             {
                 var template = await _templateRepository.GetTemplate((int)TemplateName.HelpRegister);

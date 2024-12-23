@@ -1,10 +1,11 @@
-﻿using Hot4.DataModel.Models;
+﻿using Hot4.ViewModel.ApiModels;
 
 namespace Hot4.Repository.Abstract
 {
     public interface IHotTypeRepository
     {
-        Task<HotTypes?> GetHotType(int hotTypeId);
-        Task<List<HotTypes>> ListHotType();
+
+        Task<List<HotTypeModel>> ListHotType();
+        Task<byte?> GetHotTypeIdentity(string typeCode, byte splitCount);
     }
 }

@@ -55,13 +55,13 @@ namespace Hot4.Repository.Concrete
                 await using var transaction = await _context.Database.BeginTransactionAsync();
 
                 rechargeList = await _context.Recharge
-                    .Where(d => d.StateId == (byte)SmsStatus.Pending)
+                    .Where(d => d.StateId == (byte)SmsState.Pending)
                     .OrderBy(d => d.RechargeDate)
                     .Take(takeRows)
                     .ToListAsync();
                 if (rechargeList != null && rechargeList.Count > 0)
                 {
-                    rechargeList.ForEach(d => d.StateId = (byte)SmsStatus.Busy);
+                    rechargeList.ForEach(d => d.StateId = (byte)SmsState.Busy);
 
                     _context.UpdateRange(rechargeList);
                     await _context.SaveChangesAsync();

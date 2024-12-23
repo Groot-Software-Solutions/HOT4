@@ -54,7 +54,7 @@ namespace Hot4.Repository.Concrete
                 await using var transaction = await _context.Database.BeginTransactionAsync();
 
                 smsList = await _context.VwSms
-                    .Where(d => d.StateId == (byte)SmsStatus.Pending
+                    .Where(d => d.StateId == (byte)SmsState.Pending
                         && d.Direction == true)
                     .OrderByDescending(d => d.PriorityId)
                     .ThenBy(d => d.Smsdate)
@@ -62,7 +62,7 @@ namespace Hot4.Repository.Concrete
                     .ToListAsync();
                 if (smsList != null && smsList.Count > 0)
                 {
-                    smsList.ForEach(d => d.StateId = (byte)SmsStatus.Busy);
+                    smsList.ForEach(d => d.StateId = (byte)SmsState.Busy);
 
                     _context.Sms.UpdateRange(smsList.Select(d =>
                         new Sms
@@ -225,7 +225,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task Reply(Sms sms, List<Template> templates)
         {
-            sms.StateId = (byte)SmsStatus.Success;
+            sms.StateId = (byte)SmsState.Success;
             _context.Sms.Update(sms);
 
 
@@ -238,7 +238,7 @@ namespace Hot4.Repository.Concrete
                     SmsidIn = sms.Smsid,
                     Smstext = template.TemplateText,
                     PriorityId = (byte)PriorityType.Normal,
-                    StateId = (byte)SmsStatus.Pending,
+                    StateId = (byte)SmsState.Pending,
                     InsertDate = DateTime.Now,
                     Smsdate = DateTime.Now,
                 };
@@ -260,7 +260,7 @@ namespace Hot4.Repository.Concrete
                     SmsidIn = sms.Smsid,
                     Smstext = template.TemplateText,
                     PriorityId = (byte)PriorityType.Normal,
-                    StateId = (byte)SmsStatus.Pending,
+                    StateId = (byte)SmsState.Pending,
                     InsertDate = DateTime.Now,
                     Smsdate = DateTime.Now,
                 };
@@ -319,11 +319,11 @@ namespace Hot4.Repository.Concrete
                     var updateSMSList = await GetByCondition(d => d.Smsid == resendSMS.Smsid).ToListAsync();
                     if (updateSMSList != null)
                     {
-                        updateSMSList.ForEach(d => d.StateId = (byte)SmsStatus.Pending);
+                        updateSMSList.ForEach(d => d.StateId = (byte)SmsState.Pending);
                         _context.Sms.UpdateRange(updateSMSList); // BulkUpdate(updateSMSList);
                     }
 
-                    smsRequest.StateId = (byte)SmsStatus.Success;
+                    smsRequest.StateId = (byte)SmsState.Success;
                     _context.Sms.Update(smsRequest); // Update(smsRequest);
                     await _context.SaveChangesAsync();
 
