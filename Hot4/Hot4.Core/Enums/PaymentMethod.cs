@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Hot4.Core.Enums
+﻿namespace Hot4.Core.Enums
 {
-    public enum PaymentTypes
+    public enum PaymentMethod
     {
         Cash = 1,
         Reversal = 2,

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Hot4.Core.Enums
+﻿namespace Hot4.Core.Enums
 {
-    public enum PaymentSources
+    public enum PaymentMethodSource
     {
         Office = 1
         , Agribank = 2
