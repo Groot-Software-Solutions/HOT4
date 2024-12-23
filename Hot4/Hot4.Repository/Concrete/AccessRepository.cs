@@ -66,29 +66,28 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<List<AccountAccessModel>> ListAccess(long accountId, bool isGetAll, bool isDeleted)
         {
-            var query = _context.Access.Include(d => d.Channel).Where(d => d.AccountId == accountId);
+            var query = await GetByCondition(d => d.AccountId == accountId)
+                .Include(d => d.Channel)
+                                  .Select(d => new AccountAccessModel
+                                  {
+                                      AccessId = d.AccessId,
+                                      AccountId = d.AccountId,
+                                      ChannelId = d.ChannelId,
+                                      Channel = d.Channel.Channel,
+                                      AccessCode = d.AccessCode,
+                                      AccessPassword = "********",
+                                      Deleted = d.Deleted ?? false,
+                                      PasswordHash = "********",
+                                      PasswordSalt = d.PasswordSalt
+                                  }).OrderBy(d => d.Channel).ThenBy(d => d.AccessCode)
+                .ToListAsync();
 
             if (!isGetAll)
             {
-                query = query.Where(d => d.Deleted == isDeleted);
+                query = query.Where(d => d.Deleted == isDeleted).ToList();
             }
 
-            var accessList = await query
-        .Select(d => new AccountAccessModel
-        {
-            AccessId = d.AccessId,
-            AccountId = d.AccountId,
-            ChannelId = d.ChannelId,
-            Channel = d.Channel.Channel,
-            AccessCode = d.AccessCode,
-            AccessPassword = "********",
-            Deleted = d.Deleted ?? false,
-            PasswordHash = "********",
-            PasswordSalt = d.PasswordSalt
-        })
-        .OrderBy(d => new { d.Channel, d.AccessCode })
-        .ToListAsync();
-            return accessList;
+            return query;
 
         }
         public async Task<long> GetAdminId(long accountId)
@@ -120,8 +119,8 @@ namespace Hot4.Repository.Concrete
             AccountAccessModel? responseData = null;
 
             string hashedPassword = Helper.GetMd5Hash(accessPassword);
-            var access = await _context.Access.Include(d => d.Channel).FirstOrDefaultAsync(d => d.AccessCode == accessCode && d.Deleted == false
-&& d.AccessPassword == accessPassword && d.PasswordHash == hashedPassword);
+            var access = await _context.Access.Include(d => d.Channel).FirstOrDefaultAsync(d => d.AccessCode == accessCode
+            && d.Deleted == false && d.AccessPassword == accessPassword && d.PasswordHash == hashedPassword);
             if (access != null)
             {
                 responseData = new AccountAccessModel
@@ -136,7 +135,6 @@ namespace Hot4.Repository.Concrete
                     PasswordHash = "********",
                     PasswordSalt = access.PasswordSalt
                 };
-
             }
             return responseData;
         }

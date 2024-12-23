@@ -11,7 +11,7 @@ namespace Hot4.Repository.Concrete
         public BrandRepository(HotDbContext context) : base(context) { }
         public async Task<List<BrandModel>> GetBrand(int BrandId)
         {
-            return await _context.Brand.Include(d => d.Network).Where(d => d.BrandId == BrandId)
+            return await GetByCondition(d => d.BrandId == BrandId).Include(d => d.Network)
                  .Select(d => new BrandModel
                  {
                      BrandId = d.BrandId,
@@ -21,14 +21,13 @@ namespace Hot4.Repository.Concrete
                      NetworkId = d.NetworkId,
                      Prefix = d.Network.Prefix,
                      WalletTypeId = d.WalletTypeId
-
                  }).ToListAsync();
         }
 
         public async Task<List<BrandModel>> GetBrandIdentity(BrandIdentitySearchModel brandIdentitySearchModel)
         {
-            return await _context.Brand.Include(d => d.Network).Where(d => d.NetworkId == brandIdentitySearchModel.NetworkId
-            && d.BrandSuffix == brandIdentitySearchModel.BrandSuffix)
+            return await GetByCondition(d => d.NetworkId == brandIdentitySearchModel.NetworkId
+            && d.BrandSuffix == brandIdentitySearchModel.BrandSuffix).Include(d => d.Network)
                  .Select(d => new BrandModel
                  {
                      BrandId = d.BrandId,
@@ -44,7 +43,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task<List<BrandModel>> ListBrand()
         {
-            return await _context.Brand.Include(d => d.Network).Select(
+            return await GetAll().Include(d => d.Network).Select(
                 d => new BrandModel
                 {
                     BrandId = d.BrandId,
