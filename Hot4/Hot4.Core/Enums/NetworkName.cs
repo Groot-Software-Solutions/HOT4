@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Hot4.Core.Enums
+﻿namespace Hot4.Core.Enums
 {
-    public enum Networks
+    public enum NetworkName
     {
         Econet = 1,
         NetOne = 2,
