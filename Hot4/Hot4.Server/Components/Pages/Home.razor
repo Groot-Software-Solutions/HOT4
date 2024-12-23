@@ -26,12 +26,20 @@ Welcome to your new app.<br />
     private async Task AddAccess()
     {
         access.ChannelId = 2;
-        await  _accessRepository.AddAccess(access);
-        // accGetMdl.SaveAccess();
-      
+        ////**/ ACCESS** //
+        //Add
+       // await  _accessRepository.AddAccess(access);
+        // List
+       // var res = await _accessRepository.ListAccess(1, true, true);
+        //get by id
+        var resbyId = await _accessRepository.GetAccess(7);
+        //get by Acc and chnl
+        var resbyAccChnl = await _accessRepository.ListAccountChannel(1,2);
+        //get by acc code
+        var resAcccode = await _accessRepository.GetByAccessCode("7896547895");
+        // get admin id
+        var resAdminId = await _accessRepository.GetAdminId(1);
 
     }
 }
 
- <a asp-page="./AccessCreate">Create New</a><br />
- <a href="AccessCreate">Create Access</a>

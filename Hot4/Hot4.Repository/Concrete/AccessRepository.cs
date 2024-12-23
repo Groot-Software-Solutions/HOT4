@@ -79,7 +79,7 @@ namespace Hot4.Repository.Concrete
                                       Deleted = d.Deleted ?? false,
                                       PasswordHash = "********",
                                       PasswordSalt = d.PasswordSalt
-                                  }).OrderBy(d => new { d.Channel, d.AccessCode })
+                                  }).OrderBy(d => d.Channel).ThenBy(d => d.AccessCode)
                 .ToListAsync();
 
             if (!isGetAll)
