@@ -1,9 +1,9 @@
-﻿using Hot4.DataModel.Models;
+﻿using Hot4.ViewModel.ApiModels;
 
 namespace Hot4.Repository.Abstract
 {
     public interface IPaymentTypeRepository
     {
-        Task<List<PaymentTypes>> ListPaymentType();
+        Task<List<PaymentTypeModel>> ListPaymentType();
     }
 }
