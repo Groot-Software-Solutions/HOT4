@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Hot4.Core.Enums
+﻿namespace Hot4.Core.Enums
 {
-    public enum PinStates
+    public enum PinStateType
     {
         Available = 0,
         SoldHotRecharge = 1,
@@ -13,7 +9,7 @@ namespace Hot4.Core.Enums
         SoldPromotional = 4,
         DuplicateAvailable = 10,
         DuplicateSold = 11,
-        DoNotSell = 12, 
+        DoNotSell = 12,
         AvailablePromotional = 13,
     }
 }

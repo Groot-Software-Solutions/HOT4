@@ -2,6 +2,8 @@
 {
     public interface ICommonRepository
     {
-        public Task<float> GetPrePaidStockBalance(int brandId);
+        Task<float> GetPrePaidStockBalance(int brandId);
+        Task<decimal> GetBalance(long accountId);
+        Task<decimal> GetSaleValue(long accountId);
     }
 }

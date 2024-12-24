@@ -1,6 +1,6 @@
 ﻿namespace Hot4.Core.Enums
 {
-    public enum PaymentMethod
+    public enum PaymentMethodType
     {
         Cash = 1,
         Reversal = 2,

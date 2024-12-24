@@ -61,9 +61,9 @@ namespace Hot4.Repository.Concrete
         public async Task<long?> SaveUpdatePayment(Payment payment)
         {
             var paymentId = 0;
-            if (payment.PaymentTypeId == (int)PaymentMethod.BankAuto && payment.PaymentSourceId == (int)PaymentMethodSource.EcoCash)
+            if (payment.PaymentTypeId == (int)PaymentMethodType.BankAuto && payment.PaymentSourceId == (int)PaymentMethodSource.EcoCash)
             {
-                paymentId = await GetByCondition(d => d.PaymentTypeId == (int)PaymentMethod.BankAuto
+                paymentId = await GetByCondition(d => d.PaymentTypeId == (int)PaymentMethodType.BankAuto
                 && d.PaymentSourceId == (int)PaymentMethodSource.EcoCash
                   && d.Reference == payment.Reference && Math.Round(d.Amount, 2) == Math.Round(payment.Amount)
                   && d.AccountId == payment.AccountId).CountAsync();

@@ -4,6 +4,6 @@ namespace Hot4.Repository.Abstract
 {
     public interface IPinBatchTypeRepository
     {
-        public Task<List<PinBatchTypeModel>> ListPinBatchType();
+        Task<List<PinBatchTypeModel>> ListPinBatchType();
     }
 }

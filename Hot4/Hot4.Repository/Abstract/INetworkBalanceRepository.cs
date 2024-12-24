@@ -4,7 +4,7 @@ namespace Hot4.Repository.Abstract
 {
     public interface INetworkBalanceRepository
     {
-        public Task<NetworkBalanceModel> GetNetworkBalance(int BrandId);
-        public Task<List<NetworkBalanceModel>> ListNetworkBalance(int BrandId);
+        Task<NetworkBalanceModel> GetNetworkBalance(int BrandId);
+        Task<List<NetworkBalanceModel>> ListNetworkBalance(int BrandId);
     }
 }
