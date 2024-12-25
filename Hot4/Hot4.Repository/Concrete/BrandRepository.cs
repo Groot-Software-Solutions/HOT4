@@ -9,6 +9,7 @@ namespace Hot4.Repository.Concrete
     public class BrandRepository : RepositoryBase<Brand>, IBrandRepository
     {
         public BrandRepository(HotDbContext context) : base(context) { }
+
         public async Task<List<BrandModel>> GetBrand(int BrandId)
         {
             return await GetByCondition(d => d.BrandId == BrandId).Include(d => d.Network)
@@ -54,6 +55,21 @@ namespace Hot4.Repository.Concrete
                     Prefix = d.Network.Prefix,
                     WalletTypeId = d.WalletTypeId
                 }).ToListAsync();
+        }
+        public async Task AddBrand(Brand brand)
+        {
+            await Create(brand);
+            await SaveChanges();
+        }
+        public async Task DeleteBrand(Brand brand)
+        {
+            await Delete(brand);
+            await SaveChanges();
+        }
+        public async Task UpdateBrand(Brand brand)
+        {
+            await Update(brand);
+            await SaveChanges();
         }
     }
 }

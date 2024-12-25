@@ -9,6 +9,7 @@ namespace Hot4.Repository.Concrete
     public class BankTrxStateRepository : RepositoryBase<BankTrxStates>, IBankTrxStateRepository
     {
         public BankTrxStateRepository(HotDbContext context) : base(context) { }
+
         public async Task<List<BankTransactionStateModel>> ListBankTrxStates()
         {
             return await GetAll().OrderBy(d => d.BankTrxState)
@@ -17,6 +18,21 @@ namespace Hot4.Repository.Concrete
                     BankTrxStateId = d.BankTrxStateId,
                     BankTrxState = d.BankTrxState
                 }).ToListAsync();
+        }
+        public async Task AddBankTrxState(BankTrxStates bankState)
+        {
+            await Create(bankState);
+            await SaveChanges();
+        }
+        public async Task DeleteBankTrxState(BankTrxStates bankState)
+        {
+            await Delete(bankState);
+            await SaveChanges();
+        }
+        public async Task UpdateBankTrxState(BankTrxStates bankState)
+        {
+            await Update(bankState);
+            await SaveChanges();
         }
     }
 }

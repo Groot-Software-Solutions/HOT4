@@ -9,6 +9,23 @@ namespace Hot4.Repository.Concrete
     public class ProductMetaDataTypeRepository : RepositoryBase<ProductMetaDataType>, IProductMetaDataTypeRepository
     {
         public ProductMetaDataTypeRepository(HotDbContext context) : base(context) { }
+
+        public async Task AddProductMetaDataType(ProductMetaDataType productMetaDataType)
+        {
+            await Create(productMetaDataType);
+            await SaveChanges();
+        }
+
+        public async Task DeleteProductMetaDataType(ProductMetaDataType productMetaDataType)
+        {
+            await Delete(productMetaDataType);
+            await SaveChanges();
+        }
+        public async Task UpdateProductMetaDataType(ProductMetaDataType productMetaDataType)
+        {
+            await Update(productMetaDataType);
+            await SaveChanges();
+        }
         public async Task<List<ProductMetaDataTypeModel>> ListProductMetaDataType()
         {
             return await GetAll()
@@ -20,5 +37,7 @@ namespace Hot4.Repository.Concrete
                 }).ToListAsync();
 
         }
+
+
     }
 }

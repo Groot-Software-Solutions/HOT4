@@ -29,11 +29,10 @@ namespace Hot4.Repository.Concrete
             }
         }
 
-        public async Task<int> AddProduct(Product product)
+        public async Task AddProduct(Product product)
         {
             await Create(product);
             await SaveChanges();
-            return product.ProductId;
         }
         public async Task UpdateProduct(Product product)
         {
@@ -42,16 +41,11 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
 
         }
-        public async Task DeleteProduct(int productId)
+
+        public async Task DeleteProduct(Product product)
         {
-            var existing = await GetById(productId);
-            if (existing != null)
-            {
-                await Delete(existing);
-                await SaveChanges();
-            }
+            await Delete(product);
+            await SaveChanges();
         }
-
-
     }
 }

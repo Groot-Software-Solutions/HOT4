@@ -121,7 +121,10 @@ namespace Hot4.Repository.Concrete
             };
         }
 
-
-
+        public async Task DeleteLimit(Limit limit)
+        {
+            await Delete(limit);
+            await SaveChanges();
+        }
     }
 }

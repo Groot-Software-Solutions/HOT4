@@ -13,6 +13,13 @@ namespace Hot4.Repository.Concrete
             await Create(accessWeb);
             await SaveChanges();
         }
+
+        public async Task DeleteAccessWeb(AccessWeb accessWeb)
+        {
+            await Delete(accessWeb);
+            await SaveChanges();
+        }
+
         public async Task<AccessWebModel?> GetAccessWeb(long accessId)
         {
             var result = await GetById(accessId);

@@ -9,6 +9,23 @@ namespace Hot4.Repository.Concrete
     public class ConfigRepository : RepositoryBase<Configs>, IConfigRepository
     {
         public ConfigRepository(HotDbContext context) : base(context) { }
+
+        public async Task AddConfig(Configs config)
+        {
+            await Create(config);
+            await SaveChanges();
+        }
+
+        public async Task DeleteConfig(Configs config)
+        {
+            await Delete(config);
+            await SaveChanges();
+        }
+        public async Task UpdateConfig(Configs config)
+        {
+            await Update(config);
+            await SaveChanges();
+        }
         public async Task<List<ConfigModel>> GetConfig()
         {
             return await GetAll().
@@ -23,5 +40,7 @@ namespace Hot4.Repository.Concrete
                     PrepaidEnabled = d.PrepaidEnabled,
                 }).ToListAsync();
         }
+
+
     }
 }
