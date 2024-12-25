@@ -6,11 +6,8 @@ namespace Hot4.Repository.Abstract
     public interface IProductRepository
     {
         Task<ProductModel?> GetProduct(int productId);
-        Task<int> AddProduct(Product product);
+        Task AddProduct(Product product);
         Task UpdateProduct(Product product);
-        Task DeleteProduct(int productId);
-
-
-
+        Task DeleteProduct(Product product);
     }
 }

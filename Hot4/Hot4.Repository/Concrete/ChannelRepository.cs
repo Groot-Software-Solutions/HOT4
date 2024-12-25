@@ -9,7 +9,24 @@ namespace Hot4.Repository.Concrete
     public class ChannelRepository : RepositoryBase<Channels>, IChannelRepository
     {
         public ChannelRepository(HotDbContext context) : base(context) { }
-        public async Task<List<ChannelModel>> GetChannels()
+
+        public async Task AddChannel(Channels channel)
+        {
+            await Create(channel);
+            await SaveChanges();
+        }
+
+        public async Task DeleteChannel(Channels channel)
+        {
+            await Delete(channel);
+            await SaveChanges();
+        }
+        public async Task UpdateChannel(Channels channel)
+        {
+            await Update(channel);
+            await SaveChanges();
+        }
+        public async Task<List<ChannelModel>> GetChannel()
         {
             return await GetAll()
                 .Select(d => new ChannelModel
@@ -19,5 +36,7 @@ namespace Hot4.Repository.Concrete
                 }).OrderBy(d => d.ChannelId)
                 .ToListAsync();
         }
+
+
     }
 }

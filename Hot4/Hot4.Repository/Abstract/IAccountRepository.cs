@@ -10,5 +10,6 @@ namespace Hot4.Repository.Abstract
         Task<AccountModel?> GetAccount(long accountId);
         Task<List<AccountSearchModel>> SearchAccount(string filter, int pageNumber, int pageSize);
         Task<ViewAccountModel?> AccountSelect(long accountId);
+        Task DeleteAccount(Account account);
     }
 }

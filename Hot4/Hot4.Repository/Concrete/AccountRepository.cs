@@ -90,5 +90,11 @@ namespace Hot4.Repository.Concrete
             var result = _commonRepository.GetViewAccount();
             return await result.FirstOrDefaultAsync(x => x.AccountId == accountId);
         }
+
+        public async Task DeleteAccount(Account account)
+        {
+            await Delete(account);
+            await SaveChanges();
+        }
     }
 }

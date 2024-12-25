@@ -8,5 +8,6 @@ namespace Hot4.Repository.Abstract
         Task<AccessWebModel?> GetAccessWeb(long accessId);
         Task AddAccessWeb(AccessWeb accessWeb);
         Task UpdateAccessWeb(AccessWeb accessWeb);
+        Task DeleteAccessWeb(AccessWeb accessWeb);
     }
 }

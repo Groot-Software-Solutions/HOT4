@@ -7,5 +7,6 @@ namespace Hot4.Repository.Abstract
     {
         Task<AddressModel?> GetAddress(long accountId);
         Task SaveUpdateAddress(Address address);
+        Task DeleteAddress(Address address);
     }
 }

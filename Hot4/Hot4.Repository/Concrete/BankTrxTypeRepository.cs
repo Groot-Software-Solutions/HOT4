@@ -18,5 +18,21 @@ namespace Hot4.Repository.Concrete
                     BankTrxType = d.BankTrxType
                 }).ToListAsync();
         }
+        public async Task AddBankTrxType(BankTrxTypes bankType)
+        {
+            await Create(bankType);
+            await SaveChanges();
+        }
+
+        public async Task DeleteBankTrxType(BankTrxTypes bankType)
+        {
+            await Delete(bankType);
+            await SaveChanges();
+        }
+        public async Task UpdateBankTrxType(BankTrxTypes bankType)
+        {
+            await Update(bankType);
+            await SaveChanges();
+        }
     }
 }

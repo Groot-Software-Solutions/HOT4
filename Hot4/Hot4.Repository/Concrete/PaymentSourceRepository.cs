@@ -9,6 +9,23 @@ namespace Hot4.Repository.Concrete
     public class PaymentSourceRepository : RepositoryBase<PaymentSources>, IPaymentSourceRepository
     {
         public PaymentSourceRepository(HotDbContext context) : base(context) { }
+
+        public async Task AddPaymentSource(PaymentSources paymentSource)
+        {
+            await Create(paymentSource);
+            await SaveChanges();
+        }
+
+        public async Task DeletePaymentSource(PaymentSources paymentSource)
+        {
+            await Delete(paymentSource);
+            await SaveChanges();
+        }
+        public async Task UpdatePaymentSource(PaymentSources paymentSource)
+        {
+            await Update(paymentSource);
+            await SaveChanges();
+        }
         public async Task<List<PaymentSourceModel>> ListPaymentSource()
         {
             return await GetAll()
@@ -21,5 +38,7 @@ namespace Hot4.Repository.Concrete
                 })
                 .ToListAsync();
         }
+
+
     }
 }

@@ -8,6 +8,7 @@ namespace Hot4.Repository.Concrete
     public class AddressRepository : RepositoryBase<Address>, IAddressRepository
     {
         public AddressRepository(HotDbContext context) : base(context) { }
+
         public async Task<AddressModel?> GetAddress(long accountId)
         {
             var address = await GetById(accountId);
@@ -61,6 +62,11 @@ namespace Hot4.Repository.Concrete
             {
                 await Update(address);
             }
+            await SaveChanges();
+        }
+        public async Task DeleteAddress(Address address)
+        {
+            await Delete(address);
             await SaveChanges();
         }
 
