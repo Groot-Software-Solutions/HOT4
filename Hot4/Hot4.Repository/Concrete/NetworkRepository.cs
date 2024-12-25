@@ -1,5 +1,6 @@
 ﻿using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
+using Hot4.Repository.Abstract;
 using Hot4.ViewModel.ApiModels;
 using Microsoft.EntityFrameworkCore;
 

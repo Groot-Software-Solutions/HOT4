@@ -10,11 +10,12 @@ namespace Hot4.Repository.Concrete
     public class BankTrxBatchRepository : RepositoryBase<BankTrxBatch>, IBankTrxBatchRepository
     {
         public BankTrxBatchRepository(HotDbContext context) : base(context) { }
-        public async Task<BankTrxBatch> AddBatch(BankTrxBatch bankTrxBatch)
+        public async Task<long> AddBatch(BankTrxBatch bankTrxBatch)
         {
             await Create(bankTrxBatch);
             await SaveChanges();
-            return bankTrxBatch;
+
+            return bankTrxBatch.BankTrxBatchId;
         }
         public async Task UpdateBatch(BankTrxBatch bankTrxBatch)
         {
@@ -82,7 +83,7 @@ namespace Hot4.Repository.Concrete
             return null;
         }
 
-        public async Task<BankTrxBatch?> GetCurrentBatch(byte bankId, string batchReference, string lastUser)
+        public async Task<BankBatchModel?> GetCurrentBatch(byte bankId, string batchReference, string lastUser)
         {
             long? bankTrxBatchId = null;
             if (bankId == (int)BankName.EcoMerchant)
@@ -103,10 +104,25 @@ namespace Hot4.Repository.Concrete
                     BatchDate = DateTime.Now
                 };
 
-                var res = await AddBatch(model);
-                bankTrxBatchId = res.BankTrxBatchId;
+                bankTrxBatchId = await AddBatch(model);
+
             }
-            return await GetById(bankTrxBatchId);
+            var result = await GetById(bankTrxBatchId);
+            if (result != null)
+            {
+                return new BankBatchModel
+                {
+                    BankId = result.BankId,
+                    BankTrxBatchId = result.BankTrxBatchId,
+                    BatchDate = result.BatchDate,
+                    BatchReference = result.BatchReference,
+                    LastUser = result.LastUser
+                };
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

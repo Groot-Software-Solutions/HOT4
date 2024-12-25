@@ -6,12 +6,12 @@ namespace Hot4.Repository.Abstract
 {
     public interface IBankTrxBatchRepository
     {
-        Task<BankTrxBatch> AddBatch(BankTrxBatch bankTrxBatch);
+        Task<long> AddBatch(BankTrxBatch bankTrxBatch);
         Task UpdateBatch(BankTrxBatch bankTrxBatch);
         Task DeleteBatch(BankTrxBatch bankTrxBatch);
         Task<List<BankBatchModel>> GetBatch_by_Bank(byte bankId);
         Task<long?> GetCurrentBatchId_by_Bank_Ref(byte bankId, string batchRef = null);
-        Task<BankTrxBatch?> GetCurrentBatch(byte bankId, string batchReference, string lastUser);
+        Task<BankBatchModel?> GetCurrentBatch(byte bankId, string batchReference, string lastUser);
 
     }
 }

@@ -12,13 +12,46 @@ namespace Hot4.Repository.Concrete
     public class AccessRepository : RepositoryBase<Access>, IAccessRepository
     {
         public AccessRepository(HotDbContext context) : base(context) { }
-        public async Task<Access?> GetAccess(long accessId)
+        public async Task<AccessModel?> GetAccess(long accessId)
         {
-            return await GetById(accessId);
+            var result = await GetById(accessId);
+            if (result != null)
+            {
+                return new AccessModel
+                {
+                    AccessCode = result.AccessCode,
+                    AccessId = result.AccessId,
+                    AccessPassword = result.AccessPassword,
+                    AccountId = result.AccountId,
+                    ChannelId = result.ChannelId,
+                    Deleted = result.Deleted,
+                    InsertDate = result.InsertDate,
+                    PasswordHash = result.PasswordHash,
+                    PasswordSalt = result.PasswordSalt
+                };
+            }
+            else
+            {
+                return null;
+            }
         }
-        public async Task<List<Access>> ListAccountChannel(long accountId, byte channelId)
+        public async Task<List<AccessModel>> ListAccountChannel(long accountId, byte channelId)
         {
-            return await GetByCondition(d => d.AccountId == accountId && d.ChannelId == channelId).OrderByDescending(d => d.AccessId).ToListAsync();
+            return await GetByCondition(d => d.AccountId == accountId && d.ChannelId == channelId)
+                .OrderByDescending(d => d.AccessId)
+                .Select(d => new AccessModel
+                {
+                    AccessCode = d.AccessCode,
+                    AccessId = d.AccessId,
+                    AccessPassword = d.AccessPassword,
+                    AccountId = d.AccountId,
+                    ChannelId = d.ChannelId,
+                    Deleted = d.Deleted,
+                    InsertDate = d.InsertDate,
+                    PasswordHash = d.PasswordHash,
+                    PasswordSalt = d.PasswordSalt
+                })
+                .ToListAsync();
         }
         public async Task<AccountAccessModel?> GetByAccessCode(string accessCode)
         {

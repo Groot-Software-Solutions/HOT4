@@ -1,10 +1,11 @@
 ﻿using Hot4.DataModel.Models;
+using Hot4.ViewModel.ApiModels;
 
 namespace Hot4.Repository.Abstract
 {
     public interface IAddressRepository
     {
-        Task<Address?> GetAddress(long accountId);
+        Task<AddressModel?> GetAddress(long accountId);
         Task SaveUpdateAddress(Address address);
     }
 }

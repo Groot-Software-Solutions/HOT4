@@ -1,9 +1,9 @@
-﻿using Hot4.DataModel.Models;
+﻿using Hot4.ViewModel.ApiModels;
 
 namespace Hot4.Repository.Abstract
 {
     public interface IBankTrxTypeRepository
     {
-        Task<List<BankTrxTypes>> ListBankTrxType();
+        Task<List<BankTransactionTypeModel>> ListBankTrxType();
     }
 }

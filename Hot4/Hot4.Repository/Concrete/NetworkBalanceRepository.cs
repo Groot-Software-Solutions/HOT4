@@ -8,8 +8,8 @@ namespace Hot4.Repository.Concrete
 {
     public class NetworkBalanceRepository : INetworkBalanceRepository
     {
-        private ICommonRepository _commonRepository;
-        private HotDbContext _context;
+        public ICommonRepository _commonRepository;
+        public HotDbContext _context;
         public NetworkBalanceRepository(ICommonRepository commonRepository, HotDbContext context)
         {
             _commonRepository = commonRepository;

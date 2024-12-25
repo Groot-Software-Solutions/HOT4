@@ -1,18 +1,19 @@
 ﻿using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
+using Hot4.ViewModel.ApiModels;
 
 namespace Hot4.Repository.Concrete
 {
     public class AddressRepository : RepositoryBase<Address>, IAddressRepository
     {
         public AddressRepository(HotDbContext context) : base(context) { }
-        public async Task<Address?> GetAddress(long accountId)
+        public async Task<AddressModel?> GetAddress(long accountId)
         {
             var address = await GetById(accountId);
             if (address != null)
             {
-                return new Address
+                return new AddressModel
                 {
                     AccountId = address.AccountId,
                     Address1 = address.Address1 ?? "",
@@ -31,7 +32,7 @@ namespace Hot4.Repository.Concrete
             }
             else
             {
-                return new Address
+                return new AddressModel
                 {
                     AccountId = accountId,
                     Address1 = "",

@@ -1,6 +1,7 @@
 ﻿using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
+using Hot4.ViewModel.ApiModels;
 
 namespace Hot4.Repository.Concrete
 {
@@ -12,9 +13,24 @@ namespace Hot4.Repository.Concrete
             await Create(accessWeb);
             await SaveChanges();
         }
-        public async Task<AccessWeb?> GetAccessWeb(long accessId)
+        public async Task<AccessWebModel?> GetAccessWeb(long accessId)
         {
-            return await GetById(accessId);
+            var result = await GetById(accessId);
+            if (result != null)
+            {
+                return new AccessWebModel
+                {
+                    AccessId = accessId,
+                    AccessName = result.AccessName,
+                    ResetToken = result.ResetToken,
+                    SalesPassword = result.SalesPassword,
+                    WebBackground = result.WebBackground,
+                };
+            }
+            else
+            {
+                return null;
+            }
         }
         public async Task UpdateAccessWeb(AccessWeb accessWeb)
         {
