@@ -1,6 +1,7 @@
 ﻿using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
+using Hot4.ViewModel.ApiModels;
 
 namespace Hot4.Repository.Concrete
 {
@@ -8,9 +9,24 @@ namespace Hot4.Repository.Concrete
     {
         public ProductRepository(HotDbContext context) : base(context) { }
 
-        public async Task<Product?> GetProduct(int productId)
+        public async Task<ProductModel?> GetProduct(int productId)
         {
-            return await GetById(productId);
+            var result = await GetById(productId);
+            if (result != null)
+            {
+                return new ProductModel
+                {
+                    BrandId = result.BrandId,
+                    Name = result.Name,
+                    ProductId = result.ProductId,
+                    ProductStateId = result.ProductStateId,
+                    WalletTypeId = result.WalletTypeId,
+                };
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public async Task<int> AddProduct(Product product)
