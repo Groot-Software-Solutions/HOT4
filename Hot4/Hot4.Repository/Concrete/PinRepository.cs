@@ -10,9 +10,12 @@ namespace Hot4.Repository.Concrete
     public class PinRepository : RepositoryBase<Pins>, IPinRepository
     {
         public ICommonRepository _commonRepository;
+        public HotDbContext _context;
+
         public PinRepository(HotDbContext context, ICommonRepository commonRepository) : base(context)
         {
             _commonRepository = commonRepository;
+            _context = context;
         }
         public async Task<long> AddPin(Pins pin)
         {

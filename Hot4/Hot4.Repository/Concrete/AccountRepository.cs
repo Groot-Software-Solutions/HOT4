@@ -10,7 +10,11 @@ namespace Hot4.Repository.Concrete
 {
     public class AccountRepository : RepositoryBase<Account>, IAccountRepository
     {
-        public AccountRepository(HotDbContext context) : base(context) { }
+        private ICommonRepository _commonRepository;
+        public AccountRepository(HotDbContext context, ICommonRepository commonRepository) : base(context)
+        {
+            _commonRepository = commonRepository;
+        }
         public async Task<long> AddAccount(Account account)
         {
             account.AccountName = account.AccountName.Replace("\n", "|").Replace("\r", "|");
@@ -27,13 +31,31 @@ namespace Hot4.Repository.Concrete
                 await SaveChanges();
             }
         }
-        public async Task<Account?> GetAccount(long accountId)
+        public async Task<AccountModel?> GetAccount(long accountId)
         {
-            return await GetById(accountId);
+            var result = await GetById(accountId);
+            if (result != null)
+            {
+                return new AccountModel
+                {
+                    AccountName = result.AccountName,
+                    AccountId = result.AccountId,
+                    Email = result.Email,
+                    InsertDate = result.InsertDate,
+                    NationalId = result.NationalId,
+                    ReferredBy = result.ReferredBy,
+                    ProfileId = result.ProfileId,
+                };
+            }
+            else
+            {
+                return null;
+            }
         }
         public async Task<List<AccountSearchModel>> SearchAccount(string filter, int pageNumber, int pageSize)
         {
-            var result = (from vwa in _context.VwAccount
+            var accDetail = _commonRepository.GetViewAccount();
+            var result = (from vwa in accDetail
                           join account in
                               (from tblAccount in _context.Account
                                where (tblAccount.AccountName + tblAccount.ReferredBy + tblAccount.Email).Contains(filter)
@@ -49,23 +71,24 @@ namespace Hot4.Repository.Concrete
                           {
                               AccountId = vwa.AccountId,
                               AccountName = vwa.AccountName,
-                              Email = vwa.Email,
+                              Email = vwa.EmailId,
                               NationalId = vwa.NationalId,
                               ProfileName = vwa.ProfileName,
-                              ReferredBy = vwa.ReferredBy,
+                              ReferredBy = vwa.RefferedBy,
                               ProfileId = vwa.ProfileId,
                               Balance = vwa.Balance,
                               SaleValue = vwa.SaleValue,
-                              USDBalance = vwa.Usdbalance,
-                              USDUtilityBalance = vwa.UsdutilityBalance,
-                              ZESABalance = vwa.Zesabalance
+                              USDBalance = vwa.USDBalance,
+                              USDUtilityBalance = vwa.USDUtilityBalance,
+                              ZESABalance = vwa.ZESABalance
                           });
 
             return await QuerableFilter.GetPagedData(result, pageNumber, pageSize).Queryable.ToListAsync();
         }
-        public async Task<VwAccount?> AccountSelect(long accountId)
+        public async Task<ViewAccountModel?> AccountSelect(long accountId)
         {
-            return await _context.VwAccount.FirstOrDefaultAsync(d => d.AccountId == accountId);
+            var result = _commonRepository.GetViewAccount();
+            return await result.FirstOrDefaultAsync(x => x.AccountId == accountId);
         }
     }
 }

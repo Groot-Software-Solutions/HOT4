@@ -5,8 +5,8 @@ namespace Hot4.Repository.Abstract
 {
     public interface IAccessRepository
     {
-        Task<Access?> GetAccess(long accessId);
-        Task<List<Access>> ListAccountChannel(long accountId, byte channelId);
+        Task<AccessModel?> GetAccess(long accessId);
+        Task<List<AccessModel>> ListAccountChannel(long accountId, byte channelId);
         Task<AccountAccessModel?> GetByAccessCode(string accessCode);
         Task AddAccess(Access access);
         Task UpdateAccess(Access access);
