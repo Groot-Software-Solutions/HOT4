@@ -10,47 +10,47 @@ namespace Hot4.DataModel.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_tblRecharge_tblPin_TblPinPinId",
-                table: "tblRecharge");
+            //migrationBuilder.DropForeignKey(
+            //    name: "FK_tblRecharge_tblPin_TblPinPinId",
+            //    table: "tblRecharge");
 
-            migrationBuilder.DropForeignKey(
-                name: "FK_tblRecharge_tblSMS_TblSmsSmsid",
-                table: "tblRecharge");
+            //migrationBuilder.DropForeignKey(
+            //    name: "FK_tblRecharge_tblSMS_TblSmsSmsid",
+            //    table: "tblRecharge");
 
-            migrationBuilder.RenameColumn(
-                name: "TblSmsSmsid",
-                table: "tblRecharge",
-                newName: "Smsid");
+            //migrationBuilder.RenameColumn(
+            //    name: "TblSmsSmsid",
+            //    table: "tblRecharge",
+            //    newName: "Smsid");
 
-            migrationBuilder.RenameColumn(
-                name: "TblPinPinId",
-                table: "tblRecharge",
-                newName: "PinsPinId");
+            //migrationBuilder.RenameColumn(
+            //    name: "TblPinPinId",
+            //    table: "tblRecharge",
+            //    newName: "PinsPinId");
 
-            migrationBuilder.RenameIndex(
-                name: "IX_tblRecharge_TblSmsSmsid",
-                table: "tblRecharge",
-                newName: "IX_tblRecharge_Smsid");
+            //migrationBuilder.RenameIndex(
+            //    name: "IX_tblRecharge_TblSmsSmsid",
+            //    table: "tblRecharge",
+            //    newName: "IX_tblRecharge_Smsid");
 
-            migrationBuilder.RenameIndex(
-                name: "IX_tblRecharge_TblPinPinId",
-                table: "tblRecharge",
-                newName: "IX_tblRecharge_PinsPinId");
+            //migrationBuilder.RenameIndex(
+            //    name: "IX_tblRecharge_TblPinPinId",
+            //    table: "tblRecharge",
+            //    newName: "IX_tblRecharge_PinsPinId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_tblRecharge_tblPin_PinsPinId",
-                table: "tblRecharge",
-                column: "PinsPinId",
-                principalTable: "tblPin",
-                principalColumn: "PinID");
+            //migrationBuilder.AddForeignKey(
+            //    name: "FK_tblRecharge_tblPin_PinsPinId",
+            //    table: "tblRecharge",
+            //    column: "PinsPinId",
+            //    principalTable: "tblPin",
+            //    principalColumn: "PinID");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_tblRecharge_tblSMS_Smsid",
-                table: "tblRecharge",
-                column: "Smsid",
-                principalTable: "tblSMS",
-                principalColumn: "SMSID");
+            //migrationBuilder.AddForeignKey(
+            //    name: "FK_tblRecharge_tblSMS_Smsid",
+            //    table: "tblRecharge",
+            //    column: "Smsid",
+            //    principalTable: "tblSMS",
+            //    principalColumn: "SMSID");
         }
 
         /// <inheritdoc />

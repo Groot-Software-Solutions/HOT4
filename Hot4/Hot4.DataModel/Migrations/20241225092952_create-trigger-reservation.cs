@@ -10,39 +10,39 @@ namespace Hot4.DataModel.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql(@"CREATE TRIGGER [dbo].[LogNewReservation] 
-   ON  [dbo].[tblReservation]
-   AFTER INSERT 
-AS 
-BEGIN
-	insert into tblreservationLog
-	(ReservationId,OldStateId,NewStateId)
-	select i.reservationId,0,i.stateid from inserted i 
-END
-GO
+            //            migrationBuilder.Sql(@"CREATE TRIGGER [dbo].[LogNewReservation] 
+            //   ON  [dbo].[tblReservation]
+            //   AFTER INSERT 
+            //AS 
+            //BEGIN
+            //	insert into tblreservationLog
+            //	(ReservationId,OldStateId,NewStateId)
+            //	select i.reservationId,0,i.stateid from inserted i 
+            //END
+            //GO
 
-ALTER TABLE [dbo].[tblReservation] ENABLE TRIGGER [LogNewReservation]
-GO");
+            //ALTER TABLE [dbo].[tblReservation] ENABLE TRIGGER [LogNewReservation]
+            //GO");
 
 
-            migrationBuilder.Sql(@"CREATE TRIGGER [dbo].[LogReservationUpdates] 
-   ON  [dbo].[tblReservation] 
-   AFTER UPDATE
-AS 
-BEGIN
+            //            migrationBuilder.Sql(@"CREATE TRIGGER [dbo].[LogReservationUpdates] 
+            //   ON  [dbo].[tblReservation] 
+            //   AFTER UPDATE
+            //AS 
+            //BEGIN
 
-	SET NOCOUNT ON;
+            //	SET NOCOUNT ON;
 
-	insert into tblreservationLog
-	(ReservationId,OldStateId,NewStateId)
-	select i.reservationId,d.stateId,i.stateid from inserted i
-	inner join deleted d on i.ReservationId = d.ReservationId
-	
-END
-GO
+            //	insert into tblreservationLog
+            //	(ReservationId,OldStateId,NewStateId)
+            //	select i.reservationId,d.stateId,i.stateid from inserted i
+            //	inner join deleted d on i.ReservationId = d.ReservationId
 
-ALTER TABLE [dbo].[tblReservation] ENABLE TRIGGER [LogReservationUpdates]
-GO");
+            //END
+            //GO
+
+            //ALTER TABLE [dbo].[tblReservation] ENABLE TRIGGER [LogReservationUpdates]
+            //GO");
         }
 
         /// <inheritdoc />
