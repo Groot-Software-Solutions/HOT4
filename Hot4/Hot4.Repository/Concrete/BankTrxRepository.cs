@@ -204,11 +204,13 @@ namespace Hot4.Repository.Concrete
             }
             return null;
         }
-        public async Task<List<BankTransactionModel>> GetTranscation_by_PaymentId(long PaymentId)
+        public async Task<List<BankTransactionModel>> GetTranscation_by_PaymentId(string paymentId)
         {
+            var vpaymentId = new Guid(paymentId);
+
             return await (from bnkTrx in _context.BankTrx
                           join bp in _context.BankvPayment on bnkTrx.BankTrxId equals bp.BankTrxId
-                          where bp.BankTrxId == PaymentId
+                          where bp.VPaymentId == vpaymentId
                           select bnkTrx
                           )
                                            .Select(d => new BankTransactionModel

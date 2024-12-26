@@ -1,25 +1,72 @@
-﻿@page "/Bank"
+﻿@page "/BankAndPin"
 
 @inject Hot4.Repository.Abstract.IBankRepository bankRepository;
 @inject Hot4.Repository.Abstract.IBankTrxBatchRepository bankBatchRepository;
 @inject Hot4.Repository.Abstract.IBankTrxRepository banktrxRepository;
-@using Hot4.DataModel.Models;
 
-<h3>Account</h3>
+@inject Hot4.Repository.Abstract.IPinRepository pinRepository;
+
+@using Hot4.DataModel.Models;
+@using Hot4.ViewModel.ApiModels;
+
+<h3>Bank</h3>
 <form method="post" @formname="myform" @onsubmit="GetBank">
     <AntiforgeryToken />
     <button type="submit">Bank Test</button>
 </form>
 
+<h3>Pin</h3>
+<form method="post" @formname="myformPin" @onsubmit="GetPin">
+    <AntiforgeryToken />
+    <button type="submit">Pin Test</button>
+</form>
+
 @code {
     private Banks bnk { get; set; } = new() { Bank = "testbnk", BankId = 19 };
+    private EcoCashSearchModel ecoCashSerchMdl { get; set; } = new() { Amount = .20m, date = DateTime.Now, Mobile = "0777931881" };
+    
+    private BankTransactionSearchModel trnsModelForDuplicate { get; set; } = new() { Amount = 29, Balance = 0, BankId = 8, BankRef = "pending", TrxDate = Convert.ToDateTime("2024-11-17 00:49:34.307") };
+
+    private PinRechargePayload pinRechargePayload { get; set; } = new() { Amount = 10, BrandId = 1, RechargeId = 111 };
+    private PinRechargePromoPayload pinRechargePromoPayload { get; set; } = new() { AccessCode = "3232323", BrandId = 1, Mobile = "7878", PinValue = 1, Quantity = 10 };
+
     private async Task GetBank()
     {
-        var bankTrx = await banktrxRepository.GetTranscation_by_Batch(10024185,true);
-        var resultBankRef = await bankBatchRepository.GetCurrentBatch(1, "09 Oct 21 02.csv", "lordrique.muvengwa");
+       // var bankTrxByBatch = await banktrxRepository.GetTranscation_by_Batch(10024185, true);
+
+        
+        var bankTrxById = await banktrxRepository.GetTranscation_by_Id(10024239); //exec xBankTrx_GetFromTrxID 10024239
+
+        
+        var bankTrxByType = await banktrxRepository.GetAllTranscation_by_Type(17);//exec xBankTrx_ListNewEcocash, 
+        var bankTrxByType2 = await banktrxRepository.GetAllTranscation_by_Type(19); //exec xBankTrx_ListNewOneMoney
+
+        var bankTrxByType3 = await banktrxRepository.GetPendingTranscation_by_Type(17); //exec xBankTrx_ListPendingEcoCash
+        var bankTrxByType4 = await banktrxRepository.GetPendingTranscation_by_Type(19); //exec xBankTrx_ListPendingOneMoney
+
+        var bankDuplicateTrans = await banktrxRepository.GetDuplicateTranscation(trnsModelForDuplicate); //exec xBankTrx_FindDuplicate 8,29,'2024-11-17 00:49:34.307','pending',0
+
+        var bankByPaymnetId = await banktrxRepository.GetTranscation_by_PaymentId("E108F4DE-EE68-454D-80F3-40A6BEF053A3"); //exec xBankTrx_GetFromvPayment 'E108F4DE-EE68-454D-80F3-40A6BEF053A3'
+
+        var bankEcoCashPendingTransAmtx = await banktrxRepository.GetEcoCashPendingTranscationCount(ecoCashSerchMdl); //exec xBankTrx_HasEcocashTranPending '0777931881',.20
+
+        // var resultBankRef = await bankBatchRepository.GetCurrentBatch(1, "09 Oct 21 02.csv", "lordrique.muvengwa");
         //await bankRepository.AddBank(bnk);
-        var resAccountSelect = await bankRepository.ListBanks();
+        //  var resAccountSelect = await bankRepository.ListBanks();
 
 
+    }
+
+    private async Task GetPin()
+    {
+        var pinByBatchId = await pinRepository.GetPinDetail_by_batchId(12345);
+
+        var pinLoaded = await pinRepository.GetPinLoaded_by_batchId(12345);
+
+        var pinStock = await pinRepository.GetPinStock();
+
+        var pinRecharge = await pinRepository.PinRecharge(pinRechargePayload);
+        var pinRechargePromo = await pinRepository.PinRechargePromo(pinRechargePromoPayload);
+        var pinRedeemedPromo = await pinRepository.PinRedeemedPromo(123456);
     }
 }
