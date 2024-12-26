@@ -2,7 +2,7 @@
 
 namespace Hot4.Core.Helper
 {
-    public static class QuerableFilter
+    public static class PaginationFilter
     {
         public static PagedResult<T> GetPagedData<T>(IQueryable<T> query, int page, int pageSize) where T : class
         {

@@ -39,7 +39,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<List<PaymentModel>> ListPayment(long accountId, int pageNumber, int pageSize)
         {
-            return await QuerableFilter.GetPagedData(GetByCondition(d => d.AccountId == accountId), pageNumber, pageSize)
+            return await PaginationFilter.GetPagedData(GetByCondition(d => d.AccountId == accountId), pageNumber, pageSize)
                 .Queryable.Select(d =>
                  new PaymentModel
                  {
