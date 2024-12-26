@@ -9,7 +9,7 @@ namespace Hot4.Repository.Abstract
         Task UpdateAccount(Account account);
         Task<AccountModel?> GetAccount(long accountId);
         Task<List<ViewAccountModel>> SearchAccount(string filter, int pageNumber, int pageSize);
-        Task<ViewAccountModel?> AccountSelect(long accountId, int pageNumber, int pageSize);
+        Task<ViewAccountModel?> AccountSelect(long accountId);
         Task DeleteAccount(Account account);
     }
 }

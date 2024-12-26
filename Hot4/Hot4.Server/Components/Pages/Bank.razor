@@ -1,0 +1,25 @@
+﻿@page "/Bank"
+
+@inject Hot4.Repository.Abstract.IBankRepository bankRepository;
+@inject Hot4.Repository.Abstract.IBankTrxBatchRepository bankBatchRepository;
+@inject Hot4.Repository.Abstract.IBankTrxRepository banktrxRepository;
+@using Hot4.DataModel.Models;
+
+<h3>Account</h3>
+<form method="post" @formname="myform" @onsubmit="GetBank">
+    <AntiforgeryToken />
+    <button type="submit">Bank Test</button>
+</form>
+
+@code {
+    private Banks bnk { get; set; } = new() { Bank = "testbnk", BankId = 19 };
+    private async Task GetBank()
+    {
+        var bankTrx = await banktrxRepository.GetTranscation_by_Batch(10024185,true);
+        var resultBankRef = await bankBatchRepository.GetCurrentBatch(1, "09 Oct 21 02.csv", "lordrique.muvengwa");
+        //await bankRepository.AddBank(bnk);
+        var resAccountSelect = await bankRepository.ListBanks();
+
+
+    }
+}

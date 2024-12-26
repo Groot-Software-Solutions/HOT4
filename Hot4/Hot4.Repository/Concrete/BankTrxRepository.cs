@@ -15,7 +15,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<BankTransactionModel> GetTranscation_by_Id(long bankTransactionId)
         {
-            var result = await _context.BankTrx.Include(d => new { d.BankTrxState, d.BankTrxType })
+            var result = await _context.BankTrx.Include(d => d.BankTrxState).Include(d => d.BankTrxType)
                .FirstOrDefaultAsync(d => d.BankTrxId == bankTransactionId);
             if (result != null)
             {
@@ -49,7 +49,7 @@ namespace Hot4.Repository.Concrete
             {
                 return await GetByCondition(d => d.BankTrxBatchId == bankTransactionBatchId
                 && !new[] { (int)BankTransactionStates.Pending, (int)BankTransactionStates.BusyConfirming }.Contains(d.BankTrxStateId))
-                    .Include(d => new { d.BankTrxState, d.BankTrxType })
+                    .Include(d => d.BankTrxState).Include(d => d.BankTrxType)
                                                    .Select(d => new BankTransactionModel
                                                    {
                                                        Amount = d.Amount,
@@ -72,7 +72,7 @@ namespace Hot4.Repository.Concrete
             else
             {
                 return await GetByCondition(d => d.BankTrxBatchId == bankTransactionBatchId)
-                    .Include(d => new { d.BankTrxState, d.BankTrxType })
+                    .Include(d => d.BankTrxState).Include(d => d.BankTrxType)
                                          .Select(d => new BankTransactionModel
                                          {
                                              Amount = d.Amount,
@@ -100,7 +100,8 @@ namespace Hot4.Repository.Concrete
                 return await GetByCondition(d => d.BankTrxTypeId == bankTransactionTypeId
                     && d.BankTrxStateId == (int)BankTransactionStates.BusyConfirming
                     && d.TrxDate > DateTime.Now.AddDays(-7))
-                    .Include(d => new { d.BankTrxState, d.BankTrxType })
+                    .Include(d => d.BankTrxState).Include(d => d.BankTrxType)
+
                                                 .Select(d => new BankTransactionModel
                                                 {
                                                     Amount = d.Amount,
@@ -123,7 +124,7 @@ namespace Hot4.Repository.Concrete
             {
                 return await GetByCondition(d => d.BankTrxTypeId == bankTransactionTypeId
                     && d.BankTrxStateId == (int)BankTransactionStates.BusyConfirming)
-                    .Include(d => new { d.BankTrxState, d.BankTrxType })
+                   .Include(d => d.BankTrxState).Include(d => d.BankTrxType)
                                        .Select(d => new BankTransactionModel
                                        {
                                            Amount = d.Amount,
@@ -147,7 +148,7 @@ namespace Hot4.Repository.Concrete
         {
             return await GetByCondition(d => d.BankTrxTypeId == bankTransactionTypeId
                                 && d.BankTrxStateId == (int)BankTransactionStates.Pending)
-                .Include(d => new { d.BankTrxState, d.BankTrxType })
+                .Include(d => d.BankTrxState).Include(d => d.BankTrxType)
                                                 .Select(d => new BankTransactionModel
                                                 {
                                                     Amount = d.Amount,
@@ -170,7 +171,7 @@ namespace Hot4.Repository.Concrete
         {
             return await GetByCondition(d => d.BankRef == bankRef && d.BankTrxStateId == (int)BankTransactionStates.BusyConfirming
                                && d.BankTrxTypeId == (int)BankTransactionTypes.EcoCashPending)
-                .Include(d => new { d.BankTrxState, d.BankTrxType })
+               .Include(d => d.BankTrxState).Include(d => d.BankTrxType)
                                                .Select(d => new BankTransactionModel
                                                {
                                                    Amount = d.Amount,

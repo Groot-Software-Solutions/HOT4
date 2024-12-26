@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hot4.Repository")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6bf2f0cb861fff06eb95541c286034ced07acec9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef0aae000ef9d66de85835d3f1a52e5d4b597c25")]
 [assembly: System.Reflection.AssemblyProductAttribute("Hot4.Repository")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hot4.Repository")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

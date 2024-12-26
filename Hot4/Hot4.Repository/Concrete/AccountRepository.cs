@@ -84,35 +84,23 @@ namespace Hot4.Repository.Concrete
             //              });
 
             //return await PaginationFilter.GetPagedData(result, pageNumber, pageSize).Queryable.ToListAsync();
-            try
-            {
-                var filteredAccounts = await (from a in _context.Account
-                                                  //    where (a.AccountName.Contains(filter) 
-                                              where (a.AccountName + a.ReferredBy + a.Email).Contains(filter)
-                                              //|| a.ReferredBy.Contains(filter)
-                                              //    || a.Email.Contains(filter)
 
-                                              select a.AccountId).ToListAsync();
+            var filteredAccounts = await (from a in _context.Account
+                                          where (a.AccountName + a.ReferredBy + a.Email).Contains(filter)
+                                          select a.AccountId).ToListAsync();
 
-                var filteredAccess = await (from ac in _context.Access
-                                            where ac.AccessCode.Contains(filter)
-                                            select ac.AccountId).ToListAsync();
+            var filteredAccess = await (from ac in _context.Access
+                                        where ac.AccessCode.Contains(filter)
+                                        select ac.AccountId).ToListAsync();
 
-                var combinedAccountIds = filteredAccounts.Concat(filteredAccess);
+            var combinedAccountIds = filteredAccounts.Concat(filteredAccess);
 
-                var result = await _commonRepository.GetViewAccountList(combinedAccountIds.ToList());
+            var result = await _commonRepository.GetViewAccountList(combinedAccountIds.ToList());
 
-                return result.Skip((pageNo - 1) * pageSize)
-                             .Take(pageSize).ToList();
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
+            return result.Skip((pageNo - 1) * pageSize)
+                         .Take(pageSize).ToList();
         }
-        public async Task<ViewAccountModel?> AccountSelect(long accountId, int pageNumber, int pageSize)
+        public async Task<ViewAccountModel?> AccountSelect(long accountId)
         {
             //  var result = _commonRepository.GetViewAccount();
             // return await result.FirstOrDefaultAsync(x => x.AccountId == accountId);

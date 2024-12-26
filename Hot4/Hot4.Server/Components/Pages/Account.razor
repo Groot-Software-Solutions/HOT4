@@ -15,6 +15,8 @@
 @code {
     private async Task GetAccount()
     {
-        var res = await accountRepository.SearchAccount("0993663693", 1, 15);
+       // var res = await accountRepository.SearchAccount("0993663693", 1, 15);
+
+        var resAccountSelect = await accountRepository.AccountSelect(10000004);
     }
 }
