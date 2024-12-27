@@ -58,7 +58,7 @@ namespace Hot4.Repository.Concrete
                                    LastUser = d.LastUser
                                }).ToListAsync();
         }
-        public async Task<long?> GetCurrentBatchId_by_Bank_Ref(byte bankId, string batchRef = null)
+        public async Task<long?> GetCurrentBatchIdByBankRef(byte bankId, string batchRef = null)
         {
             var dateNow = DateTime.Now.Date;
             var startOfDay = dateNow;
@@ -86,11 +86,11 @@ namespace Hot4.Repository.Concrete
             long? bankTrxBatchId = null;
             if (bankId == (int)BankName.EcoMerchant)
             {
-                bankTrxBatchId = await GetCurrentBatchId_by_Bank_Ref(bankId);
+                bankTrxBatchId = await GetCurrentBatchIdByBankRef(bankId);
             }
             else
             {
-                bankTrxBatchId = await GetCurrentBatchId_by_Bank_Ref(bankId, batchReference);
+                bankTrxBatchId = await GetCurrentBatchIdByBankRef(bankId, batchReference);
             }
             if (bankTrxBatchId == null || bankTrxBatchId == 0)
             {
