@@ -26,13 +26,10 @@ namespace Hot4.Repository.Concrete
         public async Task<byte?> GetHotTypeIdentity(string typeCode, byte splitCount)
         {
             return await (from ht in _context.HotType
+                          where (ht.SplitCount ?? splitCount) == splitCount
                           join htcode in _context.HotTypeCode on ht.HotTypeId equals htcode.HotTypeId
                           where htcode.TypeCode.ToUpper() == typeCode.ToUpper()
-                          && (ht.SplitCount ?? splitCount) == splitCount
-                          orderby ht.HotTypeId descending
-                          select ht.HotTypeId)
-                          .FirstOrDefaultAsync();
-
+                          select ht.HotTypeId).LastOrDefaultAsync();
         }
     }
 }

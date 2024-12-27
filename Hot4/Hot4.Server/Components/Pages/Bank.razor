@@ -1,4 +1,4 @@
-﻿@page "/BankAndPin"
+﻿@page "/BankPin"
 
 @inject Hot4.Repository.Abstract.IBankRepository bankRepository;
 @inject Hot4.Repository.Abstract.IBankTrxBatchRepository bankBatchRepository;
@@ -35,7 +35,7 @@
        // var bankTrxByBatch = await banktrxRepository.GetTranscation_by_Batch(10024185, true);
 
         
-        var bankTrxById = await banktrxRepository.GetTranscation_by_Id(10024239); //exec xBankTrx_GetFromTrxID 10024239
+        var bankTrxById = await banktrxRepository.GetTranscation_by_Id(14187048); //exec xBankTrx_GetFromTrxID 10024239
 
         
         var bankTrxByType = await banktrxRepository.GetAllTranscation_by_Type(17);//exec xBankTrx_ListNewEcocash, 

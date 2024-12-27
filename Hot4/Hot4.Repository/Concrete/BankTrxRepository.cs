@@ -194,9 +194,11 @@ namespace Hot4.Repository.Concrete
         public async Task<long?> GetDuplicateTranscation(BankTransactionSearchModel bankTransactionSearch)
         {
             var bankBatchDetail = await _batchRepository.GetBatch_by_Bank(bankTransactionSearch.BankId);
+
             var result = await _context.BankTrx.FirstOrDefaultAsync(d => d.Amount == bankTransactionSearch.Amount
             && d.TrxDate == bankTransactionSearch.TrxDate && d.Balance == bankTransactionSearch.Balance
-            && d.BankRef == bankTransactionSearch.BankRef && bankBatchDetail.Select(m => m.BankTrxBatchId).Contains(d.BankTrxBatchId));
+            && d.BankRef == bankTransactionSearch.BankRef
+            && EF.Constant(bankBatchDetail.Select(m => m.BankTrxBatchId)).Contains(d.BankTrxBatchId));
 
             if (result != null)
             {
@@ -240,15 +242,16 @@ namespace Hot4.Repository.Concrete
         public async Task<long?> AddBankTransaction(BankTrx bankTransaction)
         {
             var duplicateTransaction = await _context.BankTrx.FirstOrDefaultAsync(d =>
-              (d.TrxDate == bankTransaction.TrxDate && d.Amount == bankTransaction.Amount && d.Identifier == bankTransaction.Identifier
-              && d.BankRef == bankTransaction.BankRef && d.RefName == bankTransaction.RefName && d.Balance == bankTransaction.Balance)
-          || (d.BankTrxTypeId == (byte)BankTransactionTypes.EcoCashPending && d.Amount == bankTransaction.Amount
-          && d.Identifier == bankTransaction.Identifier && d.BankRef == bankTransaction.BankRef && bankTransaction.BankRef != "pending")
-          || (d.BankTrxTypeId == (byte)BankTransactionTypes.SalaryCredit && d.Amount == bankTransaction.Amount
+              (d.TrxDate == bankTransaction.TrxDate && d.Amount == bankTransaction.Amount
+              && d.Identifier == bankTransaction.Identifier && d.BankRef == bankTransaction.BankRef
+              && d.RefName == bankTransaction.RefName && d.Balance == bankTransaction.Balance)
+              || (d.BankTrxTypeId == (byte)BankTransactionTypes.EcoCashPending && d.Amount == bankTransaction.Amount
+              && d.Identifier == bankTransaction.Identifier && d.BankRef == bankTransaction.BankRef
+              && bankTransaction.BankRef != "pending")
+              || (d.BankTrxTypeId == (byte)BankTransactionTypes.SalaryCredit && d.Amount == bankTransaction.Amount
               && d.Identifier == bankTransaction.Identifier && d.BankRef == bankTransaction.BankRef)
-          || (d.TrxDate == bankTransaction.TrxDate && d.Amount == bankTransaction.Amount
-              && d.BankRef == bankTransaction.BankRef && d.Branch == bankTransaction.Branch && d.Balance == bankTransaction.Balance)
-              );
+              || (d.TrxDate == bankTransaction.TrxDate && d.Amount == bankTransaction.Amount && d.BankRef == bankTransaction.BankRef
+              && d.Branch == bankTransaction.Branch && d.Balance == bankTransaction.Balance));
 
             if (duplicateTransaction == null)
             {

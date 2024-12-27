@@ -66,21 +66,19 @@ namespace Hot4.Repository.Concrete
 
             if (string.IsNullOrEmpty(batchRef))
             {
-                var bankTrxBatchId = await GetByCondition(d => d.BankId == bankId
+                var bankTrxBatchId = await _context.BankTrxBatch.LastOrDefaultAsync(d => d.BankId == bankId
                 && d.BatchDate >= startOfDay
-                && d.BatchDate <= endOfDay)
-                .OrderByDescending(d => d.BankTrxBatchId)
-                .Select(d => d.BankTrxBatchId).FirstOrDefaultAsync();
+                && d.BatchDate <= endOfDay);
+
+                return bankTrxBatchId?.BankTrxBatchId;
             }
             else
             {
-                var bankTrxBatchId = await GetByCondition(d => d.BankId == bankId && d.BatchReference == batchRef
-                && d.BatchDate >= startOfDay && d.BatchDate <= endOfDay)
-                .OrderByDescending(d => d.BankTrxBatchId)
-                .Select(d => d.BankTrxBatchId).FirstOrDefaultAsync();
-                return bankTrxBatchId;
+                var bankTrxBatchId = await _context.BankTrxBatch.LastOrDefaultAsync(d => d.BankId == bankId && d.BatchReference == batchRef
+                && d.BatchDate >= startOfDay && d.BatchDate <= endOfDay);
+
+                return bankTrxBatchId?.BankTrxBatchId;
             }
-            return null;
         }
 
         public async Task<BankBatchModel?> GetCurrentBatch(byte bankId, string batchReference, string lastUser)

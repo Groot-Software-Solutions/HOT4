@@ -15,16 +15,6 @@ namespace Hot4.Repository.Concrete
             _commonRepository = commonRepository;
             _context = context;
         }
-        public async Task<NetworkBalanceModel> GetNetworkBalance(int BrandId)
-        {
-            return new NetworkBalanceModel
-            {
-                BrandId = 1,
-                Balance = 8967.23f,
-                Name = "Norlin Network"
-            };
-        }
-
         public async Task<List<NetworkBalanceModel>> ListNetworkBalance(int BrandId)
         {
             var balanceNetOne = await _commonRepository.GetPrePaidStockBalance((int)Brands.EasyCall);
@@ -34,9 +24,8 @@ namespace Hot4.Repository.Concrete
             var balanceZesa = (float)await (from r in _context.Recharge
                                             where r.BrandId == (int)Brands.ZETDC && r.StateId == (int)SmsState.Success
                                             join rp in _context.RechargePrepaid on r.RechargeId equals rp.RechargeId
-                                            orderby r.RechargeId descending
                                             select rp.InitialBalance)
-                                    .FirstOrDefaultAsync();
+                                    .LastOrDefaultAsync();
 
             return new List<NetworkBalanceModel>
                                   {

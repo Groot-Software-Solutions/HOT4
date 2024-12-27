@@ -301,15 +301,14 @@ namespace Hot4.Repository.Concrete
             }
 
             var resendSMS = await (from sms in _context.Sms
+                                   where EF.Constant(sms.Smstext).Contains(target)
+                                        && sms.Direction == true && sms.Mobile == smsRequest.Mobile
                                    join smsrech in _context.SmsRecharge
                                        on sms.Smsid equals smsrech.SmsId
-                                   where sms.Mobile == smsRequest.Mobile
-                                        && EF.Constant(sms.Smstext).Contains(target)
-                                        && sms.Direction == true
                                    select sms)
                                    .OrderByDescending(d => d.Smsdate)
-                                   .Take(1)
-                                   .FirstOrDefaultAsync();
+                                   .LastOrDefaultAsync();
+
 
             if (resendSMS != null)
             {

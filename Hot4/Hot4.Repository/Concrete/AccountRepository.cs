@@ -53,38 +53,6 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<List<ViewAccountModel>> SearchAccount(string filter, int pageNo, int pageSize)
         {
-
-            //var accDetail = _commonRepository.GetViewAccount();
-            //var result = (from vwa in accDetail
-            //              join account in
-            //                  (from tblAccount in _context.Account
-            //                   where (tblAccount.AccountName + tblAccount.ReferredBy + tblAccount.Email).Contains(filter)
-            //                   select tblAccount.AccountId
-            //                  ).Union(
-            //                  from tblAccess in _context.Access
-            //                  where tblAccess.AccessCode.Contains(filter)
-            //                  select tblAccess.AccountId
-            //                  )
-            //              on vwa.AccountId equals account
-            //              orderby vwa.Balance descending
-            //              select new AccountSearchModel
-            //              {
-            //                  AccountId = vwa.AccountId,
-            //                  AccountName = vwa.AccountName,
-            //                  Email = vwa.EmailId,
-            //                  NationalId = vwa.NationalId,
-            //                  ProfileName = vwa.ProfileName,
-            //                  ReferredBy = vwa.RefferedBy,
-            //                  ProfileId = vwa.ProfileId,
-            //                  Balance = vwa.Balance,
-            //                  SaleValue = vwa.SaleValue,
-            //                  USDBalance = vwa.USDBalance,
-            //                  USDUtilityBalance = vwa.USDUtilityBalance,
-            //                  ZESABalance = vwa.ZESABalance
-            //              });
-
-            //return await PaginationFilter.GetPagedData(result, pageNumber, pageSize).Queryable.ToListAsync();
-
             var filteredAccounts = await (from a in _context.Account
                                           where (a.AccountName + a.ReferredBy + a.Email).Contains(filter)
                                           select a.AccountId).ToListAsync();
@@ -102,8 +70,6 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<ViewAccountModel?> AccountSelect(long accountId)
         {
-            //  var result = _commonRepository.GetViewAccount();
-            // return await result.FirstOrDefaultAsync(x => x.AccountId == accountId);
             var accIds = new List<long>()
            {
                accountId

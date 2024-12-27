@@ -193,7 +193,7 @@ namespace Hot4.Repository.Concrete
                 var pin = await GetByCondition(p => p.PinStateId == (int)PinStateType.Available
                   && p.BrandId == pinRecharge.BrandId
                   && p.PinValue <= remainder
-                  && !pinList.Contains(p.PinId))
+                  && !EF.Constant(pinList).Contains(p.PinId))
                      .OrderByDescending(p => p.PinValue).FirstOrDefaultAsync();
 
                 if (pin == null || pin.PinValue == 0)
@@ -244,8 +244,9 @@ namespace Hot4.Repository.Concrete
         public async Task<long> PinRechargePromo(PinRechargePromoPayload pinRechargePromo)
         {
             var access = await (from acss in _context.Access.Include(d => d.Account)
+                                where acss.AccessCode == pinRechargePromo.AccessCode
                                 join prfDsc in _context.ProfileDiscount.Include(d => d.Brand) on acss.Account.ProfileId equals prfDsc.ProfileId
-                                where prfDsc.BrandId == pinRechargePromo.BrandId && acss.AccessCode == pinRechargePromo.AccessCode
+                                where prfDsc.BrandId == pinRechargePromo.BrandId
                                 select new { acss.AccessId, acss.AccountId, acss.Account.ProfileId, prfDsc.Discount, prfDsc.Brand.BrandName }).FirstOrDefaultAsync();
 
 
@@ -356,10 +357,9 @@ namespace Hot4.Repository.Concrete
             var pinBatchId = 10008465;
 
             var transactions = await (from r in _context.Recharge.Include(d => d.Access)
+                                      where r.Access.AccountId == accountId && r.RechargeDate > threeDaysAgo
                                       join rp in _context.RechargePin.Include(d => d.Pin) on r.RechargeId equals rp.RechargeId
-                                      where r.Access.AccountId == accountId
-                                      && rp.Pin.PinBatchId == pinBatchId
-                                      && r.RechargeDate > threeDaysAgo
+                                      where rp.Pin.PinBatchId == pinBatchId
                                       select r).CountAsync();
             if (transactions > 0)
             {
