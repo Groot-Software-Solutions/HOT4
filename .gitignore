@@ -26,3 +26,9 @@ Hot4/.vs/Hot4/v17/DocumentLayout.backup.json
 Hot4/.vs/Hot4/FileContentIndex/ac22b560-496e-4f62-8617-6f6b1f902914.vsidx
 Hot4/.vs/Hot4/FileContentIndex/d9b950ca-daa9-4ac9-9ab9-3f323888c89f.vsidx
 Hot4/Hot4.DataModel/obj/Debug/net8.0/Hot4.DataModel.dll
+/Hot4/Hot4.Core/obj
+/Hot4/Hot4.DataModel/obj
+/Hot4/Hot4.Repository/obj
+/Hot4/Hot4.Server/obj
+/Hot4/Hot4.Service/obj
+/Hot4/Hot4.ViewModel/obj
