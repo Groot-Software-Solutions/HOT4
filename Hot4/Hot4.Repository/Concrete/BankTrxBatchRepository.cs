@@ -43,7 +43,7 @@ namespace Hot4.Repository.Concrete
                 throw new InvalidOperationException("Batch record not found.");
             }
         }
-        public async Task<List<BankBatchModel>> GetBatch_by_Bank(byte bankId)
+        public async Task<List<BankBatchModel>> GetBatchByBank(byte bankId)
         {
             return await GetByCondition(d => d.BankId == bankId)
                 .Include(d => d.Bank)

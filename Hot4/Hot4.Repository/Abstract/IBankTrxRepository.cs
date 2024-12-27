@@ -5,19 +5,19 @@ namespace Hot4.Repository.Abstract
 {
     public interface IBankTrxRepository
     {
-        Task<BankTransactionModel> GetTranscation_by_Id(long bankTransactionId);
-        Task<List<BankTransactionModel>> GetTranscation_by_Batch(long bankTransactionBatchId, bool isPending);
-        Task<List<BankTransactionModel>> GetPendingTranscation_by_Type(byte bankTransactionTypeId);
-        Task<List<BankTransactionModel>> GetAllTranscation_by_Type(byte bankTransactionTypeId); // pending stateId =0
-        Task<List<BankTransactionModel>> GetTranscation_by_Ref(string bankRef);
+        Task<BankTransactionModel> GetTranscationById(long bankTransactionId);
+        Task<List<BankTransactionModel>> GetTranscationByBatch(long bankTransactionBatchId, bool isPending);
+        Task<List<BankTransactionModel>> GetPendingTranscationByType(byte bankTransactionTypeId);
+        Task<List<BankTransactionModel>> GetAllTranscationByType(byte bankTransactionTypeId); // pending stateId =0
+        Task<List<BankTransactionModel>> GetTranscationByRef(string bankRef);
 
         Task<long?> GetDuplicateTranscation(BankTransactionSearchModel bankTransactionSearch);
-        Task<List<BankTransactionModel>> GetTranscation_by_PaymentId(string paymentId);
+        Task<List<BankTransactionModel>> GetTranscationByPaymentId(string paymentId);
         Task<int?> GetEcoCashPendingTranscationCount(EcoCashSearchModel ecoCashSearch);
         Task<long?> AddBankTransaction(BankTrx bankTransaction);
         Task UpdateBankTransaction(BankTrx bankTransaction);
-        Task UpdateBankTransaction_PaymentId(long paymentId, long bankTransactionId);
-        Task UpdateBankTransaction_State(byte stateId, long bankTransactionId);
-        Task UpdateBankTransaction_Identifier(string identifier, long bankTransactionId);
+        Task UpdateBankTransactionPaymentId(long paymentId, long bankTransactionId);
+        Task UpdateBankTransactionState(byte stateId, long bankTransactionId);
+        Task UpdateBankTransactionIdentifier(string identifier, long bankTransactionId);
     }
 }

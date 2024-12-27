@@ -9,7 +9,7 @@ namespace Hot4.Repository.Abstract
         Task<long> AddBatch(BankTrxBatch bankTrxBatch);
         Task UpdateBatch(BankTrxBatch bankTrxBatch);
         Task DeleteBatch(BankTrxBatch bankTrxBatch);
-        Task<List<BankBatchModel>> GetBatch_by_Bank(byte bankId);
+        Task<List<BankBatchModel>> GetBatchByBank(byte bankId);
         Task<long?> GetCurrentBatchIdByBankRef(byte bankId, string batchRef = null);
         Task<BankBatchModel?> GetCurrentBatch(byte bankId, string batchReference, string lastUser);
 
