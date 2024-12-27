@@ -1,3 +1,10 @@
+F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.csproj.AssemblyReference.cache
+F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.GeneratedMSBuildEditorConfig.editorconfig
+F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.AssemblyInfoInputs.cache
+F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.AssemblyInfo.cs
+F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.csproj.CoreCompileInputs.cache
+F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.MvcApplicationPartsAssemblyInfo.cache
+F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.sourcelink.json
 F:\Hot4-new\Hot4\Hot4.Server\bin\Debug\net8.0\appsettings.Development.json
 F:\Hot4-new\Hot4\Hot4.Server\bin\Debug\net8.0\appsettings.json
 F:\Hot4-new\Hot4\Hot4.Server\bin\Debug\net8.0\Hot4.Server.staticwebassets.runtime.json
@@ -154,13 +161,6 @@ F:\Hot4-new\Hot4\Hot4.Server\bin\Debug\net8.0\Hot4.Core.pdb
 F:\Hot4-new\Hot4\Hot4.Server\bin\Debug\net8.0\Hot4.DataModel.pdb
 F:\Hot4-new\Hot4\Hot4.Server\bin\Debug\net8.0\Hot4.Repository.pdb
 F:\Hot4-new\Hot4\Hot4.Server\bin\Debug\net8.0\Hot4.ViewModel.pdb
-F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.csproj.AssemblyReference.cache
-F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.GeneratedMSBuildEditorConfig.editorconfig
-F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.AssemblyInfoInputs.cache
-F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.AssemblyInfo.cs
-F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.csproj.CoreCompileInputs.cache
-F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.MvcApplicationPartsAssemblyInfo.cache
-F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\Hot4.Server.sourcelink.json
 F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\staticwebassets.build.json
 F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\staticwebassets.development.json
 F:\Hot4-new\Hot4\Hot4.Server\obj\Debug\net8.0\staticwebassets\msbuild.Hot4.Server.Microsoft.AspNetCore.StaticWebAssets.props

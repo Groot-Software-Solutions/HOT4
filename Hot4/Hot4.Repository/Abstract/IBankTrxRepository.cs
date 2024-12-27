@@ -12,7 +12,7 @@ namespace Hot4.Repository.Abstract
         Task<List<BankTransactionModel>> GetTranscation_by_Ref(string bankRef);
 
         Task<long?> GetDuplicateTranscation(BankTransactionSearchModel bankTransactionSearch);
-        Task<List<BankTransactionModel>> GetTranscation_by_PaymentId(long PaymentId);
+        Task<List<BankTransactionModel>> GetTranscation_by_PaymentId(string paymentId);
         Task<int?> GetEcoCashPendingTranscationCount(EcoCashSearchModel ecoCashSearch);
         Task<long?> AddBankTransaction(BankTrx bankTransaction);
         Task UpdateBankTransaction(BankTrx bankTransaction);

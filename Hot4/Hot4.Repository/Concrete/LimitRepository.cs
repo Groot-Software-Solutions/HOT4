@@ -15,7 +15,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<long> SaveUpdateLimit(Limit limit)
         {
-            var limitExist = await GetByCondition(d => d.AccountId == limit.AccountId && d.NetworkId == limit.NetworkId).FirstOrDefaultAsync();
+            var limitExist = await _context.Limit.FirstOrDefaultAsync(d => d.AccountId == limit.AccountId && d.NetworkId == limit.NetworkId);
             if (limitExist == null)
             {
                 await Create(limit);
@@ -58,11 +58,7 @@ namespace Hot4.Repository.Concrete
 
             float? dailylimit = 0, montlylimit = 0, salesDaily = 0, salesMonthly = 0;
             int limitTypeid = (int)LimitTypeName.Yearly;
-
-            var limits = await (from limit in _context.Limit
-                                where limit.NetworkId == networkid && limit.AccountId == accountid
-                                select new { limit.DailyLimit, limit.MonthlyLimit, limit.LimitTypeId }).FirstOrDefaultAsync();
-
+            var limits = await _context.Limit.FirstOrDefaultAsync(d => d.NetworkId == networkid && d.AccountId == accountid);
             if (limits != null)
             {
                 dailylimit = (float)limits.DailyLimit;
@@ -76,22 +72,26 @@ namespace Hot4.Repository.Concrete
 
             // Get daily sales
             salesDaily = (float)await (from r in _context.Recharge
-                                       join a in _context.Access on r.AccessId equals a.AccessId
-                                       join b in _context.Brand on r.BrandId equals b.BrandId
                                        where r.RechargeDate >= startDateDaily && r.RechargeDate <= DateTime.Now
                                        && (r.StateId == (int)SmsState.Busy || r.StateId == (int)SmsState.Success)
-                                       && (b.NetworkId == networkid || (networkid == (int)NetworkName.Econet && b.NetworkId == (int)NetworkName.Econet078))
-                                       && b.WalletTypeId == (int)WalletTypes.ZWG && a.AccountId == accountid
+                                       join a in _context.Access on r.AccessId equals a.AccessId
+                                       where a.AccountId == accountid
+                                       join b in _context.Brand on r.BrandId equals b.BrandId
+                                       where (b.NetworkId == networkid || (networkid == (int)NetworkName.Econet &&
+                                       b.NetworkId == (int)NetworkName.Econet078))
+                                       && b.WalletTypeId == (int)WalletTypes.ZWG
                                        select r.Amount).SumAsync();
 
             // Get monthly sales
             salesMonthly = (float)await (from r in _context.Recharge
-                                         join a in _context.Access on r.AccessId equals a.AccessId
-                                         join b in _context.Brand on r.BrandId equals b.BrandId
                                          where r.RechargeDate >= startDateMonthly && r.RechargeDate <= DateTime.Now
                                          && (r.StateId == (int)SmsState.Busy || r.StateId == (int)SmsState.Success)
-                                         && (b.NetworkId == networkid || (networkid == (int)NetworkName.Econet && b.NetworkId == (int)NetworkName.Econet078))
-                                         && b.WalletTypeId == (int)WalletTypes.ZWG && a.AccountId == accountid
+                                         join a in _context.Access on r.AccessId equals a.AccessId
+                                         where a.AccountId == accountid
+                                         join b in _context.Brand on r.BrandId equals b.BrandId
+                                         where (b.NetworkId == networkid || (networkid == (int)NetworkName.Econet &&
+                                         b.NetworkId == (int)NetworkName.Econet078))
+                                         && b.WalletTypeId == (int)WalletTypes.ZWG
                                          select r.Amount).SumAsync();
 
             // Calculating remaining limits

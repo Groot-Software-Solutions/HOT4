@@ -1,9 +1,11 @@
 ﻿using Hot4.Core.Enums;
+using Hot4.Core.Settings;
 using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
 using Hot4.ViewModel.ApiModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace Hot4.Repository.Concrete
 {
@@ -11,11 +13,13 @@ namespace Hot4.Repository.Concrete
     {
         public ICommonRepository _commonRepository;
         public HotDbContext _context;
+        private TemplateSettings _templateSettings { get; }
 
-        public PinRepository(HotDbContext context, ICommonRepository commonRepository) : base(context)
+        public PinRepository(HotDbContext context, ICommonRepository commonRepository, IOptions<TemplateSettings> templateSetting) : base(context)
         {
             _commonRepository = commonRepository;
             _context = context;
+            _templateSettings = templateSetting.Value;
         }
         public async Task<long> AddPin(Pins pin)
         {
@@ -51,7 +55,7 @@ namespace Hot4.Repository.Concrete
                                      NetworkId = d.Brand.NetworkId,
                                      Network = d.Brand.Network.Network,
                                      Prefix = d.Brand.Network.Prefix
-                                 }).ToListAsync();
+                                 }).OrderBy(d => d.BrandName).OrderBy(d => d.Pin).ToListAsync();
             }
             else
              if (pinStateId > 0)
@@ -193,7 +197,7 @@ namespace Hot4.Repository.Concrete
                 var pin = await GetByCondition(p => p.PinStateId == (int)PinStateType.Available
                   && p.BrandId == pinRecharge.BrandId
                   && p.PinValue <= remainder
-                  && !pinList.Contains(p.PinId))
+                  && !EF.Constant(pinList).Contains(p.PinId))
                      .OrderByDescending(p => p.PinValue).FirstOrDefaultAsync();
 
                 if (pin == null || pin.PinValue == 0)
@@ -244,13 +248,15 @@ namespace Hot4.Repository.Concrete
         public async Task<long> PinRechargePromo(PinRechargePromoPayload pinRechargePromo)
         {
             var access = await (from acss in _context.Access.Include(d => d.Account)
+                                where acss.AccessCode == pinRechargePromo.AccessCode
                                 join prfDsc in _context.ProfileDiscount.Include(d => d.Brand) on acss.Account.ProfileId equals prfDsc.ProfileId
-                                where prfDsc.BrandId == pinRechargePromo.BrandId && acss.AccessCode == pinRechargePromo.AccessCode
+                                where prfDsc.BrandId == pinRechargePromo.BrandId
                                 select new { acss.AccessId, acss.AccountId, acss.Account.ProfileId, prfDsc.Discount, prfDsc.Brand.BrandName }).FirstOrDefaultAsync();
 
 
             if (access == null || access?.ProfileId == null || access?.Discount == null || access?.AccountId == null)
-                throw new InvalidOperationException("This Access Code may not sell this Pin Brand");
+                //   throw new InvalidOperationException("This Access Code may not sell this Pin Brand");
+                throw new InvalidOperationException(_templateSettings.PinRechargePromoAccessError);
 
             var AccessId = access.AccessId;
             var ProfileId = access.ProfileId;
@@ -261,8 +267,8 @@ namespace Hot4.Repository.Concrete
             var accountSellValue = await _commonRepository.GetSaleValue(AccountId);
 
             decimal stockSaleValue = (pinRechargePromo.PinValue * pinRechargePromo.Quantity) * ((100 - Discount) / 100);
-            string lowFundsResponse = $"Your pin purchase failed due to insufficient balance. Your balance is US$ {accountBalance}. You can sell approximately US$ {accountSellValue}";
-
+            // string lowFundsResponse = $"Your pin purchase failed due to insufficient balance. Your balance is US$ {accountBalance}. You can sell approximately US$ {accountSellValue}";
+            string lowFundsResponse = _templateSettings.PinRechargePromoLowFund.Replace("accountBalance", Convert.ToString(accountBalance)).Replace("accountSellValue", Convert.ToString(accountSellValue));
             if (accountBalance < stockSaleValue)
                 throw new InvalidOperationException(lowFundsResponse);
 
@@ -270,12 +276,11 @@ namespace Hot4.Repository.Concrete
                                             && p.PinValue == pinRechargePromo.PinValue);
 
 
-            string stockResponse = $"We have received your Bulk EVD request but do not have correct stock to process it. Stock quantity unavailable ({available} in stock)";
-
+            // string stockResponse = $"We have received your Bulk EVD request but do not have correct stock to process it. Stock quantity unavailable ({available} in stock)";
+            string stockResponse = _templateSettings.PinRechargePromoStock.Replace("stockAvailable", Convert.ToString(available));
             if (pinRechargePromo.Quantity > available)
                 throw new InvalidOperationException(stockResponse);
 
-            // Begin Transaction
             using (var transaction = await _context.Database.BeginTransactionAsync())
             {
                 try
@@ -292,7 +297,7 @@ namespace Hot4.Repository.Concrete
                     }
                     await _context.SaveChangesAsync();
 
-                    // Create TblRecharge entry
+                    // Create Recharge entry
                     var recharge = new Recharge
                     {
                         StateId = (int)PinStateType.SoldHotBanking,
@@ -310,7 +315,7 @@ namespace Hot4.Repository.Concrete
 
                     long rechargeId = recharge.RechargeId;
 
-                    // Insert into TblRechargePin
+
                     var rechargePins = pins.Select(pin => new RechargePin
                     {
                         RechargeId = rechargeId,
@@ -320,9 +325,9 @@ namespace Hot4.Repository.Concrete
                     await _context.RechargePin.AddRangeAsync(rechargePins);
                     await _context.SaveChangesAsync();
 
-                    // Create message for TblRechargePrepaid
-                    string message = $"We have fulfilled a Promo Pin Purchase of ${pinRechargePromo.Quantity * pinRechargePromo.PinValue} for <br/> Quantity: {pinRechargePromo.Quantity} EVD Pins <br/> Pin Denomination: {pinRechargePromo.PinValue} <br/> Brand: {BrandName}";
-
+                    // Create message for RechargePrepaid
+                    // string message = $"We have fulfilled a Promo Pin Purchase of ${pinRechargePromo.Quantity * pinRechargePromo.PinValue} for <br/> Quantity: {pinRechargePromo.Quantity} EVD Pins <br/> Pin Denomination: {pinRechargePromo.PinValue} <br/> Brand: {BrandName}";
+                    string message = _templateSettings.PinRechargePromoSuccess.Replace("pinRechargePromoFinalAmt", Convert.ToString(pinRechargePromo.Quantity * pinRechargePromo.PinValue)).Replace("pinRechargePromoQty", Convert.ToString(pinRechargePromo.Quantity)).Replace("pinRechargePromoPinValue", Convert.ToString(pinRechargePromo.PinValue)).Replace("pinRechargePromoBrandName", BrandName);
                     var rechargePrepaid = new RechargePrepaid
                     {
                         RechargeId = rechargeId,
@@ -356,10 +361,9 @@ namespace Hot4.Repository.Concrete
             var pinBatchId = 10008465;
 
             var transactions = await (from r in _context.Recharge.Include(d => d.Access)
+                                      where r.Access.AccountId == accountId && r.RechargeDate > threeDaysAgo
                                       join rp in _context.RechargePin.Include(d => d.Pin) on r.RechargeId equals rp.RechargeId
-                                      where r.Access.AccountId == accountId
-                                      && rp.Pin.PinBatchId == pinBatchId
-                                      && r.RechargeDate > threeDaysAgo
+                                      where rp.Pin.PinBatchId == pinBatchId
                                       select r).CountAsync();
             if (transactions > 0)
             {

@@ -18,7 +18,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task<List<LogModel>> GetAll(int pageNo, int pageSize)
         {
-            return await QuerableFilter.GetPagedData(GetAll(), pageNo, pageSize).Queryable
+            return await PaginationFilter.GetPagedData(GetAll(), pageNo, pageSize).Queryable
                                .Select(d => new LogModel
                                {
 

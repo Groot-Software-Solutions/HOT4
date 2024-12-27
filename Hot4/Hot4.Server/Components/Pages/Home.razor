@@ -32,11 +32,11 @@ Welcome to your new app.<br />
         // List
        // var res = await _accessRepository.ListAccess(1, true, true);
         //get by id
-        var resbyId = await _accessRepository.GetAccess(7);
+        var resbyId = await _accessRepository.GetAccess(10476134);
         //get by Acc and chnl
-        var resbyAccChnl = await _accessRepository.ListAccountChannel(1,2);
+        var resbyAccChnl = await _accessRepository.ListAccountChannel(10000090, 1);
         //get by acc code
-        var resAcccode = await _accessRepository.GetByAccessCode("7896547895");
+        var resAcccode = await _accessRepository.GetByAccessCode("0712134110");
         // get admin id
         var resAdminId = await _accessRepository.GetAdminId(1);
 

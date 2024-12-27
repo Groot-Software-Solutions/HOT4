@@ -1,5 +1,4 @@
-﻿using Hot4.Core.Helper;
-using Hot4.DataModel.Data;
+﻿using Hot4.DataModel.Data;
 
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
@@ -52,43 +51,31 @@ namespace Hot4.Repository.Concrete
                 return null;
             }
         }
-        public async Task<List<AccountSearchModel>> SearchAccount(string filter, int pageNumber, int pageSize)
+        public async Task<List<ViewAccountModel>> SearchAccount(string filter, int pageNo, int pageSize)
         {
-            var accDetail = _commonRepository.GetViewAccount();
-            var result = (from vwa in accDetail
-                          join account in
-                              (from tblAccount in _context.Account
-                               where (tblAccount.AccountName + tblAccount.ReferredBy + tblAccount.Email).Contains(filter)
-                               select tblAccount.AccountId
-                              ).Union(
-                              from tblAccess in _context.Access
-                              where tblAccess.AccessCode.Contains(filter)
-                              select tblAccess.AccountId
-                              )
-                          on vwa.AccountId equals account
-                          orderby vwa.Balance descending
-                          select new AccountSearchModel
-                          {
-                              AccountId = vwa.AccountId,
-                              AccountName = vwa.AccountName,
-                              Email = vwa.EmailId,
-                              NationalId = vwa.NationalId,
-                              ProfileName = vwa.ProfileName,
-                              ReferredBy = vwa.RefferedBy,
-                              ProfileId = vwa.ProfileId,
-                              Balance = vwa.Balance,
-                              SaleValue = vwa.SaleValue,
-                              USDBalance = vwa.USDBalance,
-                              USDUtilityBalance = vwa.USDUtilityBalance,
-                              ZESABalance = vwa.ZESABalance
-                          });
+            var filteredAccounts = await (from a in _context.Account
+                                          where (a.AccountName + a.ReferredBy + a.Email).Contains(filter)
+                                          select a.AccountId).ToListAsync();
 
-            return await QuerableFilter.GetPagedData(result, pageNumber, pageSize).Queryable.ToListAsync();
+            var filteredAccess = await (from ac in _context.Access
+                                        where ac.AccessCode.Contains(filter)
+                                        select ac.AccountId).ToListAsync();
+
+            var combinedAccountIds = filteredAccounts.Concat(filteredAccess);
+
+            var result = await _commonRepository.GetViewAccountList(combinedAccountIds.ToList());
+
+            return result.Skip((pageNo - 1) * pageSize)
+                         .Take(pageSize).ToList();
         }
         public async Task<ViewAccountModel?> AccountSelect(long accountId)
         {
-            var result = _commonRepository.GetViewAccount();
-            return await result.FirstOrDefaultAsync(x => x.AccountId == accountId);
+            var accIds = new List<long>()
+           {
+               accountId
+           };
+            var result = await _commonRepository.GetViewAccountList(accIds);
+            return result.FirstOrDefault();
         }
 
         public async Task DeleteAccount(Account account)

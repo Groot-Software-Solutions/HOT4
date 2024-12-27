@@ -28,8 +28,8 @@ namespace Hot4.Repository.Concrete
         public async Task<List<BundleModel>> GetBundles(int bundleId)
         {
             return await (from bundle in _context.Bundle
-                          join brand in _context.Brand on bundle.BrandId equals brand.BrandId
                           where bundle.BundleId == bundleId
+                          join brand in _context.Brand on bundle.BrandId equals brand.BrandId
                           select new BundleModel
                           {
                               BundleId = bundle.BundleId,
@@ -47,8 +47,9 @@ namespace Hot4.Repository.Concrete
         public async Task<List<BundleModel>> ListBundles()
         {
             return await (from bundle in _context.Bundle
-                          join brand in _context.Brand on bundle.BrandId equals brand.BrandId
                           where bundle.Enabled
+                          join brand in _context.Brand on bundle.BrandId equals brand.BrandId
+
                           select new BundleModel
                           {
                               BundleId = bundle.BundleId,
