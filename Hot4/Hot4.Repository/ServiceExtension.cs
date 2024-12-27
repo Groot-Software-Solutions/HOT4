@@ -15,8 +15,6 @@ namespace Hot4.Repository
             services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddTransient<IAddressRepository, AddressRepository>();
 
-            services.AddTransient<IAnswerRepository, AnswerRepository>();
-
             services.AddTransient<IBankRepository, BankRepository>();
             services.AddTransient<IBankTrxRepository, BankTrxRepository>();
             services.AddTransient<IBankTrxBatchRepository, BankTrxBatchRepository>();
@@ -49,16 +47,6 @@ namespace Hot4.Repository
             services.AddTransient<IProductMetaDataTypeRepository, ProductMetaDataTypeRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
 
-            services.AddTransient<IProfileDiscountRepository, ProfileDiscountRepository>();
-            services.AddTransient<IProfileRepository, ProfileRepository>();
-            services.AddTransient<IRechargePrepaidRepository, RechargePrepaidRepository>();
-            services.AddTransient<IRechargeRepository, RechargeRepository>();
-            services.AddTransient<IRegistrationRepository, RegistrationRepository>();
-            services.AddTransient<ISMPPRepository, SMPPRepository>();
-            services.AddTransient<ISMSRepository, SMSRepository>();
-            services.AddTransient<IStateRepository, StateRepository>();
-            services.AddTransient<ISubscriberRepository, SubscriberRepository>();
-            services.AddTransient<ITemplateRepository, TemplateRepository>();
 
             return services;
         }
