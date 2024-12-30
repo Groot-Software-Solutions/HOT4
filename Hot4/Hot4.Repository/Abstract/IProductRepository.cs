@@ -9,5 +9,6 @@ namespace Hot4.Repository.Abstract
         Task AddProduct(Product product);
         Task UpdateProduct(Product product);
         Task DeleteProduct(Product product);
+        Task<List<ProductModel>> ListProduct();
     }
 }

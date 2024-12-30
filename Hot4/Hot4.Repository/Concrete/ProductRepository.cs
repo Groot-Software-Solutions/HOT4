@@ -2,6 +2,7 @@
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
 using Hot4.ViewModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
 {
@@ -46,6 +47,17 @@ namespace Hot4.Repository.Concrete
         {
             await Delete(product);
             await SaveChanges();
+        }
+        public async Task<List<ProductModel>> ListProduct()
+        {
+            return await GetAll().Select(d => new ProductModel
+            {
+                BrandId = d.BrandId,
+                Name = d.Name,
+                ProductId = d.ProductId,
+                WalletTypeId = d.WalletTypeId,
+                ProductStateId = d.ProductStateId,
+            }).ToListAsync();
         }
     }
 }
