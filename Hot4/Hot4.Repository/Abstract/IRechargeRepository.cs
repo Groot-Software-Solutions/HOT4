@@ -1,13 +1,11 @@
-﻿
-using Hot4.Core.DataViewModels;
-using Hot4.DataModel.Models;
+﻿using Hot4.DataModel.Models;
 
 namespace Hot4.Repository.Abstract
 {
     public interface IRechargeRepository
     {
 
-        Task<List<AccountRechargePinModel>> ListRechargePin(long rechargeId);
+        // Task<List<AccountRechargePinModel>> ListRechargePin(long rechargeId);
 
         Task<Recharge?> GetRecharge(long rechargeId);
 

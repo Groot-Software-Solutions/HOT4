@@ -1,13 +1,13 @@
 ﻿using Hot4.DataModel.Models;
-using Hot4.ViewModel.ApiModels;
+using Hot4.ViewModel;
 
 namespace Hot4.Repository.Abstract
 {
     public interface IPinRepository
     {
         Task<long> AddPin(Pins pin);
-        Task<List<PinDetailModel>> GetPinDetail_by_batchId(long pinBatchId);
-        Task<List<PinLoadedModel>> GetPinLoaded_by_batchId(long pinBatchId);
+        Task<List<PinDetailModel>> GetPinDetailByBatchId(long pinBatchId);
+        Task<List<PinLoadedModel>> GetPinLoadedByBatchId(long pinBatchId);
         Task<List<PinLoadedModel>> GetPinStock();
         Task<List<PinLoadedModel>> GetPinStockPromo();
         Task<List<PinDetailModel>> PinRecharge(PinRechargePayload pinRecharge);

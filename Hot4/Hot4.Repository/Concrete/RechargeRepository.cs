@@ -1,5 +1,4 @@
-﻿using Hot4.Core.DataViewModels;
-using Hot4.Core.Enums;
+﻿using Hot4.Core.Enums;
 using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
@@ -26,26 +25,26 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
 
         }
-        public async Task<List<AccountRechargePinModel>> ListRechargePin(long rechargeId)
-        {
-            return await (from pin in _context.Pin
-                          join rechPin in _context.RechargePin
-                          on pin.PinId equals rechPin.PinId
-                          join rech in _context.Recharge
-                          on rechPin.RechargeId equals rech.RechargeId
-                          where rech.RechargeId == rechargeId
-                          select new AccountRechargePinModel()
-                          {
-                              //ProductID = pin.ProductId,
-                              PinBatchID = pin.PinBatchId,
-                              Pin = pin.Pin,
-                              PinExpiry = pin.PinExpiry,
-                              PinID = pin.PinId,
-                              PinRef = pin.PinRef,
-                              PinStateID = pin.PinStateId,
-                              PinValue = pin.PinValue,
-                          }).ToListAsync();
-        }
+        //public async Task<List<AccountRechargePinModel>> ListRechargePin(long rechargeId)
+        //{
+        //    return await (from pin in _context.Pin
+        //                  join rechPin in _context.RechargePin
+        //                  on pin.PinId equals rechPin.PinId
+        //                  join rech in _context.Recharge
+        //                  on rechPin.RechargeId equals rech.RechargeId
+        //                  where rech.RechargeId == rechargeId
+        //                  select new AccountRechargePinModel()
+        //                  {
+        //                      //ProductID = pin.ProductId,
+        //                      PinBatchID = pin.PinBatchId,
+        //                      Pin = pin.Pin,
+        //                      PinExpiry = pin.PinExpiry,
+        //                      PinID = pin.PinId,
+        //                      PinRef = pin.PinRef,
+        //                      PinStateID = pin.PinStateId,
+        //                      PinValue = pin.PinValue,
+        //                  }).ToListAsync();
+        //}
 
         public async Task<List<Recharge>> GetPendingRechargesWithTransaction(int takeRows)
         {

@@ -3,7 +3,7 @@ using Hot4.Core.Settings;
 using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
-using Hot4.ViewModel.ApiModels;
+using Hot4.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -120,11 +120,11 @@ namespace Hot4.Repository.Concrete
                 return new List<PinDetailModel>();
             }
         }
-        public async Task<List<PinDetailModel>> GetPinDetail_by_batchId(long pinBatchId)
+        public async Task<List<PinDetailModel>> GetPinDetailByBatchId(long pinBatchId)
         {
             return await PinSummary(pinBatchId, 0);
         }
-        public async Task<List<PinLoadedModel>> GetPinLoaded_by_batchId(long pinBatchId)
+        public async Task<List<PinLoadedModel>> GetPinLoadedByBatchId(long pinBatchId)
         {
             var result = await PinSummary(pinBatchId, 0);
             if (result != null && result.Count > 0)

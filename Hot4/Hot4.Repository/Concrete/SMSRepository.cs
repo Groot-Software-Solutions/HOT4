@@ -1,4 +1,4 @@
-﻿using Hot4.Core.DataViewModels;
+﻿
 using Hot4.Core.Enums;
 using Hot4.Core.Helper;
 using Hot4.DataModel.Data;
@@ -101,127 +101,127 @@ namespace Hot4.Repository.Concrete
             return smsList ?? new List<VwSm>();
         }
 
-        public async Task<List<AccountSmsModel>> ListSMSInViewsForAccount(long accountId, DateTime dateTime)
-        {
-            var res = new List<AccountSmsModel>();
+        //public async Task<List<AccountSmsModel>> ListSMSInViewsForAccount(long accountId, DateTime dateTime)
+        //{
+        //    var res = new List<AccountSmsModel>();
 
-            var access = await _context.Access.FirstOrDefaultAsync(d => d.AccountId == accountId);
-            if (access != null)
-            {
-                res = await (from sms in _context.Sms
-                             join state in _context.State
-                             on sms.StateId equals state.StateId
-                             join prios in _context.Priority
-                             on sms.PriorityId equals prios.PriorityId
-                             join smpp in _context.Smpp
-                             on sms.SmppId equals smpp.SmppId
-                             where sms.Direction == true
-                             && sms.Mobile == access.AccessCode
-                             && sms.Smsdate.Date == dateTime.Date
+        //    var access = await _context.Access.FirstOrDefaultAsync(d => d.AccountId == accountId);
+        //    if (access != null)
+        //    {
+        //        res = await (from sms in _context.Sms
+        //                     join state in _context.State
+        //                     on sms.StateId equals state.StateId
+        //                     join prios in _context.Priority
+        //                     on sms.PriorityId equals prios.PriorityId
+        //                     join smpp in _context.Smpp
+        //                     on sms.SmppId equals smpp.SmppId
+        //                     where sms.Direction == true
+        //                     && sms.Mobile == access.AccessCode
+        //                     && sms.Smsdate.Date == dateTime.Date
 
-                             select new AccountSmsModel()
-                             {
-                                 DrectionText = sms.Direction ? "In" : "Out",
-                                 SMSText = sms.Smstext,
-                                 InsertDate = sms.InsertDate,
-                                 Mobile = sms.Mobile,
-                                 Priority = prios.Priority,
-                                 SmppID = smpp.SmppId,
-                                 SMSDate = sms.Smsdate,
-                                 SMSID = sms.Smsid,
-                                 State = state.State,
-                                 SMSID_In = sms.SmsidIn
-                             }).ToListAsync();
-            }
-            return res;
-        }
+        //                     select new AccountSmsModel()
+        //                     {
+        //                         DrectionText = sms.Direction ? "In" : "Out",
+        //                         SMSText = sms.Smstext,
+        //                         InsertDate = sms.InsertDate,
+        //                         Mobile = sms.Mobile,
+        //                         Priority = prios.Priority,
+        //                         SmppID = smpp.SmppId,
+        //                         SMSDate = sms.Smsdate,
+        //                         SMSID = sms.Smsid,
+        //                         State = state.State,
+        //                         SMSID_In = sms.SmsidIn
+        //                     }).ToListAsync();
+        //    }
+        //    return res;
+        //}
 
-        public async Task<List<AccountSmsModel>> ListSMSOutViewsForAccount(long smsId)
-        {
-            return await (from sms in _context.Sms
-                          join state in _context.State
-                          on sms.StateId equals state.StateId
-                          join prios in _context.Priority
-                          on sms.PriorityId equals prios.PriorityId
-                          where sms.SmsidIn == smsId
+        //public async Task<List<AccountSmsModel>> ListSMSOutViewsForAccount(long smsId)
+        //{
+        //    return await (from sms in _context.Sms
+        //                  join state in _context.State
+        //                  on sms.StateId equals state.StateId
+        //                  join prios in _context.Priority
+        //                  on sms.PriorityId equals prios.PriorityId
+        //                  where sms.SmsidIn == smsId
 
-                          select new AccountSmsModel()
-                          {
-                              DrectionText = sms.Direction ? "In" : "Out",
-                              SMSText = sms.Smstext,
-                              InsertDate = sms.InsertDate,
-                              Mobile = sms.Mobile,
-                              Priority = prios.Priority,
-                              SMSDate = sms.Smsdate,
-                              SMSID = sms.Smsid,
-                              State = state.State,
-                              SMSID_In = sms.SmsidIn
-                          }).ToListAsync();
-        }
+        //                  select new AccountSmsModel()
+        //                  {
+        //                      DrectionText = sms.Direction ? "In" : "Out",
+        //                      SMSText = sms.Smstext,
+        //                      InsertDate = sms.InsertDate,
+        //                      Mobile = sms.Mobile,
+        //                      Priority = prios.Priority,
+        //                      SMSDate = sms.Smsdate,
+        //                      SMSID = sms.Smsid,
+        //                      State = state.State,
+        //                      SMSID_In = sms.SmsidIn
+        //                  }).ToListAsync();
+        //}
 
-        public async Task<List<AccountSmsModel>> ListSMSSearchViewsForAccount(DateTime startdate, DateTime enddate, string mobile, string messageText, byte smppId, long stateId)
-        {
-            return await (from sms in _context.Sms
-                          join acss in _context.Access
-                          on sms.Mobile equals acss.AccessCode
-                          join state in _context.State
-                          on sms.StateId equals state.StateId
-                          join prios in _context.Priority
-                          on sms.PriorityId equals prios.PriorityId
-                          join smpp in _context.Smpp
-                          on sms.SmppId equals smpp.SmppId
-                          where sms.Smstext == messageText
-                          && sms.Smsid == smppId
-                          && sms.StateId == stateId
+        //public async Task<List<AccountSmsModel>> ListSMSSearchViewsForAccount(DateTime startdate, DateTime enddate, string mobile, string messageText, byte smppId, long stateId)
+        //{
+        //    return await (from sms in _context.Sms
+        //                  join acss in _context.Access
+        //                  on sms.Mobile equals acss.AccessCode
+        //                  join state in _context.State
+        //                  on sms.StateId equals state.StateId
+        //                  join prios in _context.Priority
+        //                  on sms.PriorityId equals prios.PriorityId
+        //                  join smpp in _context.Smpp
+        //                  on sms.SmppId equals smpp.SmppId
+        //                  where sms.Smstext == messageText
+        //                  && sms.Smsid == smppId
+        //                  && sms.StateId == stateId
 
-                          && sms.Mobile == mobile
-                          && sms.Smsdate.Date >= startdate.Date
-                          && sms.Smsdate.Date <= enddate.Date
-                          select new AccountSmsModel()
-                          {
-                              DrectionText = sms.Direction ? "In" : "Out",
-                              SMSText = sms.Smstext,
-                              InsertDate = sms.InsertDate,
-                              Mobile = sms.Mobile,
-                              Priority = prios.Priority,
-                              SmppID = smpp.SmppId,
-                              SMSDate = sms.Smsdate,
-                              SMSID = sms.Smsid,
-                              State = state.State,
-                              SMSID_In = sms.SmsidIn
-                          }).ToListAsync();
-        }
+        //                  && sms.Mobile == mobile
+        //                  && sms.Smsdate.Date >= startdate.Date
+        //                  && sms.Smsdate.Date <= enddate.Date
+        //                  select new AccountSmsModel()
+        //                  {
+        //                      DrectionText = sms.Direction ? "In" : "Out",
+        //                      SMSText = sms.Smstext,
+        //                      InsertDate = sms.InsertDate,
+        //                      Mobile = sms.Mobile,
+        //                      Priority = prios.Priority,
+        //                      SmppID = smpp.SmppId,
+        //                      SMSDate = sms.Smsdate,
+        //                      SMSID = sms.Smsid,
+        //                      State = state.State,
+        //                      SMSID_In = sms.SmsidIn
+        //                  }).ToListAsync();
+        //}
 
-        public async Task<List<AccountSmsModel>> RefreshListSMSOutViewsForAccount(long accountId, DateTime dateTime)
-        {
-            var res = new List<AccountSmsModel>();
-            var access = await _context.Access.FirstOrDefaultAsync(d => d.AccountId == accountId);
-            if (access != null)
-            {
-                res = await (from sms in _context.Sms
-                             join state in _context.State
-                              on sms.StateId equals state.StateId
-                             join prios in _context.Priority
-                             on sms.PriorityId equals prios.PriorityId
-                             where sms.Direction == false
-                             && sms.Mobile == access.AccessCode
-                             && sms.Smsdate.Date == dateTime.Date
+        //public async Task<List<AccountSmsModel>> RefreshListSMSOutViewsForAccount(long accountId, DateTime dateTime)
+        //{
+        //    var res = new List<AccountSmsModel>();
+        //    var access = await _context.Access.FirstOrDefaultAsync(d => d.AccountId == accountId);
+        //    if (access != null)
+        //    {
+        //        res = await (from sms in _context.Sms
+        //                     join state in _context.State
+        //                      on sms.StateId equals state.StateId
+        //                     join prios in _context.Priority
+        //                     on sms.PriorityId equals prios.PriorityId
+        //                     where sms.Direction == false
+        //                     && sms.Mobile == access.AccessCode
+        //                     && sms.Smsdate.Date == dateTime.Date
 
-                             select new AccountSmsModel()
-                             {
-                                 DrectionText = sms.Direction ? "In" : "Out",
-                                 SMSText = sms.Smstext,
-                                 InsertDate = sms.InsertDate,
-                                 Mobile = sms.Mobile,
-                                 Priority = prios.Priority,
-                                 SMSDate = sms.Smsdate,
-                                 SMSID = sms.Smsid,
-                                 State = state.State,
-                                 SMSID_In = sms.SmsidIn
-                             }).ToListAsync();
-            }
-            return res;
-        }
+        //                     select new AccountSmsModel()
+        //                     {
+        //                         DrectionText = sms.Direction ? "In" : "Out",
+        //                         SMSText = sms.Smstext,
+        //                         InsertDate = sms.InsertDate,
+        //                         Mobile = sms.Mobile,
+        //                         Priority = prios.Priority,
+        //                         SMSDate = sms.Smsdate,
+        //                         SMSID = sms.Smsid,
+        //                         State = state.State,
+        //                         SMSID_In = sms.SmsidIn
+        //                     }).ToListAsync();
+        //    }
+        //    return res;
+        //}
 
         public async Task Reply(Sms sms, List<Template> templates)
         {

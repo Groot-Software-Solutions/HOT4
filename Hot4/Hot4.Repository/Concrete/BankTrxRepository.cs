@@ -2,7 +2,7 @@
 using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
-using Hot4.ViewModel.ApiModels;
+using Hot4.ViewModel;
 using Microsoft.EntityFrameworkCore;
 namespace Hot4.Repository.Concrete
 {
@@ -13,7 +13,7 @@ namespace Hot4.Repository.Concrete
         {
             _batchRepository = batchRepository;
         }
-        public async Task<BankTransactionModel> GetTranscation_by_Id(long bankTransactionId)
+        public async Task<BankTransactionModel> GetTranscationById(long bankTransactionId)
         {
             var result = await _context.BankTrx.Include(d => d.BankTrxState).Include(d => d.BankTrxType)
                .FirstOrDefaultAsync(d => d.BankTrxId == bankTransactionId);
@@ -43,7 +43,7 @@ namespace Hot4.Repository.Concrete
                 return new BankTransactionModel();
             }
         }
-        public async Task<List<BankTransactionModel>> GetTranscation_by_Batch(long bankTransactionBatchId, bool isPending)
+        public async Task<List<BankTransactionModel>> GetTranscationByBatch(long bankTransactionBatchId, bool isPending)
         {
             if (isPending)
             {
@@ -93,7 +93,7 @@ namespace Hot4.Repository.Concrete
             }
         }
 
-        public async Task<List<BankTransactionModel>> GetPendingTranscation_by_Type(byte bankTransactionTypeId)
+        public async Task<List<BankTransactionModel>> GetPendingTranscationByType(byte bankTransactionTypeId)
         {
             if (bankTransactionTypeId == (int)BankTransactionTypes.EcoCashPending)
             {
@@ -144,7 +144,7 @@ namespace Hot4.Repository.Concrete
                                        }).OrderByDescending(d => d.BankTrxId).ToListAsync();
             }
         }
-        public async Task<List<BankTransactionModel>> GetAllTranscation_by_Type(byte bankTransactionTypeId) // pending state 0
+        public async Task<List<BankTransactionModel>> GetAllTranscationByType(byte bankTransactionTypeId) // pending state 0
         {
             return await GetByCondition(d => d.BankTrxTypeId == bankTransactionTypeId
                                 && d.BankTrxStateId == (int)BankTransactionStates.Pending)
@@ -167,7 +167,7 @@ namespace Hot4.Repository.Concrete
                                                     TrxDate = d.TrxDate
                                                 }).OrderByDescending(d => d.BankTrxId).ToListAsync();
         }
-        public async Task<List<BankTransactionModel>> GetTranscation_by_Ref(string bankRef)
+        public async Task<List<BankTransactionModel>> GetTranscationByRef(string bankRef)
         {
             return await GetByCondition(d => d.BankRef == bankRef && d.BankTrxStateId == (int)BankTransactionStates.BusyConfirming
                                && d.BankTrxTypeId == (int)BankTransactionTypes.EcoCashPending)
@@ -193,7 +193,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task<long?> GetDuplicateTranscation(BankTransactionSearchModel bankTransactionSearch)
         {
-            var bankBatchDetail = await _batchRepository.GetBatch_by_Bank(bankTransactionSearch.BankId);
+            var bankBatchDetail = await _batchRepository.GetBatchByBank(bankTransactionSearch.BankId);
 
             var result = await _context.BankTrx.FirstOrDefaultAsync(d => d.Amount == bankTransactionSearch.Amount
             && d.TrxDate == bankTransactionSearch.TrxDate && d.Balance == bankTransactionSearch.Balance
@@ -206,7 +206,7 @@ namespace Hot4.Repository.Concrete
             }
             return null;
         }
-        public async Task<List<BankTransactionModel>> GetTranscation_by_PaymentId(string paymentId)
+        public async Task<List<BankTransactionModel>> GetTranscationByPaymentId(string paymentId)
         {
             var vpaymentId = new Guid(paymentId);
 
@@ -270,7 +270,7 @@ namespace Hot4.Repository.Concrete
             await Update(bankTransaction);
             await SaveChanges();
         }
-        public async Task UpdateBankTransaction_PaymentId(long paymentId, long bankTransactionId)
+        public async Task UpdateBankTransactionPaymentId(long paymentId, long bankTransactionId)
         {
             var bankTransaction = await GetById(bankTransactionId);
             if (bankTransaction != null)
@@ -280,7 +280,7 @@ namespace Hot4.Repository.Concrete
                 await SaveChanges();
             }
         }
-        public async Task UpdateBankTransaction_State(byte stateId, long bankTransactionId)
+        public async Task UpdateBankTransactionState(byte stateId, long bankTransactionId)
         {
             var bankTransaction = await GetById(bankTransactionId);
             if (bankTransaction != null)
@@ -290,7 +290,7 @@ namespace Hot4.Repository.Concrete
                 await SaveChanges();
             }
         }
-        public async Task UpdateBankTransaction_Identifier(string identifier, long bankTransactionId)
+        public async Task UpdateBankTransactionIdentifier(string identifier, long bankTransactionId)
         {
             var bankTransaction = await GetById(bankTransactionId);
             if (bankTransaction != null)
