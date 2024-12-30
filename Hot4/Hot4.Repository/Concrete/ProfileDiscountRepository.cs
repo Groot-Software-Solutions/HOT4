@@ -70,6 +70,7 @@ namespace Hot4.Repository.Concrete
         public async Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileBrandId(int profileId, int brandId)
         {
             return await GetByCondition(d => d.ProfileId == profileId && d.BrandId == brandId)
+                .Include(d => d.Brand).ThenInclude(d => d.Network)
                .Select(d => new ProfileDiscountModel
                {
                    ProfileDiscountId = d.ProfileDiscountId,

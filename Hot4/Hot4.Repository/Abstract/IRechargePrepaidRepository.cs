@@ -1,4 +1,5 @@
 ﻿using Hot4.DataModel.Models;
+using Hot4.ViewModel;
 
 namespace Hot4.Repository.Abstract
 {
@@ -7,8 +8,8 @@ namespace Hot4.Repository.Abstract
         Task InsertRechargePrepaid(RechargePrepaid rechargeprepaid);
         Task UpdateRechargePrepaid(RechargePrepaid rechargePrepaid);
 
-        Task<RechargePrepaid?> GetRechargePrepaid(long rechargeId);
+        Task<RechargePrepaidModel?> GetRechargePrepaid(long rechargeId);
         //  Task<AccountRechargePrepaidModel> SelectRechargePrepaid(long rechargeId);
-        Task<RechargePrepaid?> GetRechargeReversal(long rechargeId);
+        // Task<RechargePrepaid?> GetRechargeReversal(long rechargeId);
     }
 }
