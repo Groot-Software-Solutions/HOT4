@@ -381,5 +381,22 @@ namespace Hot4.Repository.Concrete
             }
 
         }
+        public async Task<List<PinModel>> GetPinRechargeByRechId(long rechargeId)
+        {
+            return await (from p in _context.Pin
+                          join rp in _context.RechargePin on p.PinId equals rp.PinId
+                          where rp.RechargeId == rechargeId
+                          select new PinModel
+                          {
+                              BrandId = p.BrandId,
+                              Pin = p.Pin,
+                              PinId = p.PinId,
+                              PinBatchId = p.PinBatchId,
+                              PinExpirty = p.PinExpiry,
+                              PinRef = p.PinRef,
+                              PinValue = p.PinValue,
+                              PinStateId = p.PinStateId,
+                          }).ToListAsync();
+        }
     }
 }
