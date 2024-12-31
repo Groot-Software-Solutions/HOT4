@@ -13,5 +13,6 @@ namespace Hot4.Repository.Abstract
         Task<List<PinDetailModel>> PinRecharge(PinRechargePayload pinRecharge);
         Task<long> PinRechargePromo(PinRechargePromoPayload pinRechargePromo);
         Task<PinRedeemedPromoModel> PinRedeemedPromo(long accountId);
+        Task<List<PinModel>> GetPinRechargeByRechId(long rechargeId);
     }
 }

@@ -291,6 +291,30 @@ namespace Hot4.Repository.Concrete
             }
             return null;
         }
-
+        public async Task<RechargeModel?> GetRechargeWebDuplicate(RechWebDupSearchModel rechWebDup)
+        {
+            var result = await _context.Recharge.FirstOrDefaultAsync(d => d.AccessId == rechWebDup.AccessId
+                        && d.Mobile == rechWebDup.Mobile
+                        && d.Amount == rechWebDup.Amount
+                        && d.InsertDate > DateTime.Now.AddMinutes(-1));
+            if (result != null)
+            {
+                return new RechargeModel
+                {
+                    AccessId = result.AccessId,
+                    Amount = result.Amount,
+                    BrandId = result.BrandId,
+                    Discount = result.Discount,
+                    Mobile = result.Mobile,
+                    RechargeDate = result.RechargeDate,
+                    RechargeId = result.RechargeId,
+                    StateId = result.StateId
+                };
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
