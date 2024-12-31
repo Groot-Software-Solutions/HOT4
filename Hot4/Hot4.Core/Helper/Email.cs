@@ -5,7 +5,7 @@ namespace Hot4.Core.Helper
 {
     public static class Email
     {
-        public static void SendEmail(string recipient, string subject, string body, string cc = null)
+        public static void SendEmail(string recipient, string subject, string body, string[] cc = null)
         {
             try
             {
@@ -25,9 +25,13 @@ namespace Hot4.Core.Helper
                 };
 
                 mailMessage.To.Add(recipient);
-                if (!string.IsNullOrEmpty(cc))
+                if (cc != null && cc.Count() > 0)
                 {
-                    mailMessage.CC.Add(cc);
+                    foreach (string cemail in cc)
+                    {
+                        mailMessage.CC.Add(cemail);
+                    }
+
                 }
 
                 smtpClient.Send(mailMessage);

@@ -1,5 +1,5 @@
-﻿using Hot4.Core.Enums;
-using Hot4.DataModel.Models;
+﻿using Hot4.DataModel.Models;
+using Hot4.ViewModel;
 
 namespace Hot4.Repository.Abstract
 {
@@ -7,28 +7,15 @@ namespace Hot4.Repository.Abstract
     {
         Task<long> AddSMS(Sms sms);
         Task UpdateSMS(Sms sms);
-        Task ResendWithTransaction(Sms smsRequest);
-
-        // Task<List<AccountSmsModel>> ListSMSInViewsForAccount(long accountId, DateTime dateTime);
-
-        //  Task<List<AccountSmsModel>> ListSMSOutViewsForAccount(long smsId);
-
-        //  Task<List<AccountSmsModel>> ListSMSSearchViewsForAccount(DateTime startdate, DateTime enddate, string mobile, string messageText, byte smppId, long stateId);
-
-        Task<List<VwSm>> GetPendingSMSWithTransaction();
-
-        Task Reply(Sms sms, List<Template> templates);
-
-        Task ReplyWithTransaction(Sms sms, List<Template> templates);
-
-        Task ReplyCustomer(string mobile, Sms sms, List<Template> templates);
-
-        Task ClearSMSPassword(Sms sms, bool hadValidPassword, HotTypeName hotTypeSMS);
-
-        Task<Sms?> Duplicate(Sms sms);
-
-        //   Task<List<AccountSmsModel>> RefreshListSMSOutViewsForAccount(long accountId, DateTime dateTime);
-
-        Task<int> SendEmails(string message, string subject, string emailtype);
+        Task SendBulkSms(string messageText);
+        Task<int> SaveBulkSms(string messageText);
+        Task EmailAggregators(string sub, string messageText);
+        Task EmailCorporates(string sub, string messageText);
+        Task<List<SMSModel>> SMSInbox();
+        Task<List<SMSModel>> SMSOutbox();
+        Task<List<SMSModel>> GetSMSByAccountSMSDate(long accountId, DateTime smsDate);
+        Task<List<SMSModel>> GetSMSBySMSId(long smsId);
+        Task<SMSModel?> DuplicateRecharge(DuplicateRechargeSrchModel smsDuplicateSearch);
+        Task Resend(string mobile, string rechargeMobile);
     }
 }
