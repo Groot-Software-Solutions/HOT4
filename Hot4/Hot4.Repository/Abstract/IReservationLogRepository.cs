@@ -8,6 +8,6 @@ namespace Hot4.Repository.Abstract
         Task AddReservationLog(ReservationLog reservationLog);
         Task UpdateReservationLog(ReservationLog reservationLog);
         Task DeleteReservationLog(ReservationLog reservationLog);
-        Task<List<ReservationLogModel>> GetAllReservationLog(int pageNo, int pageSize);
+        Task<List<ReservationLogModel>> ListReservationLog(int pageNo, int pageSize);
     }
 }

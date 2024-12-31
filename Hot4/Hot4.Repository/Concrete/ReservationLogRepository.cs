@@ -22,7 +22,7 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
         }
 
-        public async Task<List<ReservationLogModel>> GetAllReservationLog(int pageNo, int pageSize)
+        public async Task<List<ReservationLogModel>> ListReservationLog(int pageNo, int pageSize)
         {
             return await PaginationFilter.GetPagedData(GetAll(), pageNo, pageSize).Queryable
                  .Select(d => new ReservationLogModel

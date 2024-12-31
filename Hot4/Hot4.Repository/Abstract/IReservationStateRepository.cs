@@ -8,6 +8,6 @@ namespace Hot4.Repository.Abstract
         Task AddReservationState(ReservationStates reservationState);
         Task UpdateReservationState(ReservationStates reservationState);
         Task DeleteReservationState(ReservationStates reservationState);
-        Task<List<ReservationStateModel>> GetAllReservationState();
+        Task<List<ReservationStateModel>> ListReservationState();
     }
 }
