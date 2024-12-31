@@ -13,7 +13,9 @@ namespace Hot4.Repository.Concrete
         public RechargeRepository(HotDbContext context) : base(context) { }
         public async Task<RechargeDetailModel?> GetRecharge(long rechargeId)
         {
-            var result = await _context.Recharge.Include(d => d.State).Include(d => d.Brand).ThenInclude(d => d.Network).FirstOrDefaultAsync(d => d.RechargeId == rechargeId);
+            var result = await _context.Recharge.Include(d => d.State)
+                .Include(d => d.Brand).ThenInclude(d => d.Network)
+                .FirstOrDefaultAsync(d => d.RechargeId == rechargeId);
             if (result != null)
             {
                 return new RechargeDetailModel
@@ -94,9 +96,11 @@ namespace Hot4.Repository.Concrete
             IQueryable<RechargeDetailModel> result;
             if (rechargeFind.AccountId > 0)
             {
-                result = from r in _context.Recharge.Include(d => d.State).Include(d => d.Brand).ThenInclude(d => d.Network)
+                result = from r in _context.Recharge.Include(d => d.State)
+                         .Include(d => d.Brand).ThenInclude(d => d.Network)
                          join acss in _context.Access on r.AccessId equals acss.AccessId
-                         where r.Mobile.Contains(rechargeFind.Mobile) && acss.AccountId == rechargeFind.AccountId
+                         where r.Mobile.Contains(rechargeFind.Mobile)
+                         && acss.AccountId == rechargeFind.AccountId
                          select new RechargeDetailModel
                          {
                              AccessCode = acss.AccessCode,
@@ -119,7 +123,8 @@ namespace Hot4.Repository.Concrete
             }
             else
             {
-                result = from r in _context.Recharge.Include(d => d.State).Include(d => d.Brand).ThenInclude(d => d.Network)
+                result = from r in _context.Recharge.Include(d => d.State)
+                         .Include(d => d.Brand).ThenInclude(d => d.Network)
                          join acss in _context.Access on r.AccessId equals acss.AccessId
                          where r.Mobile.Contains(rechargeFind.Mobile)
                          select new RechargeDetailModel

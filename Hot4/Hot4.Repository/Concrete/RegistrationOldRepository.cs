@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace Hot4.Repository.Concrete
 {
-    public class RegistrationRepository : IRegistrationRepository
+    public class RegistrationOldRepository : IRegistrationOldRepository
     {
 
         private readonly IAccountRepository _accountRepository;
@@ -15,7 +15,7 @@ namespace Hot4.Repository.Concrete
         private readonly IConfigRepository _configRepository;
         private readonly IAccessRepository _accessRepository;
         private readonly IHotTypeRepository _hotTypeRepository;
-        public RegistrationRepository(IAccountRepository accountRepository, ITemplateRepository templateRepository, ISMSRepository smsRepository, IConfigRepository configRepository, IAccessRepository accessRepository, IHotTypeRepository hotTypeRepository)
+        public RegistrationOldRepository(IAccountRepository accountRepository, ITemplateRepository templateRepository, ISMSRepository smsRepository, IConfigRepository configRepository, IAccessRepository accessRepository, IHotTypeRepository hotTypeRepository)
         {
             _accountRepository = accountRepository;
             _templateRepository = templateRepository;
