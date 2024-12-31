@@ -59,7 +59,7 @@ namespace Hot4.Repository.Concrete
                 await _templateRepository.GetTemplate((int)TemplateName.HelpRecharge),
             };
 
-            await _smsRepository.ReplyWithTransaction(sms, templates);
+            // await _smsRepository.ReplyWithTransaction(sms, templates);
         }
 
         public Task<Access?> RegisterSelfTopUpUser(Sms sms)
@@ -142,7 +142,7 @@ namespace Hot4.Repository.Concrete
                 var template = await _templateRepository.GetTemplate((int)TemplateName.HelpRegister);
                 if (template != null)
                 {
-                    await _smsRepository.ReplyWithTransaction(sms, new List<Template> { template });
+                    //  await _smsRepository.ReplyWithTransaction(sms, new List<Template> { template });
 
 
                     return false;
@@ -172,7 +172,7 @@ namespace Hot4.Repository.Concrete
                     {
                         template.TemplateText = template.TemplateText.Replace("%NAME%", account?.AccountName);
 
-                        await _smsRepository.ReplyWithTransaction(sms, new List<Template> { template });
+                        //  await _smsRepository.ReplyWithTransaction(sms, new List<Template> { template });
                     }
                 }
 

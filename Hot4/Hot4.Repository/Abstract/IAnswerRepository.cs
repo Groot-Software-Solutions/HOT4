@@ -1,10 +1,8 @@
-﻿using Hot4.DataModel.Models;
-
-namespace Hot4.Repository.Abstract
+﻿namespace Hot4.Repository.Abstract
 {
     public interface IAnswerRepository
     {
-        Task RespondToUnknown(Sms sms);
-        Task RespondToAnswer(Sms sms);
+        //Task RespondToUnknown(Sms sms);
+        //Task RespondToAnswer(Sms sms);
     }
 }
