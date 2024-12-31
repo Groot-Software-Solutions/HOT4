@@ -21,7 +21,7 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
         }
 
-        public async Task<List<ReservationStateModel>> GetAllReservationState()
+        public async Task<List<ReservationStateModel>> ListReservationState()
         {
             return await GetAll().Select(d => new ReservationStateModel
             {
