@@ -67,7 +67,7 @@ namespace Hot4.DataModel.Data
         public virtual DbSet<Template> Template { get; set; }
         public virtual DbSet<Transfer> Transfer { get; set; }
         public virtual DbSet<WalletType> WalletType { get; set; }
-        public virtual DbSet<WebRequest> WebRequest { get; set; }
+        public virtual DbSet<WebRequests> WebRequest { get; set; }
         public virtual DbSet<ProfileBackup> ProfileBackup { get; set; }
         public virtual DbSet<VwAccess> VwAccess { get; set; }
         public virtual DbSet<VwAccessWeb> VwAccessWeb { get; set; }
@@ -1444,7 +1444,7 @@ namespace Hot4.DataModel.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<WebRequest>(entity =>
+            modelBuilder.Entity<WebRequests>(entity =>
             {
                 entity
                     .HasNoKey()

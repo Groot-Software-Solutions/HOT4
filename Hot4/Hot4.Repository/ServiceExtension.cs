@@ -47,6 +47,24 @@ namespace Hot4.Repository
             services.AddTransient<IProductMetaDataTypeRepository, ProductMetaDataTypeRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
 
+            services.AddTransient<IProfileDiscountRepository, ProfileDiscountRepository>();
+            services.AddTransient<IProfileRepository, ProfileRepository>();
+            services.AddTransient<IRechargePrepaidRepository, RechargePrepaidRepository>();
+            services.AddTransient<IRechargeRepository, RechargeRepository>();
+            services.AddTransient<IReservationLogRepository, ReservationLogRepository>();
+            services.AddTransient<IReservationRepository, ReservationRepository>();
+            services.AddTransient<IReservationStateRepository, ReservationStateRepository>();
+            services.AddTransient<ISelfTopUpRepository, SelfTopUpRepository>();
+            services.AddTransient<ISelfTopUpStateRepository, SelfTopUpStateRepository>();
+            services.AddTransient<ISMPPRepository, SMPPRepository>();
+            services.AddTransient<ISMSRepository, SMSRepository>();
+            services.AddTransient<IStateRepository, StateRepository>();
+            services.AddTransient<IStatisticsRepository, StatisticsRepository>();
+            services.AddTransient<ITemplateRepository, TemplateRepository>();
+            services.AddTransient<ITransferRepository, TransferRepository>();
+            services.AddTransient<IWebRequestRepository, WebRequestRepository>();
+
+
 
             return services;
         }
