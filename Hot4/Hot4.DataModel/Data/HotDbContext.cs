@@ -1219,32 +1219,32 @@ namespace Hot4.DataModel.Data
 
             modelBuilder.Entity<Sms>(entity =>
             {
-                entity.HasKey(e => e.Smsid);
+                entity.HasKey(e => e.SmsId);
 
                 entity.ToTable("tblSMS");
 
-                entity.HasIndex(e => e.Smsdate, "IX_SMSDate");
+                entity.HasIndex(e => e.SmsDate, "IX_SMSDate");
 
                 entity.HasIndex(e => e.Mobile, "IX_SMSMobile");
 
                 entity.HasIndex(e => new { e.StateId, e.Direction }, "IX_SMS_Inbox");
 
-                entity.HasIndex(e => new { e.Smsdate, e.StateId, e.Mobile, e.Smstext, e.PriorityId, e.Smsid }, "IX_SMS_Search");
+                entity.HasIndex(e => new { e.SmsDate, e.StateId, e.Mobile, e.SmsText, e.PriorityId, e.SmsId }, "IX_SMS_Search");
 
-                entity.HasIndex(e => e.SmsidIn, "SmsOut");
+                entity.HasIndex(e => e.SmsIdIn, "SmsOut");
 
-                entity.Property(e => e.Smsid).HasColumnName("SMSID");
+                entity.Property(e => e.SmsId).HasColumnName("SMSID");
                 entity.Property(e => e.InsertDate).HasColumnType("datetime");
                 entity.Property(e => e.Mobile)
                     .HasMaxLength(50)
                     .IsUnicode(false);
                 entity.Property(e => e.PriorityId).HasColumnName("PriorityID");
                 entity.Property(e => e.SmppId).HasColumnName("SmppID");
-                entity.Property(e => e.Smsdate)
+                entity.Property(e => e.SmsDate)
                     .HasColumnType("datetime")
                     .HasColumnName("SMSDate");
-                entity.Property(e => e.SmsidIn).HasColumnName("SMSID_In");
-                entity.Property(e => e.Smstext)
+                entity.Property(e => e.SmsIdIn).HasColumnName("SMSID_In");
+                entity.Property(e => e.SmsText)
                     .HasMaxLength(640)
                     .IsUnicode(false)
                     .HasColumnName("SMSText");
@@ -1260,7 +1260,7 @@ namespace Hot4.DataModel.Data
                     .HasConstraintName("FK_tblSMS_tblSmpp");
 
                 entity.HasOne(d => d.SmsidInNavigation).WithMany(p => p.InverseSmsidInNavigation)
-                    .HasForeignKey(d => d.SmsidIn)
+                    .HasForeignKey(d => d.SmsIdIn)
                     .HasConstraintName("FK_tblSMS_tblSMS");
 
                 entity.HasOne(d => d.State).WithMany(p => p.Sms)

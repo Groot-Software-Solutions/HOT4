@@ -59,8 +59,8 @@ namespace Hot4.Repository.Concrete
         {
             return await _context.Sms.Include(d => d.State)
                          .Where(d => d.Direction == true
-                         && d.Smsdate > DateTime.Now.AddMinutes(-11))
-                         .GroupBy(d => new { d.Smsdate.Minute, d.Direction, d.State.State })
+                         && d.SmsDate > DateTime.Now.AddMinutes(-11))
+                         .GroupBy(d => new { d.SmsDate.Minute, d.Direction, d.State.State })
                          .Select(d => new StatisticsTrafficModel
                          {
                              Name = d.Key.State,

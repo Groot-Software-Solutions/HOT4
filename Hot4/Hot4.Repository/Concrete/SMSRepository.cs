@@ -46,9 +46,9 @@ namespace Hot4.Repository.Concrete
                 PriorityId = 0,
                 Direction = false,
                 Mobile = mobile,
-                Smstext = messageText,
-                Smsdate = DateTime.Now,
-                SmsidIn = null
+                SmsText = messageText,
+                SmsDate = DateTime.Now,
+                SmsIdIn = null
             }).ToList();
 
             await _context.Sms.AddRangeAsync(smsRecords);
@@ -93,9 +93,9 @@ namespace Hot4.Repository.Concrete
                 PriorityId = 0,
                 Direction = false,
                 Mobile = mobile,
-                Smstext = messageText,
-                Smsdate = DateTime.Now,
-                SmsidIn = null
+                SmsText = messageText,
+                SmsDate = DateTime.Now,
+                SmsIdIn = null
             }).ToList();
 
             await _context.Sms.AddRangeAsync(smsRecords);
@@ -149,7 +149,7 @@ namespace Hot4.Repository.Concrete
                 .Where(d => d.Direction == true && d.StateId == (int)SmsState.Pending)
                 .Include(d => d.State).Include(d => d.Priority)
                 .OrderByDescending(d => d.PriorityId)
-                .ThenBy(d => d.Smsdate)
+                .ThenBy(d => d.SmsDate)
                 .Take(queueSize)
                 //.Select(s => s.Smsid)
                 .ToListAsync();
@@ -173,10 +173,10 @@ namespace Hot4.Repository.Concrete
                     Priority = d.Priority.Priority,
                     PriorityId = d.PriorityId,
                     SmppId = d.SmppId,
-                    SMSDate = d.Smsdate,
-                    SMSId = d.Smsid,
-                    SMSIDIn = d.SmsidIn,
-                    SMSText = d.Smstext,
+                    SMSDate = d.SmsDate,
+                    SMSId = d.SmsId,
+                    SMSIDIn = d.SmsIdIn,
+                    SMSText = d.SmsText,
                     State = d.State.State,
                     StateId = d.StateId,
                 }).OrderByDescending(d => d.PriorityId)
@@ -194,10 +194,10 @@ namespace Hot4.Repository.Concrete
             int queueSize = 500;
 
             var smsDetail = await _context.Sms
-                .Where(d => d.Direction == false && d.StateId == (int)SmsState.Pending && d.Smsdate < DateTime.Now)
+                .Where(d => d.Direction == false && d.StateId == (int)SmsState.Pending && d.SmsDate < DateTime.Now)
                 .Include(d => d.State).Include(d => d.Priority)
                 .OrderByDescending(d => d.PriorityId)
-                .ThenBy(d => d.Smsdate)
+                .ThenBy(d => d.SmsDate)
                 .Take(queueSize)
                 .ToListAsync();
             var transaction = await _context.Database.BeginTransactionAsync();
@@ -219,10 +219,10 @@ namespace Hot4.Repository.Concrete
                     Priority = d.Priority.Priority,
                     PriorityId = d.PriorityId,
                     SmppId = d.SmppId,
-                    SMSDate = d.Smsdate,
-                    SMSId = d.Smsid,
-                    SMSIDIn = d.SmsidIn,
-                    SMSText = d.Smstext,
+                    SMSDate = d.SmsDate,
+                    SMSId = d.SmsId,
+                    SMSIDIn = d.SmsIdIn,
+                    SMSText = d.SmsText,
                     State = d.State.State,
                     StateId = d.StateId,
                 }).OrderByDescending(d => d.PriorityId)
@@ -241,7 +241,7 @@ namespace Hot4.Repository.Concrete
             var endDate = smsDate.Date.AddDays(1).AddTicks(-1);
 
             return await (from sms in _context.Sms.Include(d => d.State).Include(d => d.Priority)
-                         .Where(d => d.Direction == true && d.Smsdate >= startDate && smsDate <= endDate)
+                         .Where(d => d.Direction == true && d.SmsDate >= startDate && smsDate <= endDate)
                           join acss in _context.Access on sms.Mobile equals acss.AccessCode
                           where acss.AccountId == accountId
                           select new SMSModel
@@ -252,10 +252,10 @@ namespace Hot4.Repository.Concrete
                               Priority = sms.Priority.Priority,
                               PriorityId = sms.PriorityId,
                               SmppId = sms.SmppId,
-                              SMSDate = sms.Smsdate,
-                              SMSId = sms.Smsid,
-                              SMSIDIn = sms.SmsidIn,
-                              SMSText = sms.Smstext,
+                              SMSDate = sms.SmsDate,
+                              SMSId = sms.SmsId,
+                              SMSIDIn = sms.SmsIdIn,
+                              SMSText = sms.SmsText,
                               State = sms.State.State,
                               StateId = sms.StateId,
                           })
@@ -264,7 +264,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<List<SMSModel>> GetSMSBySMSId(long smsId)
         {
-            return await GetByCondition(d => d.Smsid == smsId)
+            return await GetByCondition(d => d.SmsId == smsId)
                 .Include(d => d.State).Include(d => d.Priority)
                 .Select(d => new SMSModel
                 {
@@ -274,10 +274,10 @@ namespace Hot4.Repository.Concrete
                     Priority = d.Priority.Priority,
                     PriorityId = d.PriorityId,
                     SmppId = d.SmppId,
-                    SMSDate = d.Smsdate,
-                    SMSId = d.Smsid,
-                    SMSIDIn = d.SmsidIn,
-                    SMSText = d.Smstext,
+                    SMSDate = d.SmsDate,
+                    SMSId = d.SmsId,
+                    SMSIDIn = d.SmsIdIn,
+                    SMSText = d.SmsText,
                     State = d.State.State,
                     StateId = d.StateId,
                 })
@@ -299,10 +299,10 @@ namespace Hot4.Repository.Concrete
 
             if (smsSearch.SmppId == -1)
             {
-                return await GetByCondition(d => d.Smsdate >= smsSearch.StartDate
-                        && d.Smsdate <= smsSearch.EndDate && states.Contains(d.StateId)
+                return await GetByCondition(d => d.SmsDate >= smsSearch.StartDate
+                        && d.SmsDate <= smsSearch.EndDate && states.Contains(d.StateId)
                         && (string.IsNullOrEmpty(smsSearch.Mobile) || d.Mobile.Contains(smsSearch.Mobile))
-                        && (string.IsNullOrEmpty(smsSearch.MessageText) || d.Smstext.Contains(smsSearch.MessageText)))
+                        && (string.IsNullOrEmpty(smsSearch.MessageText) || d.SmsText.Contains(smsSearch.MessageText)))
                     .Include(d => d.State).Include(d => d.Priority)
                                 .Select(d => new SMSModel
                                 {
@@ -312,10 +312,10 @@ namespace Hot4.Repository.Concrete
                                     Priority = d.Priority.Priority,
                                     PriorityId = d.PriorityId,
                                     SmppId = d.SmppId,
-                                    SMSDate = d.Smsdate,
-                                    SMSId = d.Smsid,
-                                    SMSIDIn = d.SmsidIn,
-                                    SMSText = d.Smstext,
+                                    SMSDate = d.SmsDate,
+                                    SMSId = d.SmsId,
+                                    SMSIDIn = d.SmsIdIn,
+                                    SMSText = d.SmsText,
                                     State = d.State.State,
                                     StateId = d.StateId,
                                 }).OrderBy(d => d.SMSDate).ToListAsync();
@@ -324,11 +324,11 @@ namespace Hot4.Repository.Concrete
             else
             {
                 return await _context.Sms.Include(d => d.State).Include(d => d.Priority)
-                      .Where(d => d.Smsdate >= smsSearch.StartDate && d.Smsdate <= smsSearch.EndDate)
+                      .Where(d => d.SmsDate >= smsSearch.StartDate && d.SmsDate <= smsSearch.EndDate)
                       .Where(d => d.SmppId == smsSearch.SmppId)
                       .Where(d => states.Contains(d.StateId))
                       .Where(d => d.Mobile.Contains(smsSearch.Mobile))
-                      .Where(d => d.Smstext.Contains(smsSearch.MessageText))
+                      .Where(d => d.SmsText.Contains(smsSearch.MessageText))
                      .Select(d => new SMSModel
                      {
                          Direction = d.Direction,
@@ -337,10 +337,10 @@ namespace Hot4.Repository.Concrete
                          Priority = d.Priority.Priority,
                          PriorityId = d.PriorityId,
                          SmppId = d.SmppId,
-                         SMSDate = d.Smsdate,
-                         SMSId = d.Smsid,
-                         SMSIDIn = d.SmsidIn,
-                         SMSText = d.Smstext,
+                         SMSDate = d.SmsDate,
+                         SMSId = d.SmsId,
+                         SMSIDIn = d.SmsIdIn,
+                         SMSText = d.SmsText,
                          State = d.State.State,
                          StateId = d.StateId,
                      })
@@ -351,10 +351,10 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<SMSModel?> DuplicateRecharge(DuplicateRechargeSrchModel smsDuplicateSearch)
         {
-            var result = await _context.Sms.FirstOrDefaultAsync(d => d.Smsid != smsDuplicateSearch.SmsId
-                             && d.Smstext == smsDuplicateSearch.SmsText
+            var result = await _context.Sms.FirstOrDefaultAsync(d => d.SmsId != smsDuplicateSearch.SmsId
+                             && d.SmsText == smsDuplicateSearch.SmsText
                              && d.Mobile == smsDuplicateSearch.Mobile
-                             && d.Smsdate > DateTime.Now.AddMinutes(-5));
+                             && d.SmsDate > DateTime.Now.AddMinutes(-5));
 
             if (result != null)
             {
@@ -366,10 +366,10 @@ namespace Hot4.Repository.Concrete
                     Priority = result.Priority.Priority,
                     PriorityId = result.PriorityId,
                     SmppId = result.SmppId,
-                    SMSDate = result.Smsdate,
-                    SMSId = result.Smsid,
-                    SMSIDIn = result.SmsidIn,
-                    SMSText = result.Smstext,
+                    SMSDate = result.SmsDate,
+                    SMSId = result.SmsId,
+                    SMSIDIn = result.SmsIdIn,
+                    SMSText = result.SmsText,
                     State = result.State.State,
                     StateId = result.StateId,
                 };
@@ -380,15 +380,15 @@ namespace Hot4.Repository.Concrete
         {
             var smsId = await (from sms in _context.Sms
                                where sms.Mobile == mobile
-                              && sms.Smstext.Contains(rechargeMobile)
+                              && sms.SmsText.Contains(rechargeMobile)
                               && sms.Direction == true
-                               join rch in _context.SmsRecharge on sms.Smsid equals rch.SmsId
-                               select new { sms.Smsid, sms.Smsdate }
-                                 ).OrderByDescending(d => d.Smsdate).Select(d => d.Smsid).FirstOrDefaultAsync();
+                               join rch in _context.SmsRecharge on sms.SmsId equals rch.SmsId
+                               select new { sms.SmsId, sms.SmsDate }
+                                 ).OrderByDescending(d => d.SmsDate).Select(d => d.SmsId).FirstOrDefaultAsync();
 
             if (smsId > 0)
             {
-                var smsToUpdate = await _context.Sms.FirstOrDefaultAsync(d => d.Smsid == smsId);
+                var smsToUpdate = await _context.Sms.FirstOrDefaultAsync(d => d.SmsId == smsId);
                 if (smsToUpdate != null)
                 {
 

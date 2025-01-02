@@ -5,7 +5,7 @@ namespace Hot4.DataModel.Models;
 public partial class Sms
 {
     [Key]
-    public long Smsid { get; set; }
+    public long SmsId { get; set; }
 
     public byte? SmppId { get; set; }
 
@@ -17,11 +17,11 @@ public partial class Sms
 
     public required string Mobile { get; set; }
 
-    public required string Smstext { get; set; }
+    public required string SmsText { get; set; }
 
-    public DateTime Smsdate { get; set; }
+    public DateTime SmsDate { get; set; }
 
-    public long? SmsidIn { get; set; }
+    public long? SmsIdIn { get; set; }
 
     public DateTime? InsertDate { get; set; }
 
