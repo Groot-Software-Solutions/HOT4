@@ -8,5 +8,6 @@ namespace Hot4.Repository.Abstract
         Task<List<SMPPModel>> ListSMPP();
         Task AddSMPP(Smpp smpp);
         Task UpdateSMPP(Smpp smpp);
+        Task DeleteSMPP(Smpp smpp);
     }
 }

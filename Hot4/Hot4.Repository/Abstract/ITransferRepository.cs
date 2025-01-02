@@ -10,7 +10,7 @@ namespace Hot4.Repository.Abstract
         Task AddTransfer(Transfer transfer);
         Task UpdateTransfer(Transfer transfer);
         Task DeleteTransfer(Transfer transfer);
-        Task<decimal> GetStockTradeBalance(long accountId);
+        Task<decimal> GetStockTradeBalByAccountId(long accountId);
         Task<StockTradeModel> GetStockTrade(StockTradeSearchModel stockTradeSearch);
     }
 }

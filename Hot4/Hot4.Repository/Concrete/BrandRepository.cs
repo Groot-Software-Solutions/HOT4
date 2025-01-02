@@ -10,51 +10,53 @@ namespace Hot4.Repository.Concrete
     {
         public BrandRepository(HotDbContext context) : base(context) { }
 
-        public async Task<List<BrandModel>> GetBrand(int BrandId)
+        public async Task<List<BrandModel>> GetBrandById(int BrandId)
         {
-            return await GetByCondition(d => d.BrandId == BrandId).Include(d => d.Network)
-                 .Select(d => new BrandModel
-                 {
-                     BrandId = d.BrandId,
-                     BrandName = d.BrandName,
-                     BrandSuffix = d.BrandSuffix,
-                     Network = d.Network.Network,
-                     NetworkId = d.NetworkId,
-                     Prefix = d.Network.Prefix,
-                     WalletTypeId = d.WalletTypeId
-                 }).ToListAsync();
+            return await GetByCondition(d => d.BrandId == BrandId)
+                         .Include(d => d.Network)
+                         .Select(d => new BrandModel
+                         {
+                             BrandId = d.BrandId,
+                             BrandName = d.BrandName,
+                             BrandSuffix = d.BrandSuffix,
+                             Network = d.Network.Network,
+                             NetworkId = d.NetworkId,
+                             Prefix = d.Network.Prefix,
+                             WalletTypeId = d.WalletTypeId
+                         }).ToListAsync();
         }
 
         public async Task<List<BrandModel>> GetBrandIdentity(BrandIdentitySearchModel brandIdentitySearchModel)
         {
             return await GetByCondition(d => d.NetworkId == brandIdentitySearchModel.NetworkId
-            && d.BrandSuffix == brandIdentitySearchModel.BrandSuffix).Include(d => d.Network)
-                 .Select(d => new BrandModel
-                 {
-                     BrandId = d.BrandId,
-                     BrandName = d.BrandName,
-                     BrandSuffix = d.BrandSuffix,
-                     Network = d.Network.Network,
-                     NetworkId = d.NetworkId,
-                     Prefix = d.Network.Prefix,
-                     WalletTypeId = d.WalletTypeId
-
-                 }).ToListAsync();
+                         && d.BrandSuffix == brandIdentitySearchModel.BrandSuffix)
+                         .Include(d => d.Network)
+                         .Select(d => new BrandModel
+                         {
+                             BrandId = d.BrandId,
+                             BrandName = d.BrandName,
+                             BrandSuffix = d.BrandSuffix,
+                             Network = d.Network.Network,
+                             NetworkId = d.NetworkId,
+                             Prefix = d.Network.Prefix,
+                             WalletTypeId = d.WalletTypeId
+                         }).ToListAsync();
         }
 
         public async Task<List<BrandModel>> ListBrand()
         {
-            return await GetAll().Include(d => d.Network).Select(
-                d => new BrandModel
-                {
-                    BrandId = d.BrandId,
-                    BrandName = d.BrandName,
-                    BrandSuffix = d.BrandSuffix,
-                    Network = d.Network.Network,
-                    NetworkId = d.NetworkId,
-                    Prefix = d.Network.Prefix,
-                    WalletTypeId = d.WalletTypeId
-                }).ToListAsync();
+            return await GetAll()
+                   .Include(d => d.Network)
+                   .Select(d => new BrandModel
+                   {
+                       BrandId = d.BrandId,
+                       BrandName = d.BrandName,
+                       BrandSuffix = d.BrandSuffix,
+                       Network = d.Network.Network,
+                       NetworkId = d.NetworkId,
+                       Prefix = d.Network.Prefix,
+                       WalletTypeId = d.WalletTypeId
+                   }).ToListAsync();
         }
         public async Task AddBrand(Brand brand)
         {

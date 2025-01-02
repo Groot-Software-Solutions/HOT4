@@ -12,12 +12,13 @@ namespace Hot4.Repository.Concrete
 
         public async Task<ProfileDiscountModel?> GetPrfDiscountById(int prfDiscountId)
         {
-            ProfileDiscountModel profileDiscountModel = null;
-            var result = await _context.ProfileDiscount.Include(d => d.Brand).ThenInclude(d => d.Network)
-                .FirstOrDefaultAsync(d => d.ProfileDiscountId == prfDiscountId);
+            var result = await _context.ProfileDiscount
+                               .Include(d => d.Brand)
+                               .ThenInclude(d => d.Network)
+                               .FirstOrDefaultAsync(d => d.ProfileDiscountId == prfDiscountId);
             if (result != null)
             {
-                profileDiscountModel = new ProfileDiscountModel
+                return new ProfileDiscountModel
                 {
                     ProfileDiscountId = result.ProfileDiscountId,
                     Discount = result.Discount,
@@ -31,7 +32,7 @@ namespace Hot4.Repository.Concrete
 
                 };
             }
-            return profileDiscountModel;
+            return null;
         }
         public async Task<int> AddPrfDiscount(ProfileDiscount profileDiscount)
         {
@@ -53,40 +54,38 @@ namespace Hot4.Repository.Concrete
         public async Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileId(int profileId)
         {
             return await GetByCondition(d => d.ProfileId == profileId)
-                .Select(d => new ProfileDiscountModel
-                {
-                    ProfileDiscountId = d.ProfileDiscountId,
-                    Discount = d.Discount,
-                    ProfileId = d.ProfileId,
-                    BrandId = d.BrandId,
-                    BrandName = d.Brand.BrandName,
-                    BrandSuffix = d.Brand.BrandSuffix,
-                    NetworkId = d.Brand.NetworkId,
-                    Network = d.Brand.Network.Network,
-                    NetworkPrefix = d.Brand.Network.Prefix,
-
-                }).ToListAsync();
+                         .Select(d => new ProfileDiscountModel
+                         {
+                             ProfileDiscountId = d.ProfileDiscountId,
+                             Discount = d.Discount,
+                             ProfileId = d.ProfileId,
+                             BrandId = d.BrandId,
+                             BrandName = d.Brand.BrandName,
+                             BrandSuffix = d.Brand.BrandSuffix,
+                             NetworkId = d.Brand.NetworkId,
+                             Network = d.Brand.Network.Network,
+                             NetworkPrefix = d.Brand.Network.Prefix,
+                         }).ToListAsync();
         }
-        public async Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileBrandId(int profileId, int brandId)
+        public async Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileAndBrandId(int profileId, int brandId)
         {
             return await GetByCondition(d => d.ProfileId == profileId && d.BrandId == brandId)
-                .Include(d => d.Brand).ThenInclude(d => d.Network)
-               .Select(d => new ProfileDiscountModel
-               {
-                   ProfileDiscountId = d.ProfileDiscountId,
-                   Discount = d.Discount,
-                   ProfileId = d.ProfileId,
-                   BrandId = d.BrandId,
-                   BrandName = d.Brand.BrandName,
-                   BrandSuffix = d.Brand.BrandSuffix,
-                   NetworkId = d.Brand.NetworkId,
-                   Network = d.Brand.Network.Network,
-                   NetworkPrefix = d.Brand.Network.Prefix,
+                         .Include(d => d.Brand).ThenInclude(d => d.Network)
+                         .Select(d => new ProfileDiscountModel
+                         {
+                             ProfileDiscountId = d.ProfileDiscountId,
+                             Discount = d.Discount,
+                             ProfileId = d.ProfileId,
+                             BrandId = d.BrandId,
+                             BrandName = d.Brand.BrandName,
+                             BrandSuffix = d.Brand.BrandSuffix,
+                             NetworkId = d.Brand.NetworkId,
+                             Network = d.Brand.Network.Network,
+                             NetworkPrefix = d.Brand.Network.Prefix,
 
-               }).ToListAsync();
+                         }).ToListAsync();
 
         }
-
 
     }
 }

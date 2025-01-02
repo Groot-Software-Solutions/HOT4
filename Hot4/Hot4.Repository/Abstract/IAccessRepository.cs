@@ -5,12 +5,12 @@ namespace Hot4.Repository.Abstract
 {
     public interface IAccessRepository
     {
-        Task<AccessModel?> GetAccess(long accessId);
-        Task<List<AccessModel>> ListAccountChannel(long accountId, byte channelId);
-        Task<AccountAccessModel?> GetByAccessCode(string accessCode);
+        Task<AccessModel?> GetAccessById(long accessId);
+        Task<List<AccessModel>> GetAccessByAccountIdAndChannelId(long accountId, byte channelId);
+        Task<AccountAccessModel?> GetAccessByCode(string accessCode);
         Task AddAccess(Access access);
         Task UpdateAccess(Access access);
-        Task<List<AccountAccessModel>> ListAccess(long accountId, bool isGetAll, bool isDeleted);
+        Task<List<AccountAccessModel>> GetAccessByAccountId(long accountId, bool isGetAll, bool isDeleted);
         Task<long> GetAdminId(long accountId);
         Task PasswordChange(long accessId, string newPassword);
         Task<AccountAccessModel?> GetLoginDetails(string accessCode, string accessPassword);

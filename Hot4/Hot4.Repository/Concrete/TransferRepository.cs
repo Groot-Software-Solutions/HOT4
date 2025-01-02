@@ -20,7 +20,6 @@ namespace Hot4.Repository.Concrete
             await Create(transfer);
             await SaveChanges();
         }
-
         public async Task DeleteTransfer(Transfer transfer)
         {
             await Delete(transfer);
@@ -47,7 +46,6 @@ namespace Hot4.Repository.Concrete
                           TransferId = d.TransferId,
                       }).OrderByDescending(d => d.TransferId).ToListAsync();
         }
-
         public async Task<List<TransferModel>> ListTransfer(int pageNo, int pageSize)
         {
             var result = _context.Transfer.Include(d => d.Channel);
@@ -64,21 +62,21 @@ namespace Hot4.Repository.Concrete
                     TransferId = d.TransferId,
                 }).OrderByDescending(d => d.TransferId).ToListAsync();
         }
-        public async Task<decimal> GetStockTradeBalance(long accountId)
+        public async Task<decimal> GetStockTradeBalByAccountId(long accountId)
         {
             var balance = await _context.Payment
-                              .Where(p => p.AccountId == accountId
-                                          && p.PaymentTypeId == (int)PaymentMethodType.zBalanceBF
-                                          && p.PaymentSourceId == (int)PaymentMethodSource.MCExecutive
-                                          && p.Reference == "Balance - 23Jun2023")
-                              .OrderByDescending(p => p.PaymentId)
-                              .Select(p => p.Amount)
-                              .FirstOrDefaultAsync();
+                                 .Where(p => p.AccountId == accountId
+                                 && p.PaymentTypeId == (int)PaymentMethodType.zBalanceBF
+                                 && p.PaymentSourceId == (int)PaymentMethodSource.MCExecutive
+                                 && p.Reference == "Balance - 23Jun2023")
+                                 .OrderByDescending(p => p.PaymentId)
+                                 .Select(p => p.Amount)
+                                 .FirstOrDefaultAsync();
 
             var traded = await _context.Payment
                                 .Where(p => p.AccountId == accountId
-                                            && p.PaymentTypeId == (int)PaymentMethodType.zServiceFees
-                                            && p.PaymentSourceId == (int)PaymentMethodSource.Ecobank)
+                                && p.PaymentTypeId == (int)PaymentMethodType.zServiceFees
+                                && p.PaymentSourceId == (int)PaymentMethodSource.Ecobank)
                                 .SumAsync(p => Math.Abs(p.Amount));
 
 
@@ -86,22 +84,21 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<StockTradeModel> GetStockTrade(StockTradeSearchModel stockTradeSearch)
         {
-
             decimal? balance = 0, traded = 0, tradableZWL = 0, ZWLBalance = 0, tradableBalanceZWL = 0, USDBalance = 0;
             decimal paymentAmount = 0;
 
-            balance = await _context.Payment
-                .Where(d => d.AccountId == stockTradeSearch.AccountId
-                && d.PaymentTypeId == (int)PaymentMethodType.zBalanceBF
-                && d.PaymentSourceId == (int)PaymentMethodSource.MCExecutive && d.Reference == "Balance - 23Jun2023")
-                .OrderByDescending(d => d.PaymentId)
-                .Select(d => (decimal?)d.Amount)
-                .FirstOrDefaultAsync();
+            balance = await _context.Payment.Where(d => d.AccountId == stockTradeSearch.AccountId
+                            && d.PaymentTypeId == (int)PaymentMethodType.zBalanceBF
+                            && d.PaymentSourceId == (int)PaymentMethodSource.MCExecutive
+                            && d.Reference == "Balance - 23Jun2023")
+                            .OrderByDescending(d => d.PaymentId)
+                           .Select(d => (decimal?)d.Amount)
+                           .FirstOrDefaultAsync();
 
             traded = await _context.Payment.Where(d => d.AccountId == stockTradeSearch.AccountId
-                  && d.PaymentTypeId == (int)PaymentMethodType.zServiceFees
-                  && d.PaymentSourceId == (int)PaymentMethodSource.Ecobank)
-                .SumAsync(d => (decimal?)d.Amount) ?? 0;
+                     && d.PaymentTypeId == (int)PaymentMethodType.zServiceFees
+                     && d.PaymentSourceId == (int)PaymentMethodSource.Ecobank)
+                     .SumAsync(d => (decimal?)d.Amount) ?? 0;
 
             // Calculate tradable ZWL and balances
             tradableZWL = (balance ?? 0) - traded;
@@ -152,8 +149,6 @@ namespace Hot4.Repository.Concrete
                         ZWLbalance = await _commonRepository.GetBalance(stockTradeSearch.AccountId),
                         USDBalance = await _commonRepository.GetUSDBalance(stockTradeSearch.AccountId)
                     };
-
-
                 }
                 else
                 {
@@ -165,7 +160,6 @@ namespace Hot4.Repository.Concrete
                         ZWLbalance = ZWLBalance ?? 0,
                         USDBalance = USDBalance ?? 0
                     };
-
                 }
             }
             else
@@ -178,15 +172,7 @@ namespace Hot4.Repository.Concrete
                     ZWLbalance = ZWLBalance ?? 0,
                     USDBalance = USDBalance ?? 0
                 };
-
             }
-
         }
-
-
-
-
-
-
     }
 }

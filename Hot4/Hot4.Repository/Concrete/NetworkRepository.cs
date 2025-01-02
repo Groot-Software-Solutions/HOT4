@@ -9,7 +9,23 @@ namespace Hot4.Repository.Concrete
     public class NetworkRepository : RepositoryBase<Networks>, INetworkRepository
     {
         public NetworkRepository(HotDbContext context) : base(context) { }
-        public async Task<List<NetworkModel>> GetNetworkIdentity(string mobile)
+
+        public async Task AddNetwork(Networks networks)
+        {
+            await Create(networks);
+            await SaveChanges();
+        }
+        public async Task UpdateNetwork(Networks networks)
+        {
+            await Update(networks);
+            await SaveChanges();
+        }
+        public async Task DeleteNetwork(Networks networks)
+        {
+            await Delete(networks);
+            await SaveChanges();
+        }
+        public async Task<List<NetworkModel>> GetNetworkIdentityByMobile(string mobile)
         {
             return await GetByCondition(d => mobile.Substring(1, 2) == d.Prefix || mobile.Substring(1, 4) == d.Prefix)
                  .Select(d => new NetworkModel

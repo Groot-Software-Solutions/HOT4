@@ -9,7 +9,7 @@ namespace Hot4.Repository.Concrete
     {
         public AddressRepository(HotDbContext context) : base(context) { }
 
-        public async Task<AddressModel?> GetAddress(long accountId)
+        public async Task<AddressModel?> GetAddressById(long accountId)
         {
             var address = await GetById(accountId);
             if (address != null)
@@ -51,17 +51,14 @@ namespace Hot4.Repository.Concrete
                 };
             }
         }
-        public async Task SaveUpdateAddress(Address address)
+        public async Task SaveAddress(Address address)
         {
-            var addressExst = await GetById(address.AccountId);
-            if (addressExst == null)
-            {
-                await Create(address);
-            }
-            else
-            {
-                await Update(address);
-            }
+            await Create(address);
+            await SaveChanges();
+        }
+        public async Task UpdateAddress(Address address)
+        {
+            await Update(address);
             await SaveChanges();
         }
         public async Task DeleteAddress(Address address)
@@ -69,6 +66,5 @@ namespace Hot4.Repository.Concrete
             await Delete(address);
             await SaveChanges();
         }
-
     }
 }

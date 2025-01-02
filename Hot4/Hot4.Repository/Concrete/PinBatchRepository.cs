@@ -36,19 +36,46 @@ namespace Hot4.Repository.Concrete
                 };
             }
         }
-
-        public async Task<List<PinBatchVsType>> PinBatch_by_batchType(byte pinBatchTypeId)
+        public async Task UpdatePinBatch(PinBatches pinBatches)
         {
-            return await GetByCondition(d => d.PinBatchTypeId == pinBatchTypeId).Include(d => d.PinBatchType)
-                .OrderBy(d => d.BatchDate)
-                   .Select(d => new PinBatchVsType
-                   {
-                       BatchDate = d.BatchDate,
-                       PinBatch = d.PinBatch,
-                       PinBatchId = d.PinBatchId,
-                       PinBatchType = d.PinBatchType.PinBatchType,
-                       PinBatchTypeId = d.PinBatchTypeId
-                   }).ToListAsync();
+            await Update(pinBatches);
+            await SaveChanges();
+        }
+        public async Task DeletePinBatch(PinBatches pinBatches)
+        {
+            await Delete(pinBatches);
+            await SaveChanges();
+        }
+        public async Task<List<PinBatchVsType>> GetPinBatchByPinBatchTypeId(byte pinBatchTypeId)
+        {
+            return await GetByCondition(d => d.PinBatchTypeId == pinBatchTypeId)
+                        .Include(d => d.PinBatchType)
+                        .OrderBy(d => d.BatchDate)
+                        .Select(d => new PinBatchVsType
+                        {
+                            BatchDate = d.BatchDate,
+                            PinBatch = d.PinBatch,
+                            PinBatchId = d.PinBatchId,
+                            PinBatchType = d.PinBatchType.PinBatchType,
+                            PinBatchTypeId = d.PinBatchTypeId
+                        }).ToListAsync();
+        }
+        public async Task<PinBatchVsType?> GetPinBatchById(long pinBatchId)
+        {
+            var result = await _context.PinBatch.Include(d => d.PinBatchType).FirstOrDefaultAsync(d => d.PinBatchId == pinBatchId);
+            if (result != null)
+            {
+
+                return new PinBatchVsType
+                {
+                    BatchDate = result.BatchDate,
+                    PinBatch = result.PinBatch,
+                    PinBatchId = result.PinBatchId,
+                    PinBatchType = result.PinBatchType.PinBatchType,
+                    PinBatchTypeId = result.PinBatchTypeId
+                };
+            }
+            return null;
         }
     }
 }

@@ -15,7 +15,6 @@ namespace Hot4.Repository.Concrete
             await Create(paymentType);
             await SaveChanges();
         }
-
         public async Task DeletePaymentType(PaymentTypes paymentType)
         {
             await Delete(paymentType);
@@ -37,7 +36,5 @@ namespace Hot4.Repository.Concrete
                 })
                 .ToListAsync();
         }
-
-
     }
 }

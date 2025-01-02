@@ -9,23 +9,7 @@ namespace Hot4.Repository.Concrete
     public class BundleRepository : RepositoryBase<Bundle>, IBundleRepository
     {
         public BundleRepository(HotDbContext context) : base(context) { }
-        public async Task AddBundle(Bundle bundle)
-        {
-            await Create(bundle);
-            await SaveChanges();
-        }
-
-        public async Task DeleteBundle(Bundle bundle)
-        {
-            await Delete(bundle);
-            await SaveChanges();
-        }
-        public async Task UpdateBundle(Bundle bundle)
-        {
-            await Update(bundle);
-            await SaveChanges();
-        }
-        public async Task<List<BundleModel>> GetBundles(int bundleId)
+        public async Task<List<BundleModel>> GetBundlesById(int bundleId)
         {
             return await (from bundle in _context.Bundle
                           where bundle.BundleId == bundleId
@@ -43,7 +27,21 @@ namespace Hot4.Repository.Concrete
                               Network = brand.BrandName
                           }).ToListAsync();
         }
-
+        public async Task AddBundle(Bundle bundle)
+        {
+            await Create(bundle);
+            await SaveChanges();
+        }
+        public async Task DeleteBundle(Bundle bundle)
+        {
+            await Delete(bundle);
+            await SaveChanges();
+        }
+        public async Task UpdateBundle(Bundle bundle)
+        {
+            await Update(bundle);
+            await SaveChanges();
+        }
         public async Task<List<BundleModel>> ListBundles()
         {
             return await (from bundle in _context.Bundle
@@ -138,6 +136,5 @@ namespace Hot4.Repository.Concrete
     .ThenBy(b => b.Name)
     .ToListAsync();
         }
-
     }
 }

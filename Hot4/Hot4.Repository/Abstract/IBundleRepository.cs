@@ -5,7 +5,7 @@ namespace Hot4.Repository.Abstract
 {
     public interface IBundleRepository
     {
-        Task<List<BundleModel>> GetBundles(int bundleId);
+        Task<List<BundleModel>> GetBundlesById(int bundleId);
         Task<List<BundleModel>> ListBundles();
         Task AddBundle(Bundle bundle);
         Task UpdateBundle(Bundle bundle);

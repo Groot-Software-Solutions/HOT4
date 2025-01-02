@@ -15,11 +15,15 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
             return selfTopUp.SelfTopUpId;
         }
-
+        public async Task DeleteSelfTopUp(SelfTopUp selfTopUp)
+        {
+            await Delete(selfTopUp);
+            await SaveChanges();
+        }
         public async Task<List<SelfTopUpModel>> GetSelfTopUpByBankTrxId(long bankTrxId)
         {
             return await (from s in _context.SelfTopUp.Where(d => d.BankTrxId == bankTrxId)
-                 .Include(d => d.Access).Include(d => d.Brand)
+                          .Include(d => d.Access).Include(d => d.Brand)
                           join st in _context.SelfTopUpState on s.StateId equals st.SelfTopUpStateId
                           select new SelfTopUpModel
                           {
@@ -42,7 +46,6 @@ namespace Hot4.Repository.Concrete
                           }).OrderByDescending(d => d.SelfTopUpId)
                           .ToListAsync();
         }
-
         public async Task<List<SelfTopUpModel>> GetSelfTopUpByStateId(byte selfTopUpStateId)
         {
             return await (from s in _context.SelfTopUp.Where(d => d.StateId == selfTopUpStateId)
@@ -69,7 +72,6 @@ namespace Hot4.Repository.Concrete
                           }).OrderBy(d => d.SelfTopUpId)
                           .ToListAsync();
         }
-
         public async Task UpdateSelfTopUp(SelfTopUp selfTopUp)
         {
             await Update(selfTopUp);

@@ -32,8 +32,6 @@ namespace Hot4.Repository.Concrete
             await this._context.Set<T>().AddAsync(entity);
 
         }
-
-
         public async Task Update(T entity)
         {
             this._context.Set<T>().Update(entity);
@@ -42,7 +40,6 @@ namespace Hot4.Repository.Concrete
         {
             this._context.Set<T>().Remove(entity);
         }
-
         public async Task SaveChanges()
         {
             await _context.SaveChangesAsync();
@@ -52,28 +49,10 @@ namespace Hot4.Repository.Concrete
             await this._context.Set<List<T>>().AddRangeAsync(entities);
         }
 
-        public async Task<object?> CreateReturn(T entity, string fieldname)
-        {
-
-            var res = await this._context.Set<T>().AddAsync(entity);
-            if (res != null)
-            {
-                var idProperty = res.GetType().GetProperty(fieldname)?.GetValue(entity, null);
-                return (object?)idProperty;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
         public async Task BulkUpdate(List<T> entities)
         {
             this._context.UpdateRange(entities);
         }
-        //public void BulkDelete(List<T> entities)
-        //{
-        //    this._context.RemoveRange(entities);
-        //}
+
     }
 }

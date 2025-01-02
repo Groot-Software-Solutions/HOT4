@@ -5,14 +5,14 @@ namespace Hot4.Repository.Abstract
 {
     public interface IRechargeRepository
     {
-        Task<RechargeDetailModel?> GetRecharge(long rechargeId);
+        Task<RechargeDetailModel?> GetRechargeById(long rechargeId);
         Task UpdateRecharge(Recharge recharge);
-        Task InsertRecharge(Recharge recharge, long smsId);
+        Task AddRecharge(Recharge recharge, long smsId);
         Task<List<RechargeModel>> GetRechargeAggregator(RechargeAggSearchModel rechargeAggSearch);
-        Task<List<RechargeDetailModel>> RechargeFindByMobileAccountId(RechargeFindModel rechargeFind);
-        Task<List<RechargeModel>> RechargePending(List<byte> brandIds);
-        Task<RechargeDetailModel?> RechargePendingByBrandId(byte brandId);
-        Task<RechargeDetailModel?> RechargePendingOtherBrand();
+        Task<List<RechargeDetailModel>> FindRechargeByMobileAndAccountId(RechargeFindModel rechargeFind);
+        Task<List<RechargeModel>> UpdatePendingStsByMulBrands(List<byte> brandIds);
+        Task<RechargeDetailModel?> UpdatePendingStsByBrandId(byte brandId);
+        Task<RechargeDetailModel?> UpdatePendingStsOtherBrand();
         Task<RechargeModel?> GetRechargeWebDuplicate(RechWebDupSearchModel rechWebDup);
     }
 }

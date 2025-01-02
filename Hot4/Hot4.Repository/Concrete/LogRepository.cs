@@ -15,13 +15,21 @@ namespace Hot4.Repository.Concrete
             await Create(log);
             await SaveChanges();
         }
-
-        public async Task<List<LogModel>> GetAll(int pageNo, int pageSize)
+        public async Task UpdateLog(Log log)
+        {
+            await Update(log);
+            await SaveChanges();
+        }
+        public async Task DeleteLog(Log log)
+        {
+            await Delete(log);
+            await SaveChanges();
+        }
+        public async Task<List<LogModel>> ListLog(int pageNo, int pageSize)
         {
             return await PaginationFilter.GetPagedData(GetAll(), pageNo, pageSize).Queryable
                                .Select(d => new LogModel
                                {
-
                                    LogDate = d.LogDate,
                                    LogDescription = d.LogDescription,
                                    LogMethod = d.LogMethod,
@@ -30,8 +38,8 @@ namespace Hot4.Repository.Concrete
                                    Idnumber = d.Idnumber,
                                    Idtype = d.Idtype,
                                    LogId = d.LogId
-
                                }).ToListAsync();
         }
+
     }
 }

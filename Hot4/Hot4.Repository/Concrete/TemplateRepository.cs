@@ -15,14 +15,12 @@ namespace Hot4.Repository.Concrete
             await Create(template);
             await SaveChanges();
         }
-
         public async Task DeleteTemplate(Template template)
         {
             await Delete(template);
             await SaveChanges();
         }
-
-        public async Task<TemplateModel?> GetTemplate(int templateId)
+        public async Task<TemplateModel?> GetTemplateById(int templateId)
         {
             var result = await GetById(templateId);
             if (result != null)
@@ -36,7 +34,6 @@ namespace Hot4.Repository.Concrete
             }
             return null;
         }
-
         public Task<List<TemplateModel>> ListTemplates()
         {
             return GetAll().Select(d => new TemplateModel
@@ -46,12 +43,10 @@ namespace Hot4.Repository.Concrete
                 TemplateName = d.TemplateName,
             }).ToListAsync();
         }
-
         public async Task UpdateTemplate(Template template)
         {
             await Update(template);
             await SaveChanges();
         }
-
     }
 }

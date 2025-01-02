@@ -15,13 +15,11 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
             return selfTopUpState.SelfTopUpStateId;
         }
-
         public async Task DeleteSelfTopUpState(SelfTopUpState selfTopUpState)
         {
             await Delete(selfTopUpState);
             await SaveChanges();
         }
-
         public async Task<List<SelfTopUpStateModel>> ListSelfTopUpState()
         {
             return await GetAll().Select(d => new SelfTopUpStateModel
@@ -30,7 +28,6 @@ namespace Hot4.Repository.Concrete
                 SelfTopUpStateName = d.SelfTopUpStateName,
             }).ToListAsync();
         }
-
         public async Task UpdateSelfTopUpState(SelfTopUpState selfTopUpState)
         {
             await Update(selfTopUpState);

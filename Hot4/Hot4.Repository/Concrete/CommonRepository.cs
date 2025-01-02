@@ -17,8 +17,7 @@ namespace Hot4.Repository.Concrete
         {
             return (float)await (from r in _context.Recharge
                                  where r.BrandId == brandId && r.StateId == (int)SmsState.Success
-                                 join rp in _context.RechargePrepaid
-                                 on r.RechargeId equals rp.RechargeId
+                                 join rp in _context.RechargePrepaid on r.RechargeId equals rp.RechargeId
                                  where rp.FinalWallet != 0
                                  orderby r.RechargeId descending
                                  select rp.FinalWallet
@@ -27,39 +26,40 @@ namespace Hot4.Repository.Concrete
         public async Task<decimal> GetBalance(long accountId)
         {
             var paymentsSum = await _context.Payment
-           .Where(p => !new[] { (int)PaymentMethodType.ZESA, (int)PaymentMethodType.USD, (int)PaymentMethodType.Nyaradzo }.Contains(p.PaymentTypeId)
-           && p.AccountId == accountId).SumAsync(p => p.Amount);
+                              .Where(p => !new[]
+                              { (int)PaymentMethodType.ZESA,(int)PaymentMethodType.USD,(int)PaymentMethodType.Nyaradzo}
+                              .Contains(p.PaymentTypeId)
+                               && p.AccountId == accountId).SumAsync(p => p.Amount);
 
             var rechargeSum = await _context.Recharge.Include(d => d.Brand)
-                .Where(r => r.Brand.WalletTypeId == (int)WalletTypes.ZWG
-                    && new[] { (int)SmsState.Busy, (int)SmsState.Success, (int)SmsState.PendingVerification }.Contains(r.StateId))
-                .Join(_context.Access, r => r.AccessId, a => a.AccessId, (r, a) => new { a.AccountId, r.Amount, r.Discount })
-                .Where(ra => ra.AccountId == accountId)
-                .SumAsync(ra => -(ra.Amount * ((100 - ra.Discount) / 100)));
+                              .Where(r => r.Brand.WalletTypeId == (int)WalletTypes.ZWG
+                               && new[] { (int)SmsState.Busy, (int)SmsState.Success, (int)SmsState.PendingVerification }
+                               .Contains(r.StateId))
+                              .Join(_context.Access, r => r.AccessId, a => a.AccessId, (r, a) =>
+                              new { a.AccountId, r.Amount, r.Discount })
+                             .Where(ra => ra.AccountId == accountId)
+                              .SumAsync(ra => -(ra.Amount * ((100 - ra.Discount) / 100)));
 
             return paymentsSum + rechargeSum;
-
         }
         public async Task<decimal> GetUSDBalance(long accountId)
         {
-            var paymentsSum = await _context.Payment
-           .Where(p => p.PaymentTypeId == (int)PaymentMethodType.USD
-           && p.AccountId == accountId).SumAsync(p => p.Amount);
+            var paymentsSum = await _context.Payment.Where(p => p.PaymentTypeId == (int)PaymentMethodType.USD
+                                     && p.AccountId == accountId).SumAsync(p => p.Amount);
 
-            var rechargeSum = await _context.Recharge.Include(d => d.Brand)
-                .Where(r => r.Brand.WalletTypeId == (int)WalletTypes.USD
-                    && new[] { (int)SmsState.Busy, (int)SmsState.Success, (int)SmsState.PendingVerification }.Contains(r.StateId))
-                .Join(_context.Access, r => r.AccessId, a => a.AccessId, (r, a) => new { a.AccountId, r.Amount, r.Discount })
-                .Where(ra => ra.AccountId == accountId)
-                .SumAsync(ra => -(ra.Amount * ((100 - ra.Discount) / 100)));
+            var rechargeSum = await _context.Recharge.Include(d => d.Brand).Where(r => r.Brand.WalletTypeId == (int)WalletTypes.USD
+                                    && new[] { (int)SmsState.Busy, (int)SmsState.Success, (int)SmsState.PendingVerification }
+                                    .Contains(r.StateId))
+                                    .Join(_context.Access, r => r.AccessId, a => a.AccessId, (r, a) =>
+                                    new { a.AccountId, r.Amount, r.Discount })
+                                   .Where(ra => ra.AccountId == accountId)
+                                   .SumAsync(ra => -(ra.Amount * ((100 - ra.Discount) / 100)));
 
             return paymentsSum + rechargeSum;
-
         }
 
         public async Task<decimal> GetSaleValue(long accountId)
         {
-            // Get the average discount
             var discountAvg = await (from d in _context.ProfileDiscount
                                      join a in _context.Account on d.ProfileId equals a.ProfileId
                                      where a.AccountId == accountId
@@ -76,19 +76,22 @@ namespace Hot4.Repository.Concrete
             {
                 returnValue = balance;
             }
-
             return returnValue;
         }
 
         public async Task<List<ViewBalanceModel>> GetViewBalanceList(List<long> accountIds)
         {
-            var paymentData = await (from p in _context.Payment.Where(d => EF.Constant(accountIds).Contains(d.AccountId))
+            var paymentData = await (from p in _context.Payment.Where(d => EF.Constant(accountIds)
+                                     .Contains(d.AccountId))
                                      group p by p.AccountId into g
                                      select new
                                      {
                                          AccountId = g.Key,
-                                         amountAirtime = g.Where(x => !new[] { (int)PaymentMethodType.USD, (int)PaymentMethodType.ZESA, (int)PaymentMethodType.Nyaradzo, (int)PaymentMethodType.USDUtility }.Contains(x.PaymentTypeId)).Sum(x => x.Amount),
-                                         amountZesa = g.Where(x => new[] { (int)PaymentMethodType.ZESA, (int)PaymentMethodType.Nyaradzo }.Contains(x.PaymentTypeId)).Sum(x => x.Amount),
+                                         amountAirtime = g.Where(x => !new[] { (int)PaymentMethodType.USD, (int)PaymentMethodType.ZESA, (int)PaymentMethodType.Nyaradzo, (int)PaymentMethodType.USDUtility }
+                                         .Contains(x.PaymentTypeId))
+                                         .Sum(x => x.Amount),
+                                         amountZesa = g.Where(x => new[] { (int)PaymentMethodType.ZESA, (int)PaymentMethodType.Nyaradzo }
+                                         .Contains(x.PaymentTypeId)).Sum(x => x.Amount),
                                          AmountUSD = g.Where(x => x.PaymentTypeId == (int)PaymentMethodType.USD).Sum(x => x.Amount),
                                          AmountUSDUtility = g.Where(x => x.PaymentTypeId == (int)PaymentMethodType.USDUtility).Sum(x => x.Amount)
                                      }).ToListAsync();
@@ -96,7 +99,8 @@ namespace Hot4.Repository.Concrete
             var rechargeData = await (from r in _context.Recharge
                                       join a in _context.Access on r.AccessId equals a.AccessId
                                       join b in _context.Brand on r.BrandId equals b.BrandId
-                                      where new[] { (int)SmsState.Busy, (int)SmsState.Success, (int)SmsState.PendingVerification }.Contains(r.StateId)
+                                      where new[] { (int)SmsState.Busy, (int)SmsState.Success, (int)SmsState.PendingVerification }
+                                      .Contains(r.StateId)
                                       group new { r, a, b } by a.AccountId into g
                                       select new
                                       {
@@ -107,7 +111,8 @@ namespace Hot4.Repository.Concrete
                                           AmountUSDUtility = -g.Where(x => x.b.WalletTypeId == (int)WalletTypes.USDUtility).Sum(x => x.r.Amount * ((100 - x.r.Discount) / 100))
                                       }).ToListAsync();
 
-            var accountDiscounts = await (from a in _context.Account.Where(d => EF.Constant(accountIds).Contains(d.AccountId))
+            var accountDiscounts = await (from a in _context.Account.Where(d => EF.Constant(accountIds)
+                                          .Contains(d.AccountId))
                                           join pd in _context.ProfileDiscount on a.ProfileId equals pd.ProfileId
                                           group pd by a.AccountId into g
                                           select new
@@ -167,9 +172,6 @@ namespace Hot4.Repository.Concrete
                         USDBalance = subB != null ? subB.USDBalance : 0,
                         USDUtilityBalance = subB != null ? subB.USDUtilityBalance : 0
                     }).OrderByDescending(d => d.Balance).ToList();
-
         }
-
-
     }
 }

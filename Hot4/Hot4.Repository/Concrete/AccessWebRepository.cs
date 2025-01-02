@@ -8,19 +8,7 @@ namespace Hot4.Repository.Concrete
     public class AccessWebRepository : RepositoryBase<AccessWeb>, IAccessWebRepository
     {
         public AccessWebRepository(HotDbContext context) : base(context) { }
-        public async Task AddAccessWeb(AccessWeb accessWeb)
-        {
-            await Create(accessWeb);
-            await SaveChanges();
-        }
-
-        public async Task DeleteAccessWeb(AccessWeb accessWeb)
-        {
-            await Delete(accessWeb);
-            await SaveChanges();
-        }
-
-        public async Task<AccessWebModel?> GetAccessWeb(long accessId)
+        public async Task<AccessWebModel?> GetAccessWebById(long accessId)
         {
             var result = await GetById(accessId);
             if (result != null)
@@ -34,10 +22,17 @@ namespace Hot4.Repository.Concrete
                     WebBackground = result.WebBackground,
                 };
             }
-            else
-            {
-                return null;
-            }
+            return null;
+        }
+        public async Task AddAccessWeb(AccessWeb accessWeb)
+        {
+            await Create(accessWeb);
+            await SaveChanges();
+        }
+        public async Task DeleteAccessWeb(AccessWeb accessWeb)
+        {
+            await Delete(accessWeb);
+            await SaveChanges();
         }
         public async Task UpdateAccessWeb(AccessWeb accessWeb)
         {

@@ -50,7 +50,7 @@ namespace Hot4.Repository.Concrete
             return null;
         }
 
-        public async Task<List<WebRequestModel>> GetWebRequestByRefAccessId(string agentRef, long accessId)
+        public async Task<List<WebRequestModel>> GetWebRequestByRefAndAccessId(string agentRef, long accessId)
         {
             return await GetByCondition(d => d.AgentReference == agentRef && d.AccessId == accessId)
                 .Select(d => new WebRequestModel

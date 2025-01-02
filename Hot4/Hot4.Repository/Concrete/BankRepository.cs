@@ -13,12 +13,12 @@ namespace Hot4.Repository.Concrete
         public async Task<List<BankModel>> ListBanks()
         {
             return await GetAll().OrderBy(d => d.Bank)
-                .Select(d => new BankModel
-                {
-                    Bank = d.Bank,
-                    BankId = d.BankId,
-                    SageBankId = d.SageBankId
-                }).ToListAsync();
+                              .Select(d => new BankModel
+                              {
+                                  Bank = d.Bank,
+                                  BankId = d.BankId,
+                                  SageBankId = d.SageBankId
+                              }).ToListAsync();
         }
         public async Task UpdateBank(Banks bank)
         {

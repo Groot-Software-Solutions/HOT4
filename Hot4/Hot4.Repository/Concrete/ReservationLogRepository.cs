@@ -15,13 +15,11 @@ namespace Hot4.Repository.Concrete
             await Create(reservationLog);
             await SaveChanges();
         }
-
         public async Task DeleteReservationLog(ReservationLog reservationLog)
         {
             await Delete(reservationLog);
             await SaveChanges();
         }
-
         public async Task<List<ReservationLogModel>> ListReservationLog(int pageNo, int pageSize)
         {
             return await PaginationFilter.GetPagedData(GetAll(), pageNo, pageSize).Queryable
@@ -36,7 +34,6 @@ namespace Hot4.Repository.Concrete
                  })
                  .ToListAsync();
         }
-
         public async Task UpdateReservationLog(ReservationLog reservationLog)
         {
             await Update(reservationLog);

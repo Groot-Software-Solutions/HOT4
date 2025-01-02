@@ -10,6 +10,5 @@ namespace Hot4.Repository.Abstract
         Task<List<ViewBalanceModel>> GetViewBalanceList(List<long> accountIds);
         Task<List<ViewAccountModel>> GetViewAccountList(List<long> accountIds);
         Task<decimal> GetUSDBalance(long accountId);
-
     }
 }

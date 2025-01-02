@@ -10,7 +10,7 @@ namespace Hot4.Repository.Concrete
     {
         public ProductRepository(HotDbContext context) : base(context) { }
 
-        public async Task<ProductModel?> GetProduct(int productId)
+        public async Task<ProductModel?> GetProductById(int productId)
         {
             var result = await GetById(productId);
             if (result != null)
@@ -24,10 +24,8 @@ namespace Hot4.Repository.Concrete
                     WalletTypeId = result.WalletTypeId,
                 };
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
         public async Task AddProduct(Product product)
