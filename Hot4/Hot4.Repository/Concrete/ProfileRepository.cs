@@ -22,7 +22,7 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
         }
 
-        public async Task<ProfileModel?> GetProfile(int profileId)
+        public async Task<ProfileModel?> GetProfileById(int profileId)
         {
             var result = await GetById(profileId);
             if (result != null)

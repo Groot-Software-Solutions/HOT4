@@ -10,6 +10,6 @@ namespace Hot4.Repository.Abstract
         Task UpdateWebRequest(WebRequests webRequest);
         Task DeleteWebRequest(WebRequests webRequest);
         Task<WebRequestModel?> GetWebRequestById(long webId);
-        Task<List<WebRequestModel>> GetWebRequestByRefAccessId(string agentRef, long accessId);
+        Task<List<WebRequestModel>> GetWebRequestByRefAndAccessId(string agentRef, long accessId);
     }
 }

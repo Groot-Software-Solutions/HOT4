@@ -16,7 +16,11 @@ namespace Hot4.Repository.Concrete
             await Create(smpp);
             await SaveChanges();
         }
-
+        public async Task DeleteSMPP(Smpp smpp)
+        {
+            await Delete(smpp);
+            await SaveChanges();
+        }
         public async Task<List<SMPPModel>> ListSMPP()
         {
             return await GetAll().Select(d => new SMPPModel
@@ -45,7 +49,6 @@ namespace Hot4.Repository.Concrete
                 TelecelPrefix = d.TelecelPrefix,
             }).ToListAsync();
         }
-
         public async Task UpdateSMPP(Smpp smpp)
         {
             await Update(smpp);

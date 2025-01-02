@@ -30,7 +30,7 @@ namespace Hot4.Repository.Concrete
                 await SaveChanges();
             }
         }
-        public async Task<AccountModel?> GetAccount(long accountId)
+        public async Task<AccountModel?> GetAccountById(long accountId)
         {
             var result = await GetById(accountId);
             if (result != null)
@@ -46,10 +46,7 @@ namespace Hot4.Repository.Concrete
                     ProfileId = result.ProfileId,
                 };
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
         public async Task<List<ViewAccountModel>> SearchAccount(string filter, int pageNo, int pageSize)
         {
@@ -68,7 +65,7 @@ namespace Hot4.Repository.Concrete
             return result.Skip((pageNo - 1) * pageSize)
                          .Take(pageSize).ToList();
         }
-        public async Task<ViewAccountModel?> AccountSelect(long accountId)
+        public async Task<ViewAccountModel?> GetAccountDetailById(long accountId)
         {
             var accIds = new List<long>()
            {

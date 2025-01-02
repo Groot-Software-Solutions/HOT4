@@ -11,11 +11,13 @@ namespace Hot4.Repository.Concrete
     public class RechargeRepository : RepositoryBase<Recharge>, IRechargeRepository
     {
         public RechargeRepository(HotDbContext context) : base(context) { }
-        public async Task<RechargeDetailModel?> GetRecharge(long rechargeId)
+        public async Task<RechargeDetailModel?> GetRechargeById(long rechargeId)
         {
-            var result = await _context.Recharge.Include(d => d.State)
-                .Include(d => d.Brand).ThenInclude(d => d.Network)
-                .FirstOrDefaultAsync(d => d.RechargeId == rechargeId);
+            var result = await _context.Recharge
+                              .Include(d => d.State)
+                              .Include(d => d.Brand)
+                              .ThenInclude(d => d.Network)
+                              .FirstOrDefaultAsync(d => d.RechargeId == rechargeId);
             if (result != null)
             {
                 return new RechargeDetailModel
@@ -37,12 +39,9 @@ namespace Hot4.Repository.Concrete
                     StateId = result.StateId
                 };
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
-        public async Task InsertRecharge(Recharge recharge, long smsId)
+        public async Task AddRecharge(Recharge recharge, long smsId)
         {
             await Create(recharge);
             await SaveChanges();
@@ -61,7 +60,6 @@ namespace Hot4.Repository.Concrete
         {
             await Update(recharge);
             await SaveChanges();
-
         }
         public async Task<List<RechargeModel>> GetRechargeAggregator(RechargeAggSearchModel rchAggSrch)
         {
@@ -69,29 +67,26 @@ namespace Hot4.Repository.Concrete
             var endDate = rchAggSrch.EndDate.Date.AddDays(1);
 
             var accessIds = await _context.Access.Where(d => d.AccountId == rchAggSrch.AccountId)
-                .Select(d => d.AccessId).ToListAsync();
+                                  .Select(d => d.AccessId).ToListAsync();
 
             var result = GetByCondition(d => d.RechargeDate >= startDate && d.RechargeDate < endDate
-                           && EF.Constant(accessIds).Contains(d.AccessId))
-                           .Include(d => d.Brand).Include(d => d.State);
-
-
+                         && EF.Constant(accessIds).Contains(d.AccessId))
+                         .Include(d => d.Brand).Include(d => d.State);
 
             return await PaginationFilter.GetPagedData(result, rchAggSrch.PageNo, rchAggSrch.PageSize)
-                .Queryable.Select(d => new RechargeModel
-                {
-                    RechargeId = d.RechargeId,
-                    AccessId = d.AccessId,
-                    Amount = d.Amount,
-                    BrandId = d.BrandId,
-                    Discount = d.Discount,
-                    Mobile = d.Mobile,
-                    RechargeDate = d.RechargeDate,
-                    StateId = d.StateId
-
-                }).ToListAsync();
+                         .Queryable.Select(d => new RechargeModel
+                         {
+                             RechargeId = d.RechargeId,
+                             AccessId = d.AccessId,
+                             Amount = d.Amount,
+                             BrandId = d.BrandId,
+                             Discount = d.Discount,
+                             Mobile = d.Mobile,
+                             RechargeDate = d.RechargeDate,
+                             StateId = d.StateId
+                         }).ToListAsync();
         }
-        public async Task<List<RechargeDetailModel>> RechargeFindByMobileAccountId(RechargeFindModel rechargeFind)
+        public async Task<List<RechargeDetailModel>> FindRechargeByMobileAndAccountId(RechargeFindModel rechargeFind)
         {
             IQueryable<RechargeDetailModel> result;
             if (rechargeFind.AccountId > 0)
@@ -150,7 +145,7 @@ namespace Hot4.Repository.Concrete
 
             return await PaginationFilter.GetPagedData(result, rechargeFind.PageNo, rechargeFind.PageSize).Queryable.ToListAsync();
         }
-        public async Task<List<RechargeModel>> RechargePending(List<byte> brandIds)
+        public async Task<List<RechargeModel>> UpdatePendingStsByMulBrands(List<byte> brandIds)
         {
 
             var transaction = await _context.Database.BeginTransactionAsync();
@@ -160,41 +155,43 @@ namespace Hot4.Repository.Concrete
                                     && EF.Constant(brandIds).Contains(d.BrandId))
                     .OrderBy(d => d.RechargeId).Select(d => d.RechargeId).Take(300).ToListAsync();
 
-
-                var rechargesToUpdate = await GetByCondition(d => EF.Constant(rechargeIds).Contains(d.RechargeId)).ToListAsync();
-
-                foreach (var recharge in rechargesToUpdate)
+                if (rechargeIds != null && rechargeIds.Count > 0)
                 {
-                    recharge.StateId = (int)SmsState.Busy;
+
+                    var rechargesToUpdate = await GetByCondition(d => EF.Constant(rechargeIds).Contains(d.RechargeId)).ToListAsync();
+
+                    foreach (var recharge in rechargesToUpdate)
+                    {
+                        recharge.StateId = (int)SmsState.Busy;
+                    }
+                    await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                    return rechargesToUpdate.Select(d => new RechargeModel
+                    {
+                        RechargeId = d.RechargeId,
+                        AccessId = d.AccessId,
+                        Amount = d.Amount,
+                        BrandId = d.BrandId,
+                        Discount = d.Discount,
+                        Mobile = d.Mobile,
+                        RechargeDate = d.RechargeDate,
+                        StateId = d.StateId
+                    }).ToList();
                 }
-                await _context.SaveChangesAsync();
-                await transaction.CommitAsync();
-                return rechargesToUpdate.Select(d => new RechargeModel
-                {
-                    RechargeId = d.RechargeId,
-                    AccessId = d.AccessId,
-                    Amount = d.Amount,
-                    BrandId = d.BrandId,
-                    Discount = d.Discount,
-                    Mobile = d.Mobile,
-                    RechargeDate = d.RechargeDate,
-                    StateId = d.StateId
-                }).ToList();
+                return new List<RechargeModel>();
             }
             catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-                throw ex;
+                throw;
             }
         }
-
-        public async Task<RechargeDetailModel?> RechargePendingByBrandId(byte brandId)
+        public async Task<RechargeDetailModel?> UpdatePendingStsByBrandId(byte brandId)
         {
             var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                var rechargeId = await _context.Recharge
-                                        .Where(d => d.StateId == (int)SmsState.Pending
+                var rechargeId = await _context.Recharge.Where(d => d.StateId == (int)SmsState.Pending
                                         && d.BrandId == brandId)
                                         .OrderBy(d => d.RechargeId)
                                         .Select(d => d.RechargeId)
@@ -202,15 +199,18 @@ namespace Hot4.Repository.Concrete
 
                 if (rechargeId != 0)
                 {
-                    var rechargeToUpdate = await _context.Recharge
-                      .FirstOrDefaultAsync(d => d.RechargeId == rechargeId);
+                    var rechargeToUpdate = await _context.Recharge.FirstOrDefaultAsync(d => d.RechargeId == rechargeId);
                     if (rechargeToUpdate != null)
                     {
                         rechargeToUpdate.StateId = (int)SmsState.Busy;
                         await _context.SaveChangesAsync();
                     }
 
-                    var result = await _context.Recharge.Include(d => d.State).Include(d => d.Brand).ThenInclude(d => d.Network).FirstOrDefaultAsync(d => d.RechargeId == rechargeId);
+                    var result = await _context.Recharge
+                                       .Include(d => d.State)
+                                       .Include(d => d.Brand)
+                                       .ThenInclude(d => d.Network)
+                                       .FirstOrDefaultAsync(d => d.RechargeId == rechargeId);
                     if (result != null)
                     {
                         return new RechargeDetailModel
@@ -242,7 +242,7 @@ namespace Hot4.Repository.Concrete
             }
             return null;
         }
-        public async Task<RechargeDetailModel?> RechargePendingOtherBrand()
+        public async Task<RechargeDetailModel?> UpdatePendingStsOtherBrand()
         {
             var transaction = await _context.Database.BeginTransactionAsync();
             try
@@ -316,10 +316,7 @@ namespace Hot4.Repository.Concrete
                     StateId = result.StateId
                 };
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
     }
 }

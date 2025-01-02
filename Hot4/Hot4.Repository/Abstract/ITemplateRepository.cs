@@ -5,7 +5,7 @@ namespace Hot4.Repository.Abstract
 {
     public interface ITemplateRepository
     {
-        Task<TemplateModel?> GetTemplate(int templateId);
+        Task<TemplateModel?> GetTemplateById(int templateId);
         Task<List<TemplateModel>> ListTemplates();
         Task AddTemplate(Template template);
         Task UpdateTemplate(Template template);

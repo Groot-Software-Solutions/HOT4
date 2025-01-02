@@ -6,6 +6,8 @@ namespace Hot4.Repository.Abstract
     public interface ILogRepository
     {
         Task AddLog(Log log);
-        Task<List<LogModel>> GetAll(int pageNumber, int pageSize);
+        Task UpdateLog(Log log);
+        Task DeleteLog(Log log);
+        Task<List<LogModel>> ListLog(int pageNumber, int pageSize);
     }
 }

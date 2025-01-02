@@ -10,7 +10,7 @@ namespace Hot4.Repository.Abstract
         Task UpdatePrfDiscount(ProfileDiscount prfDiscount);
         Task DeletePrfDiscount(ProfileDiscount prfDiscount);
         Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileId(int profileId);
-        Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileBrandId(int profileId, int brandId);
+        Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileAndBrandId(int profileId, int brandId);
 
     }
 }

@@ -15,7 +15,7 @@ namespace Hot4.Repository.Concrete
             _commonRepository = commonRepository;
             _context = context;
         }
-        public async Task<List<NetworkBalanceModel>> ListNetworkBalance(int BrandId)
+        public async Task<List<NetworkBalanceModel>> GetBrandNetworkBalance()
         {
             var balanceNetOne = await _commonRepository.GetPrePaidStockBalance((int)Brands.EasyCall);
 

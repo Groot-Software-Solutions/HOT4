@@ -5,7 +5,6 @@ namespace Hot4.Repository.Abstract
 {
     public interface IReservationRepository
     {
-
         Task<long> AddReservation(Reservation reservation);
         Task UpdateReservation(Reservation reservation);
         Task<List<ReservationModel>> GetReservationById(long reservationId);

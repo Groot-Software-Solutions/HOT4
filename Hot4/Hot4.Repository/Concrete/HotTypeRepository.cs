@@ -22,7 +22,6 @@ namespace Hot4.Repository.Concrete
                               TypeCode = hotypCod.TypeCode,
                           }).ToListAsync();
         }
-
         public async Task<byte?> GetHotTypeIdentity(string typeCode, byte splitCount)
         {
             return await (from ht in _context.HotType
@@ -30,6 +29,24 @@ namespace Hot4.Repository.Concrete
                           join htcode in _context.HotTypeCode on ht.HotTypeId equals htcode.HotTypeId
                           where htcode.TypeCode.ToUpper() == typeCode.ToUpper()
                           select ht.HotTypeId).LastOrDefaultAsync();
+        }
+
+        public async Task AddHotType(HotTypes hotTypes)
+        {
+            await Create(hotTypes);
+            await SaveChanges();
+        }
+
+        public async Task UpdateHotType(HotTypes hotTypes)
+        {
+            await Update(hotTypes);
+            await SaveChanges();
+        }
+
+        public async Task DeleteHotType(HotTypes hotTypes)
+        {
+            await Delete(hotTypes);
+            await SaveChanges();
         }
     }
 }

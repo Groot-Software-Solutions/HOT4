@@ -12,7 +12,7 @@ namespace Hot4.Repository.Concrete
     public class AccessRepository : RepositoryBase<Access>, IAccessRepository
     {
         public AccessRepository(HotDbContext context) : base(context) { }
-        public async Task<AccessModel?> GetAccess(long accessId)
+        public async Task<AccessModel?> GetAccessById(long accessId)
         {
             var result = await GetById(accessId);
             if (result != null)
@@ -30,37 +30,32 @@ namespace Hot4.Repository.Concrete
                     PasswordSalt = result.PasswordSalt
                 };
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
-        public async Task<List<AccessModel>> ListAccountChannel(long accountId, byte channelId)
+        public async Task<List<AccessModel>> GetAccessByAccountIdAndChannelId(long accountId, byte channelId)
         {
-            return await GetByCondition(d => d.AccountId == accountId && d.ChannelId == channelId)
-                .OrderByDescending(d => d.AccessId)
-                .Select(d => new AccessModel
-                {
-                    AccessCode = d.AccessCode,
-                    AccessId = d.AccessId,
-                    AccessPassword = d.AccessPassword,
-                    AccountId = d.AccountId,
-                    ChannelId = d.ChannelId,
-                    Deleted = d.Deleted,
-                    InsertDate = d.InsertDate,
-                    PasswordHash = d.PasswordHash,
-                    PasswordSalt = d.PasswordSalt
-                })
-                .ToListAsync();
+            return await GetByCondition(d => d.AccountId == accountId
+                         && d.ChannelId == channelId)
+                         .OrderByDescending(d => d.AccessId)
+                         .Select(d => new AccessModel
+                         {
+                             AccessCode = d.AccessCode,
+                             AccessId = d.AccessId,
+                             AccessPassword = d.AccessPassword,
+                             AccountId = d.AccountId,
+                             ChannelId = d.ChannelId,
+                             Deleted = d.Deleted,
+                             InsertDate = d.InsertDate,
+                             PasswordHash = d.PasswordHash,
+                             PasswordSalt = d.PasswordSalt
+                         }).ToListAsync();
         }
-        public async Task<AccountAccessModel?> GetByAccessCode(string accessCode)
+        public async Task<AccountAccessModel?> GetAccessByCode(string accessCode)
         {
-            AccountAccessModel? responseData = null;
-
             var access = await _context.Access.Include(d => d.Channel).FirstOrDefaultAsync(d => d.AccessCode == accessCode);
             if (access != null)
             {
-                responseData = new AccountAccessModel
+                return new AccountAccessModel
                 {
                     AccessId = access.AccessId,
                     AccountId = access.AccountId,
@@ -73,7 +68,7 @@ namespace Hot4.Repository.Concrete
                     PasswordSalt = access.PasswordSalt
                 };
             }
-            return responseData;
+            return null;
         }
         public async Task AddAccess(Access access)
         {
@@ -97,23 +92,24 @@ namespace Hot4.Repository.Concrete
                 await SaveChanges();
             }
         }
-        public async Task<List<AccountAccessModel>> ListAccess(long accountId, bool isGetAll, bool isDeleted)
+        public async Task<List<AccountAccessModel>> GetAccessByAccountId(long accountId, bool isGetAll, bool isDeleted)
         {
             var query = await GetByCondition(d => d.AccountId == accountId)
-                .Include(d => d.Channel)
-                                  .Select(d => new AccountAccessModel
-                                  {
-                                      AccessId = d.AccessId,
-                                      AccountId = d.AccountId,
-                                      ChannelId = d.ChannelId,
-                                      Channel = d.Channel.Channel,
-                                      AccessCode = d.AccessCode,
-                                      AccessPassword = "********",
-                                      Deleted = d.Deleted ?? false,
-                                      PasswordHash = "********",
-                                      PasswordSalt = d.PasswordSalt
-                                  }).OrderBy(d => d.Channel).ThenBy(d => d.AccessCode)
-                .ToListAsync();
+                              .Include(d => d.Channel)
+                              .Select(d => new AccountAccessModel
+                              {
+                                  AccessId = d.AccessId,
+                                  AccountId = d.AccountId,
+                                  ChannelId = d.ChannelId,
+                                  Channel = d.Channel.Channel,
+                                  AccessCode = d.AccessCode,
+                                  AccessPassword = "********",
+                                  Deleted = d.Deleted ?? false,
+                                  PasswordHash = "********",
+                                  PasswordSalt = d.PasswordSalt
+                              }).OrderBy(d => d.Channel)
+                                .ThenBy(d => d.AccessCode)
+                                .ToListAsync();
 
             if (!isGetAll)
             {

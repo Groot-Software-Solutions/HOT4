@@ -9,10 +9,7 @@ namespace Hot4.Repository.Concrete
 {
     public class LimitRepository : RepositoryBase<Limit>, ILimitRepository
     {
-        public LimitRepository(HotDbContext context) : base(context)
-        {
-
-        }
+        public LimitRepository(HotDbContext context) : base(context) { }
         public async Task<long> SaveUpdateLimit(Limit limit)
         {
             var limitExist = await _context.Limit.FirstOrDefaultAsync(d => d.AccountId == limit.AccountId && d.NetworkId == limit.NetworkId);
@@ -29,9 +26,7 @@ namespace Hot4.Repository.Concrete
                 return limit.LimitId;
             }
         }
-
-
-        public async Task<LimitModel?> GetLimit(long limitId)
+        public async Task<LimitModel?> GetLimitById(long limitId)
         {
 
             var res = await GetById(limitId);
@@ -49,7 +44,7 @@ namespace Hot4.Repository.Concrete
             }
             return null;
         }
-        public async Task<LimitPendingModel> GetLimitByNetAccountId(int networkid, long accountid)
+        public async Task<LimitPendingModel> GetLimitByNetworkAndAccountId(int networkid, long accountid)
         {
             if (networkid == (int)NetworkName.Econet078)
             {
@@ -94,24 +89,8 @@ namespace Hot4.Repository.Concrete
                                          && b.WalletTypeId == (int)WalletTypes.ZWG
                                          select r.Amount).SumAsync();
 
-            // Calculating remaining limits
-            float remainingMonthlyLimit = (montlylimit ?? 10000) - (salesMonthly ?? 0);
-            float remainingDailyLimit = (dailylimit ?? 1000) - (salesDaily ?? 0);
-
-            // Set the remaining limit logic
-            float remainingLimit = remainingDailyLimit;
-            if ((montlylimit ?? 10000) - (salesMonthly ?? 0) < remainingLimit)
-            {
-                remainingLimit = (montlylimit ?? 10000) - (salesMonthly ?? 0);
-            }
-
             return new LimitPendingModel
             {
-
-                LimitRemaining = remainingLimit,
-                RemainingLimit = remainingLimit,
-                RemainingDailyLimit = remainingDailyLimit,
-                RemainingMonthlyLimit = remainingMonthlyLimit,
                 DailyLimit = dailylimit ?? 1000,
                 MonthlyLimit = montlylimit ?? 10000,
                 SalesToday = salesDaily ?? 0,

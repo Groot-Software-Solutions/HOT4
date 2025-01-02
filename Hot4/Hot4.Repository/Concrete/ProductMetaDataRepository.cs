@@ -15,7 +15,6 @@ namespace Hot4.Repository.Concrete
             await Create(productMetaData);
             await SaveChanges();
         }
-
         public async Task DeleteProductMetaData(ProductMetaData productMetaData)
         {
             await Delete(productMetaData);
@@ -38,7 +37,6 @@ namespace Hot4.Repository.Concrete
                      ProductMetaDataTypeId = d.ProductMetaDataTypeId,
                  }).ToListAsync();
         }
-
 
     }
 }

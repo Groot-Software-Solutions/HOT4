@@ -16,13 +16,11 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
             return reservation.ReservationId;
         }
-
         public async Task DeleteReservation(Reservation reservation)
         {
             await Delete(reservation);
             await SaveChanges();
         }
-
         public async Task<List<ReservationModel>> GetReservationById(long reservationId)
         {
             return await GetByCondition(d => d.ReservationId == reservationId).Include(d => d.State)
@@ -43,7 +41,6 @@ namespace Hot4.Repository.Concrete
                       ReservationState = d.State.ReservationState
                   }).ToListAsync();
         }
-
         public async Task<List<ReservationModel>> GetReservationByRechargeId(long rechargeId)
         {
             return await GetByCondition(d => d.RechargeId == rechargeId).Include(d => d.State)
@@ -64,7 +61,6 @@ namespace Hot4.Repository.Concrete
                        ReservationState = d.State.ReservationState
                    }).ToListAsync();
         }
-
         public async Task UpdateReservation(Reservation reservation)
         {
             await Update(reservation);

@@ -25,10 +25,6 @@ namespace Hot4.Repository.Concrete
                 await Update(bankTrxBatch);
                 await SaveChanges();
             }
-            else
-            {
-                throw new InvalidOperationException("Batch record not found.");
-            }
         }
         public async Task DeleteBatch(BankTrxBatch bankTrxBatch)
         {
@@ -38,12 +34,8 @@ namespace Hot4.Repository.Concrete
                 await Delete(bankTrxBatch);
                 await SaveChanges();
             }
-            else
-            {
-                throw new InvalidOperationException("Batch record not found.");
-            }
         }
-        public async Task<List<BankBatchModel>> GetBatchByBank(byte bankId)
+        public async Task<List<BankBatchModel>> GetBatchByBankId(byte bankId)
         {
             return await GetByCondition(d => d.BankId == bankId)
                 .Include(d => d.Bank)
@@ -101,9 +93,7 @@ namespace Hot4.Repository.Concrete
                     LastUser = lastUser,
                     BatchDate = DateTime.Now
                 };
-
                 bankTrxBatchId = await AddBatch(model);
-
             }
             var result = await GetById(bankTrxBatchId);
             if (result != null)
@@ -117,10 +107,7 @@ namespace Hot4.Repository.Concrete
                     LastUser = result.LastUser
                 };
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
     }
 }

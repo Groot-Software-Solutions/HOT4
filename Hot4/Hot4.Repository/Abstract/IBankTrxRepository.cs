@@ -5,19 +5,18 @@ namespace Hot4.Repository.Abstract
 {
     public interface IBankTrxRepository
     {
-        Task<BankTransactionModel> GetTranscationById(long bankTransactionId);
-        Task<List<BankTransactionModel>> GetTranscationByBatch(long bankTransactionBatchId, bool isPending);
-        Task<List<BankTransactionModel>> GetPendingTranscationByType(byte bankTransactionTypeId);
-        Task<List<BankTransactionModel>> GetAllTranscationByType(byte bankTransactionTypeId); // pending stateId =0
-        Task<List<BankTransactionModel>> GetTranscationByRef(string bankRef);
-
-        Task<long?> GetDuplicateTranscation(BankTransactionSearchModel bankTransactionSearch);
-        Task<List<BankTransactionModel>> GetTranscationByPaymentId(string paymentId);
-        Task<int?> GetEcoCashPendingTranscationCount(EcoCashSearchModel ecoCashSearch);
-        Task<long?> AddBankTransaction(BankTrx bankTransaction);
-        Task UpdateBankTransaction(BankTrx bankTransaction);
-        Task UpdateBankTransactionPaymentId(long paymentId, long bankTransactionId);
-        Task UpdateBankTransactionState(byte stateId, long bankTransactionId);
-        Task UpdateBankTransactionIdentifier(string identifier, long bankTransactionId);
+        Task<BankTransactionModel?> GetTrxById(long bankTransactionId);
+        Task<List<BankTransactionModel>> GetTrxByBatch(long bankTransactionBatchId, bool isPending);
+        Task<List<BankTransactionModel>> GetPendingTrxByType(byte bankTransactionTypeId);
+        Task<List<BankTransactionModel>> GetAllTrxByType(byte bankTransactionTypeId); // pending stateId =0
+        Task<List<BankTransactionModel>> GetTrxByRef(string bankRef);
+        Task<long?> GetDuplicateTrx(BankTransactionSearchModel bankTransactionSearch);
+        Task<List<BankTransactionModel>> GetTrxByPaymentId(string paymentId);
+        Task<int?> GetEcoCashPendingTrxCount(EcoCashSearchModel ecoCashSearch);
+        Task<long?> AddBankTrx(BankTrx bankTransaction);
+        Task UpdateBankTrx(BankTrx bankTransaction);
+        Task UpdateBankTrxPaymentId(long paymentId, long bankTransactionId);
+        Task UpdateBankTrxState(byte stateId, long bankTransactionId);
+        Task UpdateBankTrxIdentifier(string identifier, long bankTransactionId);
     }
 }

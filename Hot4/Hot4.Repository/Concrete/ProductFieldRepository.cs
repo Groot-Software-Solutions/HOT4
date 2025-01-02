@@ -15,7 +15,6 @@ namespace Hot4.Repository.Concrete
             await Create(productField);
             await SaveChanges();
         }
-
         public async Task DeleteProductField(ProductField productField)
         {
             await Delete(productField);
@@ -38,7 +37,6 @@ namespace Hot4.Repository.Concrete
                     ProductId = d.ProductId
                 }).ToListAsync();
         }
-
 
     }
 }

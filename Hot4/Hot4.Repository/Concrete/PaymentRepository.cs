@@ -11,10 +11,12 @@ namespace Hot4.Repository.Concrete
     public class PaymentRepository : RepositoryBase<Payment>, IPaymentRepository
     {
         public PaymentRepository(HotDbContext context) : base(context) { }
-        public async Task<PaymentModel?> GetPayment(long paymentId)
+        public async Task<PaymentModel?> GetPaymentById(long paymentId)
         {
-            var result = await _context.Payment.Include(d => d.PaymentType).Include(d => d.PaymentSource)
-                .FirstOrDefaultAsync(d => d.PaymentId == paymentId);
+            var result = await _context.Payment
+                         .Include(d => d.PaymentType)
+                         .Include(d => d.PaymentSource)
+                         .FirstOrDefaultAsync(d => d.PaymentId == paymentId);
             if (result != null)
             {
                 return new PaymentModel
@@ -31,29 +33,25 @@ namespace Hot4.Repository.Concrete
                     Reference = result.Reference
                 };
             }
-            else
-            {
-                return null;
-            }
-
+            return null;
         }
-        public async Task<List<PaymentModel>> ListPayment(long accountId, int pageNumber, int pageSize)
+        public async Task<List<PaymentModel>> GetPaymentByAccountId(long accountId, int pageNumber, int pageSize)
         {
             return await PaginationFilter.GetPagedData(GetByCondition(d => d.AccountId == accountId), pageNumber, pageSize)
-                .Queryable.Select(d =>
-                 new PaymentModel
-                 {
-                     PaymentId = d.PaymentId,
-                     AccountId = d.AccountId,
-                     PaymentSourceId = d.PaymentSourceId,
-                     PaymentSource = d.PaymentSource.PaymentSource,
-                     Amount = d.Amount,
-                     LastUser = d.LastUser,
-                     PaymentDate = d.PaymentDate,
-                     PaymentType = d.PaymentType.PaymentType,
-                     PaymentTypeId = d.PaymentTypeId,
-                     Reference = d.Reference
-                 }).OrderBy(d => d.PaymentDate).ToListAsync();
+                        .Queryable.Select(d => new PaymentModel
+                        {
+                            PaymentId = d.PaymentId,
+                            AccountId = d.AccountId,
+                            PaymentSourceId = d.PaymentSourceId,
+                            PaymentSource = d.PaymentSource.PaymentSource,
+                            Amount = d.Amount,
+                            LastUser = d.LastUser,
+                            PaymentDate = d.PaymentDate,
+                            PaymentType = d.PaymentType.PaymentType,
+                            PaymentTypeId = d.PaymentTypeId,
+                            Reference = d.Reference
+                        }).OrderBy(d => d.PaymentDate)
+                 .ToListAsync();
 
             //vwzPayment functionlality
         }
@@ -64,9 +62,10 @@ namespace Hot4.Repository.Concrete
             if (payment.PaymentTypeId == (int)PaymentMethodType.BankAuto && payment.PaymentSourceId == (int)PaymentMethodSource.EcoCash)
             {
                 paymentId = await GetByCondition(d => d.PaymentTypeId == (int)PaymentMethodType.BankAuto
-                && d.PaymentSourceId == (int)PaymentMethodSource.EcoCash
-                  && d.Reference == payment.Reference && Math.Round(d.Amount, 2) == Math.Round(payment.Amount)
-                  && d.AccountId == payment.AccountId).CountAsync();
+                                  && d.PaymentSourceId == (int)PaymentMethodSource.EcoCash
+                                  && d.Reference == payment.Reference && Math.Round(d.Amount, 2) == Math.Round(payment.Amount)
+                                  && d.AccountId == payment.AccountId)
+                                 .CountAsync();
             }
             if (paymentId == 0)
             {
@@ -92,10 +91,7 @@ namespace Hot4.Repository.Concrete
                     await SaveChanges();
                     return paymentExst.PaymentId;
                 }
-                else
-                {
-                    return null;
-                }
+                return null;
             }
         }
     }

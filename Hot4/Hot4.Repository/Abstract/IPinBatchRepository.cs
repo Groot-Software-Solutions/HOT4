@@ -6,6 +6,9 @@ namespace Hot4.Repository.Abstract
     public interface IPinBatchRepository
     {
         Task<PinBatchModel> AddPinBatch(PinBatches pinBatches);
-        Task<List<PinBatchVsType>> PinBatch_by_batchType(byte pinBatchTypeId);
+        Task UpdatePinBatch(PinBatches pinBatches);
+        Task DeletePinBatch(PinBatches pinBatches);
+        Task<List<PinBatchVsType>> GetPinBatchByPinBatchTypeId(byte pinBatchTypeId);
+        Task<PinBatchVsType?> GetPinBatchById(long pinBatchId);
     }
 }

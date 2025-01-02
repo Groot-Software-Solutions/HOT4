@@ -23,7 +23,6 @@ namespace Hot4.Repository.Concrete
             await Create(bankType);
             await SaveChanges();
         }
-
         public async Task DeleteBankTrxType(BankTrxTypes bankType)
         {
             await Delete(bankType);

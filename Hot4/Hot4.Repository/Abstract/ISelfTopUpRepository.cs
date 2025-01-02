@@ -9,5 +9,6 @@ namespace Hot4.Repository.Abstract
         Task UpdateSelfTopUp(SelfTopUp selfTopUp);
         Task<List<SelfTopUpModel>> GetSelfTopUpByStateId(byte selfTopUpStateId);
         Task<List<SelfTopUpModel>> GetSelfTopUpByBankTrxId(long bankTrxId);
+        Task DeleteSelfTopUp(SelfTopUp selfTopUp);
     }
 }
