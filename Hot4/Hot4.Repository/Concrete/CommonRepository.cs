@@ -40,6 +40,22 @@ namespace Hot4.Repository.Concrete
             return paymentsSum + rechargeSum;
 
         }
+        public async Task<decimal> GetUSDBalance(long accountId)
+        {
+            var paymentsSum = await _context.Payment
+           .Where(p => p.PaymentTypeId == (int)PaymentMethodType.USD
+           && p.AccountId == accountId).SumAsync(p => p.Amount);
+
+            var rechargeSum = await _context.Recharge.Include(d => d.Brand)
+                .Where(r => r.Brand.WalletTypeId == (int)WalletTypes.USD
+                    && new[] { (int)SmsState.Busy, (int)SmsState.Success, (int)SmsState.PendingVerification }.Contains(r.StateId))
+                .Join(_context.Access, r => r.AccessId, a => a.AccessId, (r, a) => new { a.AccountId, r.Amount, r.Discount })
+                .Where(ra => ra.AccountId == accountId)
+                .SumAsync(ra => -(ra.Amount * ((100 - ra.Discount) / 100)));
+
+            return paymentsSum + rechargeSum;
+
+        }
 
         public async Task<decimal> GetSaleValue(long accountId)
         {

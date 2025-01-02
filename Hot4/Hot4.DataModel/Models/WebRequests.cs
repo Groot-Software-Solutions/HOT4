@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Hot4.DataModel.Models;
 
-public partial class WebRequest
+public partial class WebRequests
 {
     public long WebId { get; set; }
 
