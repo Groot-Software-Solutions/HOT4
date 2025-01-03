@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Hot4.DataModel.Models;
+﻿namespace Hot4.DataModel.Models;
 
 public partial class StockData
 {
