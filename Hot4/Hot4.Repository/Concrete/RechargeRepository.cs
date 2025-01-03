@@ -145,7 +145,7 @@ namespace Hot4.Repository.Concrete
 
             return await PaginationFilter.GetPagedData(result, rechargeFind.PageNo, rechargeFind.PageSize).Queryable.ToListAsync();
         }
-        public async Task<List<RechargeModel>> UpdatePendingStsByMulBrands(List<byte> brandIds)
+        public async Task<List<RechargeModel>> RechargePendingStsByMulBrands(List<byte> brandIds)
         {
 
             var transaction = await _context.Database.BeginTransactionAsync();
@@ -186,7 +186,7 @@ namespace Hot4.Repository.Concrete
                 throw;
             }
         }
-        public async Task<RechargeDetailModel?> UpdatePendingStsByBrandId(byte brandId)
+        public async Task<RechargeDetailModel?> RechargePendingStsByBrandId(byte brandId)
         {
             var transaction = await _context.Database.BeginTransactionAsync();
             try
@@ -242,7 +242,7 @@ namespace Hot4.Repository.Concrete
             }
             return null;
         }
-        public async Task<RechargeDetailModel?> UpdatePendingStsOtherBrand()
+        public async Task<RechargeDetailModel?> RechargePendingStsOtherBrand()
         {
             var transaction = await _context.Database.BeginTransactionAsync();
             try

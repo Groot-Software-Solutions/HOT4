@@ -7,8 +7,8 @@ namespace Hot4.Repository.Abstract
     {
         Task<long> AddSMS(Sms sms);
         Task UpdateSMS(Sms sms);
-        Task<List<EmailModel>> SendBulkSms(string messageText);
-        Task<int> SaveBulkSms(string messageText);
+        Task<List<EmailModel>> SmsBulkSend(string messageText);
+        Task<int> SmsBulkSmsSend(string messageText);
         Task<List<EmailModel>> EmailAggregators(string sub, string messageText);
         Task<List<EmailModel>> EmailCorporates(string sub, string messageText);
         Task<List<SMSModel>> SMSInbox();

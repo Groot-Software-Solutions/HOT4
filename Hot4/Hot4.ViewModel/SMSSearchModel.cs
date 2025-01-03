@@ -8,5 +8,7 @@
         public string MessageText { get; set; }
         public int SmppId { get; set; }
         public byte StateId { get; set; }
+        public int PageNo { get; set; }
+        public int PageSize { get; set; }
     }
 }

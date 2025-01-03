@@ -1,19 +1,23 @@
 ﻿using Hot4.Core.Enums;
 using Hot4.Core.Helper;
+using Hot4.Core.Settings;
 using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
 using Hot4.ViewModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace Hot4.Repository.Concrete
 {
     public class TransferRepository : RepositoryBase<Transfer>, ITransferRepository
     {
         private ICommonRepository _commonRepository;
-        public TransferRepository(HotDbContext context, ICommonRepository commonRepository) : base(context)
+        private ValueSettings _valueSettings { get; }
+        public TransferRepository(HotDbContext context, ICommonRepository commonRepository, IOptions<ValueSettings> valueSettings) : base(context)
         {
             _commonRepository = commonRepository;
+            _valueSettings = valueSettings.Value;
         }
         public async Task AddTransfer(Transfer transfer)
         {
@@ -65,18 +69,19 @@ namespace Hot4.Repository.Concrete
         public async Task<decimal> GetStockTradeBalByAccountId(long accountId)
         {
             var balance = await _context.Payment
-                                 .Where(p => p.AccountId == accountId
-                                 && p.PaymentTypeId == (int)PaymentMethodType.zBalanceBF
-                                 && p.PaymentSourceId == (int)PaymentMethodSource.MCExecutive
-                                 && p.Reference == "Balance - 23Jun2023")
-                                 .OrderByDescending(p => p.PaymentId)
-                                 .Select(p => p.Amount)
+                                 .Where(d => d.AccountId == accountId
+                                 && d.PaymentTypeId == (int)PaymentMethodType.zBalanceBF
+                                 && d.PaymentSourceId == (int)PaymentMethodSource.MCExecutive
+                             //    && d.Reference == "Balance - 23Jun2023")
+                             && d.Reference == _valueSettings.StockTradePaymentByRef)
+                                 .OrderByDescending(d => d.PaymentId)
+                                 .Select(d => d.Amount)
                                  .FirstOrDefaultAsync();
 
             var traded = await _context.Payment
-                                .Where(p => p.AccountId == accountId
-                                && p.PaymentTypeId == (int)PaymentMethodType.zServiceFees
-                                && p.PaymentSourceId == (int)PaymentMethodSource.Ecobank)
+                                .Where(d => d.AccountId == accountId
+                                && d.PaymentTypeId == (int)PaymentMethodType.zServiceFees
+                                && d.PaymentSourceId == (int)PaymentMethodSource.Ecobank)
                                 .SumAsync(p => Math.Abs(p.Amount));
 
 
@@ -90,7 +95,8 @@ namespace Hot4.Repository.Concrete
             balance = await _context.Payment.Where(d => d.AccountId == stockTradeSearch.AccountId
                             && d.PaymentTypeId == (int)PaymentMethodType.zBalanceBF
                             && d.PaymentSourceId == (int)PaymentMethodSource.MCExecutive
-                            && d.Reference == "Balance - 23Jun2023")
+                           // && d.Reference == "Balance - 23Jun2023")
+                           && d.Reference == _valueSettings.StockTradePaymentByRef)
                             .OrderByDescending(d => d.PaymentId)
                            .Select(d => (decimal?)d.Amount)
                            .FirstOrDefaultAsync();
@@ -145,7 +151,8 @@ namespace Hot4.Repository.Concrete
                     return new StockTradeModel
                     {
                         Result = 1,
-                        Message = "Stock has Moved to USD",
+                        // Message = "Stock has Moved to USD",
+                        Message = _valueSettings.StockTradeSuccessResponse,
                         ZWLbalance = await _commonRepository.GetBalance(stockTradeSearch.AccountId),
                         USDBalance = await _commonRepository.GetUSDBalance(stockTradeSearch.AccountId)
                     };
@@ -156,7 +163,8 @@ namespace Hot4.Repository.Concrete
                     return new StockTradeModel
                     {
                         Result = -1,
-                        Message = "Invalid Amount",
+                        //  Message = "Invalid Amount",
+                        Message = _valueSettings.StockTradeInvalidAmountResponse,
                         ZWLbalance = ZWLBalance ?? 0,
                         USDBalance = USDBalance ?? 0
                     };
@@ -168,7 +176,8 @@ namespace Hot4.Repository.Concrete
                 return new StockTradeModel
                 {
                     Result = -1,
-                    Message = "Payment required exceeded the Tradable ZWL Balance",
+                    // Message = "Payment required exceeded the Tradable ZWL Balance",
+                    Message = _valueSettings.StockTradeInvalidPaymentResponse,
                     ZWLbalance = ZWLBalance ?? 0,
                     USDBalance = USDBalance ?? 0
                 };
