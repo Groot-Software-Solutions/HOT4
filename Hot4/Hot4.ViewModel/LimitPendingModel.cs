@@ -6,12 +6,11 @@
         public float RemainingLimit { get; set; }
         public float RemainingDailyLimit { get; set; }
         public float RemainingMonthlyLimit { get; set; }
-        public float MonthlyLimit { get; set; }
+        public float? DailyLimit { get; set; }
+        public float? MonthlyLimit { get; set; }
+        public float SalesToday { get; set; }
         public float SalesMonthly { get; set; }
         public int LimitTypeId { get; set; }
         public int NetworkId { get; set; }
-        public float DailyLimit { get; set; }
-        public float SalesToday { get; set; }
-
     }
 }

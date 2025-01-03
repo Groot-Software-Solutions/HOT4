@@ -1,18 +1,25 @@
 ﻿
 using Hot4.Core.Enums;
 using Hot4.Core.Helper;
+using Hot4.Core.Settings;
 using Hot4.DataModel.Data;
 
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
 using Hot4.ViewModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace Hot4.Repository.Concrete
 {
     public class SMSRepository : RepositoryBase<Sms>, ISMSRepository
     {
-        public SMSRepository(HotDbContext context) : base(context) { }
+        private ValueSettings _valueSettings { get; }
+        public SMSRepository(HotDbContext context, IOptions<ValueSettings> valueSettings) : base(context)
+        {
+            _valueSettings = valueSettings.Value;
+        }
+
         public async Task<long> AddSMS(Sms sms)
         {
             await Create(sms);
@@ -24,7 +31,7 @@ namespace Hot4.Repository.Concrete
             await Update(sms);
             await SaveChanges();
         }
-        public async Task<List<EmailModel>> SendBulkSms(string messageText)
+        public async Task<List<EmailModel>> SmsBulkSend(string messageText)
         {
             var accountIds = await _context.Payment.Where(d => d.PaymentDate > DateTime.Now.AddDays(-90)
                               && d.PaymentTypeId != (int)PaymentMethodType.Writeoff)
@@ -33,9 +40,11 @@ namespace Hot4.Repository.Concrete
             var mobileList = await _context.Access
               .Where(d => d.ChannelId == (int)ChannelName.Sms && d.Deleted == false
               && EF.Constant(accountIds).Contains(d.AccountId)
-              && !new[] { "2200958", "2205072", "2250126", "2256859", "2275909", "2206206" }
+             // && !new[] { "2200958", "2205072", "2250126", "2256859", "2275909", "2206206" }
+             && string.Join(",", _valueSettings.SmsBulkSendExcludeAccessCode)
                        .Contains(d.AccessCode.Substring(d.AccessCode.Length - 7))
-              && string.Compare(d.AccessCode, "0799999999") > 0)
+             // && string.Compare(d.AccessCode, "0799999999") > 0)
+             && string.Compare(d.AccessCode, _valueSettings.SmsBulkSendGreaterThenMobileNo) > 0)
               .Select(a => a.AccessCode)
               .Distinct().ToListAsync();
 
@@ -63,7 +72,7 @@ namespace Hot4.Repository.Concrete
                 }).ToListAsync();
 
         }
-        public async Task<int> SaveBulkSms(string messageText)
+        public async Task<int> SmsBulkSmsSend(string messageText)
         {
 
             var recentPaymentAccountIds = await _context.Payment
@@ -79,9 +88,11 @@ namespace Hot4.Repository.Concrete
             var tempMobileNumbers = await _context.Access
                                    .Where(d => d.ChannelId == (int)ChannelName.Sms && d.Deleted == false
                                    && recentPaymentAccountIds.Contains(d.AccountId)
-                                   && !new[] { "2200958", "2205072", "2250126", "2256859", "2275909", "2206206", "4666874" }
+                                 //  && !new[] { "2200958", "2205072", "2250126", "2256859", "2275909", "2206206", "4666874" }
+                                 && string.Join(",", _valueSettings.SmsBulkSmsSendExcludeAccessCode)
                                    .Contains(d.AccessCode.Substring(d.AccessCode.Length - 7))
-                                    && d.AccessCode.CompareTo("0799999999") <= 0)
+                                   // && d.AccessCode.CompareTo("0799999999") <= 0)
+                                   && d.AccessCode.CompareTo(_valueSettings.SmsBulkSmsSendGreaterThenMobileNo) <= 0)
                                   .Select(a => a.AccessCode)
                                    .Distinct()
                                    .ToListAsync();
@@ -143,7 +154,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<List<SMSModel>> SMSInbox()
         {
-            int queueSize = 500;
+            int queueSize = _valueSettings.SMSInboxQueueSize;
 
             var smsDetail = await _context.Sms
                 .Where(d => d.Direction == true && d.StateId == (int)SmsState.Pending)
@@ -191,7 +202,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<List<SMSModel>> SMSOutbox()
         {
-            int queueSize = 500;
+            int queueSize = _valueSettings.SMSOutboxQueueSize;
 
             var smsDetail = await _context.Sms
                 .Where(d => d.Direction == false && d.StateId == (int)SmsState.Pending && d.Smsdate < DateTime.Now)
@@ -299,11 +310,12 @@ namespace Hot4.Repository.Concrete
 
             if (smsSearch.SmppId == -1)
             {
-                return await GetByCondition(d => d.Smsdate >= smsSearch.StartDate
-                        && d.Smsdate <= smsSearch.EndDate && states.Contains(d.StateId)
+                return await PaginationFilter.GetPagedData(GetByCondition(d =>
+                           d.Smsdate >= smsSearch.StartDate && d.Smsdate <= smsSearch.EndDate
+                        && EF.Constant(states).Contains(d.StateId)
                         && (string.IsNullOrEmpty(smsSearch.Mobile) || d.Mobile.Contains(smsSearch.Mobile))
                         && (string.IsNullOrEmpty(smsSearch.MessageText) || d.Smstext.Contains(smsSearch.MessageText)))
-                    .Include(d => d.State).Include(d => d.Priority)
+                    .Include(d => d.State).Include(d => d.Priority), smsSearch.PageNo, smsSearch.PageSize).Queryable
                                 .Select(d => new SMSModel
                                 {
                                     Direction = d.Direction,
@@ -323,30 +335,29 @@ namespace Hot4.Repository.Concrete
             }
             else
             {
-                return await _context.Sms.Include(d => d.State).Include(d => d.Priority)
-                      .Where(d => d.Smsdate >= smsSearch.StartDate && d.Smsdate <= smsSearch.EndDate)
-                      .Where(d => d.SmppId == smsSearch.SmppId)
-                      .Where(d => states.Contains(d.StateId))
-                      .Where(d => d.Mobile.Contains(smsSearch.Mobile))
-                      .Where(d => d.Smstext.Contains(smsSearch.MessageText))
-                     .Select(d => new SMSModel
-                     {
-                         Direction = d.Direction,
-                         InsertDate = d.InsertDate,
-                         Mobile = d.Mobile.Replace(" ", ""),
-                         Priority = d.Priority.Priority,
-                         PriorityId = d.PriorityId,
-                         SmppId = d.SmppId,
-                         SMSDate = d.Smsdate,
-                         SMSId = d.Smsid,
-                         SMSIDIn = d.SmsidIn,
-                         SMSText = d.Smstext,
-                         State = d.State.State,
-                         StateId = d.StateId,
-                     })
-    .OrderBy(sms => sms.SMSDate)
-    .Take(200)
-    .ToListAsync();
+                return await PaginationFilter.GetPagedData(GetByCondition(d =>
+                  d.Smsdate >= smsSearch.StartDate && d.Smsdate <= smsSearch.EndDate
+                  && d.SmppId == smsSearch.SmppId
+                  && EF.Constant(states).Contains(d.StateId)
+                  && d.Mobile.Contains(smsSearch.Mobile)
+                  && d.Smstext.Contains(smsSearch.MessageText)
+                ).Include(d => d.State).Include(d => d.Priority), smsSearch.PageNo, smsSearch.PageSize).Queryable
+                                         .Select(d => new SMSModel
+                                         {
+                                             Direction = d.Direction,
+                                             InsertDate = d.InsertDate,
+                                             Mobile = d.Mobile.Replace(" ", ""),
+                                             Priority = d.Priority.Priority,
+                                             PriorityId = d.PriorityId,
+                                             SmppId = d.SmppId,
+                                             SMSDate = d.Smsdate,
+                                             SMSId = d.Smsid,
+                                             SMSIDIn = d.SmsidIn,
+                                             SMSText = d.Smstext,
+                                             State = d.State.State,
+                                             StateId = d.StateId,
+                                         }).OrderBy(sms => sms.SMSDate)
+                       .ToListAsync();
             }
         }
         public async Task<SMSModel?> DuplicateRecharge(DuplicateRechargeSrchModel smsDuplicateSearch)

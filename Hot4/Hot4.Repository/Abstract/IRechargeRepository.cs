@@ -10,9 +10,9 @@ namespace Hot4.Repository.Abstract
         Task AddRecharge(Recharge recharge, long smsId);
         Task<List<RechargeModel>> GetRechargeAggregator(RechargeAggSearchModel rechargeAggSearch);
         Task<List<RechargeDetailModel>> FindRechargeByMobileAndAccountId(RechargeFindModel rechargeFind);
-        Task<List<RechargeModel>> UpdatePendingStsByMulBrands(List<byte> brandIds);
-        Task<RechargeDetailModel?> UpdatePendingStsByBrandId(byte brandId);
-        Task<RechargeDetailModel?> UpdatePendingStsOtherBrand();
+        Task<List<RechargeModel>> RechargePendingStsByMulBrands(List<byte> brandIds);
+        Task<RechargeDetailModel?> RechargePendingStsByBrandId(byte brandId);
+        Task<RechargeDetailModel?> RechargePendingStsOtherBrand();
         Task<RechargeModel?> GetRechargeWebDuplicate(RechWebDupSearchModel rechWebDup);
     }
 }
