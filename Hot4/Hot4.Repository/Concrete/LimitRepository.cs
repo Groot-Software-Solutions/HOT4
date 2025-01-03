@@ -91,8 +91,8 @@ namespace Hot4.Repository.Concrete
 
             return new LimitPendingModel
             {
-                DailyLimit = dailylimit ?? 1000,
-                MonthlyLimit = montlylimit ?? 10000,
+                DailyLimit = dailylimit,
+                MonthlyLimit = montlylimit,
                 SalesToday = salesDaily ?? 0,
                 SalesMonthly = salesMonthly ?? 0,
                 LimitTypeId = limitTypeid,

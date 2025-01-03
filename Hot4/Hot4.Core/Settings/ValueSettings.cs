@@ -14,5 +14,6 @@
         public string StockTradeSuccessResponse { get; set; }
         public string StockTradeInvalidAmountResponse { get; set; }
         public string StockTradeInvalidPaymentResponse { get; set; }
+        public int PinRedeemedPromoBatchId { get; set; }
     }
 }

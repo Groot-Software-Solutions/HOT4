@@ -14,12 +14,14 @@ namespace Hot4.Repository.Concrete
         public ICommonRepository _commonRepository;
         public HotDbContext _context;
         private TemplateSettings _templateSettings { get; }
+        private ValueSettings _valueSetting { get; }
 
-        public PinRepository(HotDbContext context, ICommonRepository commonRepository, IOptions<TemplateSettings> templateSetting) : base(context)
+        public PinRepository(HotDbContext context, ICommonRepository commonRepository, IOptions<TemplateSettings> templateSetting, IOptions<ValueSettings> valueSetting) : base(context)
         {
             _commonRepository = commonRepository;
             _context = context;
             _templateSettings = templateSetting.Value;
+            _valueSetting = valueSetting.Value;
         }
         public async Task<long> AddPin(Pins pin)
         {
@@ -367,7 +369,7 @@ namespace Hot4.Repository.Concrete
         {
             var model = new PinRedeemedPromoModel();
             var threeDaysAgo = DateTime.Now.AddDays(-3).Date;
-            var pinBatchId = 10008465;
+            var pinBatchId = _valueSetting.PinRedeemedPromoBatchId;// 10008465;
 
             var transactions = await (from r in _context.Recharge.Include(d => d.Access)
                                       where r.Access.AccountId == accountId && r.RechargeDate > threeDaysAgo

@@ -113,7 +113,7 @@ namespace Hot4.Repository.Concrete
 
             // Calculate tradable balance ZWL and payment amount
             tradableBalanceZWL = ZWLBalance > tradableZWL ? tradableZWL : ZWLBalance; // Math.Min(ZWLBalance, tradableZWL);
-            paymentAmount = stockTradeSearch.Amount * (stockTradeSearch.Rate == 0 ? 9900 : stockTradeSearch.Rate);
+            paymentAmount = stockTradeSearch.Amount * (stockTradeSearch.Rate == 0 ? _valueSettings.StockTradeRateNullValue : stockTradeSearch.Rate);
 
             // If payment amount is less than or equal to tradable balance ZWL
             if (paymentAmount <= tradableBalanceZWL)

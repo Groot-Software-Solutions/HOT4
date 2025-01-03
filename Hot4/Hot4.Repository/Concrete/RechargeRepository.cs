@@ -1,16 +1,22 @@
 ﻿using Hot4.Core.Enums;
 using Hot4.Core.Helper;
+using Hot4.Core.Settings;
 using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
 using Hot4.ViewModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace Hot4.Repository.Concrete
 {
     public class RechargeRepository : RepositoryBase<Recharge>, IRechargeRepository
     {
-        public RechargeRepository(HotDbContext context) : base(context) { }
+        private ValueSettings _valueSettings { get; }
+        public RechargeRepository(HotDbContext context, IOptions<ValueSettings> valueSetting) : base(context)
+        {
+            _valueSettings = valueSetting.Value;
+        }
         public async Task<RechargeDetailModel?> GetRechargeById(long rechargeId)
         {
             var result = await _context.Recharge
@@ -153,7 +159,7 @@ namespace Hot4.Repository.Concrete
             {
                 var rechargeIds = await GetByCondition(d => d.StateId == (int)SmsState.Pending
                                     && EF.Constant(brandIds).Contains(d.BrandId))
-                    .OrderBy(d => d.RechargeId).Select(d => d.RechargeId).Take(300).ToListAsync();
+                    .OrderBy(d => d.RechargeId).Select(d => d.RechargeId).Take(_valueSettings.RechargeIdByBrandIds).ToListAsync();
 
                 if (rechargeIds != null && rechargeIds.Count > 0)
                 {
