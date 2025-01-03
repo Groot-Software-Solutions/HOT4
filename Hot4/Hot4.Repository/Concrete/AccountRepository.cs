@@ -17,6 +17,7 @@ namespace Hot4.Repository.Concrete
         public async Task<long> AddAccount(Account account)
         {
             account.AccountName = account.AccountName.Replace("\n", "|").Replace("\r", "|");
+            account.InsertDate = DateTime.Now;
             await Create(account);
             await SaveChanges();
             return account.AccountId;

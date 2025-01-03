@@ -26,6 +26,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task AddAccessWeb(AccessWeb accessWeb)
         {
+            accessWeb.SalesPassword = true;
             await Create(accessWeb);
             await SaveChanges();
         }

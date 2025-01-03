@@ -9,7 +9,7 @@ namespace Hot4.Repository.Concrete
     public class BundleRepository : RepositoryBase<Bundle>, IBundleRepository
     {
         public BundleRepository(HotDbContext context) : base(context) { }
-        public async Task<List<BundleModel>> GetBundlesById(int bundleId)
+        public async Task<BundleModel?> GetBundlesById(int bundleId)
         {
             return await (from bundle in _context.Bundle
                           where bundle.BundleId == bundleId
@@ -25,7 +25,7 @@ namespace Hot4.Repository.Concrete
                               ValidityPeriod = bundle.ValidityPeriod,
                               Enabled = bundle.Enabled,
                               Network = brand.BrandName
-                          }).ToListAsync();
+                          }).FirstOrDefaultAsync();
         }
         public async Task AddBundle(Bundle bundle)
         {

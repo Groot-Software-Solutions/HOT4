@@ -6,10 +6,10 @@ namespace Hot4.Repository.Abstract
     public interface IBankTrxRepository
     {
         Task<BankTransactionModel?> GetTrxById(long bankTransactionId);
-        Task<List<BankTransactionModel>> GetTrxByBatch(long bankTransactionBatchId, bool isPending);
+        Task<List<BankTransactionModel>> GetTrxByBatchId(long bankTransactionBatchId, bool isPending);
         Task<List<BankTransactionModel>> GetPendingTrxByType(byte bankTransactionTypeId);
         Task<List<BankTransactionModel>> GetAllTrxByType(byte bankTransactionTypeId); // pending stateId =0
-        Task<List<BankTransactionModel>> GetTrxByRef(string bankRef);
+        Task<BankTransactionModel?> GetTrxByRef(string bankRef);
         Task<long?> GetDuplicateTrx(BankTransactionSearchModel bankTransactionSearch);
         Task<List<BankTransactionModel>> GetTrxByPaymentId(string paymentId);
         Task<int?> GetEcoCashPendingTrxCount(EcoCashSearchModel ecoCashSearch);

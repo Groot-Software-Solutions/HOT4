@@ -41,7 +41,7 @@ namespace Hot4.Repository.Concrete
             }
             return null;
         }
-        public async Task<List<BankTransactionModel>> GetTrxByBatch(long bankTransactionBatchId, bool isPending)
+        public async Task<List<BankTransactionModel>> GetTrxByBatchId(long bankTransactionBatchId, bool isPending)
         {
             if (isPending)
             {
@@ -181,31 +181,33 @@ namespace Hot4.Repository.Concrete
                          .OrderByDescending(d => d.BankTrxId)
                          .ToListAsync();
         }
-        public async Task<List<BankTransactionModel>> GetTrxByRef(string bankRef)
+        public async Task<BankTransactionModel?> GetTrxByRef(string bankRef)
         {
-            return await GetByCondition(d => d.BankRef == bankRef
+            var result = await _context.BankTrx.Include(d => d.BankTrxState).Include(d => d.BankTrxType)
+                          .LastOrDefaultAsync(d => d.BankRef == bankRef
                          && d.BankTrxStateId == (int)BankTransactionStates.BusyConfirming
-                         && d.BankTrxTypeId == (int)BankTransactionTypes.EcoCashPending)
-                         .Include(d => d.BankTrxState).Include(d => d.BankTrxType)
-                         .Select(d => new BankTransactionModel
-                         {
-                             Amount = d.Amount,
-                             Balance = d.Balance,
-                             BankRef = d.BankRef,
-                             BankTrxBatchId = d.BankTrxBatchId,
-                             BankTrxId = d.BankTrxId,
-                             BankTrxState = d.BankTrxState.BankTrxState,
-                             BankTrxStateId = d.BankTrxStateId,
-                             BankTrxType = d.BankTrxType.BankTrxType,
-                             BankTrxTypeId = d.BankTrxTypeId,
-                             Branch = d.Branch,
-                             Identifier = d.Identifier,
-                             PaymentId = d.PaymentId,
-                             RefName = d.RefName,
-                             TrxDate = d.TrxDate
-                         })
-                         .OrderByDescending(d => d.BankTrxId)
-                         .ToListAsync();
+                         && d.BankTrxTypeId == (int)BankTransactionTypes.EcoCashPending);
+            if (result != null)
+            {
+                return new BankTransactionModel
+                {
+                    Amount = result.Amount,
+                    Balance = result.Balance,
+                    BankRef = result.BankRef,
+                    BankTrxBatchId = result.BankTrxBatchId,
+                    BankTrxId = result.BankTrxId,
+                    BankTrxState = result.BankTrxState.BankTrxState,
+                    BankTrxStateId = result.BankTrxStateId,
+                    BankTrxType = result.BankTrxType.BankTrxType,
+                    BankTrxTypeId = result.BankTrxTypeId,
+                    Branch = result.Branch,
+                    Identifier = result.Identifier,
+                    PaymentId = result.PaymentId,
+                    RefName = result.RefName,
+                    TrxDate = result.TrxDate
+                };
+            }
+            return null;
         }
 
         public async Task<long?> GetDuplicateTrx(BankTransactionSearchModel bankTransactionSearch)
@@ -214,7 +216,8 @@ namespace Hot4.Repository.Concrete
             if (bankBatchDetail != null && bankBatchDetail.Count > 0)
             {
                 var result = await _context.BankTrx.FirstOrDefaultAsync(d => d.Amount == bankTransactionSearch.Amount
-                                    && d.TrxDate == bankTransactionSearch.TrxDate && d.Balance == bankTransactionSearch.Balance
+                                    && d.TrxDate == bankTransactionSearch.TrxDate
+                                    && d.Balance == bankTransactionSearch.Balance
                                     && d.BankRef == bankTransactionSearch.BankRef
                                     && EF.Constant(bankBatchDetail.Select(m => m.BankTrxBatchId)).Contains(d.BankTrxBatchId));
 
@@ -263,7 +266,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<long?> AddBankTrx(BankTrx bankTransaction)
         {
-            var duplicateTransaction = await _context.BankTrx.FirstOrDefaultAsync(d =>
+            var duplicateTransaction = await _context.BankTrx.Include(d => d.BankTrxBatch).FirstOrDefaultAsync(d =>
                                        (d.TrxDate == bankTransaction.TrxDate
                                         && d.Amount == bankTransaction.Amount
                                         && d.Identifier == bankTransaction.Identifier
@@ -277,7 +280,7 @@ namespace Hot4.Repository.Concrete
                                        && d.BankRef == bankTransaction.BankRef
                                        && bankTransaction.BankRef != "pending")
                                        ||
-                                       (d.BankTrxTypeId == (byte)BankTransactionTypes.SalaryCredit
+                                       (d.BankTrxBatch.BankId == (byte)BankName.CBZ
                                        && d.Amount == bankTransaction.Amount
                                        && d.Identifier == bankTransaction.Identifier
                                        && d.BankRef == bankTransaction.BankRef)
@@ -290,6 +293,7 @@ namespace Hot4.Repository.Concrete
 
             if (duplicateTransaction == null)
             {
+                bankTransaction.PaymentId = null;
                 await Create(bankTransaction);
                 await SaveChanges();
                 return bankTransaction.BankTrxId;
