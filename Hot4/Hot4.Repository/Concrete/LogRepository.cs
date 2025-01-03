@@ -12,6 +12,7 @@ namespace Hot4.Repository.Concrete
         public LogRepository(HotDbContext context) : base(context) { }
         public async Task AddLog(Log log)
         {
+            log.LogDate = DateTime.Now;
             await Create(log);
             await SaveChanges();
         }

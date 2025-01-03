@@ -53,6 +53,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task SaveAddress(Address address)
         {
+            address.InvoiceFreq = 1;
             await Create(address);
             await SaveChanges();
         }

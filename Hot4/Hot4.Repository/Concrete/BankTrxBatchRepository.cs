@@ -66,7 +66,8 @@ namespace Hot4.Repository.Concrete
             }
             else
             {
-                var bankTrxBatchId = await _context.BankTrxBatch.LastOrDefaultAsync(d => d.BankId == bankId && d.BatchReference == batchRef
+                var bankTrxBatchId = await _context.BankTrxBatch.LastOrDefaultAsync(d => d.BankId == bankId
+                && d.BatchReference == batchRef
                 && d.BatchDate >= startOfDay && d.BatchDate <= endOfDay);
 
                 return bankTrxBatchId?.BankTrxBatchId;

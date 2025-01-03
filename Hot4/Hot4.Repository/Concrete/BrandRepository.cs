@@ -10,20 +10,23 @@ namespace Hot4.Repository.Concrete
     {
         public BrandRepository(HotDbContext context) : base(context) { }
 
-        public async Task<List<BrandModel>> GetBrandById(int BrandId)
+        public async Task<BrandModel?> GetBrandById(int BrandId)
         {
-            return await GetByCondition(d => d.BrandId == BrandId)
-                         .Include(d => d.Network)
-                         .Select(d => new BrandModel
-                         {
-                             BrandId = d.BrandId,
-                             BrandName = d.BrandName,
-                             BrandSuffix = d.BrandSuffix,
-                             Network = d.Network.Network,
-                             NetworkId = d.NetworkId,
-                             Prefix = d.Network.Prefix,
-                             WalletTypeId = d.WalletTypeId
-                         }).ToListAsync();
+            var result = await _context.Brand.Include(d => d.Network).FirstOrDefaultAsync(d => d.BrandId == BrandId);
+            if (result != null)
+            {
+                return new BrandModel
+                {
+                    BrandId = result.BrandId,
+                    BrandName = result.BrandName,
+                    BrandSuffix = result.BrandSuffix,
+                    Network = result.Network.Network,
+                    NetworkId = result.NetworkId,
+                    Prefix = result.Network.Prefix,
+                    WalletTypeId = result.WalletTypeId
+                };
+            }
+            return null;
         }
 
         public async Task<List<BrandModel>> GetBrandIdentity(BrandIdentitySearchModel brandIdentitySearchModel)

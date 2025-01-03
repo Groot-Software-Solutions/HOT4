@@ -80,6 +80,14 @@ namespace Hot4.Repository.Concrete
             await Create(access);
             await SaveChanges();
         }
+        public async Task AddAccessDeprecated(Access access)
+        {
+            access.InsertDate = DateTime.Now;
+            access.Deleted = false;
+            access.AccessPassword = "DEPRECATED";
+            await Create(access);
+            await SaveChanges();
+        }
         public async Task UpdateAccess(Access access)
         {
             var accessRecord = await GetById(access.AccessId);
@@ -130,7 +138,7 @@ namespace Hot4.Repository.Concrete
             var access = await GetById(accessId);
             if (access != null)
             {
-                string salt = string.IsNullOrEmpty(access.PasswordSalt) ? Helper.GenerateSalt(accessId) : access.PasswordSalt;
+                string salt = Helper.GenerateSalt(accessId);
                 string passwordHash = Helper.GeneratePasswordHash(salt, newPassword);
                 access.AccessPassword = newPassword;
                 access.PasswordHash = passwordHash;
@@ -143,16 +151,39 @@ namespace Hot4.Repository.Concrete
                 throw new InvalidOperationException("Access record not found.");
             }
         }
-        public async Task<AccountAccessModel?> GetLoginDetails(string accessCode, string accessPassword)
+        public async Task PasswordChangeDeprecated(long accessId, string passwordHash, string passwordSalt)
         {
-            AccountAccessModel? responseData = null;
-
-            string hashedPassword = Helper.GetMd5Hash(accessPassword);
-            var access = await _context.Access.Include(d => d.Channel).FirstOrDefaultAsync(d => d.AccessCode == accessCode
-            && d.Deleted == false && d.AccessPassword == accessPassword && d.PasswordHash == hashedPassword);
+            var access = await GetById(accessId);
             if (access != null)
             {
-                responseData = new AccountAccessModel
+                access.PasswordHash = passwordHash;
+                access.PasswordSalt = passwordSalt;
+                access.AccessPassword = "DEPRECATED";
+                await Update(access);
+                await SaveChanges();
+            }
+            else
+            {
+                throw new InvalidOperationException("Access record not found.");
+            }
+        }
+        public async Task<AccountAccessModel?> GetLoginDetails(string accessCode, string accessPassword)
+        {
+            var accessRecord = await _context.Access.FirstOrDefaultAsync(d => d.AccessCode == accessCode);
+            if (accessCode == null)
+            {
+                return null;
+            }
+            string passwordSalt = accessRecord.PasswordSalt;
+
+            string hashedPassword = Helper.GeneratePasswordHash(passwordSalt, accessPassword);
+
+            var access = await _context.Access.Include(d => d.Channel).FirstOrDefaultAsync(d => d.AccessCode == accessCode
+            && d.Deleted == false && (d.AccessPassword == accessPassword || d.PasswordHash == hashedPassword));
+
+            if (access != null)
+            {
+                return new AccountAccessModel
                 {
                     AccessId = access.AccessId,
                     AccountId = access.AccountId,
@@ -165,7 +196,30 @@ namespace Hot4.Repository.Concrete
                     PasswordSalt = access.PasswordSalt
                 };
             }
-            return responseData;
+            return null;
+        }
+        public async Task<AccountAccessModel?> GetLoginDetailsByAccessCode(string accessCode)
+        {
+            var access = await _context.Access
+                         .Include(d => d.Channel)
+                         .FirstOrDefaultAsync(d => d.AccessCode == accessCode && d.Deleted == false);
+
+            if (access != null)
+            {
+                return new AccountAccessModel
+                {
+                    AccessId = access.AccessId,
+                    AccountId = access.AccountId,
+                    ChannelId = access.ChannelId,
+                    Channel = access.Channel.Channel,
+                    AccessCode = access.AccessCode,
+                    AccessPassword = "********",
+                    Deleted = access.Deleted ?? false,
+                    PasswordHash = "********",
+                    PasswordSalt = access.PasswordSalt
+                };
+            }
+            return null;
         }
         public async Task DeleteAccess(long accessId)
         {
