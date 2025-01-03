@@ -64,7 +64,9 @@ namespace Hot4.Repository
             services.AddTransient<ITransferRepository, TransferRepository>();
             services.AddTransient<IWebRequestRepository, WebRequestRepository>();
 
-
+            services.AddTransient<ISubscriberRepository, SubscriberRepository>();
+            services.AddTransient<IWalletTypeRepository, WalletTypeRepository>();
+            services.AddTransient<IStockDataRepository, StockDataRepository>();
 
             return services;
         }
