@@ -15,13 +15,11 @@ namespace Hot4.Repository.Concrete
             await Create(profile);
             await SaveChanges();
         }
-
         public async Task DeleteProfile(Profile profile)
         {
             Delete(profile);
             await SaveChanges();
         }
-
         public async Task<ProfileModel?> GetProfileById(int profileId)
         {
             var result = await GetById(profileId);
@@ -35,7 +33,6 @@ namespace Hot4.Repository.Concrete
             }
             return null;
         }
-
         public async Task<List<ProfileModel>> ListProfile()
         {
             return await GetAll()
@@ -43,10 +40,8 @@ namespace Hot4.Repository.Concrete
                 {
                     ProfileId = d.ProfileId,
                     ProfileName = d.ProfileName,
-                })
-                .ToListAsync();
+                }).ToListAsync();
         }
-
         public async Task UpdateProfile(Profile profile)
         {
             Update(profile);

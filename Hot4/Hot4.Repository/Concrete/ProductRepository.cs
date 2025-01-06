@@ -35,10 +35,8 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateProduct(Product product)
         {
-
             Update(product);
             await SaveChanges();
-
         }
 
         public async Task DeleteProduct(Product product)

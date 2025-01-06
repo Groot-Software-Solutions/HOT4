@@ -28,7 +28,8 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<SubscriberModel?> GetSubscriberById(long subscriberId)
         {
-            var result = await _context.Subscriber.Include(d => d.Brand).FirstOrDefaultAsync(d => d.SubscriberId == subscriberId);
+            var result = await _context.Subscriber.Include(d => d.Brand)
+                .FirstOrDefaultAsync(d => d.SubscriberId == subscriberId);
             if (result != null)
             {
                 return new SubscriberModel
@@ -52,7 +53,8 @@ namespace Hot4.Repository.Concrete
 
         public async Task<List<SubscriberModel>> ListSubscriber(int pageNo, int pageSize)
         {
-            return await PaginationFilter.GetPagedData(GetAll().Include(d => d.Brand), pageNo, pageSize).Queryable
+            return await PaginationFilter.GetPagedData(GetAll().Include(d => d.Brand)
+                .OrderByDescending(d => d.SubscriberId), pageNo, pageSize).Queryable
                 .Select(d => new SubscriberModel
                 {
                     SubscriberId = d.SubscriberId,

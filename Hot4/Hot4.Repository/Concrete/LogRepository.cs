@@ -28,7 +28,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<List<LogModel>> ListLog(int pageNo, int pageSize)
         {
-            return await PaginationFilter.GetPagedData(GetAll(), pageNo, pageSize).Queryable
+            return await PaginationFilter.GetPagedData(GetAll().OrderByDescending(d => d.LogId), pageNo, pageSize).Queryable
                                .Select(d => new LogModel
                                {
                                    LogDate = d.LogDate,

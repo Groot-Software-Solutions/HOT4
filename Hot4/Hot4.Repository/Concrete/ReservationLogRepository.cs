@@ -22,7 +22,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<List<ReservationLogModel>> ListReservationLog(int pageNo, int pageSize)
         {
-            return await PaginationFilter.GetPagedData(GetAll(), pageNo, pageSize).Queryable
+            return await PaginationFilter.GetPagedData(GetAll().OrderByDescending(d => d.ReservationLogId), pageNo, pageSize).Queryable
                  .Select(d => new ReservationLogModel
                  {
                      LastUser = d.LastUser,
@@ -31,8 +31,7 @@ namespace Hot4.Repository.Concrete
                      OldStateId = d.OldStateId,
                      ReservationId = d.ReservationId,
                      ReservationLogId = d.ReservationLogId
-                 })
-                 .ToListAsync();
+                 }).ToListAsync();
         }
         public async Task UpdateReservationLog(ReservationLog reservationLog)
         {

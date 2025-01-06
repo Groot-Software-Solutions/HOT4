@@ -12,7 +12,8 @@ namespace Hot4.Repository.Concrete
 
         public async Task<BrandModel?> GetBrandById(int BrandId)
         {
-            var result = await _context.Brand.Include(d => d.Network).FirstOrDefaultAsync(d => d.BrandId == BrandId);
+            var result = await _context.Brand.Include(d => d.Network)
+                .FirstOrDefaultAsync(d => d.BrandId == BrandId);
             if (result != null)
             {
                 return new BrandModel

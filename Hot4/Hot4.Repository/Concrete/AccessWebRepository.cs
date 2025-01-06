@@ -37,12 +37,9 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateAccessWeb(AccessWeb accessWeb)
         {
-            var accessWebRecord = await GetById(accessWeb.AccessId);
-            if (accessWebRecord != null)
-            {
-                Update(accessWeb);
-                await SaveChanges();
-            }
+            Update(accessWeb);
+            await SaveChanges();
+
         }
 
     }

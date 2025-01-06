@@ -53,6 +53,7 @@ namespace Hot4.Repository.Concrete
         public async Task<List<WebRequestModel>> GetWebRequestByRefAndAccessId(string agentRef, long accessId)
         {
             return await GetByCondition(d => d.AgentReference == agentRef && d.AccessId == accessId)
+                .OrderByDescending(d => d.WebId)
                 .Select(d => new WebRequestModel
                 {
                     AccessId = d.AccessId,
@@ -70,12 +71,12 @@ namespace Hot4.Repository.Concrete
                     StateId = d.StateId,
                     WalletBalance = d.WalletBalance,
                     WebId = d.WebId,
-                }).OrderByDescending(d => d.WebId).ToListAsync();
+                }).ToListAsync();
         }
 
         public async Task<List<WebRequestModel>> ListWebRequest(int pageNo, int pageSize)
         {
-            return await PaginationFilter.GetPagedData(GetAll(), pageNo, pageNo)
+            return await PaginationFilter.GetPagedData(GetAll().OrderByDescending(d => d.WebId), pageNo, pageNo)
                  .Queryable.Select(d => new WebRequestModel
                  {
                      AccessId = d.AccessId,
@@ -93,7 +94,7 @@ namespace Hot4.Repository.Concrete
                      StateId = d.StateId,
                      WalletBalance = d.WalletBalance,
                      WebId = d.WebId,
-                 }).OrderByDescending(d => d.WebId).ToListAsync();
+                 }).ToListAsync();
         }
 
         public async Task UpdateWebRequest(WebRequests webRequests)

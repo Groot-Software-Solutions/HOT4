@@ -39,6 +39,8 @@ namespace Hot4.Repository.Concrete
                              .ThenInclude(m => m.Network)
                              .Include(d => d.PinBatch)
                              .ThenInclude(m => m.PinBatchType)
+                             .OrderBy(d => d.Brand.BrandName)
+                                 .OrderBy(d => d.Pin)
                                  .Select(d => new PinDetailModel
                                  {
                                      PinId = d.PinId,
@@ -60,10 +62,7 @@ namespace Hot4.Repository.Concrete
                                      NetworkId = d.Brand.NetworkId,
                                      Network = d.Brand.Network.Network,
                                      Prefix = d.Brand.Network.Prefix
-                                 })
-                                 .OrderBy(d => d.BrandName)
-                                 .OrderBy(d => d.Pin)
-                                 .ToListAsync();
+                                 }).ToListAsync();
             }
             else
              if (pinStateId > 0)
