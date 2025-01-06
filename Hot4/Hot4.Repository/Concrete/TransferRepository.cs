@@ -38,6 +38,7 @@ namespace Hot4.Repository.Concrete
         {
             return await _context.Transfer.Include(d => d.Channel)
                 .Where(d => d.PaymentIdFrom == paymentId || d.PaymentIdTo == paymentId)
+                .OrderByDescending(d => d.TransferId)
                       .Select(d => new TransferModel
                       {
                           Amount = d.Amount,
@@ -48,12 +49,13 @@ namespace Hot4.Repository.Concrete
                           SMSId = d.Smsid,
                           TransferDate = d.TransferDate,
                           TransferId = d.TransferId,
-                      }).OrderByDescending(d => d.TransferId).ToListAsync();
+                      }).ToListAsync();
         }
         public async Task<List<TransferModel>> ListTransfer(int pageNo, int pageSize)
         {
-            var result = _context.Transfer.Include(d => d.Channel);
+            var result = _context.Transfer.Include(d => d.Channel).OrderByDescending(d => d.TransferId);
             return await PaginationFilter.GetPagedData(result, pageNo, pageSize)
+
                 .Queryable.Select(d => new TransferModel
                 {
                     Amount = d.Amount,
@@ -64,7 +66,7 @@ namespace Hot4.Repository.Concrete
                     SMSId = d.Smsid,
                     TransferDate = d.TransferDate,
                     TransferId = d.TransferId,
-                }).OrderByDescending(d => d.TransferId).ToListAsync();
+                }).ToListAsync();
         }
         public async Task<decimal> GetStockTradeBalByAccountId(long accountId)
         {

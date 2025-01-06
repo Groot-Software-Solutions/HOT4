@@ -14,26 +14,17 @@ namespace Hot4.Repository.Concrete
         {
             await Create(bankTrxBatch);
             await SaveChanges();
-
             return bankTrxBatch.BankTrxBatchId;
         }
         public async Task UpdateBatch(BankTrxBatch bankTrxBatch)
         {
-            var bankBatch = await GetById(bankTrxBatch.BankTrxBatchId);
-            if (bankBatch != null)
-            {
-                Update(bankTrxBatch);
-                await SaveChanges();
-            }
+            Update(bankTrxBatch);
+            await SaveChanges();
         }
         public async Task DeleteBatch(BankTrxBatch bankTrxBatch)
         {
-            var bankBatch = await GetById(bankTrxBatch.BankTrxBatchId);
-            if (bankBatch != null)
-            {
-                Delete(bankTrxBatch);
-                await SaveChanges();
-            }
+            Delete(bankTrxBatch);
+            await SaveChanges();
         }
         public async Task<List<BankBatchModel>> GetBatchByBankId(byte bankId)
         {

@@ -33,8 +33,7 @@ namespace Hot4.Repository.Concrete
                     PaymentTypeId = d.PaymentTypeId,
                     PaymentType = d.PaymentType,
                     PaymentTypeText = d.PaymentType
-                })
-                .ToListAsync();
+                }).ToListAsync();
         }
     }
 }

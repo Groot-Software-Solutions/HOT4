@@ -190,9 +190,7 @@ namespace Hot4.Repository.Concrete
                     SMSText = d.Smstext,
                     State = d.State.State,
                     StateId = d.StateId,
-                }).OrderByDescending(d => d.PriorityId)
-            .ThenBy(d => d.SMSDate)
-            .ToList();
+                }).ToList();
             }
             catch (Exception ex)
             {
@@ -236,9 +234,7 @@ namespace Hot4.Repository.Concrete
                     SMSText = d.Smstext,
                     State = d.State.State,
                     StateId = d.StateId,
-                }).OrderByDescending(d => d.PriorityId)
-                .ThenBy(d => d.SMSDate)
-                .ToList();
+                }).ToList();
             }
             catch (Exception ex)
             {
@@ -255,6 +251,7 @@ namespace Hot4.Repository.Concrete
                          .Where(d => d.Direction == true && d.Smsdate >= startDate && smsDate <= endDate)
                           join acss in _context.Access on sms.Mobile equals acss.AccessCode
                           where acss.AccountId == accountId
+                          orderby sms.Smsdate descending
                           select new SMSModel
                           {
                               Direction = sms.Direction,
@@ -269,14 +266,13 @@ namespace Hot4.Repository.Concrete
                               SMSText = sms.Smstext,
                               State = sms.State.State,
                               StateId = sms.StateId,
-                          })
-                .OrderByDescending(d => d.SMSDate)
-                .ToListAsync();
+                          }).ToListAsync();
         }
         public async Task<List<SMSModel>> GetSMSBySMSId(long smsId)
         {
             return await GetByCondition(d => d.Smsid == smsId)
                 .Include(d => d.State).Include(d => d.Priority)
+                .OrderByDescending(d => d.Smsdate)
                 .Select(d => new SMSModel
                 {
                     Direction = d.Direction,
@@ -292,7 +288,7 @@ namespace Hot4.Repository.Concrete
                     State = d.State.State,
                     StateId = d.StateId,
                 })
-                .OrderByDescending(d => d.SMSDate)
+
                 .ToListAsync();
         }
         public async Task<List<SMSModel>> SMSSearch(SMSSearchModel smsSearch)
@@ -315,7 +311,7 @@ namespace Hot4.Repository.Concrete
                         && EF.Constant(states).Contains(d.StateId)
                         && (string.IsNullOrEmpty(smsSearch.Mobile) || d.Mobile.Contains(smsSearch.Mobile))
                         && (string.IsNullOrEmpty(smsSearch.MessageText) || d.Smstext.Contains(smsSearch.MessageText)))
-                    .Include(d => d.State).Include(d => d.Priority), smsSearch.PageNo, smsSearch.PageSize).Queryable
+                    .Include(d => d.State).Include(d => d.Priority).OrderBy(d => d.Smsdate), smsSearch.PageNo, smsSearch.PageSize).Queryable
                                 .Select(d => new SMSModel
                                 {
                                     Direction = d.Direction,
@@ -330,7 +326,7 @@ namespace Hot4.Repository.Concrete
                                     SMSText = d.Smstext,
                                     State = d.State.State,
                                     StateId = d.StateId,
-                                }).OrderBy(d => d.SMSDate).ToListAsync();
+                                }).ToListAsync();
 
             }
             else
@@ -341,7 +337,7 @@ namespace Hot4.Repository.Concrete
                   && EF.Constant(states).Contains(d.StateId)
                   && d.Mobile.Contains(smsSearch.Mobile)
                   && d.Smstext.Contains(smsSearch.MessageText)
-                ).Include(d => d.State).Include(d => d.Priority), smsSearch.PageNo, smsSearch.PageSize).Queryable
+                ).Include(d => d.State).Include(d => d.Priority).OrderBy(d => d.Smsdate), smsSearch.PageNo, smsSearch.PageSize).Queryable
                                          .Select(d => new SMSModel
                                          {
                                              Direction = d.Direction,
@@ -356,7 +352,7 @@ namespace Hot4.Repository.Concrete
                                              SMSText = d.Smstext,
                                              State = d.State.State,
                                              StateId = d.StateId,
-                                         }).OrderBy(sms => sms.SMSDate)
+                                         })
                        .ToListAsync();
             }
         }
@@ -394,8 +390,9 @@ namespace Hot4.Repository.Concrete
                               && sms.Smstext.Contains(rechargeMobile)
                               && sms.Direction == true
                                join rch in _context.SmsRecharge on sms.Smsid equals rch.SmsId
+                               orderby sms.Smsdate descending
                                select new { sms.Smsid, sms.Smsdate }
-                                 ).OrderByDescending(d => d.Smsdate).Select(d => d.Smsid).FirstOrDefaultAsync();
+                                 ).Select(d => d.Smsid).FirstOrDefaultAsync();
 
             if (smsId > 0)
             {

@@ -77,7 +77,7 @@ namespace Hot4.Repository.Concrete
 
             var result = GetByCondition(d => d.RechargeDate >= startDate && d.RechargeDate < endDate
                          && EF.Constant(accessIds).Contains(d.AccessId))
-                         .Include(d => d.Brand).Include(d => d.State);
+                         .Include(d => d.Brand).Include(d => d.State).OrderByDescending(d => d.RechargeId);
 
             return await PaginationFilter.GetPagedData(result, rchAggSrch.PageNo, rchAggSrch.PageSize)
                          .Queryable.Select(d => new RechargeModel
@@ -102,6 +102,7 @@ namespace Hot4.Repository.Concrete
                          join acss in _context.Access on r.AccessId equals acss.AccessId
                          where r.Mobile.Contains(rechargeFind.Mobile)
                          && acss.AccountId == rechargeFind.AccountId
+                         orderby r.RechargeId
                          select new RechargeDetailModel
                          {
                              AccessCode = acss.AccessCode,
@@ -128,6 +129,7 @@ namespace Hot4.Repository.Concrete
                          .Include(d => d.Brand).ThenInclude(d => d.Network)
                          join acss in _context.Access on r.AccessId equals acss.AccessId
                          where r.Mobile.Contains(rechargeFind.Mobile)
+                         orderby r.RechargeId
                          select new RechargeDetailModel
                          {
                              AccessCode = acss.AccessCode,
@@ -159,7 +161,10 @@ namespace Hot4.Repository.Concrete
             {
                 var rechargeIds = await GetByCondition(d => d.StateId == (int)SmsState.Pending
                                     && EF.Constant(brandIds).Contains(d.BrandId))
-                    .OrderBy(d => d.RechargeId).Select(d => d.RechargeId).Take(_valueSettings.RechargeIdByBrandIds).ToListAsync();
+                    .OrderBy(d => d.RechargeId)
+                    .Select(d => d.RechargeId)
+                    .Take(_valueSettings.RechargeIdByBrandIds)
+                    .ToListAsync();
 
                 if (rechargeIds != null && rechargeIds.Count > 0)
                 {
@@ -292,7 +297,6 @@ namespace Hot4.Repository.Concrete
                             StateId = result.StateId
                         };
                     }
-
                     await transaction.CommitAsync();
                 }
             }

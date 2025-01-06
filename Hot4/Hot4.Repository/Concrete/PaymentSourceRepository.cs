@@ -34,8 +34,7 @@ namespace Hot4.Repository.Concrete
                     PaymentSource = d.PaymentSource,
                     PaymentSourceText = d.PaymentSource,
                     WalletTypeId = d.WalletTypeId,
-                })
-                .ToListAsync();
+                }).ToListAsync();
         }
     }
 }

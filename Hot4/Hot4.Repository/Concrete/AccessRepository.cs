@@ -90,20 +90,18 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateAccess(Access access)
         {
-            var accessRecord = await GetById(access.AccessId);
-            if (accessRecord != null)
-            {
-                access.Deleted = false;
-                access.PasswordSalt = string.IsNullOrEmpty(access.PasswordSalt) ? Helper.GenerateSalt(access.AccountId) : access.PasswordSalt;
-                access.PasswordHash = Helper.GeneratePasswordHash(access.PasswordSalt, access.AccessPassword);
-                Update(access);
-                await SaveChanges();
-            }
+            access.Deleted = false;
+            access.PasswordSalt = string.IsNullOrEmpty(access.PasswordSalt) ? Helper.GenerateSalt(access.AccountId) : access.PasswordSalt;
+            access.PasswordHash = Helper.GeneratePasswordHash(access.PasswordSalt, access.AccessPassword);
+            Update(access);
+            await SaveChanges();
         }
         public async Task<List<AccountAccessModel>> GetAccessByAccountId(long accountId, bool isGetAll, bool isDeleted)
         {
             var query = await GetByCondition(d => d.AccountId == accountId)
                               .Include(d => d.Channel)
+                              .OrderBy(d => d.Channel)
+                                .ThenBy(d => d.AccessCode)
                               .Select(d => new AccountAccessModel
                               {
                                   AccessId = d.AccessId,
@@ -115,9 +113,7 @@ namespace Hot4.Repository.Concrete
                                   Deleted = d.Deleted ?? false,
                                   PasswordHash = "********",
                                   PasswordSalt = d.PasswordSalt
-                              }).OrderBy(d => d.Channel)
-                                .ThenBy(d => d.AccessCode)
-                                .ToListAsync();
+                              }).ToListAsync();
 
             if (!isGetAll)
             {

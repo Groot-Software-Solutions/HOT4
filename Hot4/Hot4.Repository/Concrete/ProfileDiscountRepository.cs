@@ -29,7 +29,6 @@ namespace Hot4.Repository.Concrete
                     NetworkId = result.Brand.NetworkId,
                     Network = result.Brand.Network.Network,
                     NetworkPrefix = result.Brand.Network.Prefix,
-
                 };
             }
             return null;
@@ -45,7 +44,6 @@ namespace Hot4.Repository.Concrete
             Update(profileDiscount);
             await SaveChanges();
         }
-
         public async Task DeletePrfDiscount(ProfileDiscount profileDiscount)
         {
             Delete(profileDiscount);

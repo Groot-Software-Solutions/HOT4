@@ -24,12 +24,8 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateAccount(Account account)
         {
-            var accountRecord = await GetById(account.AccountId);
-            if (accountRecord != null)
-            {
-                Update(account);
-                await SaveChanges();
-            }
+            Update(account);
+            await SaveChanges();
         }
         public async Task<AccountModel?> GetAccountById(long accountId)
         {

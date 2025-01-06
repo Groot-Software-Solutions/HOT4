@@ -52,6 +52,7 @@ namespace Hot4.Repository.Concrete
                               }.Contains(d.BankTrxStateId))
                                .Include(d => d.BankTrxState)
                                .Include(d => d.BankTrxType)
+                               .OrderByDescending(d => d.BankTrxId)
                                .Select(d => new BankTransactionModel
                                {
                                    Amount = d.Amount,
@@ -68,9 +69,7 @@ namespace Hot4.Repository.Concrete
                                    PaymentId = d.PaymentId,
                                    RefName = d.RefName,
                                    TrxDate = d.TrxDate
-                               })
-                               .OrderByDescending(d => d.BankTrxId)
-                               .ToListAsync();
+                               }).ToListAsync();
 
             }
             else
@@ -78,6 +77,7 @@ namespace Hot4.Repository.Concrete
                 return await GetByCondition(d => d.BankTrxBatchId == bankTransactionBatchId)
                              .Include(d => d.BankTrxState)
                              .Include(d => d.BankTrxType)
+                             .OrderByDescending(d => d.BankTrxId)
                              .Select(d => new BankTransactionModel
                              {
                                  Amount = d.Amount,
@@ -94,9 +94,7 @@ namespace Hot4.Repository.Concrete
                                  PaymentId = d.PaymentId,
                                  RefName = d.RefName,
                                  TrxDate = d.TrxDate
-                             })
-                             .OrderByDescending(d => d.BankTrxId)
-                             .ToListAsync();
+                             }).ToListAsync();
             }
         }
         public async Task<List<BankTransactionModel>> GetPendingTrxByType(byte bankTransactionTypeId)
@@ -108,6 +106,7 @@ namespace Hot4.Repository.Concrete
                              && d.TrxDate > DateTime.Now.AddDays(-7))
                              .Include(d => d.BankTrxState)
                              .Include(d => d.BankTrxType)
+                             .OrderByDescending(d => d.BankTrxId)
                              .Select(d => new BankTransactionModel
                              {
                                  Amount = d.Amount,
@@ -124,9 +123,7 @@ namespace Hot4.Repository.Concrete
                                  PaymentId = d.PaymentId,
                                  RefName = d.RefName,
                                  TrxDate = d.TrxDate
-                             })
-                             .OrderByDescending(d => d.BankTrxId)
-                             .ToListAsync();
+                             }).ToListAsync();
             }
             else
             {
@@ -134,6 +131,7 @@ namespace Hot4.Repository.Concrete
                              && d.BankTrxStateId == (int)BankTransactionStates.BusyConfirming)
                              .Include(d => d.BankTrxState)
                              .Include(d => d.BankTrxType)
+                             .OrderByDescending(d => d.BankTrxId)
                              .Select(d => new BankTransactionModel
                              {
                                  Amount = d.Amount,
@@ -150,9 +148,7 @@ namespace Hot4.Repository.Concrete
                                  PaymentId = d.PaymentId,
                                  RefName = d.RefName,
                                  TrxDate = d.TrxDate
-                             })
-                             .OrderByDescending(d => d.BankTrxId)
-                             .ToListAsync();
+                             }).ToListAsync();
             }
         }
         public async Task<List<BankTransactionModel>> GetAllTrxByType(byte bankTransactionTypeId) // pending state 0
@@ -161,6 +157,7 @@ namespace Hot4.Repository.Concrete
                          && d.BankTrxStateId == (int)BankTransactionStates.Pending)
                          .Include(d => d.BankTrxState)
                          .Include(d => d.BankTrxType)
+                         .OrderByDescending(d => d.BankTrxId)
                          .Select(d => new BankTransactionModel
                          {
                              Amount = d.Amount,
@@ -177,9 +174,7 @@ namespace Hot4.Repository.Concrete
                              PaymentId = d.PaymentId,
                              RefName = d.RefName,
                              TrxDate = d.TrxDate
-                         })
-                         .OrderByDescending(d => d.BankTrxId)
-                         .ToListAsync();
+                         }).ToListAsync();
         }
         public async Task<BankTransactionModel?> GetTrxByRef(string bankRef)
         {
@@ -235,6 +230,7 @@ namespace Hot4.Repository.Concrete
             return await (from bnkTrx in _context.BankTrx
                           join bp in _context.BankvPayment on bnkTrx.BankTrxId equals bp.BankTrxId
                           where bp.VPaymentId == vpaymentId
+                          orderby bnkTrx.BankTrxId descending
                           select bnkTrx)
                           .Select(d => new BankTransactionModel
                           {
@@ -252,9 +248,7 @@ namespace Hot4.Repository.Concrete
                               PaymentId = d.PaymentId,
                               RefName = d.RefName,
                               TrxDate = d.TrxDate
-                          })
-                          .OrderByDescending(d => d.BankTrxId)
-                          .ToListAsync();
+                          }).ToListAsync();
         }
         public async Task<int?> GetEcoCashPendingTrxCount(EcoCashSearchModel ecoCashSearch)
         {

@@ -37,7 +37,8 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<List<PaymentModel>> GetPaymentByAccountId(long accountId, int pageNumber, int pageSize)
         {
-            return await PaginationFilter.GetPagedData(GetByCondition(d => d.AccountId == accountId), pageNumber, pageSize)
+            return await PaginationFilter.GetPagedData(GetByCondition(d => d.AccountId == accountId)
+                              .OrderBy(d => d.PaymentDate), pageNumber, pageSize)
                         .Queryable.Select(d => new PaymentModel
                         {
                             PaymentId = d.PaymentId,
@@ -50,7 +51,7 @@ namespace Hot4.Repository.Concrete
                             PaymentType = d.PaymentType.PaymentType,
                             PaymentTypeId = d.PaymentTypeId,
                             Reference = d.Reference
-                        }).OrderBy(d => d.PaymentDate)
+                        })
                  .ToListAsync();
 
             //vwzPayment functionlality

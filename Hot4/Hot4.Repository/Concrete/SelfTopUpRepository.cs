@@ -25,6 +25,7 @@ namespace Hot4.Repository.Concrete
             return await (from s in _context.SelfTopUp.Where(d => d.BankTrxId == bankTrxId)
                           .Include(d => d.Access).Include(d => d.Brand)
                           join st in _context.SelfTopUpState on s.StateId equals st.SelfTopUpStateId
+                          orderby s.SelfTopUpId descending
                           select new SelfTopUpModel
                           {
                               BankTrxId = s.BankTrxId,
@@ -43,14 +44,14 @@ namespace Hot4.Repository.Concrete
                               SelfTopUpStateName = st.SelfTopUpStateName,
                               StateId = s.StateId,
                               TargetNumber = s.TargetNumber
-                          }).OrderByDescending(d => d.SelfTopUpId)
-                          .ToListAsync();
+                          }).ToListAsync();
         }
         public async Task<List<SelfTopUpModel>> GetSelfTopUpByStateId(byte selfTopUpStateId)
         {
             return await (from s in _context.SelfTopUp.Where(d => d.StateId == selfTopUpStateId)
                  .Include(d => d.Access).Include(d => d.Brand)
                           join st in _context.SelfTopUpState on s.StateId equals st.SelfTopUpStateId
+                          orderby s.SelfTopUpId
                           select new SelfTopUpModel
                           {
                               BankTrxId = s.BankTrxId,
@@ -69,8 +70,7 @@ namespace Hot4.Repository.Concrete
                               SelfTopUpStateName = st.SelfTopUpStateName,
                               StateId = s.StateId,
                               TargetNumber = s.TargetNumber
-                          }).OrderBy(d => d.SelfTopUpId)
-                          .ToListAsync();
+                          }).ToListAsync();
         }
         public async Task UpdateSelfTopUp(SelfTopUp selfTopUp)
         {
