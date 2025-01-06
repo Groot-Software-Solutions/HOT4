@@ -114,20 +114,24 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<List<EmailModel>> EmailAggregators(string sub, string messageText)
         {
+
             var accountIds = await _context.Payment.Where(d => d.PaymentDate > DateTime.Now.AddDays(-180))
                                    .Select(d => d.AccountId).ToListAsync();
 
-            return await _context.Access.Include(d => d.Account)
+            var result = await _context.Access.Include(d => d.Account)
                           .Where(d => d.ChannelId == (int)ChannelName.Web
-                          && d.Deleted == false
-                          && Helper.CheckValidEmail(d.AccessCode) == true
+                           && d.Deleted == false
+                          // && Helper.CheckValidEmail(d.AccessCode) == true
                           && d.Account.ProfileId > (int)Profiles.BLANK && d.Account.ProfileId <= (int)Profiles.BRAND_AMB_CX_50_300
-                          && EF.Constant(accountIds).Contains(d.AccountId))
+                          && EF.Constant(accountIds).Contains(d.Account.AccountId))
                           .Select(d => new EmailModel
                           {
                               Email = d.AccessCode,
                               AccountName = d.Account.AccountName
                           }).ToListAsync();
+
+            return result.Where(d => Helper.CheckValidEmail(d.Email)).ToList();
+
         }
         public async Task<List<EmailModel>> EmailCorporates(string sub, string messageText)
         {
@@ -136,12 +140,25 @@ namespace Hot4.Repository.Concrete
             var accountIds = await _context.Payment.Where(d => d.PaymentDate > DateTime.Now.AddDays(-180))
                                    .Select(d => d.AccountId).ToListAsync();
 
-            return await _context.Access.Include(d => d.Account)
+            //return await _context.Access.Include(d => d.Account)
+            //             .Where(d => d.ChannelId == (int)ChannelName.Web && d.Deleted == false
+            //             && (d.Account.ProfileId < (int)Profiles.EASYLINK_MTS
+            //             || (d.Account.ProfileId >= (int)Profiles.BRAND_AMB_CX_50_300
+            //                && d.Account.ProfileId <= (int)Profiles.NEVER_ACTIVE))
+            //             && Helper.CheckValidEmail(d.AccessCode) == true
+            //             && EF.Constant(accountIds).Contains(d.AccountId))
+            //            .OrderBy(d => d.Account.ProfileId)
+            //            .Select(d => new EmailModel
+            //            {
+            //                Email = d.AccessCode,
+            //                AccountName = d.Account.AccountName
+            //            }).ToListAsync();
+
+            var result = await _context.Access.Include(d => d.Account)
                          .Where(d => d.ChannelId == (int)ChannelName.Web && d.Deleted == false
                          && (d.Account.ProfileId < (int)Profiles.EASYLINK_MTS
                          || (d.Account.ProfileId >= (int)Profiles.BRAND_AMB_CX_50_300
-                            && d.Account.ProfileId <= (int)Profiles.NEVER_ACTIVE))
-                         && Helper.CheckValidEmail(d.AccessCode) == true
+                          && d.Account.ProfileId <= (int)Profiles.NEVER_ACTIVE))
                          && EF.Constant(accountIds).Contains(d.AccountId))
                         .OrderBy(d => d.Account.ProfileId)
                         .Select(d => new EmailModel
@@ -149,6 +166,9 @@ namespace Hot4.Repository.Concrete
                             Email = d.AccessCode,
                             AccountName = d.Account.AccountName
                         }).ToListAsync();
+
+            return result.Where(d => Helper.CheckValidEmail(d.Email)).ToList();
+
         }
         public async Task<List<SMSModel>> SMSInbox()
         {
@@ -240,31 +260,48 @@ namespace Hot4.Repository.Concrete
                 throw;
             }
         }
-        public async Task<List<SMSModel>> GetSMSByAccountSMSDate(long accountId, DateTime smsDate)
+        public async Task<List<SMSModel>> GetSMSByAccountSMSDate(long accountId, DateTime smsDate, int pageNo, int pageSize)
         {
             var startDate = smsDate.Date;
             var endDate = smsDate.Date.AddDays(1).AddTicks(-1);
 
-            return await (from sms in _context.Sms.Include(d => d.State).Include(d => d.Priority)
-                         .Where(d => d.Direction == true && d.Smsdate >= startDate && smsDate <= endDate)
-                          join acss in _context.Access on sms.Mobile equals acss.AccessCode
-                          where acss.AccountId == accountId
-                          orderby sms.Smsdate descending
-                          select new SMSModel
-                          {
-                              Direction = sms.Direction,
-                              InsertDate = sms.InsertDate,
-                              Mobile = sms.Mobile.Replace(" ", ""),
-                              Priority = sms.Priority.Priority,
-                              PriorityId = sms.PriorityId,
-                              SmppId = sms.SmppId,
-                              SMSDate = sms.Smsdate,
-                              SMSId = sms.Smsid,
-                              SMSIDIn = sms.SmsidIn,
-                              SMSText = sms.Smstext,
-                              State = sms.State.State,
-                              StateId = sms.StateId,
-                          }).ToListAsync();
+            var result = from sms in _context.Sms.Include(d => d.State).Include(d => d.Priority)
+                          .Where(d => d.Direction == true && d.Smsdate >= startDate && smsDate <= endDate)
+                         join acss in _context.Access on sms.Mobile equals acss.AccessCode
+                         where acss.AccountId == accountId
+                         orderby sms.Smsdate descending
+                         select new
+                         {
+                             sms.Direction,
+                             sms.InsertDate,
+                             sms.Priority.Priority,
+                             sms.PriorityId,
+                             sms.Smsid,
+                             sms.Smsdate,
+                             sms.SmppId,
+                             sms.SmsidIn,
+                             sms.Smstext,
+                             sms.State.State,
+                             sms.StateId,
+                             sms.Mobile
+                         };
+
+            return await PaginationFilter.GetPagedData(result, pageNo, pageSize).Queryable
+                                       .Select(d => new SMSModel
+                                       {
+                                           Direction = d.Direction,
+                                           InsertDate = d.InsertDate,
+                                           Mobile = d.Mobile.Replace(" ", ""),
+                                           Priority = d.Priority,
+                                           PriorityId = d.PriorityId,
+                                           SmppId = d.SmppId,
+                                           SMSDate = d.Smsdate,
+                                           SMSId = d.Smsid,
+                                           SMSIDIn = d.SmsidIn,
+                                           SMSText = d.Smstext,
+                                           State = d.State,
+                                           StateId = d.StateId,
+                                       }).ToListAsync();
         }
         public async Task<List<SMSModel>> GetSMSBySMSId(long smsId)
         {
@@ -291,11 +328,11 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<List<SMSModel>> SMSSearch(SMSSearchModel smsSearch)
         {
-            var states = new List<byte>();
+            var states = new List<int>();
 
             if (smsSearch.StateId == -1)
             {
-                states = await _context.State.Select(d => d.StateId).ToListAsync();
+                states = await _context.State.Select(d => Convert.ToInt32(d.StateId)).ToListAsync();
             }
             else
             {
