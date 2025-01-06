@@ -8,6 +8,7 @@
 
 @inject Hot4.Repository.Abstract.ITransferRepository transferRepository;
 @inject Hot4.Repository.Abstract.IWebRequestRepository webRequestRepository;
+@inject Hot4.Repository.Abstract.ISMSRepository smsRepository;
 
 @using Hot4.DataModel.Models;
 @using Hot4.ViewModel;
@@ -33,6 +34,12 @@
 <br />
 <h3>Web Request</h3>
 <form method="post" @formname="myformWebRequest" @onsubmit="GetWebRequest">
+    <AntiforgeryToken />
+    <button type="submit">Submit</button>
+</form>
+<br />
+<h3>SMS</h3>
+<form method="post" @formname="myformSMS" @onsubmit="GetSMS">
     <AntiforgeryToken />
     <button type="submit">Submit</button>
 </form>
@@ -88,10 +95,19 @@
     }
     private async Task GetTransfer()
     {
-        var result = await transferRepository.ListTransfer(2, 15);
+        //  var result = await transferRepository.ListTransfer(2, 15);
+        // var resultbal = await transferRepository.GetStockTradeBalByAccountId(12177814); // exec xStockTrade_Balance 12177814
+
+        StockTradeSearchModel mdl = new StockTradeSearchModel() { AccountId = 10520030, Amount = 400, Rate = 10 };
+        var resultTraded = await transferRepository.GetStockTrade(mdl);// exec xStockTrade_Trade 10520030,400.00,10
     }
     private async Task GetWebRequest()
     {
         var result = await webRequestRepository.GetWebRequestByRefAndAccessId("", 10664643);
+    }
+
+    private async Task GetSMS()
+    {
+        var result = await smsRepository.SmsBulkSend("");
     }
 }

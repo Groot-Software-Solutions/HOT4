@@ -4,9 +4,9 @@
     {
         public int RechargeIdByBrandIds { get; set; }
         public string SmsBulkSendExcludeAccessCode { get; set; }
-        public string SmsBulkSendGreaterThenMobileNo { get; set; }
+        public long SmsBulkSendGreaterThenMobileNo { get; set; }
         public string SmsBulkSmsSendExcludeAccessCode { get; set; }
-        public string SmsBulkSmsSendGreaterThenMobileNo { get; set; }
+        public long SmsBulkSmsSendGreaterThenMobileNo { get; set; }
         public int SMSInboxQueueSize { get; set; }
         public int SMSOutboxQueueSize { get; set; }
         public int StockTradeRateNullValue { get; set; }

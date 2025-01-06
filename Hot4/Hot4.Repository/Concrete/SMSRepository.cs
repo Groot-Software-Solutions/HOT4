@@ -41,10 +41,9 @@ namespace Hot4.Repository.Concrete
               .Where(d => d.ChannelId == (int)ChannelName.Sms && d.Deleted == false
               && EF.Constant(accountIds).Contains(d.AccountId)
              // && !new[] { "2200958", "2205072", "2250126", "2256859", "2275909", "2206206" }
-             && string.Join(",", _valueSettings.SmsBulkSendExcludeAccessCode)
+             && !string.Join(",", _valueSettings.SmsBulkSendExcludeAccessCode)
                        .Contains(d.AccessCode.Substring(d.AccessCode.Length - 7))
-             // && string.Compare(d.AccessCode, "0799999999") > 0)
-             && string.Compare(d.AccessCode, _valueSettings.SmsBulkSendGreaterThenMobileNo) > 0)
+                && Convert.ToInt64(d.AccessCode) < _valueSettings.SmsBulkSendGreaterThenMobileNo)
               .Select(a => a.AccessCode)
               .Distinct().ToListAsync();
 
@@ -89,10 +88,9 @@ namespace Hot4.Repository.Concrete
                                    .Where(d => d.ChannelId == (int)ChannelName.Sms && d.Deleted == false
                                    && recentPaymentAccountIds.Contains(d.AccountId)
                                  //  && !new[] { "2200958", "2205072", "2250126", "2256859", "2275909", "2206206", "4666874" }
-                                 && string.Join(",", _valueSettings.SmsBulkSmsSendExcludeAccessCode)
+                                 && !string.Join(",", _valueSettings.SmsBulkSmsSendExcludeAccessCode)
                                    .Contains(d.AccessCode.Substring(d.AccessCode.Length - 7))
-                                   // && d.AccessCode.CompareTo("0799999999") <= 0)
-                                   && d.AccessCode.CompareTo(_valueSettings.SmsBulkSmsSendGreaterThenMobileNo) <= 0)
+                                  && Convert.ToInt64(d.AccessCode) < _valueSettings.SmsBulkSmsSendGreaterThenMobileNo)
                                   .Select(a => a.AccessCode)
                                    .Distinct()
                                    .ToListAsync();
