@@ -16,7 +16,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateRechargePrepaid(RechargePrepaid rechargePrepaid)
         {
-            await Update(rechargePrepaid);
+            Update(rechargePrepaid);
             await SaveChanges();
         }
         public async Task<RechargePrepaidModel?> GetRechargePrepaidById(long rechargeId)

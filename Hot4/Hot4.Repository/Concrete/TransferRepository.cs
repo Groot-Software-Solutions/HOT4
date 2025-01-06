@@ -26,12 +26,12 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteTransfer(Transfer transfer)
         {
-            await Delete(transfer);
+            Delete(transfer);
             await SaveChanges();
         }
         public async Task UpdateTransfer(Transfer transfer)
         {
-            await Update(transfer);
+            Update(transfer);
             await SaveChanges();
         }
         public async Task<List<TransferModel>> GetTransferByPaymentId(long paymentId)
@@ -81,7 +81,7 @@ namespace Hot4.Repository.Concrete
             var traded = await _context.Payment
                                 .Where(d => d.AccountId == accountId
                                 && d.PaymentTypeId == (int)PaymentMethodType.zServiceFees
-                                && d.PaymentSourceId == (int)PaymentMethodSource.Ecobank)
+                                && d.PaymentSourceId == (int)PaymentMethodSource.TradeInUSD)
                                 .SumAsync(p => Math.Abs(p.Amount));
 
 
@@ -103,7 +103,7 @@ namespace Hot4.Repository.Concrete
 
             traded = await _context.Payment.Where(d => d.AccountId == stockTradeSearch.AccountId
                      && d.PaymentTypeId == (int)PaymentMethodType.zServiceFees
-                     && d.PaymentSourceId == (int)PaymentMethodSource.Ecobank)
+                     && d.PaymentSourceId == (int)PaymentMethodSource.TradeInUSD)
                      .SumAsync(d => (decimal?)d.Amount) ?? 0;
 
             // Calculate tradable ZWL and balances
@@ -125,7 +125,7 @@ namespace Hot4.Repository.Concrete
                     {
                         AccountId = stockTradeSearch.AccountId,
                         PaymentTypeId = (int)PaymentMethodType.zServiceFees,
-                        PaymentSourceId = (int)PaymentMethodSource.Ecobank,
+                        PaymentSourceId = (int)PaymentMethodSource.TradeInUSD,
                         Amount = -paymentAmount,
                         PaymentDate = DateTime.Now,
                         Reference = $"ZWL Transfer of {stockTradeSearch.Amount}AU @ ROE: {stockTradeSearch.Rate}",
@@ -139,7 +139,7 @@ namespace Hot4.Repository.Concrete
                     {
                         AccountId = stockTradeSearch.AccountId,
                         PaymentTypeId = (int)PaymentMethodType.USD,
-                        PaymentSourceId = (int)PaymentMethodSource.Ecobank,
+                        PaymentSourceId = (int)PaymentMethodSource.TradeInUSD,
                         Amount = stockTradeSearch.Amount,
                         PaymentDate = DateTime.Now,
                         Reference = $"Ref:{payment.PaymentId}",

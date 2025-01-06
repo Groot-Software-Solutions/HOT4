@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Hot4.Core.Enums
+﻿namespace Hot4.Core.Enums
 {
     public enum Brands
     {
@@ -12,7 +8,7 @@ namespace Hot4.Core.Enums
         Juice = 4,
         EconetPlatform = 5,
         Econet078 = 6,
-        EconetBB = 7,
+        EconetBroadband = 7,
         EconetTXT = 8,
         TelecelUSD = 10,
         TelecelTXT = 11,
@@ -39,15 +35,21 @@ namespace Hot4.Core.Enums
         TeloneVoip = 36,
         TeloneBillPayment = 37,
         NetoneUSD = 38,
-        EconetLesotho = 39,
+        NetoneData = 39,
         NetoneSocial = 40,
         NetoneWhatsApp = 41,
         NetoneSMS = 42,
         TeloneUSD = 43,
         ZETDCUSD = 44,
-        NyaradzoUSD = 45, 
+        NyaradzoUSD = 45,
         NetoneUSDData = 46,
-        AirtimeBrand =100,   
-        DataBrand =101,
+        AirtimeBrand = 100,
+        EconetUSDAirtime = 101,
+        NetOneUSDAirtime = 102,
+        TelecelUSDAirtime = 103,
+        EconetUSDDataAndBundles = 111,
+        NetOneUSDDataAndBundles = 112,
+        TelecelUSDDataAndBundles = 113,
+        AirtimeZiG = 200
     }
 }

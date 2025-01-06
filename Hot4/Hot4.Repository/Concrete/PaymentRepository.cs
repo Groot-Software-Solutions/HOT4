@@ -87,7 +87,7 @@ namespace Hot4.Repository.Concrete
                     paymentExst.Reference = payment.Reference;
                     paymentExst.LastUser = payment.LastUser;
 
-                    await Update(paymentExst);
+                    Update(paymentExst);
                     await SaveChanges();
                     return paymentExst.PaymentId;
                 }

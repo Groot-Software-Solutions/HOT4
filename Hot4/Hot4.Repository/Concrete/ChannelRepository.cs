@@ -17,12 +17,12 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteChannel(Channels channel)
         {
-            await Delete(channel);
+            Delete(channel);
             await SaveChanges();
         }
         public async Task UpdateChannel(Channels channel)
         {
-            await Update(channel);
+            Update(channel);
             await SaveChanges();
         }
         public async Task<List<ChannelModel>> ListChannel()

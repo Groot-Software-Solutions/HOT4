@@ -17,12 +17,12 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateNetwork(Networks networks)
         {
-            await Update(networks);
+            Update(networks);
             await SaveChanges();
         }
         public async Task DeleteNetwork(Networks networks)
         {
-            await Delete(networks);
+            Delete(networks);
             await SaveChanges();
         }
         public async Task<List<NetworkModel>> GetNetworkIdentityByMobile(string mobile)

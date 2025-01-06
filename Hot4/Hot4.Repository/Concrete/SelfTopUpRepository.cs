@@ -17,7 +17,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteSelfTopUp(SelfTopUp selfTopUp)
         {
-            await Delete(selfTopUp);
+            Delete(selfTopUp);
             await SaveChanges();
         }
         public async Task<List<SelfTopUpModel>> GetSelfTopUpByBankTrxId(long bankTrxId)
@@ -74,7 +74,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateSelfTopUp(SelfTopUp selfTopUp)
         {
-            await Update(selfTopUp);
+            Update(selfTopUp);
             await SaveChanges();
         }
     }

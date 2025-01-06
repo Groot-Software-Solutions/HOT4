@@ -18,7 +18,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task DeleteProfile(Profile profile)
         {
-            await Delete(profile);
+            Delete(profile);
             await SaveChanges();
         }
 
@@ -49,7 +49,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task UpdateProfile(Profile profile)
         {
-            await Update(profile);
+            Update(profile);
             await SaveChanges();
         }
     }

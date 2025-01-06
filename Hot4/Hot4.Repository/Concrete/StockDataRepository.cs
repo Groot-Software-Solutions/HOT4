@@ -17,7 +17,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task DeleteStockData(StockData stockData)
         {
-            await Delete(stockData);
+            Delete(stockData);
             await SaveChanges();
         }
 
@@ -37,7 +37,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task UpdateStockData(StockData stockData)
         {
-            await Update(stockData);
+            Update(stockData);
             await SaveChanges();
         }
     }

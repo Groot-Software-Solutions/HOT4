@@ -39,13 +39,13 @@ namespace Hot4.Repository.Concrete
 
         public async Task UpdateHotType(HotTypes hotTypes)
         {
-            await Update(hotTypes);
+            Update(hotTypes);
             await SaveChanges();
         }
 
         public async Task DeleteHotType(HotTypes hotTypes)
         {
-            await Delete(hotTypes);
+            Delete(hotTypes);
             await SaveChanges();
         }
     }

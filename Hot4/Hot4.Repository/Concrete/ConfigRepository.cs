@@ -30,12 +30,12 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteConfig(Configs config)
         {
-            await Delete(config);
+            Delete(config);
             await SaveChanges();
         }
         public async Task UpdateConfig(Configs config)
         {
-            await Update(config);
+            Update(config);
             await SaveChanges();
         }
     }

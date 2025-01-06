@@ -17,7 +17,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteSelfTopUpState(SelfTopUpState selfTopUpState)
         {
-            await Delete(selfTopUpState);
+            Delete(selfTopUpState);
             await SaveChanges();
         }
         public async Task<List<SelfTopUpStateModel>> ListSelfTopUpState()
@@ -30,7 +30,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateSelfTopUpState(SelfTopUpState selfTopUpState)
         {
-            await Update(selfTopUpState);
+            Update(selfTopUpState);
             await SaveChanges();
         }
     }

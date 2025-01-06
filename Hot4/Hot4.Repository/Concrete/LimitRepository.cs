@@ -26,7 +26,7 @@ namespace Hot4.Repository.Concrete
                 limitExist.LimitTypeId = limit.LimitTypeId;
                 limitExist.MonthlyLimit = limit.MonthlyLimit;
                 limitExist.NetworkId = limit.NetworkId;
-                await Update(limit);
+                Update(limit);
                 await SaveChanges();
                 return limitExist.LimitId;
             }
@@ -109,7 +109,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task DeleteLimit(Limit limit)
         {
-            await Delete(limit);
+            Delete(limit);
             await SaveChanges();
         }
     }

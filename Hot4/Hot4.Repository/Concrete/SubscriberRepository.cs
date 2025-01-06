@@ -18,12 +18,12 @@ namespace Hot4.Repository.Concrete
 
         public async Task DeleteSubscriber(Subscriber subscriber)
         {
-            await Delete(subscriber);
+            Delete(subscriber);
             await SaveChanges();
         }
         public async Task UpdateSubscriber(Subscriber subscriber)
         {
-            await Update(subscriber);
+            Update(subscriber);
             await SaveChanges();
         }
         public async Task<SubscriberModel?> GetSubscriberById(long subscriberId)

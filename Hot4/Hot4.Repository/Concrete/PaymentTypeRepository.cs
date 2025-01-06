@@ -17,12 +17,12 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeletePaymentType(PaymentTypes paymentType)
         {
-            await Delete(paymentType);
+            Delete(paymentType);
             await SaveChanges();
         }
         public async Task UpdatePaymentType(PaymentTypes paymentType)
         {
-            await Update(paymentType);
+            Update(paymentType);
             await SaveChanges();
         }
         public async Task<List<PaymentTypeModel>> ListPaymentType()

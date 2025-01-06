@@ -17,12 +17,12 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeletePaymentSource(PaymentSources paymentSource)
         {
-            await Delete(paymentSource);
+            Delete(paymentSource);
             await SaveChanges();
         }
         public async Task UpdatePaymentSource(PaymentSources paymentSource)
         {
-            await Update(paymentSource);
+            Update(paymentSource);
             await SaveChanges();
         }
         public async Task<List<PaymentSourceModel>> ListPaymentSource()

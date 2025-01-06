@@ -42,13 +42,13 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdatePrfDiscount(ProfileDiscount profileDiscount)
         {
-            await Update(profileDiscount);
+            Update(profileDiscount);
             await SaveChanges();
         }
 
         public async Task DeletePrfDiscount(ProfileDiscount profileDiscount)
         {
-            await Delete(profileDiscount);
+            Delete(profileDiscount);
             await SaveChanges();
         }
         public async Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileId(int profileId)

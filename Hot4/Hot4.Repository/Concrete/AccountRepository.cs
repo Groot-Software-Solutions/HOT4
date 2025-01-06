@@ -27,7 +27,7 @@ namespace Hot4.Repository.Concrete
             var accountRecord = await GetById(account.AccountId);
             if (accountRecord != null)
             {
-                await Update(account);
+                Update(account);
                 await SaveChanges();
             }
         }
@@ -51,17 +51,17 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<List<ViewAccountModel>> SearchAccount(string filter, int pageNo, int pageSize)
         {
-            var filteredAccounts = await (from a in _context.Account
-                                          where (a.AccountName + a.ReferredBy + a.Email).Contains(filter)
-                                          select a.AccountId).ToListAsync();
+            var accountIds = await (from a in _context.Account
+                                    where (a.AccountName + a.ReferredBy + a.Email).Contains(filter)
+                                    select a.AccountId)
+                                          .Union(
+                        from ac in _context.Access
+                        where ac.AccessCode.Contains(filter)
+                        select ac.AccountId
+                   )
+                   .ToListAsync();
 
-            var filteredAccess = await (from ac in _context.Access
-                                        where ac.AccessCode.Contains(filter)
-                                        select ac.AccountId).ToListAsync();
-
-            var combinedAccountIds = filteredAccounts.Concat(filteredAccess);
-
-            var result = await _commonRepository.GetViewAccountList(combinedAccountIds.ToList());
+            var result = await _commonRepository.GetViewAccountList(accountIds);
 
             return result.Skip((pageNo - 1) * pageSize)
                          .Take(pageSize).ToList();
@@ -78,7 +78,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task DeleteAccount(Account account)
         {
-            await Delete(account);
+            Delete(account);
             await SaveChanges();
         }
     }

@@ -22,7 +22,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateBank(Banks bank)
         {
-            await Update(bank);
+            Update(bank);
             await SaveChanges();
         }
         public async Task AddBank(Banks bank)
@@ -32,7 +32,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteBank(Banks bank)
         {
-            await Delete(bank);
+            Delete(bank);
             await SaveChanges();
         }
     }

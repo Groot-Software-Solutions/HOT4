@@ -16,7 +16,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task DeleteBankvPayment(BankvPayment bankvPayment)
         {
-            await Delete(bankvPayment);
+            Delete(bankvPayment);
             await SaveChanges();
         }
 
@@ -40,7 +40,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task UpdateBankvPayment(BankvPayment bankvPayment)
         {
-            await Update(bankvPayment);
+            Update(bankvPayment);
             await SaveChanges();
         }
     }

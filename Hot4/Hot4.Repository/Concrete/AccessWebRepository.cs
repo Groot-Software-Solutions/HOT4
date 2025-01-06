@@ -32,7 +32,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteAccessWeb(AccessWeb accessWeb)
         {
-            await Delete(accessWeb);
+            Delete(accessWeb);
             await SaveChanges();
         }
         public async Task UpdateAccessWeb(AccessWeb accessWeb)
@@ -40,7 +40,7 @@ namespace Hot4.Repository.Concrete
             var accessWebRecord = await GetById(accessWeb.AccessId);
             if (accessWebRecord != null)
             {
-                await Update(accessWeb);
+                Update(accessWeb);
                 await SaveChanges();
             }
         }

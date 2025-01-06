@@ -28,7 +28,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateSMS(Sms sms)
         {
-            await Update(sms);
+            Update(sms);
             await SaveChanges();
         }
         public async Task<List<EmailModel>> SmsBulkSend(string messageText)

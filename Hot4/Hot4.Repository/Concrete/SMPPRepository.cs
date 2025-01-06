@@ -18,7 +18,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteSMPP(Smpp smpp)
         {
-            await Delete(smpp);
+            Delete(smpp);
             await SaveChanges();
         }
         public async Task<List<SMPPModel>> ListSMPP()
@@ -51,7 +51,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateSMPP(Smpp smpp)
         {
-            await Update(smpp);
+            Update(smpp);
             await SaveChanges();
         }
     }
