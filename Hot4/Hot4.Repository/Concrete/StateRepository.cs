@@ -17,7 +17,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteState(States state)
         {
-            await Delete(state);
+            Delete(state);
             await SaveChanges();
         }
         public async Task<StateModel?> GetStateById(byte stateId)
@@ -43,7 +43,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateState(States state)
         {
-            await Update(state);
+            Update(state);
             await SaveChanges();
         }
     }

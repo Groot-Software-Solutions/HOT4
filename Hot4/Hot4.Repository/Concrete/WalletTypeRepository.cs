@@ -17,7 +17,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task DeleteWalletType(WalletType walletType)
         {
-            await Delete(walletType);
+            Delete(walletType);
             await SaveChanges();
         }
 
@@ -47,7 +47,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task UpdateWalletType(WalletType walletType)
         {
-            await Update(walletType);
+            Update(walletType);
             await SaveChanges();
         }
     }

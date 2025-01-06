@@ -16,9 +16,13 @@
         zBalanceBF = 12,
         ShareholdersAllowance = 13,
         Writeoff = 14,
+        DIRECT = 15,
         ZESA = 16,
         USD = 17,
         Nyaradzo = 18,
         USDUtility = 19,
+        Trade = 20,
+        StockAccountTransfer = 21,
+        NetworkRechargeReversal = 22
     }
 }

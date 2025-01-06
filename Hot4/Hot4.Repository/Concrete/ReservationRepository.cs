@@ -18,7 +18,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteReservation(Reservation reservation)
         {
-            await Delete(reservation);
+            Delete(reservation);
             await SaveChanges();
         }
         public async Task<List<ReservationModel>> GetReservationById(long reservationId)
@@ -63,7 +63,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateReservation(Reservation reservation)
         {
-            await Update(reservation);
+            Update(reservation);
             await SaveChanges();
         }
     }

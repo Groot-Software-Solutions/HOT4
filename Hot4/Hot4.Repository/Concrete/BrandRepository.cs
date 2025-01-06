@@ -68,12 +68,12 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteBrand(Brand brand)
         {
-            await Delete(brand);
+            Delete(brand);
             await SaveChanges();
         }
         public async Task UpdateBrand(Brand brand)
         {
-            await Update(brand);
+            Update(brand);
             await SaveChanges();
         }
     }

@@ -59,12 +59,12 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateAddress(Address address)
         {
-            await Update(address);
+            Update(address);
             await SaveChanges();
         }
         public async Task DeleteAddress(Address address)
         {
-            await Delete(address);
+            Delete(address);
             await SaveChanges();
         }
     }

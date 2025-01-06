@@ -17,12 +17,12 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteProductMetaData(ProductMetaData productMetaData)
         {
-            await Delete(productMetaData);
+            Delete(productMetaData);
             await SaveChanges();
         }
         public async Task UpdateProductMetaData(ProductMetaData productMetaData)
         {
-            await Update(productMetaData);
+            Update(productMetaData);
             await SaveChanges();
         }
         public async Task<List<ProductMetaDataModel>> ListProductMetaData()

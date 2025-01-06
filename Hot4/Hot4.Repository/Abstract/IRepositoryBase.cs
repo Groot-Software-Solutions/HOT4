@@ -8,11 +8,11 @@ namespace Hot4.Repository.Abstract
         Task<T?> GetById(object id);
         IQueryable<T> GetByCondition(Expression<Func<T, bool>> expression);
         Task Create(T entity);
-        Task Update(T entity);
-        Task Delete(T entity);
+        void Update(T entity);
+        void Delete(T entity);
         Task SaveChanges();
         Task BulkCreate(List<T> entities);
 
-        Task BulkUpdate(List<T> entities);
+        void BulkUpdate(List<T> entities);
     }
 }

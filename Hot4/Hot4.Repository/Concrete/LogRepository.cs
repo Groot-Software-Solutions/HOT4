@@ -18,12 +18,12 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateLog(Log log)
         {
-            await Update(log);
+            Update(log);
             await SaveChanges();
         }
         public async Task DeleteLog(Log log)
         {
-            await Delete(log);
+            Delete(log);
             await SaveChanges();
         }
         public async Task<List<LogModel>> ListLog(int pageNo, int pageSize)

@@ -64,7 +64,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateRecharge(Recharge recharge)
         {
-            await Update(recharge);
+            Update(recharge);
             await SaveChanges();
         }
         public async Task<List<RechargeModel>> GetRechargeAggregator(RechargeAggSearchModel rchAggSrch)

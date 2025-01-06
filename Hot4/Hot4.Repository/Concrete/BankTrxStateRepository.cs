@@ -26,12 +26,12 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteBankTrxState(BankTrxStates bankState)
         {
-            await Delete(bankState);
+            Delete(bankState);
             await SaveChanges();
         }
         public async Task UpdateBankTrxState(BankTrxStates bankState)
         {
-            await Update(bankState);
+            Update(bankState);
             await SaveChanges();
         }
     }

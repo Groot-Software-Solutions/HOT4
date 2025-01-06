@@ -22,7 +22,7 @@ namespace Hot4.Repository.Concrete
             var bankBatch = await GetById(bankTrxBatch.BankTrxBatchId);
             if (bankBatch != null)
             {
-                await Update(bankTrxBatch);
+                Update(bankTrxBatch);
                 await SaveChanges();
             }
         }
@@ -31,7 +31,7 @@ namespace Hot4.Repository.Concrete
             var bankBatch = await GetById(bankTrxBatch.BankTrxBatchId);
             if (bankBatch != null)
             {
-                await Delete(bankTrxBatch);
+                Delete(bankTrxBatch);
                 await SaveChanges();
             }
         }

@@ -17,7 +17,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteTemplate(Template template)
         {
-            await Delete(template);
+            Delete(template);
             await SaveChanges();
         }
         public async Task<TemplateModel?> GetTemplateById(int templateId)
@@ -45,7 +45,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateTemplate(Template template)
         {
-            await Update(template);
+            Update(template);
             await SaveChanges();
         }
     }

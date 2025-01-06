@@ -96,7 +96,7 @@ namespace Hot4.Repository.Concrete
                 access.Deleted = false;
                 access.PasswordSalt = string.IsNullOrEmpty(access.PasswordSalt) ? Helper.GenerateSalt(access.AccountId) : access.PasswordSalt;
                 access.PasswordHash = Helper.GeneratePasswordHash(access.PasswordSalt, access.AccessPassword);
-                await Update(access);
+                Update(access);
                 await SaveChanges();
             }
         }
@@ -143,7 +143,7 @@ namespace Hot4.Repository.Concrete
                 access.AccessPassword = newPassword;
                 access.PasswordHash = passwordHash;
                 access.PasswordSalt = access.PasswordSalt ?? salt;
-                await Update(access);
+                Update(access);
                 await SaveChanges();
             }
             else
@@ -159,7 +159,7 @@ namespace Hot4.Repository.Concrete
                 access.PasswordHash = passwordHash;
                 access.PasswordSalt = passwordSalt;
                 access.AccessPassword = "DEPRECATED";
-                await Update(access);
+                Update(access);
                 await SaveChanges();
             }
             else
@@ -227,7 +227,7 @@ namespace Hot4.Repository.Concrete
             if (access != null)
             {
                 access.Deleted = true;
-                await Update(access);
+                Update(access);
                 await SaveChanges();
             }
         }
@@ -237,7 +237,7 @@ namespace Hot4.Repository.Concrete
             if (access != null)
             {
                 access.Deleted = false;
-                await Update(access);
+                Update(access);
                 await SaveChanges();
             }
         }

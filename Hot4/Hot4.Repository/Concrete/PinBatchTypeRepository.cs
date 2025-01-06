@@ -17,12 +17,12 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdatePinBatchType(PinBatchTypes pinBatchTypes)
         {
-            await Update(pinBatchTypes);
+            Update(pinBatchTypes);
             await SaveChanges();
         }
         public async Task DeletePinBatchType(PinBatchTypes pinBatchTypes)
         {
-            await Delete(pinBatchTypes);
+            Delete(pinBatchTypes);
             await SaveChanges();
         }
         public async Task<List<PinBatchTypeModel>> ListPinBatchType()

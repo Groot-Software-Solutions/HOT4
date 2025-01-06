@@ -32,11 +32,11 @@ namespace Hot4.Repository.Concrete
             await this._context.Set<T>().AddAsync(entity);
 
         }
-        public async Task Update(T entity)
+        public void Update(T entity)
         {
             this._context.Set<T>().Update(entity);
         }
-        public async Task Delete(T entity)
+        public void Delete(T entity)
         {
             this._context.Set<T>().Remove(entity);
         }
@@ -49,7 +49,7 @@ namespace Hot4.Repository.Concrete
             await this._context.Set<List<T>>().AddRangeAsync(entities);
         }
 
-        public async Task BulkUpdate(List<T> entities)
+        public void BulkUpdate(List<T> entities)
         {
             this._context.UpdateRange(entities);
         }

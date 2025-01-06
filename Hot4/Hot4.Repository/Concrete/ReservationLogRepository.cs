@@ -17,7 +17,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteReservationLog(ReservationLog reservationLog)
         {
-            await Delete(reservationLog);
+            Delete(reservationLog);
             await SaveChanges();
         }
         public async Task<List<ReservationLogModel>> ListReservationLog(int pageNo, int pageSize)
@@ -36,7 +36,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task UpdateReservationLog(ReservationLog reservationLog)
         {
-            await Update(reservationLog);
+            Update(reservationLog);
             await SaveChanges();
         }
     }

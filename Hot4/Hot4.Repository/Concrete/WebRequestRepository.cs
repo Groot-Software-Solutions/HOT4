@@ -18,7 +18,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task DeleteWebRequest(WebRequests webRequests)
         {
-            await Delete(webRequests);
+            Delete(webRequests);
             await SaveChanges();
         }
 
@@ -98,7 +98,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task UpdateWebRequest(WebRequests webRequests)
         {
-            await Update(webRequests);
+            Update(webRequests);
             await SaveChanges();
         }
     }

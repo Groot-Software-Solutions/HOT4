@@ -17,12 +17,12 @@ namespace Hot4.Repository.Concrete
         }
         public async Task DeleteProductField(ProductField productField)
         {
-            await Delete(productField);
+            Delete(productField);
             await SaveChanges();
         }
         public async Task UpdateProductField(ProductField productField)
         {
-            await Update(productField);
+            Update(productField);
             await SaveChanges();
         }
         public async Task<List<ProductFieldModel>> ListProductField()

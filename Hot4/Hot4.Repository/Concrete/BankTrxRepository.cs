@@ -101,7 +101,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<List<BankTransactionModel>> GetPendingTrxByType(byte bankTransactionTypeId)
         {
-            if (bankTransactionTypeId == (int)BankTransactionTypes.EcoCashPending)
+            if (bankTransactionTypeId == (int)BankTransactionTypes.EcoCash)
             {
                 return await GetByCondition(d => d.BankTrxTypeId == bankTransactionTypeId
                              && d.BankTrxStateId == (int)BankTransactionStates.BusyConfirming
@@ -186,7 +186,7 @@ namespace Hot4.Repository.Concrete
             var result = await _context.BankTrx.Include(d => d.BankTrxState).Include(d => d.BankTrxType)
                           .LastOrDefaultAsync(d => d.BankRef == bankRef
                          && d.BankTrxStateId == (int)BankTransactionStates.BusyConfirming
-                         && d.BankTrxTypeId == (int)BankTransactionTypes.EcoCashPending);
+                         && d.BankTrxTypeId == (int)BankTransactionTypes.EcoCash);
             if (result != null)
             {
                 return new BankTransactionModel
@@ -258,7 +258,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<int?> GetEcoCashPendingTrxCount(EcoCashSearchModel ecoCashSearch)
         {
-            return await GetByCondition(d => d.BankTrxTypeId == (int)BankTransactionTypes.EcoCashPending
+            return await GetByCondition(d => d.BankTrxTypeId == (int)BankTransactionTypes.EcoCash
                          && d.TrxDate > ecoCashSearch.date.AddHours(-1)
                          && d.Identifier == ecoCashSearch.Mobile
                          && d.Amount == ecoCashSearch.Amount)
@@ -274,7 +274,7 @@ namespace Hot4.Repository.Concrete
                                         && d.RefName == bankTransaction.RefName
                                         && d.Balance == bankTransaction.Balance)
                                        ||
-                                       (d.BankTrxTypeId == (byte)BankTransactionTypes.EcoCashPending
+                                       (d.BankTrxTypeId == (byte)BankTransactionTypes.EcoCash
                                        && d.Amount == bankTransaction.Amount
                                        && d.Identifier == bankTransaction.Identifier
                                        && d.BankRef == bankTransaction.BankRef
@@ -306,7 +306,7 @@ namespace Hot4.Repository.Concrete
 
         public async Task UpdateBankTrx(BankTrx bankTransaction)
         {
-            await Update(bankTransaction);
+            Update(bankTransaction);
             await SaveChanges();
         }
         public async Task UpdateBankTrxPaymentId(long paymentId, long bankTransactionId)
@@ -315,7 +315,7 @@ namespace Hot4.Repository.Concrete
             if (bankTransaction != null)
             {
                 bankTransaction.PaymentId = paymentId;
-                await Update(bankTransaction);
+                Update(bankTransaction);
                 await SaveChanges();
             }
         }
@@ -325,7 +325,7 @@ namespace Hot4.Repository.Concrete
             if (bankTransaction != null)
             {
                 bankTransaction.BankTrxStateId = stateId;
-                await Update(bankTransaction);
+                Update(bankTransaction);
                 await SaveChanges();
             }
         }
@@ -335,7 +335,7 @@ namespace Hot4.Repository.Concrete
             if (bankTransaction != null)
             {
                 bankTransaction.Identifier = identifier;
-                await Update(bankTransaction);
+                Update(bankTransaction);
                 await SaveChanges();
             }
         }

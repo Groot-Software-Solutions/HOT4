@@ -36,14 +36,14 @@ namespace Hot4.Repository.Concrete
         public async Task UpdateProduct(Product product)
         {
 
-            await Update(product);
+            Update(product);
             await SaveChanges();
 
         }
 
         public async Task DeleteProduct(Product product)
         {
-            await Delete(product);
+            Delete(product);
             await SaveChanges();
         }
         public async Task<List<ProductModel>> ListProduct()
