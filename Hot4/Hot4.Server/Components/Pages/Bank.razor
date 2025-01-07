@@ -9,6 +9,7 @@
 @inject Hot4.Repository.Abstract.ITransferRepository transferRepository;
 @inject Hot4.Repository.Abstract.IWebRequestRepository webRequestRepository;
 @inject Hot4.Repository.Abstract.ISMSRepository smsRepository;
+@inject Hot4.Repository.Abstract.IRechargeRepository rechargeRepository;
 
 @using Hot4.DataModel.Models;
 @using Hot4.ViewModel;
@@ -40,6 +41,12 @@
 <br />
 <h3>SMS</h3>
 <form method="post" @formname="myformSMS" @onsubmit="GetSMS">
+    <AntiforgeryToken />
+    <button type="submit">Submit</button>
+</form>
+<br />
+<h3>Recharge</h3>
+<form method="post" @formname="myformRecharge" @onsubmit="GetRecharge">
     <AntiforgeryToken />
     <button type="submit">Submit</button>
 </form>
@@ -110,12 +117,25 @@
     private async Task GetSMS()
     {
         //var result = await smsRepository.SmsBulkSend("");
-        // var resultEmailAgg = await smsRepository.EmailAggregators("","");
+        var resultEmailAgg = await smsRepository.EmailAggregators("","");
         // var resultEmailCorp = await smsRepository.EmailCorporates("", "");
         //  var resultSMSInbox = await smsRepository.SMSInbox();
 
-       // DateTime dt = Convert.ToDateTime("2024-10-29 00:49:34.307");
-       // var resultSMSInbox = await smsRepository.GetSMSByAccountSMSDate(11552422,dt,1,10);
-        var resultSMSSearch = await smsRepository.SMSSearch(smsSearchMdl);
+        // DateTime dt = Convert.ToDateTime("2024-10-29 00:49:34.307");
+        // var resultSMSInbox = await smsRepository.GetSMSByAccountSMSDate(11552422,dt,1,10);
+        //var resultSMSSearch = await smsRepository.SMSSearch(smsSearchMdl);
+    }
+
+    private RechargeAggSearchModel rechargeAggSearchModel { get; set; } = new() { AccountId = 10520030, StartDate = DateTime.Now.AddMonths(-9), EndDate = DateTime.Now, PageNo = 1, PageSize = 10 };
+    private RechargeFindModel rechargeFindModel { get; set; } = new() { AccountId = 10520030, Mobile = "0777931881", PageNo = 1, PageSize = 10 };
+    
+    private async Task GetRecharge()
+    {
+        var result = await rechargeRepository.GetRechargeAggregator(rechargeAggSearchModel);
+
+        var resultFind = await rechargeRepository.FindRechargeByMobileAndAccountId(rechargeFindModel);
+        var resultByBrandIds = await rechargeRepository.RechargePendingStsByMulBrands(new List<byte>{1,2,3});
+
+        var resultByBrandId = await rechargeRepository.RechargePendingStsByBrandId(1);
     }
 }

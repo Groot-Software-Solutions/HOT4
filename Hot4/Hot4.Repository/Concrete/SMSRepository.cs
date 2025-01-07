@@ -114,23 +114,29 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<List<EmailModel>> EmailAggregators(string sub, string messageText)
         {
+            try
+            {
+                var accountIds = await _context.Payment.Where(d => d.PaymentDate > DateTime.Now.AddDays(-180))
+                                       .Select(d => d.AccountId).Distinct().ToListAsync();
 
-            var accountIds = await _context.Payment.Where(d => d.PaymentDate > DateTime.Now.AddDays(-180))
-                                   .Select(d => d.AccountId).ToListAsync();
+                var result = await _context.Access.Include(d => d.Account)
+                              .Where(d => d.ChannelId == (int)ChannelName.Web
+                               && d.Deleted == false
+                              // && Helper.CheckValidEmail(d.AccessCode) == true
+                              && d.Account.ProfileId > (int)Profiles.BLANK && d.Account.ProfileId <= (int)Profiles.BRAND_AMB_CX_50_300
+                              && EF.Constant(accountIds).Contains(d.Account.AccountId))
+                              .Select(d => new EmailModel
+                              {
+                                  Email = d.AccessCode,
+                                  AccountName = d.Account.AccountName
+                              }).ToListAsync();
 
-            var result = await _context.Access.Include(d => d.Account)
-                          .Where(d => d.ChannelId == (int)ChannelName.Web
-                           && d.Deleted == false
-                          // && Helper.CheckValidEmail(d.AccessCode) == true
-                          && d.Account.ProfileId > (int)Profiles.BLANK && d.Account.ProfileId <= (int)Profiles.BRAND_AMB_CX_50_300
-                          && EF.Constant(accountIds).Contains(d.Account.AccountId))
-                          .Select(d => new EmailModel
-                          {
-                              Email = d.AccessCode,
-                              AccountName = d.Account.AccountName
-                          }).ToListAsync();
-
-            return result.Where(d => Helper.CheckValidEmail(d.Email)).ToList();
+                return result.Where(d => Helper.CheckValidEmail(d.Email)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
 
         }
         public async Task<List<EmailModel>> EmailCorporates(string sub, string messageText)
