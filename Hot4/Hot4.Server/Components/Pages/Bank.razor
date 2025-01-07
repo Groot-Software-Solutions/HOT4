@@ -135,7 +135,7 @@
        // var result = await rechargeRepository.GetRechargeAggregator(rechargeAggSearchModel);
 
        // var resultFind = await rechargeRepository.FindRechargeByMobileAndAccountId(rechargeFindModel);
-        var resultByBrandIds = await rechargeRepository.RechargePendingStsByMulBrands(new List<byte>{1,2,3});
+       // var resultByBrandIds = await rechargeRepository.RechargePendingStsByMulBrands(new List<byte>{1,2,3});
 
         var resultByBrandId = await rechargeRepository.RechargePendingStsByBrandId(1);
     }

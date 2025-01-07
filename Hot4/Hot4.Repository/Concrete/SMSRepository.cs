@@ -161,89 +161,98 @@ namespace Hot4.Repository.Concrete
         {
             int queueSize = _valueSettings.SMSInboxQueueSize;
 
-            var smsDetail = await _context.Sms
+            var smsDetail = await _context.Sms.Include(d => d.Priority)
                 .Where(d => d.Direction == true && d.StateId == (int)SmsState.Pending)
-                .Include(d => d.State).Include(d => d.Priority)
                 .OrderByDescending(d => d.PriorityId)
                 .ThenBy(d => d.Smsdate)
                 .Take(queueSize)
                 .ToListAsync();
-
-            var transaction = await _context.Database.BeginTransactionAsync();
-            try
+            if (smsDetail != null && smsDetail.Count > 0)
             {
-                foreach (var sms in smsDetail)
+                var transaction = await _context.Database.BeginTransactionAsync();
+                try
                 {
-                    sms.StateId = (int)SmsState.Busy;
+                    foreach (var sms in smsDetail)
+                    {
+                        sms.StateId = (int)SmsState.Busy;
+                    }
+                    _context.Sms.UpdateRange(smsDetail);
+                    await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
+
+                    return smsDetail.Select(d => new SMSModel
+                    {
+                        Direction = d.Direction,
+                        InsertDate = d.InsertDate,
+                        Mobile = d.Mobile.Replace(" ", ""),
+                        Priority = d.Priority.Priority,
+                        PriorityId = d.PriorityId,
+                        SmppId = d.SmppId,
+                        SMSDate = d.Smsdate,
+                        SMSId = d.Smsid,
+                        SMSIDIn = d.SmsidIn,
+                        SMSText = d.Smstext,
+                        State = SmsState.Busy.ToString(),
+                        StateId = d.StateId,
+                    }).ToList();
                 }
-                _context.Sms.UpdateRange(smsDetail);
-                await _context.SaveChangesAsync();
-                await transaction.CommitAsync();
-
-                return smsDetail.Select(d => new SMSModel
+                catch (Exception ex)
                 {
-                    Direction = d.Direction,
-                    InsertDate = d.InsertDate,
-                    Mobile = d.Mobile.Replace(" ", ""),
-                    Priority = d.Priority.Priority,
-                    PriorityId = d.PriorityId,
-                    SmppId = d.SmppId,
-                    SMSDate = d.Smsdate,
-                    SMSId = d.Smsid,
-                    SMSIDIn = d.SmsidIn,
-                    SMSText = d.Smstext,
-                    State = d.State.State,
-                    StateId = d.StateId,
-                }).ToList();
+                    await transaction.RollbackAsync();
+                    throw;
+                }
             }
-            catch (Exception ex)
-            {
-                await transaction.RollbackAsync();
-                throw;
-            }
+            return new List<SMSModel>();
         }
         public async Task<List<SMSModel>> SMSOutbox()
         {
             int queueSize = _valueSettings.SMSOutboxQueueSize;
 
-            var smsDetail = await _context.Sms
+            var smsDetail = await _context.Sms.Include(d => d.State).Include(d => d.Priority)
                 .Where(d => d.Direction == false && d.StateId == (int)SmsState.Pending && d.Smsdate < DateTime.Now)
-                .Include(d => d.State).Include(d => d.Priority)
                 .OrderByDescending(d => d.PriorityId)
                 .ThenBy(d => d.Smsdate)
                 .Take(queueSize)
                 .ToListAsync();
-            var transaction = await _context.Database.BeginTransactionAsync();
-            try
-            {
-                foreach (var sms in smsDetail)
-                {
-                    sms.StateId = (int)SmsState.Busy;
-                }
-                _context.Sms.UpdateRange(smsDetail);
-                await _context.SaveChangesAsync();
-                await transaction.CommitAsync();
 
-                return smsDetail.Select(d => new SMSModel
-                {
-                    Direction = d.Direction,
-                    InsertDate = d.InsertDate,
-                    Mobile = d.Mobile.Replace(" ", ""),
-                    Priority = d.Priority.Priority,
-                    PriorityId = d.PriorityId,
-                    SmppId = d.SmppId,
-                    SMSDate = d.Smsdate,
-                    SMSId = d.Smsid,
-                    SMSIDIn = d.SmsidIn,
-                    SMSText = d.Smstext,
-                    State = d.State.State,
-                    StateId = d.StateId,
-                }).ToList();
-            }
-            catch (Exception ex)
+            if (smsDetail != null && smsDetail.Count > 0)
             {
-                await transaction.RollbackAsync();
-                throw;
+                var transaction = await _context.Database.BeginTransactionAsync();
+                try
+                {
+                    foreach (var sms in smsDetail)
+                    {
+                        sms.StateId = (int)SmsState.Busy;
+                    }
+                    _context.Sms.UpdateRange(smsDetail);
+                    await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
+
+                    return smsDetail.Select(d => new SMSModel
+                    {
+                        Direction = d.Direction,
+                        InsertDate = d.InsertDate,
+                        Mobile = d.Mobile.Replace(" ", ""),
+                        Priority = d.Priority.Priority,
+                        PriorityId = d.PriorityId,
+                        SmppId = d.SmppId,
+                        SMSDate = d.Smsdate,
+                        SMSId = d.Smsid,
+                        SMSIDIn = d.SmsidIn,
+                        SMSText = d.Smstext,
+                        State = SmsState.Busy.ToString(),
+                        StateId = d.StateId,
+                    }).ToList();
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+            }
+            else
+            {
+                return new List<SMSModel>();
             }
         }
         public async Task<List<SMSModel>> GetSMSByAccountSMSDate(long accountId, DateTime smsDate, int pageNo, int pageSize)
@@ -406,24 +415,20 @@ namespace Hot4.Repository.Concrete
         }
         public async Task Resend(string mobile, string rechargeMobile)
         {
-            var smsId = await (from sms in _context.Sms
-                               where sms.Mobile == mobile
-                              && sms.Smstext.Contains(rechargeMobile)
-                              && sms.Direction == true
-                               join rch in _context.SmsRecharge on sms.Smsid equals rch.SmsId
-                               orderby sms.Smsdate descending
-                               select new { sms.Smsid, sms.Smsdate }
-                                 ).Select(d => d.Smsid).FirstOrDefaultAsync();
+            var smsRecord = await (from sms in _context.Sms
+                                   where sms.Mobile == mobile
+                                  && sms.Smstext.Contains(rechargeMobile)
+                                  && sms.Direction == true
+                                   join rch in _context.SmsRecharge on sms.Smsid equals rch.SmsId
+                                   orderby sms.Smsdate descending
+                                   select sms
+                                 ).FirstOrDefaultAsync();
 
-            if (smsId > 0)
+            if (smsRecord != null)
             {
-                var smsToUpdate = await _context.Sms.FirstOrDefaultAsync(d => d.Smsid == smsId);
-                if (smsToUpdate != null)
-                {
-
-                    smsToUpdate.StateId = (int)SmsState.Pending;
-                    await _context.SaveChangesAsync();
-                }
+                smsRecord.StateId = (int)SmsState.Pending;
+                _context.Update(smsRecord);
+                await _context.SaveChangesAsync();
             }
         }
     }

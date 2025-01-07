@@ -27,5 +27,5 @@ public partial class Pins
 
     public virtual PinStates PinState { get; set; }
 
-    public virtual ICollection<Recharge> Recharges { get; set; } = new List<Recharge>();
+    //  public virtual ICollection<Recharge> Recharges { get; set; } = new List<Recharge>();
 }

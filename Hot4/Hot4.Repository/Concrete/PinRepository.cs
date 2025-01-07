@@ -260,9 +260,7 @@ namespace Hot4.Repository.Concrete
                                 select new { acss.AccessId, acss.AccountId, acss.Account.ProfileId, prfDsc.Discount, prfDsc.Brand.BrandName })
                                 .FirstOrDefaultAsync();
 
-
             if (access == null || access?.ProfileId == null || access?.Discount == null || access?.AccountId == null)
-                //   throw new InvalidOperationException("This Access Code may not sell this Pin Brand");
                 throw new InvalidOperationException(_templateSettings.PinRechargePromoAccessError);
 
             var AccessId = access.AccessId;
@@ -274,7 +272,6 @@ namespace Hot4.Repository.Concrete
             var accountSellValue = await _commonRepository.GetSaleValue(AccountId);
 
             decimal stockSaleValue = (pinRechargePromo.PinValue * pinRechargePromo.Quantity) * ((100 - Discount) / 100);
-            // string lowFundsResponse = $"Your pin purchase failed due to insufficient balance. Your balance is US$ {accountBalance}. You can sell approximately US$ {accountSellValue}";
             string lowFundsResponse = _templateSettings.PinRechargePromoLowFund.Replace("accountBalance", Convert.ToString(accountBalance)).Replace("accountSellValue", Convert.ToString(accountSellValue));
             if (accountBalance < stockSaleValue)
                 throw new InvalidOperationException(lowFundsResponse);
@@ -283,8 +280,6 @@ namespace Hot4.Repository.Concrete
                                    && p.BrandId == pinRechargePromo.BrandId
                                    && p.PinValue == pinRechargePromo.PinValue);
 
-
-            // string stockResponse = $"We have received your Bulk EVD request but do not have correct stock to process it. Stock quantity unavailable ({available} in stock)";
             string stockResponse = _templateSettings.PinRechargePromoStock.Replace("stockAvailable", Convert.ToString(available));
             if (pinRechargePromo.Quantity > available)
                 throw new InvalidOperationException(stockResponse);
@@ -293,21 +288,19 @@ namespace Hot4.Repository.Concrete
             {
                 try
                 {
-                    // Update Pin State and collect inserted PinIds
                     var pins = await _context.Pin.Where(p => p.PinStateId == (int)PinStateType.AvailablePromotional
                                      && p.BrandId == pinRechargePromo.BrandId
                                      && p.PinValue == pinRechargePromo.PinValue)
                                     .Take(pinRechargePromo.Quantity)
                                     .ToListAsync();
 
-
                     foreach (var pin in pins)
                     {
                         pin.PinStateId = (int)PinStateType.SoldPromotional;
                     }
+                    await _context.Pin.AddRangeAsync(pins);
                     await _context.SaveChangesAsync();
 
-                    // Create Recharge entry
                     var recharge = new Recharge
                     {
                         StateId = (int)PinStateType.SoldHotBanking,
@@ -325,7 +318,6 @@ namespace Hot4.Repository.Concrete
 
                     long rechargeId = recharge.RechargeId;
 
-
                     var rechargePins = pins.Select(pin => new RechargePin
                     {
                         RechargeId = rechargeId,
@@ -334,9 +326,6 @@ namespace Hot4.Repository.Concrete
 
                     await _context.RechargePin.AddRangeAsync(rechargePins);
                     await _context.SaveChangesAsync();
-
-                    // Create message for RechargePrepaid
-                    // string message = $"We have fulfilled a Promo Pin Purchase of ${pinRechargePromo.Quantity * pinRechargePromo.PinValue} for <br/> Quantity: {pinRechargePromo.Quantity} EVD Pins <br/> Pin Denomination: {pinRechargePromo.PinValue} <br/> Brand: {BrandName}";
                     string message = _templateSettings.PinRechargePromoSuccess.Replace("pinRechargePromoFinalAmt", Convert.ToString(pinRechargePromo.Quantity * pinRechargePromo.PinValue)).Replace("pinRechargePromoQty", Convert.ToString(pinRechargePromo.Quantity)).Replace("pinRechargePromoPinValue", Convert.ToString(pinRechargePromo.PinValue)).Replace("pinRechargePromoBrandName", BrandName);
                     var rechargePrepaid = new RechargePrepaid
                     {
@@ -368,7 +357,7 @@ namespace Hot4.Repository.Concrete
         {
             var model = new PinRedeemedPromoModel();
             var threeDaysAgo = DateTime.Now.AddDays(-3).Date;
-            var pinBatchId = _valueSetting.PinRedeemedPromoBatchId;// 10008465;
+            var pinBatchId = _valueSetting.PinRedeemedPromoBatchId;
 
             var transactions = await (from r in _context.Recharge.Include(d => d.Access)
                                       where r.Access.AccountId == accountId && r.RechargeDate > threeDaysAgo

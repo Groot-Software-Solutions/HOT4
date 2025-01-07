@@ -73,7 +73,6 @@ namespace Hot4.Repository.Concrete
             // Get daily sales
             salesDaily = (float)await (from r in _context.Recharge
                                        where r.RechargeDate >= startDateDaily && r.RechargeDate <= DateTime.Now
-                                       // (r.StateId == (int)SmsState.Busy || r.StateId == (int)SmsState.Success)
                                        && new[] { (int)SmsState.Busy, (int)SmsState.Success }.Contains(r.StateId)
                                        join a in _context.Access on r.AccessId equals a.AccessId
                                        where a.AccountId == accountid
@@ -86,8 +85,7 @@ namespace Hot4.Repository.Concrete
             // Get monthly sales
             salesMonthly = (float)await (from r in _context.Recharge
                                          where r.RechargeDate >= startDateMonthly && r.RechargeDate <= DateTime.Now
-                                       //  && (r.StateId == (int)SmsState.Busy || r.StateId == (int)SmsState.Success)
-                                       && new[] { (int)SmsState.Busy, (int)SmsState.Success }.Contains(r.StateId)
+                                         && new[] { (int)SmsState.Busy, (int)SmsState.Success }.Contains(r.StateId)
                                          join a in _context.Access on r.AccessId equals a.AccessId
                                          where a.AccountId == accountid
                                          join b in _context.Brand on r.BrandId equals b.BrandId
