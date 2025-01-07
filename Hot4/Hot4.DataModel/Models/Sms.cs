@@ -35,5 +35,5 @@ public partial class Sms
 
     public virtual States State { get; set; }
 
-    public virtual ICollection<Recharge> Recharges { get; set; } = new List<Recharge>();
+    //  public virtual ICollection<Recharge> Recharges { get; set; } = new List<Recharge>();
 }

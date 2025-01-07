@@ -55,18 +55,17 @@ namespace Hot4.Repository.Concrete
         {
             var result = _context.Transfer.Include(d => d.Channel).OrderByDescending(d => d.TransferId);
             return await PaginationFilter.GetPagedData(result, pageNo, pageSize)
-
-                .Queryable.Select(d => new TransferModel
-                {
-                    Amount = d.Amount,
-                    ChannelId = d.ChannelId,
-                    ChannelName = d.Channel.Channel,
-                    PaymentIdFrom = d.PaymentIdFrom,
-                    PaymentIdTo = d.PaymentIdTo,
-                    SMSId = d.Smsid,
-                    TransferDate = d.TransferDate,
-                    TransferId = d.TransferId,
-                }).ToListAsync();
+                                .Queryable.Select(d => new TransferModel
+                                {
+                                    Amount = d.Amount,
+                                    ChannelId = d.ChannelId,
+                                    ChannelName = d.Channel.Channel,
+                                    PaymentIdFrom = d.PaymentIdFrom,
+                                    PaymentIdTo = d.PaymentIdTo,
+                                    SMSId = d.Smsid,
+                                    TransferDate = d.TransferDate,
+                                    TransferId = d.TransferId,
+                                }).ToListAsync();
         }
         public async Task<decimal> GetStockTradeBalByAccountId(long accountId)
         {
@@ -74,8 +73,7 @@ namespace Hot4.Repository.Concrete
                                  .Where(d => d.AccountId == accountId
                                  && d.PaymentTypeId == (int)PaymentMethodType.zBalanceBF
                                  && d.PaymentSourceId == (int)PaymentMethodSource.MCExecutive
-                             //    && d.Reference == "Balance - 23Jun2023")
-                             && d.Reference == _valueSettings.StockTradePaymentByRef)
+                                 && d.Reference == _valueSettings.StockTradePaymentByRef)
                                  .OrderByDescending(d => d.PaymentId)
                                  .Select(d => d.Amount)
                                  .FirstOrDefaultAsync();
@@ -97,8 +95,7 @@ namespace Hot4.Repository.Concrete
             balance = await _context.Payment.Where(d => d.AccountId == stockTradeSearch.AccountId
                             && d.PaymentTypeId == (int)PaymentMethodType.zBalanceBF
                             && d.PaymentSourceId == (int)PaymentMethodSource.MCExecutive
-                           // && d.Reference == "Balance - 23Jun2023")
-                           && d.Reference == _valueSettings.StockTradePaymentByRef)
+                             && d.Reference == _valueSettings.StockTradePaymentByRef)
                             .OrderByDescending(d => d.PaymentId)
                            .Select(d => (decimal?)d.Amount)
                            .FirstOrDefaultAsync();
@@ -153,7 +150,6 @@ namespace Hot4.Repository.Concrete
                     return new StockTradeModel
                     {
                         Result = 1,
-                        // Message = "Stock has Moved to USD",
                         Message = _valueSettings.StockTradeSuccessResponse,
                         ZWLbalance = await _commonRepository.GetBalance(stockTradeSearch.AccountId),
                         USDBalance = await _commonRepository.GetUSDBalance(stockTradeSearch.AccountId)
@@ -165,7 +161,6 @@ namespace Hot4.Repository.Concrete
                     return new StockTradeModel
                     {
                         Result = -1,
-                        //  Message = "Invalid Amount",
                         Message = _valueSettings.StockTradeInvalidAmountResponse,
                         ZWLbalance = ZWLBalance ?? 0,
                         USDBalance = USDBalance ?? 0
@@ -178,7 +173,6 @@ namespace Hot4.Repository.Concrete
                 return new StockTradeModel
                 {
                     Result = -1,
-                    // Message = "Payment required exceeded the Tradable ZWL Balance",
                     Message = _valueSettings.StockTradeInvalidPaymentResponse,
                     ZWLbalance = ZWLBalance ?? 0,
                     USDBalance = USDBalance ?? 0
