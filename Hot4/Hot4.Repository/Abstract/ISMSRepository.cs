@@ -9,8 +9,8 @@ namespace Hot4.Repository.Abstract
         Task UpdateSMS(Sms sms);
         Task<List<EmailModel>> SmsBulkSend(string messageText);
         Task<int> SmsBulkSmsSend(string messageText);
-        Task<List<EmailModel>> EmailAggregators(string sub, string messageText);
-        Task<List<EmailModel>> EmailCorporates(string sub, string messageText);
+        Task<List<EmailModel>> EmailAggregators();
+        Task<List<EmailModel>> EmailCorporates();
         Task<List<SMSModel>> SMSInbox();
         Task<List<SMSModel>> SMSOutbox();
         Task<List<SMSModel>> GetSMSByAccountSMSDate(long accountId, DateTime smsDate, int pageNo, int pageSize);
