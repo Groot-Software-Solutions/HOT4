@@ -77,8 +77,9 @@ namespace Hot4.Repository.Concrete
                                        join a in _context.Access on r.AccessId equals a.AccessId
                                        where a.AccountId == accountid
                                        join b in _context.Brand on r.BrandId equals b.BrandId
-                                       where (b.NetworkId == networkid || (networkid == (int)NetworkName.Econet &&
-                                       b.NetworkId == (int)NetworkName.Econet078))
+                                       where (b.NetworkId == networkid || (
+                                       (networkid == (int)NetworkName.Econet ? b.NetworkId == (int)NetworkName.Econet078 : false)
+                                       ))
                                        && b.WalletTypeId == (int)WalletTypes.ZWG
                                        select r.Amount).SumAsync();
 
@@ -89,8 +90,8 @@ namespace Hot4.Repository.Concrete
                                          join a in _context.Access on r.AccessId equals a.AccessId
                                          where a.AccountId == accountid
                                          join b in _context.Brand on r.BrandId equals b.BrandId
-                                         where (b.NetworkId == networkid || (networkid == (int)NetworkName.Econet &&
-                                         b.NetworkId == (int)NetworkName.Econet078))
+                                         where (b.NetworkId == networkid ||
+                                         (networkid == (int)NetworkName.Econet ? b.NetworkId == (int)NetworkName.Econet078 : false))
                                          && b.WalletTypeId == (int)WalletTypes.ZWG
                                          select r.Amount).SumAsync();
 
