@@ -8,7 +8,6 @@ namespace Hot4.Repository.Abstract
         Task<RechargeDetailModel?> GetRechargeById(long rechargeId);
         Task UpdateRecharge(Recharge recharge);
         Task AddRecharge(Recharge recharge, long smsId);
-        Task<List<RechargeModel>> GetRechargeAggregator(RechargeAggSearchModel rechargeAggSearch);
         Task<List<RechargeDetailModel>> FindRechargeByMobileAndAccountId(RechargeFindModel rechargeFind);
         Task<List<RechargeModel>> RechargePendingStsByMulBrands(List<byte> brandIds);
         Task<RechargeDetailModel?> RechargePendingStsByBrandId(byte brandId);
