@@ -108,13 +108,12 @@ namespace Hot4.Repository.Concrete
             // Calculate tradable ZWL and balances
             tradableZWL = (balance ?? 0) - traded;
             ZWLBalance = await _commonRepository.GetBalance(stockTradeSearch.AccountId);
-            USDBalance = await _commonRepository.GetUSDBalance(stockTradeSearch.AccountId); // This assumes fnBalanceUSD is a function in the context
+            USDBalance = await _commonRepository.GetUSDBalance(stockTradeSearch.AccountId);
 
             // Calculate tradable balance ZWL and payment amount
-            tradableBalanceZWL = ZWLBalance > tradableZWL ? tradableZWL : ZWLBalance; // Math.Min(ZWLBalance, tradableZWL);
+            tradableBalanceZWL = ZWLBalance > tradableZWL ? tradableZWL : ZWLBalance;
             paymentAmount = stockTradeSearch.Amount * (stockTradeSearch.Rate == 0 ? _valueSettings.StockTradeRateNullValue : stockTradeSearch.Rate);
 
-            // If payment amount is less than or equal to tradable balance ZWL
             if (paymentAmount <= tradableBalanceZWL)
             {
                 if (stockTradeSearch.Amount > 0)

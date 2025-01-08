@@ -67,7 +67,6 @@ namespace Hot4.Repository.Concrete
             var emailLists = await _context.Access.Include(d => d.Account)
                     .Where(d => d.ChannelId == (int)ChannelName.Web
                     && EF.Constant(accountIds).Contains(d.AccountId)
-                    //&& (!Regex.IsMatch(d.AccessCode, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"))
                     ).Select(d => new EmailModel
                     {
                         Email = d.AccessCode,
@@ -88,7 +87,7 @@ namespace Hot4.Repository.Concrete
                 .ThenBy(d => d.Smsdate)
                 .Take(queueSize)
                 .ToListAsync();
-            if (smsDetail != null && smsDetail.Count > 0)
+            if (smsDetail != null && smsDetail.Any())
             {
                 var transaction = await _context.Database.BeginTransactionAsync();
                 try
@@ -136,7 +135,7 @@ namespace Hot4.Repository.Concrete
                 .Take(queueSize)
                 .ToListAsync();
 
-            if (smsDetail != null && smsDetail.Count > 0)
+            if (smsDetail != null && smsDetail.Any())
             {
                 var transaction = await _context.Database.BeginTransactionAsync();
                 try

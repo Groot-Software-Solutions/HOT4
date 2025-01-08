@@ -97,9 +97,9 @@ namespace Hot4.Repository.Concrete
                                 }).ToListAsync();
             }
             else
-             if (pinIds != null && pinIds.Count > 0)
+             if (pinIds != null && pinIds.Any())
             {
-                return await GetByCondition(d => pinIds.Contains(d.PinId))
+                return await GetByCondition(d => EF.Constant(pinIds).Contains(d.PinId))
                              .Include(d => d.PinState)
                              .Include(d => d.Brand)
                              .ThenInclude(m => m.Network)
@@ -139,7 +139,7 @@ namespace Hot4.Repository.Concrete
         public async Task<List<PinLoadedModel>> GetPinLoadedByBatchId(long pinBatchId)
         {
             var result = await PinSummary(pinBatchId, 0);
-            if (result != null && result.Count > 0)
+            if (result != null && result.Any())
             {
                 return result.GroupBy(d => new { d.BrandId, d.BrandName, d.PinValue })
                        .OrderBy(d => d.Key.BrandId).OrderBy(d => d.Key.PinValue)
@@ -158,7 +158,7 @@ namespace Hot4.Repository.Concrete
         public async Task<List<PinLoadedModel>> GetPinStock()
         {
             var result = await PinSummary(0, (int)PinStateType.Available);
-            if (result != null && result.Count > 0)
+            if (result != null && result.Any())
             {
                 return result.GroupBy(d => new { d.BrandId, d.BrandName, d.PinValue })
                        .OrderBy(d => d.Key.BrandId).OrderBy(d => d.Key.PinValue)
@@ -176,7 +176,7 @@ namespace Hot4.Repository.Concrete
         public async Task<List<PinLoadedModel>> GetPinStockPromo()
         {
             var result = await PinSummary(0, (int)PinStateType.AvailablePromotional);
-            if (result != null && result.Count > 0)
+            if (result != null && result.Any())
             {
                 return result.GroupBy(d => new { d.BrandId, d.BrandName, d.PinValue })
                        .OrderBy(d => d.Key.BrandId).OrderBy(d => d.Key.PinValue)
@@ -219,31 +219,32 @@ namespace Hot4.Repository.Concrete
                 {
                     if (remainder == 0 && pinCount <= 5)
                     {
-                        foreach (var pinIdUsed in pinList)
+                        var pinRecords = await _context.Pin.Where(d => EF.Constant(pinList).Contains(d.PinId)).ToListAsync();
+                        foreach (var pinIdUsed in pinRecords)
                         {
-                            var pinToUpdate = await _context.Pin.FirstOrDefaultAsync(p => p.PinId == pinIdUsed);
-                            if (pinToUpdate != null)
-                            {
-                                pinToUpdate.PinStateId = (int)PinStateType.SoldHotRecharge;
-                            }
-
-                            await _context.RechargePin.AddAsync(new RechargePin
-                            {
-                                RechargeId = pinRecharge.RechargeId,
-                                PinId = pinIdUsed
-                            });
+                            pinIdUsed.PinStateId = (int)PinStateType.SoldHotRecharge;
                         }
-                        await _context.SaveChangesAsync();
-                        await transaction.CommitAsync();
+                        _context.Pin.UpdateRange(pinRecords);
 
-                        return await PinSummary(0, 0, pinList);
+                        var rechargePins = pinList.Select(pinId => new RechargePin
+                        {
+                            RechargeId = pinRecharge.RechargeId,
+                            PinId = pinId
+                        }).ToList();
+                        await _context.RechargePin.AddRangeAsync(rechargePins);
+                        await _context.SaveChangesAsync();
+
+                        var resultPinSummary = await PinSummary(0, 0, pinList);
+                        await transaction.CommitAsync();
+                        return resultPinSummary;
+
                     }
                     else
                     {
                         return new List<PinDetailModel>();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     await transaction.RollbackAsync();
                     throw;

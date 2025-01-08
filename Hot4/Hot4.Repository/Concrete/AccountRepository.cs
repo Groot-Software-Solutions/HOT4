@@ -59,7 +59,7 @@ namespace Hot4.Repository.Concrete
 
             var result = await _commonRepository.GetViewAccountList(accountIds);
 
-            return result.Skip((pageNo - 1) * pageSize)
+            return result.OrderByDescending(d => d.Balance).Skip((pageNo - 1) * pageSize)
                          .Take(pageSize).ToList();
         }
         public async Task<ViewAccountModel?> GetAccountDetailById(long accountId)

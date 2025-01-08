@@ -1,5 +1,8 @@
 ﻿@page "/Test"
 
+@inject Hot4.Repository.Abstract.IAccessRepository accessRepository;
+@inject Hot4.Repository.Abstract.IAccountRepository accountRepository;
+
 @inject Hot4.Repository.Abstract.IBankRepository bankRepository;
 @inject Hot4.Repository.Abstract.IBankTrxBatchRepository bankBatchRepository;
 @inject Hot4.Repository.Abstract.IBankTrxRepository banktrxRepository;
@@ -11,12 +14,26 @@
 @inject Hot4.Repository.Abstract.ISMSRepository smsRepository;
 @inject Hot4.Repository.Abstract.IRechargeRepository rechargeRepository;
 
+@inject Hot4.Repository.Abstract.ILimitRepository limitRepository;
+@inject Hot4.Repository.Abstract.IPaymentRepository paymentRepository;
+
 @using Hot4.DataModel.Models;
 @using Hot4.ViewModel;
 
-
+<h3>Access</h3>
+<form method="post" @formname="myformAccess" @onsubmit="GetAccess">
+    <AntiforgeryToken />
+    <button type="submit">Submit</button>
+</form>
+<br/>
+<h3>Account</h3>
+<form method="post" @formname="myformAccount" @onsubmit="GetAccount">
+    <AntiforgeryToken />
+    <button type="submit">Submit</button>
+</form>
+<br />
 <h3>Bank</h3>
-<form method="post" @formname="myform" @onsubmit="GetBank">
+<form method="post" @formname="myformBank" @onsubmit="GetBank">
     <AntiforgeryToken />
     <button type="submit">Submit</button>
 </form>
@@ -50,15 +67,41 @@
     <AntiforgeryToken />
     <button type="submit">Submit</button>
 </form>
+<br />
+<h3>Limit</h3>
+<form method="post" @formname="myformLimit" @onsubmit="GetLimit">
+    <AntiforgeryToken />
+    <button type="submit">Submit</button>
+</form>
+<h3>Payment</h3>
+<form method="post" @formname="myformPayment" @onsubmit="GetPayment">
+    <AntiforgeryToken />
+    <button type="submit">Submit</button>
+</form>
 
 @code {
+
+    private Access access { get; set; } = new() { AccessCode = "7009373729", AccessPassword = "1700", AccountId = 12177814 };
+    private async Task GetAccess()
+    {
+        // access.ChannelId = 2;
+        // await accessRepository.AddAccess(access);
+        // var result = await accessRepository.GetLoginDetails("7009373729", "1700");
+        await accessRepository.PasswordChange(12208706, "1900");
+    }
+    private Account account { get; set; } = new() { AccountName = "prd",  Email = "pradeep123@gmail.com", InsertDate = DateTime.Now, NationalId = "12233", ProfileId = 1, ReferredBy = "7009373728"};
+    private async Task GetAccount()
+    {
+       // var result = await accountRepository.AddAccount(account);
+        var resultSearch = await accountRepository.SearchAccount("prd",1,10);
+    }
+
     private Banks bnk { get; set; } = new() { Bank = "testbnk", BankId = 19 };
     private EcoCashSearchModel ecoCashSerchMdl { get; set; } = new() { Amount = .20m, date = DateTime.Now, Mobile = "0777931881" };
 
     private BankTransactionSearchModel trnsModelForDuplicate { get; set; } = new() { Amount = 29, Balance = 0, BankId = 8, BankRef = "pending", TrxDate = Convert.ToDateTime("2024-11-17 00:49:34.307") };
 
-    private PinRechargePayload pinRechargePayload { get; set; } = new() { Amount = 10, BrandId = 1, RechargeId = 111 };
-    private PinRechargePromoPayload pinRechargePromoPayload { get; set; } = new() { AccessCode = "3232323", BrandId = 1, Mobile = "7878", PinValue = 1, Quantity = 10 };
+
 
     private SMSSearchModel smsSearchMdl { get; set; } = new() { StartDate = DateTime.Now.AddMonths(-9), EndDate = DateTime.Now, MessageText = "", Mobile = "", PageNo = 1, PageSize = 10, SmppId = -1, StateId = -1 };
     private async Task GetBank()
@@ -76,7 +119,7 @@
         // var bankTrxByType4 = await banktrxRepository.GetPendingTranscation_by_Type(19); //exec xBankTrx_ListPendingOneMoney
 
 
-        //   var bankDuplicateTrans = await banktrxRepository.GetDuplicateTranscation(trnsModelForDuplicate); //exec xBankTrx_FindDuplicate 8,29,'2024-11-17 00:49:34.307','pending',0
+        var bankDuplicateTrans = await banktrxRepository.GetDuplicateTrx(trnsModelForDuplicate); //exec xBankTrx_FindDuplicate 8,29,'2024-11-17 00:49:34.307','pending',0
 
         // var bankByPaymnetId = await banktrxRepository.GetTranscation_by_PaymentId("E108F4DE-EE68-454D-80F3-40A6BEF053A3"); //exec xBankTrx_GetFromvPayment 'E108F4DE-EE68-454D-80F3-40A6BEF053A3'
 
@@ -89,6 +132,9 @@
 
     }
 
+    private PinRechargePayload pinRechargePayload { get; set; } = new() { Amount = 5, BrandId = 1, RechargeId = 185040027 };
+    private PinRechargePromoPayload pinRechargePromoPayload { get; set; } = new() { AccessCode = "0774741744", BrandId = 5, Mobile = "0774741744", PinValue = 1, Quantity = 10 };
+
     private async Task GetPin()
     {
         // var pinByBatchId = await pinRepository.GetPinDetail_by_batchId(10008274); //exec xPin_List 10008274
@@ -97,9 +143,9 @@
 
         // var pinStock = await pinRepository.GetPinStock();  //exec xPin_Stock
 
-        //  var pinRecharge = await pinRepository.PinRecharge(pinRechargePayload);
+        // var pinRecharge = await pinRepository.PinRecharge(pinRechargePayload);
         var pinRechargePromo = await pinRepository.PinRechargePromo(pinRechargePromoPayload);
-        var pinRedeemedPromo = await pinRepository.PinRedeemedPromo(10008274);
+        // var pinRedeemedPromo = await pinRepository.PinRedeemedPromo(10008274);
     }
     private async Task GetTransfer()
     {
@@ -129,14 +175,26 @@
 
     private RechargeAggSearchModel rechargeAggSearchModel { get; set; } = new() { AccountId = 10520030, StartDate = DateTime.Now.AddMonths(-9), EndDate = DateTime.Now, PageNo = 1, PageSize = 10 };
     private RechargeFindModel rechargeFindModel { get; set; } = new() { AccountId = 10520030, Mobile = "0777931881", PageNo = 1, PageSize = 10 };
-    
+
     private async Task GetRecharge()
     {
-       // var result = await rechargeRepository.GetRechargeAggregator(rechargeAggSearchModel);
+        // var result = await rechargeRepository.GetRechargeAggregator(rechargeAggSearchModel);
 
-       // var resultFind = await rechargeRepository.FindRechargeByMobileAndAccountId(rechargeFindModel);
-       // var resultByBrandIds = await rechargeRepository.RechargePendingStsByMulBrands(new List<byte>{1,2,3});
+        // var resultFind = await rechargeRepository.FindRechargeByMobileAndAccountId(rechargeFindModel);
+        // var resultByBrandIds = await rechargeRepository.RechargePendingStsByMulBrands(new List<byte>{1,2,3});
 
         var resultByBrandId = await rechargeRepository.RechargePendingStsByBrandId(1);
     }
+
+
+    private async Task GetLimit()
+    {
+        var result = await limitRepository.GetLimitByNetworkAndAccountId(1, 12177814);
+    }
+    private Payment payment { get; set; } = new() { AccountId = 10520030, Amount = 191, LastUser = "pradeep", PaymentDate = DateTime.Now, Reference = "my", PaymentTypeId = 1, PaymentSourceId = 2 };
+    private async Task GetPayment()
+    {
+        var result = await paymentRepository.SaveUpdatePayment(payment);
+    }
+
 }
