@@ -35,7 +35,6 @@ public partial class Recharge
 
     public virtual ICollection<SelfTopUp> SelfTopUps { get; set; } = new List<SelfTopUp>();
 
-    //  public virtual ICollection<Pins> Pins { get; set; } = new List<Pins>();
-
-    //  public virtual ICollection<Sms> Sms { get; set; } = new List<Sms>();
+    // public virtual RechargePin RechargePin { get; set; }
+    //  public virtual SmsRecharge SmsRecharge { get; set; }
 }
