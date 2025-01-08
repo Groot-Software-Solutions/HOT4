@@ -380,9 +380,11 @@ namespace Hot4.DataModel.Data
 
             modelBuilder.Entity<Bundle>(entity =>
             {
-                entity
-                    .HasNoKey()
-                    .ToTable("tblBundles");
+                //entity
+                //    .HasNoKey()
+                //    .ToTable("tblBundles");
+                entity.HasKey(e => e.BundleId);
+                entity.ToTable("tblBundles");
 
                 entity.Property(e => e.Amount).HasComment("Bundle Value in cents");
                 entity.Property(e => e.BrandId).HasColumnName("BrandID");
@@ -1410,9 +1412,8 @@ namespace Hot4.DataModel.Data
 
             modelBuilder.Entity<WebRequests>(entity =>
             {
-                entity
-                    .HasNoKey()
-                    .ToTable("tblWebRequest");
+                entity.HasKey(e => e.WebId);
+                entity.ToTable("tblWebRequest");
 
                 entity.HasIndex(e => new { e.WebId, e.StateId }, "IX-StateID").IsUnique();
 
