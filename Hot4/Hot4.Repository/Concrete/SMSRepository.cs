@@ -9,7 +9,6 @@ using Hot4.Repository.Abstract;
 using Hot4.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using System.Text.RegularExpressions;
 
 namespace Hot4.Repository.Concrete
 {
@@ -37,7 +36,8 @@ namespace Hot4.Repository.Concrete
             var accountIds = await _context.Payment.Where(d => d.PaymentDate > DateTime.Now.AddDays(-90)
                               && d.PaymentTypeId != (int)PaymentMethodType.Writeoff)
                               .Select(d => d.AccountId).ToListAsync();
-
+            //The below is commented as it needs to be discussed first
+            /*
             var mobileList = await _context.Access
               .Where(d => d.ChannelId == (int)ChannelName.Sms && d.Deleted == false
               && EF.Constant(accountIds).Contains(d.AccountId)
@@ -62,100 +62,21 @@ namespace Hot4.Repository.Concrete
 
             await _context.Sms.AddRangeAsync(smsRecords);
             await _context.SaveChangesAsync();
+            */
 
-            return await _context.Access.Include(d => d.Account)
-                .Where(d => d.ChannelId == (int)ChannelName.Web
-                && EF.Constant(accountIds).Contains(d.AccountId)
-                 && d.AccessCode.Contains("@")
-                ).Select(d => new EmailModel
-                {
-                    Email = d.AccessCode,
-                    AccountName = d.Account.AccountName
-                }).ToListAsync();
+            var emailLists = await _context.Access.Include(d => d.Account)
+                    .Where(d => d.ChannelId == (int)ChannelName.Web
+                    && EF.Constant(accountIds).Contains(d.AccountId)
+                    //&& (!Regex.IsMatch(d.AccessCode, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"))
+                    ).Select(d => new EmailModel
+                    {
+                        Email = d.AccessCode,
+                        AccountName = d.Account.AccountName
+                    }).ToListAsync();
 
-        }
-        public async Task<int> SmsBulkSmsSend(string messageText)
-        {
+            emailLists = emailLists.Where(d => Helper.CheckValidEmail(d.Email)).ToList();
 
-            var recentPaymentAccountIds = await _context.Payment
-                .Where(d => d.PaymentDate > DateTime.Now.AddDays(-90))
-                .Select(d => d.AccountId)
-                .Distinct().ToListAsync();
-
-            #region code for another datbase
-            #endregion
-
-            // var recentAccountIds = recentPayments.Concat(recentPaymentsHot4Arch).Distinct();
-
-            var tempMobileNumbers = await _context.Access
-                                   .Where(d => d.ChannelId == (int)ChannelName.Sms && d.Deleted == false
-                                   && recentPaymentAccountIds.Contains(d.AccountId)
-                                   && !string.Join(",", _valueSettings.SmsBulkSmsSendExcludeAccessCode)
-                                   .Contains(d.AccessCode.Substring(d.AccessCode.Length - 7))
-                                  && (!Regex.IsMatch(d.AccessCode, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*") &&
-                                      Convert.ToInt64(d.AccessCode) <= _valueSettings.SmsBulkSmsSendGreaterThenMobileNo))
-                                  .Select(a => a.AccessCode)
-                                   .Distinct()
-                                   .ToListAsync();
-
-            var smsRecords = tempMobileNumbers.Select(mobile => new Sms
-            {
-                SmppId = null,
-                StateId = 0,
-                PriorityId = 0,
-                Direction = false,
-                Mobile = mobile,
-                Smstext = messageText,
-                Smsdate = DateTime.Now,
-                SmsidIn = null
-            }).ToList();
-
-            await _context.Sms.AddRangeAsync(smsRecords);
-            await _context.SaveChangesAsync();
-
-            return tempMobileNumbers.Count;
-        }
-        public async Task<List<EmailModel>> EmailAggregators()
-        {
-            var accountIds = await _context.Payment.Where(d => d.PaymentDate > DateTime.Now.AddDays(-180))
-                                   .Select(d => d.AccountId).Distinct().ToListAsync();
-
-            var result = await _context.Access.Include(d => d.Account)
-                          .Where(d => d.ChannelId == (int)ChannelName.Web
-                           && d.Deleted == false
-                           && d.AccessCode.Contains("@")
-                           && d.Account.ProfileId > (int)Profiles.BLANK && d.Account.ProfileId <= (int)Profiles.BRAND_AMB_CX_50_300
-                          && EF.Constant(accountIds).Contains(d.Account.AccountId))
-                          .Select(d => new EmailModel
-                          {
-                              Email = d.AccessCode,
-                              AccountName = d.Account.AccountName
-                          }).ToListAsync();
-
-            return result.Where(d => Helper.CheckValidEmail(d.Email)).ToList();
-        }
-        public async Task<List<EmailModel>> EmailCorporates()
-        {
-            var accountIds = await _context.Payment.Where(d => d.PaymentDate > DateTime.Now.AddDays(-180))
-            .Select(d => d.AccountId).ToListAsync();
-
-            var result = await _context.Access.Include(d => d.Account)
-                         .Where(d =>
-                         d.ChannelId == (int)ChannelName.Web && d.Deleted == false
-                         && (d.Account.ProfileId < (int)Profiles.EASYLINK_MTS
-                         || (d.Account.ProfileId >= (int)Profiles.BRAND_AMB_CX_50_300
-                          && d.Account.ProfileId <= (int)Profiles.NEVER_ACTIVE))
-                          && d.AccessCode.Contains("@")
-                         && EF.Constant(accountIds).Contains(d.AccountId))
-                        .OrderBy(d => d.Account.ProfileId)
-                        .Select(d => new EmailModel
-                        {
-                            Email = d.AccessCode,
-                            AccountName = d.Account.AccountName
-                        }).ToListAsync();
-
-            return result.Where(d => Helper.CheckValidEmail(d.Email)).ToList();
-
+            return emailLists;
         }
         public async Task<List<SMSModel>> SMSInbox()
         {

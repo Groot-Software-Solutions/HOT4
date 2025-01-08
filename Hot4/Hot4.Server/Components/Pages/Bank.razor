@@ -116,10 +116,10 @@
 
     private async Task GetSMS()
     {
-        //var result = await smsRepository.SmsBulkSend("");
-        var resultS = await smsRepository.SmsBulkSmsSend("testing demo SmsBulkSmsSend");
-        var resultEmailAgg = await smsRepository.EmailAggregators();
-         var resultEmailCorp = await smsRepository.EmailCorporates();
+        var result = await smsRepository.SmsBulkSend("Testing message");
+        // var resultS = await smsRepository.SmsBulkSmsSend("testing demo SmsBulkSmsSend");
+        // var resultEmailAgg = await smsRepository.EmailAggregators();
+        //  var resultEmailCorp = await smsRepository.EmailCorporates();
         //  var resultSMSInbox = await smsRepository.SMSInbox();
 
         // DateTime dt = Convert.ToDateTime("2024-10-29 00:49:34.307");

@@ -12,7 +12,6 @@ namespace Hot4.Repository.Abstract
         Task<List<RechargeDetailModel>> FindRechargeByMobileAndAccountId(RechargeFindModel rechargeFind);
         Task<List<RechargeModel>> RechargePendingStsByMulBrands(List<byte> brandIds);
         Task<RechargeDetailModel?> RechargePendingStsByBrandId(byte brandId);
-        Task<RechargeDetailModel?> RechargePendingStsOtherBrand();
         Task<RechargeModel?> GetRechargeWebDuplicate(RechWebDupSearchModel rechWebDup);
     }
 }
