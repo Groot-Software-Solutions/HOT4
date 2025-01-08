@@ -66,7 +66,6 @@ namespace Hot4.Repository.Concrete
                 limitTypeid = limits.LimitTypeId;
             }
 
-            // Setting date ranges for daily and monthly limits
             var startDateMonthly = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             var startDateDaily = DateTime.Today;
 

@@ -135,7 +135,7 @@ namespace Hot4.Repository.Concrete
             if (access != null)
             {
                 string salt = Helper.GenerateSalt(accessId);
-                string passwordHash = Helper.GeneratePasswordHash(salt, newPassword);
+                string passwordHash = Helper.GeneratePasswordHash(access.PasswordSalt ?? salt, newPassword);
                 access.AccessPassword = newPassword;
                 access.PasswordHash = passwordHash;
                 access.PasswordSalt = access.PasswordSalt ?? salt;
@@ -165,19 +165,16 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<AccountAccessModel?> GetLoginDetails(string accessCode, string accessPassword)
         {
-            var accessRecord = await _context.Access.FirstOrDefaultAsync(d => d.AccessCode == accessCode);
-            if (accessCode == null)
+            var access = await _context.Access.Include(d => d.Channel)
+                .FirstOrDefaultAsync(d => d.AccessCode == accessCode && d.Deleted == false);
+            if (access == null)
             {
                 return null;
             }
-            string passwordSalt = accessRecord.PasswordSalt;
-
+            string passwordSalt = access.PasswordSalt;
             string hashedPassword = Helper.GeneratePasswordHash(passwordSalt, accessPassword);
 
-            var access = await _context.Access.Include(d => d.Channel).FirstOrDefaultAsync(d => d.AccessCode == accessCode
-            && d.Deleted == false && (d.AccessPassword == accessPassword || d.PasswordHash == hashedPassword));
-
-            if (access != null)
+            if (access.AccessPassword == accessCode || access.PasswordHash == hashedPassword)
             {
                 return new AccountAccessModel
                 {

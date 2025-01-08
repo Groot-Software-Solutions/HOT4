@@ -208,7 +208,7 @@ namespace Hot4.Repository.Concrete
         public async Task<long?> GetDuplicateTrx(BankTransactionSearchModel bankTransactionSearch)
         {
             var bankBatchDetail = await _batchRepository.GetBatchByBankId(bankTransactionSearch.BankId);
-            if (bankBatchDetail != null && bankBatchDetail.Count > 0)
+            if (bankBatchDetail != null && bankBatchDetail.Any())
             {
                 var result = await _context.BankTrx.FirstOrDefaultAsync(d => d.Amount == bankTransactionSearch.Amount
                                     && d.TrxDate == bankTransactionSearch.TrxDate
