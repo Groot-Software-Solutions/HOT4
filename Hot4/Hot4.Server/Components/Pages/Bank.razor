@@ -137,13 +137,13 @@
 
     private async Task GetPin()
     {
-        // var pinByBatchId = await pinRepository.GetPinDetail_by_batchId(10008274); //exec xPin_List 10008274
+         var pinByBatchId = await pinRepository.GetPinDetailByBatchId(10008274); //exec xPin_List 10008274
 
-        //var pinLoaded = await pinRepository.GetPinLoaded_by_batchId(10008274);  //exec xPin_Loaded 10008274
+        var pinLoaded = await pinRepository.GetPinLoadedByBatchId(10008274);  //exec xPin_Loaded 10008274
 
-        // var pinStock = await pinRepository.GetPinStock();  //exec xPin_Stock
+         var pinStock = await pinRepository.GetPinStock();  //exec xPin_Stock
 
-        // var pinRecharge = await pinRepository.PinRecharge(pinRechargePayload);
+         var pinRecharge = await pinRepository.PinRecharge(pinRechargePayload);
         var pinRechargePromo = await pinRepository.PinRechargePromo(pinRechargePromoPayload);
         // var pinRedeemedPromo = await pinRepository.PinRedeemedPromo(10008274);
     }
@@ -162,15 +162,15 @@
 
     private async Task GetSMS()
     {
-        var result = await smsRepository.SmsBulkSend("Testing message");
+        //var result = await smsRepository.SmsBulkSend("Testing message");
         // var resultS = await smsRepository.SmsBulkSmsSend("testing demo SmsBulkSmsSend");
         // var resultEmailAgg = await smsRepository.EmailAggregators();
         //  var resultEmailCorp = await smsRepository.EmailCorporates();
-        //  var resultSMSInbox = await smsRepository.SMSInbox();
+          var resultSMSInbox = await smsRepository.SMSInbox();
 
-        // DateTime dt = Convert.ToDateTime("2024-10-29 00:49:34.307");
-        // var resultSMSInbox = await smsRepository.GetSMSByAccountSMSDate(11552422,dt,1,10);
-        //var resultSMSSearch = await smsRepository.SMSSearch(smsSearchMdl);
+        DateTime dt = Convert.ToDateTime("2024-10-29 00:49:34.307");
+        var resultSMSInboxs = await smsRepository.GetSMSByAccountSMSDate(11552422,dt,1,10);
+        var resultSMSSearch = await smsRepository.SMSSearch(smsSearchMdl);
     }
 
     private RechargeAggSearchModel rechargeAggSearchModel { get; set; } = new() { AccountId = 10520030, StartDate = DateTime.Now.AddMonths(-9), EndDate = DateTime.Now, PageNo = 1, PageSize = 10 };
@@ -178,10 +178,10 @@
 
     private async Task GetRecharge()
     {
-        // var result = await rechargeRepository.GetRechargeAggregator(rechargeAggSearchModel);
+         var result = await rechargeRepository.GetRechargeAggregator(rechargeAggSearchModel);
 
-        // var resultFind = await rechargeRepository.FindRechargeByMobileAndAccountId(rechargeFindModel);
-        // var resultByBrandIds = await rechargeRepository.RechargePendingStsByMulBrands(new List<byte>{1,2,3});
+         var resultFind = await rechargeRepository.FindRechargeByMobileAndAccountId(rechargeFindModel);
+         var resultByBrandIds = await rechargeRepository.RechargePendingStsByMulBrands(new List<byte>{1,2,3});
 
         var resultByBrandId = await rechargeRepository.RechargePendingStsByBrandId(1);
     }
