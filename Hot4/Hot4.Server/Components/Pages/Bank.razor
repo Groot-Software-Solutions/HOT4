@@ -178,8 +178,6 @@
 
     private async Task GetRecharge()
     {
-         var result = await rechargeRepository.GetRechargeAggregator(rechargeAggSearchModel);
-
          var resultFind = await rechargeRepository.FindRechargeByMobileAndAccountId(rechargeFindModel);
          var resultByBrandIds = await rechargeRepository.RechargePendingStsByMulBrands(new List<byte>{1,2,3});
 

@@ -1,5 +1,4 @@
 ﻿using Hot4.Core.Enums;
-using Hot4.Core.Helper;
 using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
@@ -35,28 +34,6 @@ namespace Hot4.Repository.Concrete
             }
             return null;
         }
-        public async Task<List<PaymentModel>> GetPaymentByAccountId(long accountId, int pageNumber, int pageSize)
-        {
-            return await PaginationFilter.GetPagedData(GetByCondition(d => d.AccountId == accountId)
-                              .OrderBy(d => d.PaymentDate), pageNumber, pageSize)
-                        .Queryable.Select(d => new PaymentModel
-                        {
-                            PaymentId = d.PaymentId,
-                            AccountId = d.AccountId,
-                            PaymentSourceId = d.PaymentSourceId,
-                            PaymentSource = d.PaymentSource.PaymentSource,
-                            Amount = d.Amount,
-                            LastUser = d.LastUser,
-                            PaymentDate = d.PaymentDate,
-                            PaymentType = d.PaymentType.PaymentType,
-                            PaymentTypeId = d.PaymentTypeId,
-                            Reference = d.Reference
-                        })
-                 .ToListAsync();
-
-            //vwzPayment functionlality
-        }
-
         public async Task<long?> SaveUpdatePayment(Payment payment)
         {
             var paymentId = 0;

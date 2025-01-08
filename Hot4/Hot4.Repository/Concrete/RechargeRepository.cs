@@ -67,31 +67,7 @@ namespace Hot4.Repository.Concrete
             Update(recharge);
             await SaveChanges();
         }
-        public async Task<List<RechargeModel>> GetRechargeAggregator(RechargeAggSearchModel rchAggSrch)
-        {
-            var startDate = rchAggSrch.StartDate.Date;
-            var endDate = rchAggSrch.EndDate.Date.AddDays(1);
 
-            var accessIds = await _context.Access.Where(d => d.AccountId == rchAggSrch.AccountId)
-                                  .Select(d => d.AccessId).ToListAsync();
-
-            var result = GetByCondition(d => d.RechargeDate >= startDate && d.RechargeDate < endDate
-                         && EF.Constant(accessIds).Contains(d.AccessId))
-                         .Include(d => d.Brand).Include(d => d.State).OrderByDescending(d => d.RechargeId);
-
-            return await PaginationFilter.GetPagedData(result, rchAggSrch.PageNo, rchAggSrch.PageSize)
-                         .Queryable.Select(d => new RechargeModel
-                         {
-                             RechargeId = d.RechargeId,
-                             AccessId = d.AccessId,
-                             Amount = d.Amount,
-                             BrandId = d.BrandId,
-                             Discount = d.Discount,
-                             Mobile = d.Mobile,
-                             RechargeDate = d.RechargeDate,
-                             StateId = d.StateId
-                         }).ToListAsync();
-        }
         public async Task<List<RechargeDetailModel>> FindRechargeByMobileAndAccountId(RechargeFindModel rechargeFind)
         {
             IQueryable<RechargeDetailModel> result;
