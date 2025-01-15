@@ -1,8 +1,10 @@
 ﻿using Hot4.Repository.Abstract;
 using Hot4.Repository.Concrete;
+using Hot4.Service.Abstract;
+using Hot4.Service.Concrete;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Hot4.Repository
+namespace Hot4.Service
 {
     public static class ServiceExtension
     {
@@ -67,6 +69,9 @@ namespace Hot4.Repository
             services.AddTransient<ISubscriberRepository, SubscriberRepository>();
             services.AddTransient<IWalletTypeRepository, WalletTypeRepository>();
             services.AddTransient<IStockDataRepository, StockDataRepository>();
+
+            services.AddTransient<IBankTrxBatchService, BankTrxBatchService>();
+
 
             return services;
         }
