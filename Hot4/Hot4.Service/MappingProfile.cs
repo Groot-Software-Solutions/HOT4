@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿
+using Hot4.DataModel.Models;
+using Hot4.ViewModel;
+using Profile = AutoMapper.Profile;
+
 
 namespace Hot4.Service
 {
@@ -6,7 +10,17 @@ namespace Hot4.Service
     {
         public MappingProfile()
         {
-            // CreateMap<Access, AccessViewModel>().ReverseMap();
+            CreateMap<Access , AccessModel>().ReverseMap();
+            CreateMap<Access, AccountAccessModel>().ReverseMap();
+            // Access Web 
+            CreateMap<AccessWeb, AccessWebModel>().ReverseMap();
+            // Address
+            CreateMap<Address, AddressModel>().ReverseMap();
+            // bank 
+            CreateMap<Banks, BankModel>().ReverseMap();
+            // Channel
+            CreateMap<Channels, ChannelModel>().ReverseMap();
+
         }
     }
 }

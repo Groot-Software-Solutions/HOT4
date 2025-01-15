@@ -8,22 +8,35 @@ namespace Hot4.Repository.Concrete
     public class AccessWebRepository : RepositoryBase<AccessWeb>, IAccessWebRepository
     {
         public AccessWebRepository(HotDbContext context) : base(context) { }
-        public async Task<AccessWebModel?> GetAccessWebById(long accessId)
+        //public async Task<AccessWebModel?> GetAccessWebById(long accessId)
+        //{
+        //    var result = await GetById(accessId);
+        //    if (result != null)
+        //    {
+        //        return new AccessWebModel
+        //        {
+        //            AccessId = accessId,
+        //            AccessName = result.AccessName,
+        //            ResetToken = result.ResetToken,
+        //            SalesPassword = result.SalesPassword,
+        //            WebBackground = result.WebBackground,
+        //        };
+        //    }
+        //    return null;
+        //}
+
+
+
+        public async Task<AccessWeb?> GetAccessWebById(long accessId)
         {
             var result = await GetById(accessId);
             if (result != null)
             {
-                return new AccessWebModel
-                {
-                    AccessId = accessId,
-                    AccessName = result.AccessName,
-                    ResetToken = result.ResetToken,
-                    SalesPassword = result.SalesPassword,
-                    WebBackground = result.WebBackground,
-                };
+                return result;
             }
             return null;
         }
+
         public async Task AddAccessWeb(AccessWeb accessWeb)
         {
             accessWeb.SalesPassword = true;
