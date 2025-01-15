@@ -18,7 +18,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<long> AddBatch(BankTrxBatchToDo bankTrxBatch)
         {
-            var res = Mapper.Map<BankTrxBatchToDo, BankTrxBatch>(bankTrxBatch);
+            var res = Mapper.Map<BankTrxBatch>(bankTrxBatch);
             return await _bankTrxBatchRepository.AddBatch(res);
         }
         public async Task UpdateBatch(BankTrxBatchToDo bankTrxBatch)
@@ -26,7 +26,7 @@ namespace Hot4.Service.Concrete
             var res = await _bankTrxBatchRepository.GetBatchById(bankTrxBatch.BankTrxBatchId);
             if (res != null)
             {
-                var model = Mapper.Map<BankTrxBatchToDo, BankTrxBatch>(bankTrxBatch);
+                var model = Mapper.Map<BankTrxBatch>(bankTrxBatch);
                 await _bankTrxBatchRepository.UpdateBatch(model);
             }
             else
@@ -37,11 +37,7 @@ namespace Hot4.Service.Concrete
         public async Task<BankBatchModel?> GetBatchById(long batchId)
         {
             var res = await _bankTrxBatchRepository.GetBatchById(batchId);
-            if (res != null)
-            {
-                return Mapper.Map<BankTrxBatch, BankBatchModel>(res);
-            }
-            return null;
+            return Mapper.Map<BankBatchModel?>(res);
         }
         public async Task DeleteBatch(long batchId)
         {
@@ -59,13 +55,13 @@ namespace Hot4.Service.Concrete
         public async Task<List<BankBatchModel>> GetBatchByBankId(byte bankId)
         {
             var res = await _bankTrxBatchRepository.GetBatchByBankId(bankId);
-            return Mapper.Map<List<BankTrxBatch>, List<BankBatchModel>>(res);
+            return Mapper.Map<List<BankBatchModel>>(res);
         }
 
         public async Task<BankBatchModel?> GetCurrentBatch(byte bankId, string batchReference, string lastUser)
         {
             var res = await _bankTrxBatchRepository.GetCurrentBatch(bankId, batchReference, lastUser);
-            return Mapper.Map<BankTrxBatch, BankBatchModel>(res);
+            return Mapper.Map<BankBatchModel?>(res);
         }
 
         public async Task<long?> GetCurrentBatchByBankIdAndRefId(byte bankId, string batchRef = null)

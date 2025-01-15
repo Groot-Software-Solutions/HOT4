@@ -18,6 +18,7 @@
 @inject Hot4.Repository.Abstract.IPaymentRepository paymentRepository;
 
 @inject Hot4.Service.Abstract.IBankTrxBatchService bankBatchService;
+@inject Hot4.Service.Abstract.IBankTrxService bankTrxService;
 
 @using Hot4.DataModel.Models;
 @using Hot4.ViewModel;
@@ -106,7 +107,7 @@
 
 
     private SMSSearchModel smsSearchMdl { get; set; } = new() { StartDate = DateTime.Now.AddMonths(-9), EndDate = DateTime.Now, MessageText = "", Mobile = "", PageNo = 1, PageSize = 10, SmppId = -1, StateId = -1 };
-    private BankTrxBatchToDo bankTrxBatchToDo { get; set; } = new() { BankId = 1, BatchDate = DateTime.Now, BatchReference = "no ref", LastUser = "pradeep" };
+    private BankTrxBatchToDo bankTrxBatchToDo { get; set; } = new() { BankId = 1, BatchDate = DateTime.Now, BatchReference = "no refs", LastUser = "pradeeps" };
     private async Task GetBank()
     {
         // var bankTrxByBatch = await banktrxRepository.GetTranscation_by_Batch(10024185, true);
@@ -132,12 +133,16 @@
         //await bankRepository.AddBank(bnk);
         //  var resAccountSelect = await bankRepository.ListBanks();
 
-        // service 
-        // var addBatchService = await bankBatchService.AddBatch(bankTrxBatchToDo);
-       // var getBatchService = await bankBatchService.GetBatchById(4545454545);
-       // var getBatchService2 = await bankBatchService.GetBatchById(10072061);
+        // SERVICE START
+           // 1) BANKTRXBATCH
+         var addBatchService = await bankBatchService.AddBatch(bankTrxBatchToDo);
+        var getBatchService = await bankBatchService.GetBatchById(4545454545);
+       var getBatchService2 = await bankBatchService.GetBatchById(10072061);
       //  var getBatchBybankid = await bankBatchService.GetBatchByBankId(1);
-        var getCurrentBatchBybankid = await bankBatchService.GetCurrentBatch(1,"amt","sss");
+       var getCurrentBatchBybankid = await bankBatchService.GetCurrentBatch(1,"amt","sss");
+
+      // 2) BANKTRX
+        var banktrxGet = await bankTrxService.GetTrxById(14187048);
 
     }
 

@@ -71,7 +71,7 @@ namespace Hot4.Service
             services.AddTransient<IStockDataRepository, StockDataRepository>();
 
             services.AddTransient<IBankTrxBatchService, BankTrxBatchService>();
-
+            services.AddTransient<IBankTrxService, BankTrxService>();
 
             return services;
         }
