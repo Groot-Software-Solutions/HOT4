@@ -1,7 +1,7 @@
 
+using Hot4.Core.Middleware;
 using Hot4.Core.Settings;
 using Hot4.DataModel.Data;
-using Hot4.Repository;
 using Hot4.Server.Components;
 using Hot4.Service;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +37,7 @@ builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingProfile)));
 
 
 var app = builder.Build();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
