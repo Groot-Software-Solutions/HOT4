@@ -2,7 +2,7 @@
 {
     public class ChannelModel
     {
-        public int ChannelId { get; set; }
+        public byte ChannelId { get; set; }
         public string Channel { get; set; }
     }
 }

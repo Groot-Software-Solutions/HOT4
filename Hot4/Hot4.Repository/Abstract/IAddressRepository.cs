@@ -5,9 +5,9 @@ namespace Hot4.Repository.Abstract
 {
     public interface IAddressRepository
     {
-        Task<AddressModel?> GetAddressById(long accountId);
-        Task SaveAddress(Address address);
-        Task UpdateAddress(Address address);
-        Task DeleteAddress(Address address);
+        Task<Address?> GetAddressById(long accountId);
+        Task<bool> SaveAddress(Address address);
+        Task<bool> UpdateAddress(Address address);
+        Task<bool> DeleteAddress(Address address);
     }
 }

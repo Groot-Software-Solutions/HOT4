@@ -7,8 +7,8 @@ namespace Hot4.Repository.Abstract
     {
         Task<BundleModel?> GetBundlesById(int bundleId);
         Task<List<BundleModel>> ListBundles();
-        Task AddBundle(Bundle bundle);
-        Task UpdateBundle(Bundle bundle);
-        Task DeleteBundle(Bundle bundle);
+        Task<bool> AddBundle(Bundle bundle);
+        Task<bool> UpdateBundle(Bundle bundle);
+        Task<bool> DeleteBundle(Bundle bundle);
     }
 }
