@@ -39,7 +39,7 @@ namespace Hot4.Service
             CreateMap<Transfer, TransferToDo>().ReverseMap();
             CreateMap<WalletType, WalletTypeModel>().ReverseMap();
             CreateMap<WebRequests, WebRequestModel>().ReverseMap();
-            CreateMap<Access , AccessModel>().ReverseMap();
+            CreateMap<Access, AccessModel>().ReverseMap();
             CreateMap<Access, AccountAccessModel>()
             .ForMember(dest => dest.Deleted, opt => opt.MapFrom(src => src.Deleted ?? false)).ReverseMap();
             // Access Web 
