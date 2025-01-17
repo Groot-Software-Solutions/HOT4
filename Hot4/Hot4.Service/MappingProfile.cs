@@ -8,6 +8,27 @@ namespace Hot4.Service
     {
         public MappingProfile()
         {
+            CreateMap<PinBatchTypes, PinBatchTypeModel>().ReverseMap();
+            CreateMap<PinBatches, PinBatchModel>()
+                .ForMember(dst => dst.PinBatchType, opt => opt.MapFrom(src => src.PinBatchTypeId != 0 ? src.PinBatchType.PinBatchType : null))
+                .ReverseMap();
+
+            CreateMap<PinBatches, PinBatchToDo>().ReverseMap();
+            CreateMap<Pins, PinToDo>().ReverseMap();
+            CreateMap<Pins, PinDetailModel>()
+                .ForMember(dst => dst.PinBatch, opt => opt.MapFrom(src => src.PinBatchId != 0 ? src.PinBatch.PinBatch : null))
+                .ForMember(dst => dst.BatchDate, opt => opt.MapFrom(src => src.PinBatch.BatchDate))
+                .ForMember(dst => dst.PinState, opt => opt.MapFrom(src => src.PinStateId != 0 ? src.PinState.PinState : null))
+                 .ForMember(dst => dst.BrandName, opt => opt.MapFrom(src => src.BrandId != 0 ? src.Brand.BrandName : null))
+                  .ForMember(dst => dst.BrandSuffix, opt => opt.MapFrom(src => src.BrandId != 0 ? src.Brand.BrandSuffix : null))
+                  .ForMember(dst => dst.PinBatchTypeId, opt => opt.MapFrom(src => src.PinBatch.PinBatchTypeId))
+                .ForMember(dst => dst.PinBatchType, opt => opt.MapFrom(src => src.PinBatch.PinBatchTypeId != 0 ? src.PinBatch.PinBatchType.PinBatchType : null))
+                .ForMember(dst => dst.NetworkId, opt => opt.MapFrom(src => src.BrandId != 0 ? src.Brand.NetworkId : 0))
+                  .ForMember(dst => dst.Network, opt => opt.MapFrom(src => src.BrandId != 0 ? src.Brand.Network.Network : null))
+                  .ForMember(dst => dst.Prefix, opt => opt.MapFrom(src => src.BrandId != 0 ? src.Brand.Network.Prefix : null))
+                .ForMember(dst => dst.PinNumber, opt => opt.MapFrom(src => src.Pin))
+                .ReverseMap();
+
             CreateMap<BankTrxBatch, BankTrxBatchToDo>().ReverseMap();
             CreateMap<BankTrxBatch, BankBatchModel>()
                             .ForMember(dst => dst.BankName, opt => opt.MapFrom(src => src.BankId != 0 ? src.Bank.Bank : null))

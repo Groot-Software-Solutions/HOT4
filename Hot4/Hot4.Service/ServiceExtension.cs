@@ -77,6 +77,9 @@ namespace Hot4.Service
             services.AddTransient<ITransferService, TransferService>();
             services.AddTransient<IWalletTypeService, WalletTypeService>();
             services.AddTransient<IWebRequestService, WebRequestService>();
+            services.AddTransient<IPinBatchTypeService, PinBatchTypeService>();
+            services.AddTransient<IPinBatchService, PinBatchService>();
+            services.AddTransient<IPinService, PinService>();
 
 
             return services;
