@@ -1,14 +1,13 @@
 ﻿using Hot4.DataModel.Models;
-using Hot4.ViewModel;
 
 namespace Hot4.Repository.Abstract
 {
     public interface ITemplateRepository
     {
-        Task<TemplateModel?> GetTemplateById(int templateId);
-        Task<List<TemplateModel>> ListTemplates();
-        Task AddTemplate(Template template);
-        Task UpdateTemplate(Template template);
-        Task DeleteTemplate(Template template);
+        Task<Template?> GetTemplateById(int templateId);
+        Task<List<Template>> ListTemplates();
+        Task<bool> AddTemplate(Template template);
+        Task<bool> UpdateTemplate(Template template);
+        Task<bool> DeleteTemplate(Template template);
     }
 }

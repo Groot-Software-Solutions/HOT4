@@ -5,11 +5,12 @@ namespace Hot4.Repository.Abstract
 {
     public interface ITransferRepository
     {
-        Task<List<TransferModel>> GetTransferByPaymentId(long paymentId);
-        Task<List<TransferModel>> ListTransfer(int pageNo, int pageSize);
-        Task AddTransfer(Transfer transfer);
-        Task UpdateTransfer(Transfer transfer);
-        Task DeleteTransfer(Transfer transfer);
+        Task<List<Transfer>> GetTransferByPaymentId(long paymentId);
+        Task<Transfer?> GetTransferById(long transferId);
+        Task<List<Transfer>> ListTransfer(int pageNo, int pageSize);
+        Task<bool> AddTransfer(Transfer transfer);
+        Task<bool> UpdateTransfer(Transfer transfer);
+        Task<bool> DeleteTransfer(Transfer transfer);
         Task<decimal> GetStockTradeBalByAccountId(long accountId);
         Task<StockTradeModel> GetStockTrade(StockTradeSearchModel stockTradeSearch);
     }

@@ -5,11 +5,11 @@ namespace Hot4.Repository.Abstract
 {
     public interface IBrandRepository
     {
-        Task<BrandModel> GetBrandById(int BrandId);
-        Task<List<BrandModel>> GetBrandIdentity(BrandIdentitySearchModel brandIdentitySearchModel);
-        Task<List<BrandModel>> ListBrand();
-        Task AddBrand(Brand brand);
-        Task UpdateBrand(Brand brand);
-        Task DeleteBrand(Brand brand);
+        Task<Brand?> GetBrandById(byte brandId);
+        Task<List<Brand>> GetBrandIdentity(BrandIdentitySearchModel brandIdentitySearchModel);
+        Task<List<Brand>> ListBrand();
+        Task<bool> AddBrand(Brand brand);
+        Task<bool> UpdateBrand(Brand brand);
+        Task<bool> DeleteBrand(Brand brand);
     }
 }

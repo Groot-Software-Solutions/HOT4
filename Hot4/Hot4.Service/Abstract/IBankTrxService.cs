@@ -12,10 +12,8 @@ namespace Hot4.Service.Abstract
         Task<long?> GetDuplicateTrx(BankTransactionSearchModel bankTransactionSearch);
         Task<List<BankTransactionModel>> GetTrxByPaymentId(string paymentId);
         Task<int?> GetEcoCashPendingTrxCount(EcoCashSearchModel ecoCashSearch);
-        Task<long?> AddBankTrx(BankTrxToDo bankTransaction);
-        Task UpdateBankTrx(BankTrxToDo bankTransaction);
-        //Task UpdateBankTrxPaymentId(long paymentId, long bankTransactionId);
-        //Task UpdateBankTrxState(byte stateId, long bankTransactionId);
-        //Task UpdateBankTrxIdentifier(string identifier, long bankTransactionId);
+        Task<bool> AddBankTrx(BankTrxToDo bankTransaction);
+        Task<bool> UpdateBankTrx(BankTrxToDo bankTransaction);
+
     }
 }

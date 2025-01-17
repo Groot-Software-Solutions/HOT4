@@ -13,8 +13,8 @@ namespace Hot4.Repository.Abstract
         Task<long?> GetDuplicateTrx(BankTransactionSearchModel bankTransactionSearch);
         Task<List<BankTrx>> GetTrxByPaymentId(string paymentId);
         Task<int?> GetEcoCashPendingTrxCount(EcoCashSearchModel ecoCashSearch);
-        Task<long?> AddBankTrx(BankTrx bankTransaction);
-        Task UpdateBankTrx(BankTrx bankTransaction);
+        Task<bool> AddBankTrx(BankTrx bankTransaction);
+        Task<bool> UpdateBankTrx(BankTrx bankTransaction);
 
     }
 }

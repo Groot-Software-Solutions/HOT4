@@ -9,66 +9,59 @@ namespace Hot4.Service.Concrete
     public class BankTrxBatchService : IBankTrxBatchService
     {
         private IBankTrxBatchRepository _bankTrxBatchRepository;
-        private IMapper Mapper { get; }
+        private readonly IMapper Mapper;
         public BankTrxBatchService(IBankTrxBatchRepository bankTrxBatchRepository, IMapper mapper)
         {
             _bankTrxBatchRepository = bankTrxBatchRepository;
             this.Mapper = mapper;
         }
 
-        public async Task<long> AddBatch(BankTrxBatchToDo bankTrxBatch)
+        public async Task<bool> AddBatch(BankTrxBatchToDo bankTrxBatch)
         {
-            var res = Mapper.Map<BankTrxBatch>(bankTrxBatch);
-            return await _bankTrxBatchRepository.AddBatch(res);
+            var model = Mapper.Map<BankTrxBatch>(bankTrxBatch);
+            await _bankTrxBatchRepository.AddBatch(model);
+            return true;
         }
-        public async Task UpdateBatch(BankTrxBatchToDo bankTrxBatch)
+        public async Task<bool> UpdateBatch(BankTrxBatchToDo bankTrxBatch)
         {
-            var res = await _bankTrxBatchRepository.GetBatchById(bankTrxBatch.BankTrxBatchId);
-            if (res != null)
+            var record = await _bankTrxBatchRepository.GetBatchById(bankTrxBatch.BankTrxBatchId);
+            if (record != null)
             {
-                var model = Mapper.Map<BankTrxBatch>(bankTrxBatch);
-                await _bankTrxBatchRepository.UpdateBatch(model);
+                Mapper.Map(bankTrxBatch, record);
+                return await _bankTrxBatchRepository.UpdateBatch(record);
             }
-            else
+            return false;
+        }
+        public async Task<bool> DeleteBatch(long batchId)
+        {
+            var record = await _bankTrxBatchRepository.GetBatchById(batchId);
+            if (record != null)
             {
-                throw new Exception("Batch not found");
+                return await _bankTrxBatchRepository.DeleteBatch(record);
             }
+            return false;
         }
         public async Task<BankBatchModel?> GetBatchById(long batchId)
         {
-            var res = await _bankTrxBatchRepository.GetBatchById(batchId);
-            return Mapper.Map<BankBatchModel?>(res);
-        }
-        public async Task DeleteBatch(long batchId)
-        {
-            var res = await _bankTrxBatchRepository.GetBatchById(batchId);
-            if (res != null)
-            {
-                await _bankTrxBatchRepository.DeleteBatch(res);
-            }
-            else
-            {
-                throw new Exception("Batch not found");
-            }
+            var record = await _bankTrxBatchRepository.GetBatchById(batchId);
+            return Mapper.Map<BankBatchModel?>(record);
         }
 
         public async Task<List<BankBatchModel>> GetBatchByBankId(byte bankId)
         {
-            var res = await _bankTrxBatchRepository.GetBatchByBankId(bankId);
-            return Mapper.Map<List<BankBatchModel>>(res);
+            var records = await _bankTrxBatchRepository.GetBatchByBankId(bankId);
+            return Mapper.Map<List<BankBatchModel>>(records);
         }
 
         public async Task<BankBatchModel?> GetCurrentBatch(byte bankId, string batchReference, string lastUser)
         {
-            var res = await _bankTrxBatchRepository.GetCurrentBatch(bankId, batchReference, lastUser);
-            return Mapper.Map<BankBatchModel?>(res);
+            var record = await _bankTrxBatchRepository.GetCurrentBatch(bankId, batchReference, lastUser);
+            return Mapper.Map<BankBatchModel?>(record);
         }
 
         public async Task<long?> GetCurrentBatchByBankIdAndRefId(byte bankId, string batchRef = null)
         {
             return await _bankTrxBatchRepository.GetCurrentBatchByBankIdAndRefId(bankId, batchRef);
         }
-
-
     }
 }

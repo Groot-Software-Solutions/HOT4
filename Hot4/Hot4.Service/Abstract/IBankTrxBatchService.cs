@@ -4,9 +4,9 @@ namespace Hot4.Service.Abstract
 {
     public interface IBankTrxBatchService
     {
-        Task<long> AddBatch(BankTrxBatchToDo bankTrxBatch);
-        Task UpdateBatch(BankTrxBatchToDo bankTrxBatch);
-        Task DeleteBatch(long batchId);
+        Task<bool> AddBatch(BankTrxBatchToDo bankTrxBatch);
+        Task<bool> UpdateBatch(BankTrxBatchToDo bankTrxBatch);
+        Task<bool> DeleteBatch(long batchId);
         Task<BankBatchModel?> GetBatchById(long batchId);
         Task<List<BankBatchModel>> GetBatchByBankId(byte bankId);
         Task<long?> GetCurrentBatchByBankIdAndRefId(byte bankId, string batchRef = null);

@@ -19,53 +19,63 @@ namespace Hot4.Repository.Concrete
             _commonRepository = commonRepository;
             _valueSettings = valueSettings.Value;
         }
-        public async Task AddTransfer(Transfer transfer)
+        public async Task<bool> AddTransfer(Transfer transfer)
         {
             await Create(transfer);
             await SaveChanges();
+            return true;
         }
-        public async Task DeleteTransfer(Transfer transfer)
+        public async Task<bool> DeleteTransfer(Transfer transfer)
         {
             Delete(transfer);
             await SaveChanges();
+            return true;
         }
-        public async Task UpdateTransfer(Transfer transfer)
+        public async Task<bool> UpdateTransfer(Transfer transfer)
         {
             Update(transfer);
             await SaveChanges();
+            return true;
         }
-        public async Task<List<TransferModel>> GetTransferByPaymentId(long paymentId)
+        public async Task<List<Transfer>> GetTransferByPaymentId(long paymentId)
         {
             return await _context.Transfer.Include(d => d.Channel)
                 .Where(d => d.PaymentIdFrom == paymentId || d.PaymentIdTo == paymentId)
-                .OrderByDescending(d => d.TransferId)
-                      .Select(d => new TransferModel
-                      {
-                          Amount = d.Amount,
-                          ChannelId = d.ChannelId,
-                          ChannelName = d.Channel.Channel,
-                          PaymentIdFrom = d.PaymentIdFrom,
-                          PaymentIdTo = d.PaymentIdTo,
-                          SMSId = d.Smsid,
-                          TransferDate = d.TransferDate,
-                          TransferId = d.TransferId,
-                      }).ToListAsync();
+                .OrderByDescending(d => d.TransferId).ToListAsync();
+            //.Select(d => new TransferModel
+            //{
+            //    Amount = d.Amount,
+            //    ChannelId = d.ChannelId,
+            //    ChannelName = d.Channel.Channel,
+            //    PaymentIdFrom = d.PaymentIdFrom,
+            //    PaymentIdTo = d.PaymentIdTo,
+            //    SMSId = d.Smsid,
+            //    TransferDate = d.TransferDate,
+            //    TransferId = d.TransferId,
+            //}).ToListAsync();
         }
-        public async Task<List<TransferModel>> ListTransfer(int pageNo, int pageSize)
+        public async Task<Transfer?> GetTransferById(long transferId)
+        {
+            return await _context.Transfer.Include(d => d.Channel)
+    .Where(d => d.TransferId == transferId)
+    .FirstOrDefaultAsync();
+        }
+        public async Task<List<Transfer>> ListTransfer(int pageNo, int pageSize)
         {
             var result = _context.Transfer.Include(d => d.Channel).OrderByDescending(d => d.TransferId);
             return await PaginationFilter.GetPagedData(result, pageNo, pageSize)
-                                .Queryable.Select(d => new TransferModel
-                                {
-                                    Amount = d.Amount,
-                                    ChannelId = d.ChannelId,
-                                    ChannelName = d.Channel.Channel,
-                                    PaymentIdFrom = d.PaymentIdFrom,
-                                    PaymentIdTo = d.PaymentIdTo,
-                                    SMSId = d.Smsid,
-                                    TransferDate = d.TransferDate,
-                                    TransferId = d.TransferId,
-                                }).ToListAsync();
+                                .Queryable.ToListAsync();
+            //.Select(d => new TransferModel
+            //{
+            //    Amount = d.Amount,
+            //    ChannelId = d.ChannelId,
+            //    ChannelName = d.Channel.Channel,
+            //    PaymentIdFrom = d.PaymentIdFrom,
+            //    PaymentIdTo = d.PaymentIdTo,
+            //    SMSId = d.Smsid,
+            //    TransferDate = d.TransferDate,
+            //    TransferId = d.TransferId,
+            //}).ToListAsync();
         }
         public async Task<decimal> GetStockTradeBalByAccountId(long accountId)
         {

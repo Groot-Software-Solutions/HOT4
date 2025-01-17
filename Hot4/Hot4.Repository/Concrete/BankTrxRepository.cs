@@ -263,7 +263,7 @@ namespace Hot4.Repository.Concrete
                          && d.Amount == ecoCashSearch.Amount)
                          .CountAsync();
         }
-        public async Task<long?> AddBankTrx(BankTrx bankTransaction)
+        public async Task<bool> AddBankTrx(BankTrx bankTransaction)
         {
             var duplicateTransaction = await _context.BankTrx.Include(d => d.BankTrxBatch).FirstOrDefaultAsync(d =>
                                        (d.TrxDate == bankTransaction.TrxDate
@@ -295,18 +295,16 @@ namespace Hot4.Repository.Concrete
                 bankTransaction.PaymentId = null;
                 await Create(bankTransaction);
                 await SaveChanges();
-                return bankTransaction.BankTrxId;
+                return true;
             }
-            else
-            {
-                return duplicateTransaction.BankTrxId;
-            }
+            return false;
         }
 
-        public async Task UpdateBankTrx(BankTrx bankTransaction)
+        public async Task<bool> UpdateBankTrx(BankTrx bankTransaction)
         {
             Update(bankTransaction);
             await SaveChanges();
+            return true;
         }
 
     }

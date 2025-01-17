@@ -10,72 +10,42 @@ namespace Hot4.Repository.Concrete
     {
         public BrandRepository(HotDbContext context) : base(context) { }
 
-        public async Task<BrandModel?> GetBrandById(int BrandId)
+        public async Task<Brand?> GetBrandById(byte BrandId)
         {
-            var result = await _context.Brand.Include(d => d.Network)
+            return await _context.Brand.Include(d => d.Network)
                 .FirstOrDefaultAsync(d => d.BrandId == BrandId);
-            if (result != null)
-            {
-                return new BrandModel
-                {
-                    BrandId = result.BrandId,
-                    BrandName = result.BrandName,
-                    BrandSuffix = result.BrandSuffix,
-                    Network = result.Network.Network,
-                    NetworkId = result.NetworkId,
-                    Prefix = result.Network.Prefix,
-                    WalletTypeId = result.WalletTypeId
-                };
-            }
-            return null;
         }
 
-        public async Task<List<BrandModel>> GetBrandIdentity(BrandIdentitySearchModel brandIdentitySearchModel)
+        public async Task<List<Brand>> GetBrandIdentity(BrandIdentitySearchModel brandIdentitySearchModel)
         {
             return await GetByCondition(d => d.NetworkId == brandIdentitySearchModel.NetworkId
                          && d.BrandSuffix == brandIdentitySearchModel.BrandSuffix)
-                         .Include(d => d.Network)
-                         .Select(d => new BrandModel
-                         {
-                             BrandId = d.BrandId,
-                             BrandName = d.BrandName,
-                             BrandSuffix = d.BrandSuffix,
-                             Network = d.Network.Network,
-                             NetworkId = d.NetworkId,
-                             Prefix = d.Network.Prefix,
-                             WalletTypeId = d.WalletTypeId
-                         }).ToListAsync();
+                         .Include(d => d.Network).ToListAsync();
         }
 
-        public async Task<List<BrandModel>> ListBrand()
+        public async Task<List<Brand>> ListBrand()
         {
             return await GetAll()
                    .Include(d => d.Network)
-                   .Select(d => new BrandModel
-                   {
-                       BrandId = d.BrandId,
-                       BrandName = d.BrandName,
-                       BrandSuffix = d.BrandSuffix,
-                       Network = d.Network.Network,
-                       NetworkId = d.NetworkId,
-                       Prefix = d.Network.Prefix,
-                       WalletTypeId = d.WalletTypeId
-                   }).ToListAsync();
+                   .ToListAsync();
         }
-        public async Task AddBrand(Brand brand)
+        public async Task<bool> AddBrand(Brand brand)
         {
             await Create(brand);
             await SaveChanges();
+            return true;
         }
-        public async Task DeleteBrand(Brand brand)
+        public async Task<bool> DeleteBrand(Brand brand)
         {
             Delete(brand);
             await SaveChanges();
+            return true;
         }
-        public async Task UpdateBrand(Brand brand)
+        public async Task<bool> UpdateBrand(Brand brand)
         {
             Update(brand);
             await SaveChanges();
+            return true;
         }
     }
 }

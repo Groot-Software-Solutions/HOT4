@@ -1,7 +1,6 @@
 ﻿using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
-using Hot4.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
@@ -10,43 +9,31 @@ namespace Hot4.Repository.Concrete
     {
         public TemplateRepository(HotDbContext context) : base(context) { }
 
-        public async Task AddTemplate(Template template)
+        public async Task<bool> AddTemplate(Template template)
         {
             await Create(template);
             await SaveChanges();
+            return true;
         }
-        public async Task DeleteTemplate(Template template)
+        public async Task<bool> DeleteTemplate(Template template)
         {
             Delete(template);
             await SaveChanges();
+            return true;
         }
-        public async Task<TemplateModel?> GetTemplateById(int templateId)
+        public async Task<Template?> GetTemplateById(int templateId)
         {
-            var result = await GetById(templateId);
-            if (result != null)
-            {
-                return new TemplateModel
-                {
-                    TemplateId = result.TemplateId,
-                    TemplateName = result.TemplateName,
-                    TemplateText = result.TemplateText,
-                };
-            }
-            return null;
+            return await GetById(templateId);
         }
-        public Task<List<TemplateModel>> ListTemplates()
+        public Task<List<Template>> ListTemplates()
         {
-            return GetAll().Select(d => new TemplateModel
-            {
-                TemplateId = d.TemplateId,
-                TemplateText = d.TemplateText,
-                TemplateName = d.TemplateName,
-            }).ToListAsync();
+            return GetAll().ToListAsync();
         }
-        public async Task UpdateTemplate(Template template)
+        public async Task<bool> UpdateTemplate(Template template)
         {
             Update(template);
             await SaveChanges();
+            return true;
         }
     }
 }

@@ -20,9 +20,16 @@
 @inject Hot4.Service.Abstract.IBankTrxBatchService bankBatchService;
 @inject Hot4.Service.Abstract.IBankTrxService bankTrxService;
 
+@inject Hot4.Service.Abstract.IBrandService brandService;
+
 @using Hot4.DataModel.Models;
 @using Hot4.ViewModel;
-
+<h3>Brand</h3>
+<form method="post" @formname="myformBrand" @onsubmit="GetBrands">
+    <AntiforgeryToken />
+    <button type="submit">Submit</button>
+</form>
+<br />
 <h3>Access</h3>
 <form method="post" @formname="myformAccess" @onsubmit="GetAccess">
     <AntiforgeryToken />
@@ -83,7 +90,13 @@
 </form>
 
 @code {
-
+    private BrandToDo brandToDo { get; set; } = new() {  BrandName = "test",BrandSuffix="UKS",NetworkId=2, WalletTypeId=1};
+    private async Task GetBrands(){
+       // var result = await brandService.GetBrandById(1);
+       // var updated = await brandService.UpdateBrand(brandToDo);
+       // var added = await brandService.AddBrand(brandToDo);
+        var delted = await brandService.DeleteBrand(0);
+    }
     private Access access { get; set; } = new() { AccessCode = "7009373729", AccessPassword = "1700", AccountId = 12177814 };
     private async Task GetAccess()
     {

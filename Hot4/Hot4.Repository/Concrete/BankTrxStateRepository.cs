@@ -1,7 +1,6 @@
 ﻿using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
-using Hot4.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
@@ -10,29 +9,32 @@ namespace Hot4.Repository.Concrete
     {
         public BankTrxStateRepository(HotDbContext context) : base(context) { }
 
-        public async Task<List<BankTransactionStateModel>> ListBankTrxStates()
+        public async Task<List<BankTrxStates>> ListBankTrxStates()
         {
             return await GetAll().OrderBy(d => d.BankTrxState)
-                .Select(d => new BankTransactionStateModel
-                {
-                    BankTrxStateId = d.BankTrxStateId,
-                    BankTrxState = d.BankTrxState
-                }).ToListAsync();
+               .ToListAsync();
         }
-        public async Task AddBankTrxState(BankTrxStates bankState)
+        public async Task<BankTrxStates?> GetBankTrxStateById(byte bankTrxStateId)
+        {
+            return await GetById(bankTrxStateId);
+        }
+        public async Task<bool> AddBankTrxState(BankTrxStates bankState)
         {
             await Create(bankState);
             await SaveChanges();
+            return true;
         }
-        public async Task DeleteBankTrxState(BankTrxStates bankState)
+        public async Task<bool> DeleteBankTrxState(BankTrxStates bankState)
         {
             Delete(bankState);
             await SaveChanges();
+            return true;
         }
-        public async Task UpdateBankTrxState(BankTrxStates bankState)
+        public async Task<bool> UpdateBankTrxState(BankTrxStates bankState)
         {
             Update(bankState);
             await SaveChanges();
+            return true;
         }
     }
 }

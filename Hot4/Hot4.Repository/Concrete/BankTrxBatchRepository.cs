@@ -9,21 +9,23 @@ namespace Hot4.Repository.Concrete
     public class BankTrxBatchRepository : RepositoryBase<BankTrxBatch>, IBankTrxBatchRepository
     {
         public BankTrxBatchRepository(HotDbContext context) : base(context) { }
-        public async Task<long> AddBatch(BankTrxBatch bankTrxBatch)
+        public async Task<bool> AddBatch(BankTrxBatch bankTrxBatch)
         {
             await Create(bankTrxBatch);
             await SaveChanges();
-            return bankTrxBatch.BankTrxBatchId;
+            return true;
         }
-        public async Task UpdateBatch(BankTrxBatch bankTrxBatch)
+        public async Task<bool> UpdateBatch(BankTrxBatch bankTrxBatch)
         {
             Update(bankTrxBatch);
             await SaveChanges();
+            return true;
         }
-        public async Task DeleteBatch(BankTrxBatch bankTrxBatch)
+        public async Task<bool> DeleteBatch(BankTrxBatch bankTrxBatch)
         {
             Delete(bankTrxBatch);
             await SaveChanges();
+            return true;
         }
         public async Task<BankTrxBatch?> GetBatchById(long batchId)
         {
@@ -81,7 +83,8 @@ namespace Hot4.Repository.Concrete
                     LastUser = lastUser,
                     BatchDate = DateTime.Now
                 };
-                bankTrxBatchId = await AddBatch(model);
+                await AddBatch(model);
+                bankTrxBatchId = model.BankTrxBatchId;
             }
             if (bankTrxBatchId != null)
             {

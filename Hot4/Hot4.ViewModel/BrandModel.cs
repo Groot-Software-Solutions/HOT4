@@ -7,7 +7,7 @@
         public string BrandSuffix { get; set; }
         public int? WalletTypeId { get; set; }
         public byte NetworkId { get; set; }
-        public string Network { get; set; }
-        public string Prefix { get; set; }
+        public string NetworkName { get; set; }
+        public string NetworkPrefix { get; set; }
     }
 }
