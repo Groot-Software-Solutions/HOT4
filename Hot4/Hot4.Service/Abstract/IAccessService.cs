@@ -17,15 +17,15 @@ namespace Hot4.Service.Abstract
 
         Task<long> GetAdminId(long accountId);
 
-        Task PasswordChange(long accessId, string newPassword);
+        Task<bool> PasswordChange(long accessId, string newPassword);
 
-        Task PasswordChangeDeprecated(long accessId, string passwordHash, string passwordSalt);
+        Task<bool> PasswordChangeDeprecated(long accessId, string passwordHash, string passwordSalt);
 
         Task<AccountAccessModel?> GetLoginDetails(string accessCode, string accessPassword);
 
         Task<AccountAccessModel?> GetLoginDetailsByAccessCode(string accessCode);
 
-        Task DeleteAccess(long accessId);
-        Task UnDeleteAccess(long accessId);
+        Task<bool> DeleteAccess(long accessId);
+        Task<bool> UnDeleteAccess(long accessId);
     }
 }

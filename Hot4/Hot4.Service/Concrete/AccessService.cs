@@ -12,136 +12,157 @@ namespace Hot4.Service.Concrete
     {
         private readonly IAccessRepository _accessRepository;
         private readonly IMapper _mapper;
-
         public AccessService(IAccessRepository accessRepository , IMapper mapper)
         {
             _accessRepository = accessRepository;
             _mapper = mapper;
         }
-
-
         public async Task<AccessModel?> GetAccessById(long accessId)
         {
-            var accessById = await _accessRepository.GetAccessById(accessId);
-            return _mapper.Map<AccessModel>(accessById);
+            var record = await _accessRepository.GetAccessById(accessId);
+            return _mapper.Map<AccessModel>(record);
         }
-
-
         public async Task<List<AccessModel>> GetAccessByAccountIdAndChannelId(long accountId, byte channelId)
         {
-            var getAccessByAccountIdAndChannelId = await _accessRepository.GetAccessByAccountIdAndChannelId(accountId, channelId);
-            return _mapper.Map<List<AccessModel>>(getAccessByAccountIdAndChannelId);
+            var records = await _accessRepository.GetAccessByAccountIdAndChannelId(accountId, channelId);
+            return _mapper.Map<List<AccessModel>>(records);
             
         }
-            
-
-
         public async Task<AccountAccessModel?> GetAccessByCode(string accessCode)
         {
-            var getAccessByCode = await _accessRepository.GetAccessByCode(accessCode);
-            if (getAccessByCode != null)
+            var record = await _accessRepository.GetAccessByCode(accessCode);
+            if (record != null)
             {
-                var mapperAccountAccessModel = _mapper.Map<AccountAccessModel>(getAccessByCode);
-                mapperAccountAccessModel.AccessPassword = "********";
-                mapperAccountAccessModel.PasswordHash = "********";
-                return mapperAccountAccessModel;             
+                var model = _mapper.Map<AccountAccessModel>(record);
+                model.AccessPassword = "********";
+                model.PasswordHash = "********";
+                return model;             
             }
 
             return null;
         }
-
         public  async Task<bool> AddAccess(AccessModel accessModel)
         {
-            var accessMapper = _mapper.Map<Access>(accessModel);
-            await  _accessRepository.AddAccess(accessMapper);
-            return true;
-        }   
-       
-
+            if (accessModel != null )
+            {
+                var model = _mapper.Map<Access>(accessModel);
+               return await _accessRepository.AddAccess(model);
+               
+            }
+            return false;            
+        }          
         public async Task<bool> AddAccessDeprecated(AccessModel accessModel)
         {
-            var accessMapper = _mapper.Map<Access>(accessModel);
-            await _accessRepository.AddAccessDeprecated(accessMapper);
-            return true;
-        }
+            if (accessModel != null )
+            {
+                var model = _mapper.Map<Access>(accessModel);
+               return await _accessRepository.AddAccessDeprecated(model);
+                
+            }
+            return false;
             
-       
-
+        }           
         public async Task<bool> UpdateAccess(AccessModel accessModel)
         {
-
-            var accessMapper = _mapper.Map<Access>(accessModel);
-            await _accessRepository.UpdateAccess(accessMapper);
-            return true;
-
+            var record =  await _accessRepository.GetAccessById(accessModel.AccessId);           
+            if (record != null)
+            {               
+                _mapper.Map(accessModel, record);
+               return await _accessRepository.UpdateAccess(record);
+               
+            }
+            return false; 
 
         }
-
         public async Task<List<AccountAccessModel>> GetAccessByAccountId(long accountId, bool isGetAll, bool isDeleted)
         {
-            var accessByAccountId = await _accessRepository.GetAccessByAccountId(accountId, isGetAll, isDeleted);
+            var records = await _accessRepository.GetAccessByAccountId(accountId, isGetAll, isDeleted);
 
-            if (accessByAccountId != null) { 
-                var mappedList =  _mapper.Map<List<AccountAccessModel>>(accessByAccountId);
-                foreach (var accessModel in mappedList)
+            if (records != null) { 
+                var model =  _mapper.Map<List<AccountAccessModel>>(records);
+                foreach (var accessModel in model)
                 {
                     accessModel.AccessPassword = "********";
                     accessModel.PasswordHash = "********";
                 } 
-                return mappedList;
-            }
+                return model;
+            }   
             return null;
 
         }
-
-        public Task<long> GetAdminId(long accountId) => _accessRepository.GetAdminId(accountId);
-
-        public Task PasswordChange(long accessId, string newPassword) => _accessRepository.PasswordChange(accessId, newPassword);
-
-        public Task PasswordChangeDeprecated(long accessId, string passwordHash, string passwordSalt) => _accessRepository.PasswordChangeDeprecated(accessId, passwordHash, passwordSalt);
-
+        public async Task<long> GetAdminId(long accountId) 
+        { 
+          var record = await  _accessRepository.GetAdminId(accountId);
+            return record;
+        }
+        public async Task<bool> PasswordChange(long accessId, string newPassword) 
+        {
+            var record = await _accessRepository.GetAccessById(accessId);
+            if (record != null)
+            {
+               return await _accessRepository.PasswordChange(record, accessId , newPassword);
+            }
+            return false;
+        }
+        public async Task<bool> PasswordChangeDeprecated(long accessId, string passwordHash, string passwordSalt)
+        {
+            var record = await _accessRepository.GetAccessById(accessId);
+            if (record != null)
+            {
+            return await _accessRepository.PasswordChangeDeprecated(record, passwordHash, passwordSalt);               
+            }
+            return false;
+        }
         public async Task<AccountAccessModel?> GetLoginDetails(string accessCode, string accessPassword)
         {
-            var getLoginDetails = await _accessRepository.GetLoginDetails(accessCode, accessPassword);
+            var record = await _accessRepository.GetLoginDetails(accessCode, accessPassword);
 
-            if (getLoginDetails != null)
+            if (record != null)
             {
-                var mapperAccountAccessModel = _mapper.Map<AccountAccessModel>(getLoginDetails);
-
-                mapperAccountAccessModel.AccessPassword = "********";
-                mapperAccountAccessModel.PasswordHash = "********";
-                return mapperAccountAccessModel;
-
+                var model = _mapper.Map<AccountAccessModel>(record);                
+                model.AccessPassword = "********";
+                model.PasswordHash = "********";
+                return model;
             }
 
             return null;
         }
-            
-            
-
         public async Task<AccountAccessModel?> GetLoginDetailsByAccessCode(string accessCode)
         {
-            var getLoginDetailsByAccessCode  = await _accessRepository.GetLoginDetailsByAccessCode(accessCode);
+            var record  = await _accessRepository.GetLoginDetailsByAccessCode(accessCode);
 
-            if (getLoginDetailsByAccessCode != null)
+            if (record != null)
             {
-                var mapperAccountAccessModel = _mapper.Map<AccountAccessModel>(getLoginDetailsByAccessCode);
-
-                mapperAccountAccessModel.AccessPassword = "********";
-                mapperAccountAccessModel.PasswordHash = "********";
-
-                return mapperAccountAccessModel;
+                var model = _mapper.Map<AccountAccessModel>(record);
+                model.AccessPassword = "********";
+                model.PasswordHash = "********";
+                return model;
             }
 
             return null;
 
         }
+        public async Task<bool> DeleteAccess(long accessId) 
+        {
+            var record = await _accessRepository.GetAccessById(accessId);
+            if (record != null)
+            {
+              return await _accessRepository.DeleteAccess(record);  
+            }
+            return false;
+             
+        }
+        public async Task<bool> UnDeleteAccess(long accessId) 
+        {
+            var record = await _accessRepository.GetAccessById(accessId);
+            if (record != null)
+            {
+              return await _accessRepository.UnDeleteAccess(record);
+            }
+
+            return false;
             
-
-        public Task DeleteAccess(long accessId) => _accessRepository.DeleteAccess(accessId);
-      
-
-        public Task UnDeleteAccess(long accessId) => _accessRepository.UnDeleteAccess(accessId);
+        }
         
     }
 }

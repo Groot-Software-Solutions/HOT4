@@ -5,9 +5,10 @@ namespace Hot4.Repository.Abstract
 {
     public interface IChannelRepository
     {
-        Task AddChannel(Channels channel);
-        Task UpdateChannel(Channels channel);
-        Task DeleteChannel(Channels channel);
-        Task<List<ChannelModel>> ListChannel();
+        Task <Channels> GetByChannelId (byte channelId);
+        Task <bool>AddChannel(Channels channel);
+        Task <bool>UpdateChannel(Channels channel);
+        Task<bool> DeleteChannel(Channels channel);
+        Task<List<Channels>> ListChannel();
     }
 }

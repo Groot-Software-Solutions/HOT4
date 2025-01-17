@@ -9,7 +9,7 @@ namespace Hot4.Service.Abstract
         Task<AddressModel?> GetAddressById(long accountId);
         Task<bool> SaveAddress(AddressModel addressModel);
         Task<bool> UpdateAddress(AddressModel addressModeless);
-        Task DeleteAddress(AddressModel addressModel);
+        Task<bool> DeleteAddress(AddressModel addressModel);
 
     }
 }

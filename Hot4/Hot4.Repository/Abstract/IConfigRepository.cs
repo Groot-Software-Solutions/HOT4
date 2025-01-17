@@ -5,9 +5,10 @@ namespace Hot4.Repository.Abstract
 {
     public interface IConfigRepository
     {
-        Task<List<ConfigModel>> ListConfig();
-        Task AddConfig(Configs config);
-        Task UpdateConfig(Configs config);
-        Task DeleteConfig(Configs config);
+        Task<Configs> GetConfigById(byte ConfigId);
+        Task<List<Configs>> ListConfig();
+        Task<bool> AddConfig(Configs config);
+        Task<bool> UpdateConfig(Configs config);
+        Task<bool> DeleteConfig(Configs config);
     }
 }

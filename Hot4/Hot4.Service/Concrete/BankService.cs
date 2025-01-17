@@ -17,36 +17,43 @@ namespace Hot4.Service.Concrete
             _mapper = mapper;
             
         }
-
         public async Task<List<BankModel>> ListBanks()
         {
-            var result = await _bankRepository.ListBanks();
-            var res =  _mapper.Map< List<BankModel>>(result);
-            return res;
+            var records = await _bankRepository.ListBanks();
+            var model =  _mapper.Map< List<BankModel>>(records);
+            return model;
 
         }
         public async Task<bool> AddBank(BankModel bankModel)
         {
-            var payload = _mapper.Map<Banks>(bankModel);
-            await _bankRepository.AddBank(payload);
-            return true;
-
+            if (bankModel != null)
+            {
+                var model = _mapper.Map<Banks>(bankModel);
+              return  await _bankRepository.AddBank(model);
+            }
+            return false;
         }
-
         public async Task<bool> UpdateBank(BankModel bankModel)
         {
-            var payload = _mapper.Map<Banks>(bankModel);
-            await _bankRepository.UpdateBank(payload);
-            return true;
+            var record =await _bankRepository.GetByBankId(bankModel.BankId);
+            if (record != null)
+            {
+                _mapper.Map(bankModel, record);
+               return await _bankRepository.UpdateBank(record);
+            }
+            return false;
+            
         }
-
         public async Task<bool> DeleteBank(BankModel bankModel)
         {
-            var payload = _mapper.Map<Banks>(bankModel);
-           await _bankRepository.DeleteBank(payload);
-            return true;
+            var record = await _bankRepository.GetByBankId(bankModel.BankId);
+            if (record != null)
+            {   
+              return  await _bankRepository.DeleteBank(record);
+            }
+            return false;
+            
         }
-
 
     }
 }

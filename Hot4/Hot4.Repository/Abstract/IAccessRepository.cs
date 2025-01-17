@@ -8,16 +8,16 @@ namespace Hot4.Repository.Abstract
         Task<Access?> GetAccessById(long accessId);
         Task<List<Access>> GetAccessByAccountIdAndChannelId(long accountId, byte channelId);
         Task<Access?> GetAccessByCode(string accessCode);
-        Task AddAccess(Access access);
-        Task AddAccessDeprecated(Access access);
-        Task UpdateAccess(Access access);
+        Task<bool> AddAccess(Access access);
+        Task<bool> AddAccessDeprecated(Access access);
+        Task<bool> UpdateAccess(Access access);
         Task<List<Access>> GetAccessByAccountId(long accountId, bool isGetAll, bool isDeleted);
         Task<long> GetAdminId(long accountId);
-        Task PasswordChange(long accessId, string newPassword);
-        Task PasswordChangeDeprecated(long accessId, string passwordHash, string passwordSalt);
+        Task<bool> PasswordChange(Access access,long accessId,string newPassword);
+        Task<bool> PasswordChangeDeprecated(Access access, string passwordHash, string passwordSalt);
         Task<Access?> GetLoginDetails(string accessCode, string accessPassword);
         Task<Access?> GetLoginDetailsByAccessCode(string accessCode);
-        Task DeleteAccess(long accessId);
-        Task UnDeleteAccess(long accessId);
+        Task<bool> DeleteAccess(Access access);
+        Task<bool> UnDeleteAccess(Access access);
     }
 }

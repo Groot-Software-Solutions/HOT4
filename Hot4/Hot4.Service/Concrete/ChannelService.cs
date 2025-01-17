@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
 using Hot4.Service.Abstract;
 using Hot4.ViewModel;
@@ -16,25 +17,40 @@ namespace Hot4.Service.Concrete
             _channelRepository = channelRepository;
             _mapper = mapper;
         }
-
-        public Task<bool> AddChannel(ChannelModel channelModel)
+        public async Task<List<ChannelModel>> ListChannel()
         {
-            throw new NotImplementedException();
+            var records = await _channelRepository.ListChannel();
+            var model = _mapper.Map<List<ChannelModel>>(records);
+            return model; 
         }
-
-        public Task DeleteChannel(ChannelModel channelModel)
+        public async Task<bool> AddChannel(ChannelModel channelModel)
         {
-            throw new NotImplementedException();
+            if (channelModel != null)
+            {
+                var model = _mapper.Map<Channels>(channelModel);
+               return await _channelRepository.AddChannel(model);
+            }
+            return false;
         }
-
-        public Task<List<ChannelModel>> ListChannel()
+        public async Task<bool> UpdateChannel(ChannelModel channelModel)
         {
-            throw new NotImplementedException();
+            var record = await _channelRepository.GetByChannelId(channelModel.ChannelId);
+            if (record != null)
+            {
+                _mapper.Map(channelModel, record);
+             return  await _channelRepository.UpdateChannel(record);
+            }
+            return false;
         }
-
-        public Task<bool> UpdateChannel(ChannelModel channelModel)
+        public async Task<bool> DeleteChannel(ChannelModel channelModel)
         {
-            throw new NotImplementedException();
+            var record = await _channelRepository.GetByChannelId(channelModel.ChannelId);
+            if (record != null)
+            {
+              return await _channelRepository.DeleteChannel(record);
+            }
+            return false;
         }
+        
     }
 }
