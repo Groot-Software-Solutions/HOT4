@@ -54,6 +54,10 @@ namespace Hot4.Service
             CreateMap<Bundle, BundleModel>().ReverseMap();
             // Configs
             CreateMap<Configs, ConfigModel>().ReverseMap();
+            CreateMap<HotTypes, HotTypeModel>().ReverseMap();
+            CreateMap<Payment , PaymentModel>()
+                .ForMember(dst => dst.PaymentSource, opt => opt.MapFrom(src => src.PaymentSource.PaymentSource))
+                .ForMember(dst => dst.PaymentType , opt => opt.MapFrom(src => src.PaymentType.PaymentType)).ReverseMap();
 
 
         }

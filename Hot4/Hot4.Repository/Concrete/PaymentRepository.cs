@@ -10,31 +10,15 @@ namespace Hot4.Repository.Concrete
     public class PaymentRepository : RepositoryBase<Payment>, IPaymentRepository
     {
         public PaymentRepository(HotDbContext context) : base(context) { }
-        public async Task<PaymentModel?> GetPaymentById(long paymentId)
+        public async Task<Payment?> GetPaymentById(long paymentId)
         {
-            var result = await _context.Payment
+            var record = await _context.Payment
                          .Include(d => d.PaymentType)
                          .Include(d => d.PaymentSource)
                          .FirstOrDefaultAsync(d => d.PaymentId == paymentId);
-            if (result != null)
-            {
-                return new PaymentModel
-                {
-                    PaymentId = result.PaymentId,
-                    AccountId = result.AccountId,
-                    PaymentSourceId = result.PaymentSourceId,
-                    PaymentSource = result.PaymentSource.PaymentSource,
-                    Amount = result.Amount,
-                    LastUser = result.LastUser,
-                    PaymentDate = result.PaymentDate,
-                    PaymentType = result.PaymentType.PaymentType,
-                    PaymentTypeId = result.PaymentTypeId,
-                    Reference = result.Reference
-                };
-            }
-            return null;
+          return record;
         }
-        public async Task<long?> SaveUpdatePayment(Payment payment)
+        public async Task<bool> SaveUpdatePayment(Payment payment)
         {
             var paymentId = 0;
             if (payment.PaymentTypeId == (int)PaymentMethodType.BankAuto && payment.PaymentSourceId == (int)PaymentMethodSource.EcoCash)
@@ -50,7 +34,7 @@ namespace Hot4.Repository.Concrete
                 payment.PaymentDate = DateTime.Now;
                 await Create(payment);
                 await SaveChanges();
-                return payment.PaymentId;
+                return true;
             }
             else
             {
@@ -67,9 +51,9 @@ namespace Hot4.Repository.Concrete
 
                     Update(paymentExst);
                     await SaveChanges();
-                    return paymentExst.PaymentId;
+                    return true;
                 }
-                return null;
+                return false;
             }
         }
     }

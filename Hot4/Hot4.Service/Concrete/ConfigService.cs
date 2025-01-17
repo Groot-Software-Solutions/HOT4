@@ -15,7 +15,6 @@ namespace Hot4.Service.Concrete
     {
         private readonly IConfigRepository _configRepository;
         private readonly IMapper _mapper;
-
         public ConfigService(IConfigRepository configRepository , IMapper mapper)
         {
             _configRepository = configRepository;
@@ -38,6 +37,15 @@ namespace Hot4.Service.Concrete
              return  await _configRepository.DeleteConfig(record);
             }
             return false;
+        }
+        public async Task<ConfigModel> GetConfigById(byte ConfigId)
+        {
+            var record = await _configRepository.GetConfigById(ConfigId);
+            if (record != null)
+            {
+                return _mapper.Map<ConfigModel>(record);
+            }
+            return null;
         }
         public async Task<List<ConfigModel>> ListConfig()
         {

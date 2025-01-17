@@ -28,7 +28,7 @@ namespace Hot4.Service.Concrete
         {
             if (bankModel != null)
             {
-                var model = _mapper.Map<Banks>(bankModel);
+              var model = _mapper.Map<Banks>(bankModel);
               return  await _bankRepository.AddBank(model);
             }
             return false;
@@ -54,6 +54,15 @@ namespace Hot4.Service.Concrete
             return false;
             
         }
+        public async Task<BankModel> GetByBankId(byte BankId)
+        {
+            var record = await _bankRepository.GetByBankId(BankId);
 
+            if (record != null)
+            {
+                return _mapper.Map<BankModel>(record);
+            }
+            return null;
+        }
     }
 }

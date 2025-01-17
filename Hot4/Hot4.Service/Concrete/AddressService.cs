@@ -23,42 +23,9 @@ namespace Hot4.Service.Concrete
             var record = await _addressRepository.GetAddressById(accountId);
             if (record != null)
             {
-                return new AddressModel
-                {
-                    AccountId = record.AccountId,
-                    Address1 = record.Address1 ?? "",
-                    Address2 = record.Address2 ?? "",
-                    City = record.City ?? "",
-                    ContactName = record.ContactName ?? "",
-                    ContactNumber = record.ContactNumber ?? "",
-                    VatNumber = record.VatNumber ?? "",
-                    Latitude = record.Latitude ?? 0,
-                    Longitude = record.Longitude ?? 0,
-                    SageId = record.SageId ?? 0,
-                    SageIdusd = record.SageIdusd ?? 0,
-                    InvoiceFreq = record.InvoiceFreq ?? 0,
-                    Confirmed = record.Confirmed ?? false
-                };
-            }
-            else
-            {
-                return new AddressModel
-                {
-                    AccountId = accountId,
-                    Address1 = "",
-                    Address2 = "",
-                   City = "",
-                    ContactName = "",
-                    ContactNumber = "",
-                    VatNumber = "",
-                    Latitude = 0,
-                    Longitude = 0,
-                    SageId = 0,
-                    SageIdusd = 0,
-                    InvoiceFreq = 0,
-                    Confirmed = false
-                };
-            }
+                return _mapper.Map<AddressModel>(record);
+            }         
+            return null;
         }
         public async Task<bool> SaveAddress(AddressModel addressModel)
         {

@@ -5,6 +5,7 @@ namespace Hot4.Service.Abstract
 {
     public interface IChannelService
     {
+        Task<ChannelModel> GetByChannelId(byte channelId);
         Task<List<ChannelModel>> ListChannel();
         Task<bool> AddChannel(ChannelModel channelModel);
         Task<bool> UpdateChannel(ChannelModel channelModel);

@@ -9,21 +9,6 @@ namespace Hot4.Repository.Concrete
     public class ConfigRepository : RepositoryBase<Configs>, IConfigRepository
     {
         public ConfigRepository(HotDbContext context) : base(context) { }
-        //public async Task<List<ConfigModel>> ListConfig()
-        //{
-        //    return await GetAll().
-        //        Select(d => new ConfigModel
-        //        {
-        //            ConfigId = d.ConfigId,
-        //            ProfileIdNewSmsdealer = d.ProfileIdNewSmsdealer,
-        //            ProfileIdNewWebDealer = d.ProfileIdNewWebDealer,
-        //            MaxRecharge = d.MaxRecharge,
-        //            MinRecharge = d.MinRecharge,
-        //            MinTransfer = d.MinTransfer,
-        //            PrepaidEnabled = d.PrepaidEnabled,
-        //        }).ToListAsync();
-        //}
-
         public async Task<List<Configs>> ListConfig()
         {
             return await GetAll()
@@ -47,7 +32,6 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
             return true;
         }
-
         public Task<Configs> GetConfigById(byte ConfigId)
         {
             var record = GetById(ConfigId);

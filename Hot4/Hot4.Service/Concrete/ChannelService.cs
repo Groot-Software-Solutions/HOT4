@@ -51,6 +51,15 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        
+        public async Task<ChannelModel> GetByChannelId(byte channelId)
+        {
+            var record = await _channelRepository.GetByChannelId(channelId);
+
+            if (record != null)
+            {
+                return _mapper.Map<ChannelModel>(record);
+            }
+            return null;
+        }
     }
 }

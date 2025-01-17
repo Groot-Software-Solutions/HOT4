@@ -5,9 +5,10 @@ namespace Hot4.Repository.Abstract
 {
     public interface IPaymentSourceRepository
     {
+        Task<PaymentSources> GetPaymentSourceById(byte PaymentSourceId);
         Task<List<PaymentSourceModel>> ListPaymentSource();
-        Task AddPaymentSource(PaymentSources paymentSource);
-        Task UpdatePaymentSource(PaymentSources paymentSource);
-        Task DeletePaymentSource(PaymentSources paymentSource);
+        Task<bool> AddPaymentSource(PaymentSources paymentSource);
+        Task<bool> UpdatePaymentSource(PaymentSources paymentSource);
+        Task<bool> DeletePaymentSource(PaymentSources paymentSource);
     }
 }
