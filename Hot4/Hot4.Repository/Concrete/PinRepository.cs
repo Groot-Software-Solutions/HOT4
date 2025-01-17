@@ -23,13 +23,13 @@ namespace Hot4.Repository.Concrete
             _templateSettings = templateSetting.Value;
             _valueSetting = valueSetting.Value;
         }
-        public async Task<long> AddPin(Pins pin)
+        public async Task<bool> AddPin(Pins pin)
         {
             await Create(pin);
             await SaveChanges();
-            return pin.PinId;
+            return true;
         }
-        private async Task<List<PinDetailModel>> PinSummary(long pinBatchId, byte pinStateId, List<long> pinIds = null)
+        private async Task<List<Pins>> PinSummary(long pinBatchId, byte pinStateId, List<long> pinIds = null)
         {
             if (pinBatchId > 0)
             {
@@ -41,28 +41,7 @@ namespace Hot4.Repository.Concrete
                              .ThenInclude(m => m.PinBatchType)
                              .OrderBy(d => d.Brand.BrandName)
                                  .OrderBy(d => d.Pin)
-                                 .Select(d => new PinDetailModel
-                                 {
-                                     PinId = d.PinId,
-                                     Pin = d.Pin,
-                                     PinNumber = d.Pin,
-                                     PinRef = d.PinRef,
-                                     PinValue = d.PinValue,
-                                     PinExpiry = d.PinExpiry,
-                                     PinBatchId = d.PinBatchId,
-                                     PinBatch = d.PinBatch.PinBatch,
-                                     BatchDate = d.PinBatch.BatchDate,
-                                     PinStateId = d.PinStateId,
-                                     PinState = d.PinState.PinState,
-                                     BrandId = d.BrandId,
-                                     BrandName = d.Brand.BrandName,
-                                     BrandSuffix = d.Brand.BrandSuffix,
-                                     PinBatchTypeId = d.PinBatch.PinBatchTypeId,
-                                     PinBatchType = d.PinBatch.PinBatchType.PinBatchType,
-                                     NetworkId = d.Brand.NetworkId,
-                                     Network = d.Brand.Network.Network,
-                                     Prefix = d.Brand.Network.Prefix
-                                 }).ToListAsync();
+                                .ToListAsync();
             }
             else
              if (pinStateId > 0)
@@ -73,28 +52,7 @@ namespace Hot4.Repository.Concrete
                              .ThenInclude(m => m.Network)
                              .Include(d => d.PinBatch)
                              .ThenInclude(m => m.PinBatchType)
-                                .Select(d => new PinDetailModel
-                                {
-                                    PinId = d.PinId,
-                                    Pin = d.Pin,
-                                    PinNumber = d.Pin,
-                                    PinRef = d.PinRef,
-                                    PinValue = d.PinValue,
-                                    PinExpiry = d.PinExpiry,
-                                    PinBatchId = d.PinBatchId,
-                                    PinBatch = d.PinBatch.PinBatch,
-                                    BatchDate = d.PinBatch.BatchDate,
-                                    PinStateId = d.PinStateId,
-                                    PinState = d.PinState.PinState,
-                                    BrandId = d.BrandId,
-                                    BrandName = d.Brand.BrandName,
-                                    BrandSuffix = d.Brand.BrandSuffix,
-                                    PinBatchTypeId = d.PinBatch.PinBatchTypeId,
-                                    PinBatchType = d.PinBatch.PinBatchType.PinBatchType,
-                                    NetworkId = d.Brand.NetworkId,
-                                    Network = d.Brand.Network.Network,
-                                    Prefix = d.Brand.Network.Prefix
-                                }).ToListAsync();
+                               .ToListAsync();
             }
             else
              if (pinIds != null && pinIds.Any())
@@ -105,34 +63,13 @@ namespace Hot4.Repository.Concrete
                              .ThenInclude(m => m.Network)
                              .Include(d => d.PinBatch)
                              .ThenInclude(m => m.PinBatchType)
-                                .Select(d => new PinDetailModel
-                                {
-                                    PinId = d.PinId,
-                                    Pin = d.Pin,
-                                    PinNumber = d.Pin,
-                                    PinRef = d.PinRef,
-                                    PinValue = d.PinValue,
-                                    PinExpiry = d.PinExpiry,
-                                    PinBatchId = d.PinBatchId,
-                                    PinBatch = d.PinBatch.PinBatch,
-                                    BatchDate = d.PinBatch.BatchDate,
-                                    PinStateId = d.PinStateId,
-                                    PinState = d.PinState.PinState,
-                                    BrandId = d.BrandId,
-                                    BrandName = d.Brand.BrandName,
-                                    BrandSuffix = d.Brand.BrandSuffix,
-                                    PinBatchTypeId = d.PinBatch.PinBatchTypeId,
-                                    PinBatchType = d.PinBatch.PinBatchType.PinBatchType,
-                                    NetworkId = d.Brand.NetworkId,
-                                    Network = d.Brand.Network.Network,
-                                    Prefix = d.Brand.Network.Prefix
-                                }).ToListAsync();
+                               .ToListAsync();
             }
 
-            return new List<PinDetailModel>();
+            return new List<Pins>();
 
         }
-        public async Task<List<PinDetailModel>> GetPinDetailByBatchId(long pinBatchId)
+        public async Task<List<Pins>> GetPinDetailByBatchId(long pinBatchId)
         {
             return await PinSummary(pinBatchId, 0);
         }
@@ -141,7 +78,7 @@ namespace Hot4.Repository.Concrete
             var result = await PinSummary(pinBatchId, 0);
             if (result != null && result.Any())
             {
-                return result.GroupBy(d => new { d.BrandId, d.BrandName, d.PinValue })
+                return result.GroupBy(d => new { d.BrandId, d.Brand.BrandName, d.PinValue })
                        .OrderBy(d => d.Key.BrandId).OrderBy(d => d.Key.PinValue)
                        .Select(d => new PinLoadedModel
                        {
@@ -160,7 +97,7 @@ namespace Hot4.Repository.Concrete
             var result = await PinSummary(0, (int)PinStateType.Available);
             if (result != null && result.Any())
             {
-                return result.GroupBy(d => new { d.BrandId, d.BrandName, d.PinValue })
+                return result.GroupBy(d => new { d.BrandId, d.Brand.BrandName, d.PinValue })
                        .OrderBy(d => d.Key.BrandId).OrderBy(d => d.Key.PinValue)
                        .Select(d => new PinLoadedModel
                        {
@@ -178,7 +115,7 @@ namespace Hot4.Repository.Concrete
             var result = await PinSummary(0, (int)PinStateType.AvailablePromotional);
             if (result != null && result.Any())
             {
-                return result.GroupBy(d => new { d.BrandId, d.BrandName, d.PinValue })
+                return result.GroupBy(d => new { d.BrandId, d.Brand.BrandName, d.PinValue })
                        .OrderBy(d => d.Key.BrandId).OrderBy(d => d.Key.PinValue)
                        .Select(d => new PinLoadedModel
                        {
@@ -190,7 +127,7 @@ namespace Hot4.Repository.Concrete
             }
             return new List<PinLoadedModel>();
         }
-        public async Task<List<PinDetailModel>> PinRecharge(PinRechargePayload pinRecharge)
+        public async Task<List<Pins>> PinRecharge(PinRechargePayload pinRecharge)
         {
             decimal remainder = pinRecharge.Amount;
             int pinCount = 0;
@@ -213,11 +150,12 @@ namespace Hot4.Repository.Concrete
                 pinCount++;
                 remainder -= pin.PinValue;
             }
-            using (var transaction = await _context.Database.BeginTransactionAsync())
+
+            if (remainder == 0 && pinCount <= 5)
             {
-                try
+                using (var transaction = await _context.Database.BeginTransactionAsync())
                 {
-                    if (remainder == 0 && pinCount <= 5)
+                    try
                     {
                         var pinRecords = await _context.Pin.Where(d => EF.Constant(pinList).Contains(d.PinId)).ToListAsync();
                         foreach (var pinIdUsed in pinRecords)
@@ -237,19 +175,15 @@ namespace Hot4.Repository.Concrete
                         var resultPinSummary = await PinSummary(0, 0, pinList);
                         await transaction.CommitAsync();
                         return resultPinSummary;
-
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        return new List<PinDetailModel>();
+                        await transaction.RollbackAsync();
+                        throw;
                     }
-                }
-                catch (Exception ex)
-                {
-                    await transaction.RollbackAsync();
-                    throw;
                 }
             }
+            return new List<Pins>();
         }
         public async Task<long> PinRechargePromo(PinRechargePromoPayload pinRechargePromo)
         {
@@ -354,49 +288,26 @@ namespace Hot4.Repository.Concrete
                 }
             }
         }
-        public async Task<PinRedeemedPromoModel> PinRedeemedPromo(long accountId)
+        public async Task<int> PinRedeemedPromo(long accountId)
         {
-            var model = new PinRedeemedPromoModel();
             var threeDaysAgo = DateTime.Now.AddDays(-3).Date;
             var pinBatchId = _valueSetting.PinRedeemedPromoBatchId;
 
-            var transactions = await (from r in _context.Recharge.Include(d => d.Access)
-                                      where r.Access.AccountId == accountId && r.RechargeDate > threeDaysAgo
-                                      join rp in _context.RechargePin.Include(d => d.Pin) on r.RechargeId equals rp.RechargeId
-                                      where rp.Pin.PinBatchId == pinBatchId
-                                      select r).CountAsync();
-            if (transactions > 0)
-            {
-                return new PinRedeemedPromoModel
-                {
-                    HasPurchased = true
-                };
-            }
-            else
-            {
-                return new PinRedeemedPromoModel
-                {
-                    HasPurchased = false
-                };
-            }
+            return await (from r in _context.Recharge.Include(d => d.Access)
+                          where r.Access.AccountId == accountId && r.RechargeDate > threeDaysAgo
+                          join rp in _context.RechargePin.Include(d => d.Pin) on r.RechargeId equals rp.RechargeId
+                          where rp.Pin.PinBatchId == pinBatchId
+                          select r).CountAsync();
+
 
         }
-        public async Task<List<PinModel>> GetPinRechargeByRechId(long rechargeId)
+        public async Task<List<Pins>> GetPinRechargeByRechId(long rechargeId)
         {
             return await (from p in _context.Pin
                           join rp in _context.RechargePin on p.PinId equals rp.PinId
                           where rp.RechargeId == rechargeId
-                          select new PinModel
-                          {
-                              BrandId = p.BrandId,
-                              Pin = p.Pin,
-                              PinId = p.PinId,
-                              PinBatchId = p.PinBatchId,
-                              PinExpirty = p.PinExpiry,
-                              PinRef = p.PinRef,
-                              PinValue = p.PinValue,
-                              PinStateId = p.PinStateId,
-                          }).ToListAsync();
+                          select p)
+                          .ToListAsync();
         }
     }
 }

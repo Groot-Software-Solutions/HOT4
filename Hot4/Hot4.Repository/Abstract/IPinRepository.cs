@@ -5,14 +5,15 @@ namespace Hot4.Repository.Abstract
 {
     public interface IPinRepository
     {
-        Task<long> AddPin(Pins pin);
-        Task<List<PinDetailModel>> GetPinDetailByBatchId(long pinBatchId);
+        Task<bool> AddPin(Pins pin);
+        Task<List<Pins>> GetPinDetailByBatchId(long pinBatchId);
         Task<List<PinLoadedModel>> GetPinLoadedByBatchId(long pinBatchId);
         Task<List<PinLoadedModel>> GetPinStock();
         Task<List<PinLoadedModel>> GetPinStockPromo();
-        Task<List<PinDetailModel>> PinRecharge(PinRechargePayload pinRecharge);
+        Task<List<Pins>> PinRecharge(PinRechargePayload pinRecharge);
         Task<long> PinRechargePromo(PinRechargePromoPayload pinRechargePromo);
-        Task<PinRedeemedPromoModel> PinRedeemedPromo(long accountId);
-        Task<List<PinModel>> GetPinRechargeByRechId(long rechargeId);
+        //   Task<PinRedeemedPromoModel> PinRedeemedPromo(long accountId);
+        Task<int> PinRedeemedPromo(long accountId);
+        Task<List<Pins>> GetPinRechargeByRechId(long rechargeId);
     }
 }

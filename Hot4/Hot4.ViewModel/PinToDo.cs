@@ -2,7 +2,7 @@
 
 namespace Hot4.ViewModel
 {
-    public class PinModel
+    public class PinToDo
     {
         public long PinId { get; set; }
         public long PinBatchId { get; set; }

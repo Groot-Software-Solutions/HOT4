@@ -1,13 +1,13 @@
 ﻿using Hot4.DataModel.Models;
-using Hot4.ViewModel;
 
 namespace Hot4.Repository.Abstract
 {
     public interface IPinBatchTypeRepository
     {
-        Task AddPinBatchType(PinBatchTypes pinBatchTypes);
-        Task UpdatePinBatchType(PinBatchTypes pinBatchTypes);
-        Task DeletePinBatchType(PinBatchTypes pinBatchTypes);
-        Task<List<PinBatchTypeModel>> ListPinBatchType();
+        Task<bool> AddPinBatchType(PinBatchTypes pinBatchTypes);
+        Task<bool> UpdatePinBatchType(PinBatchTypes pinBatchTypes);
+        Task<bool> DeletePinBatchType(PinBatchTypes pinBatchTypes);
+        Task<List<PinBatchTypes>> ListPinBatchType();
+        Task<PinBatchTypes?> GetPinBatchTypeById(byte pinBatchTypeId);
     }
 }
