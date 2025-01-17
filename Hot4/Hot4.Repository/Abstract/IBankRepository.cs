@@ -5,9 +5,10 @@ namespace Hot4.Repository.Abstract
 {
     public interface IBankRepository
     {
-        Task<List<BankModel>> ListBanks();
-        Task AddBank(Banks bank);
-        Task UpdateBank(Banks bank);
-        Task DeleteBank(Banks bank);
+        Task<Banks> GetByBankId(byte BankId);
+        Task<List<Banks>> ListBanks();
+        Task<bool> AddBank(Banks  banks);
+        Task<bool> UpdateBank(Banks banks);
+        Task<bool> DeleteBank(Banks banks);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Hot4.DataModel.Data;
+﻿using Hot4.Core.Enums;
+using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
 using Hot4.ViewModel;
@@ -9,11 +10,13 @@ namespace Hot4.Repository.Concrete
     public class BundleRepository : RepositoryBase<Bundle>, IBundleRepository
     {
         public BundleRepository(HotDbContext context) : base(context) { }
+
+        // need to correct GetBundlesById
         public async Task<BundleModel?> GetBundlesById(int bundleId)
         {
             return await (from bundle in _context.Bundle
                           where bundle.BundleId == bundleId
-                          join brand in _context.Brand on bundle.BrandId equals brand.BrandId
+                          join brand in _context.Brand.Include(d=>d.Network) on bundle.BrandId equals brand.BrandId
                           select new BundleModel
                           {
                               BundleId = bundle.BundleId,
@@ -24,29 +27,34 @@ namespace Hot4.Repository.Concrete
                               ProductCode = bundle.ProductCode,
                               ValidityPeriod = bundle.ValidityPeriod,
                               Enabled = bundle.Enabled,
-                              Network = brand.BrandName
+                              Network = brand.Network.Network
                           }).FirstOrDefaultAsync();
         }
-        public async Task AddBundle(Bundle bundle)
+        public async Task<bool> AddBundle(Bundle bundle)
         {
             await Create(bundle);
             await SaveChanges();
+            return true;
         }
-        public async Task DeleteBundle(Bundle bundle)
+        public async Task<bool> DeleteBundle(Bundle bundle)
         {
             Delete(bundle);
             await SaveChanges();
+            return true;
         }
-        public async Task UpdateBundle(Bundle bundle)
+        public async Task<bool> UpdateBundle(Bundle bundle)
         {
             Update(bundle);
             await SaveChanges();
+            return true;
         }
+
+        // need to correct ListBundles()
         public async Task<List<BundleModel>> ListBundles()
         {
             return await (from bundle in _context.Bundle
                           where bundle.Enabled
-                          join brand in _context.Brand on bundle.BrandId equals brand.BrandId
+                          join brand in _context.Brand.Include(d=>d.Network) on bundle.BrandId equals brand.BrandId
 
                           select new BundleModel
                           {
@@ -58,7 +66,7 @@ namespace Hot4.Repository.Concrete
                               ProductCode = bundle.ProductCode,
                               ValidityPeriod = bundle.ValidityPeriod,
                               Enabled = bundle.Enabled,
-                              Network = brand.BrandName
+                              Network = brand.Network.Network
                           }).OrderBy(d =>
         d.BundleId == 59 ? 3 :
         d.BundleId == 60 ? 4 :
@@ -136,5 +144,9 @@ namespace Hot4.Repository.Concrete
     .ThenBy(b => b.Name)
     .ToListAsync();
         }
+
+
+
+
     }
 }

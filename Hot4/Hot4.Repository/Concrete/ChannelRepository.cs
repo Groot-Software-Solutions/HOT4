@@ -9,31 +9,35 @@ namespace Hot4.Repository.Concrete
     public class ChannelRepository : RepositoryBase<Channels>, IChannelRepository
     {
         public ChannelRepository(HotDbContext context) : base(context) { }
-
-        public async Task AddChannel(Channels channel)
+        public async Task<bool> AddChannel(Channels channel)
         {
             await Create(channel);
             await SaveChanges();
+            return true;
         }
-        public async Task DeleteChannel(Channels channel)
+        public async Task<bool> DeleteChannel(Channels channel)
         {
             Delete(channel);
             await SaveChanges();
+            return true;
         }
-        public async Task UpdateChannel(Channels channel)
+        public async Task<bool> UpdateChannel(Channels channel)
         {
             Update(channel);
             await SaveChanges();
-        }
-        public async Task<List<ChannelModel>> ListChannel()
+            return true;
+        }     
+        public async Task<List<Channels>> ListChannel()
         {
-            return await GetAll()
-                .Select(d => new ChannelModel
-                {
-                    ChannelId = d.ChannelId,
-                    Channel = d.Channel
-                }).OrderBy(d => d.ChannelId)
+            var records = await GetAll()
+                .OrderBy(d => d.ChannelId)
                 .ToListAsync();
+            return records;  
+        }
+        public async Task<Channels> GetByChannelId(byte channelId)
+        {
+            var record = await GetById(channelId);
+            return record;
         }
     }
 }

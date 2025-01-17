@@ -5,9 +5,9 @@ namespace Hot4.Repository.Abstract
 {
     public interface IAccessWebRepository
     {
-        Task<AccessWebModel?> GetAccessWebById(long accessId);
-        Task AddAccessWeb(AccessWeb accessWeb);
-        Task UpdateAccessWeb(AccessWeb accessWeb);
-        Task DeleteAccessWeb(AccessWeb accessWeb);
+        Task<AccessWeb?> GetAccessWebById(long accessId);
+        Task<bool> AddAccessWeb(AccessWeb accessWeb);
+        Task<bool> UpdateAccessWeb(AccessWeb accessWeb);
+        Task<bool> DeleteAccessWeb(AccessWeb accessWeb);
     }
 }

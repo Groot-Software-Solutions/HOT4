@@ -9,31 +9,34 @@ namespace Hot4.Repository.Concrete
     public class BankRepository : RepositoryBase<Banks>, IBankRepository
     {
         public BankRepository(HotDbContext context) : base(context) { }
-
-        public async Task<List<BankModel>> ListBanks()
+        public async Task<List<Banks>> ListBanks()
         {
-            return await GetAll().OrderBy(d => d.Bank)
-                .Select(d => new BankModel
-                {
-                    Bank = d.Bank,
-                    BankId = d.BankId,
-                    SageBankId = d.SageBankId
-                }).ToListAsync();
+            var records = await GetAll().OrderBy(d => d.Bank)
+                .ToListAsync();
+            return records;
         }
-        public async Task UpdateBank(Banks bank)
+        public async Task<bool> UpdateBank(Banks banks)
         {
-            Update(bank);
+            Update(banks);
             await SaveChanges();
+            return true;
         }
-        public async Task AddBank(Banks bank)
+        public async Task<bool> AddBank(Banks banks)
         {
-            await Create(bank);
+            await Create(banks);
             await SaveChanges();
+            return true;
         }
-        public async Task DeleteBank(Banks bank)
+        public async Task<bool> DeleteBank(Banks banks)
         {
-            Delete(bank);
+            Delete(banks);
             await SaveChanges();
+            return true;
+        }
+        public Task<Banks> GetByBankId(byte BankId)
+        {
+            var record = GetById(BankId);
+            return record;
         }
     }
 }
