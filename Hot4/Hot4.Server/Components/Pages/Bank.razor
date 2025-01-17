@@ -17,9 +17,19 @@
 @inject Hot4.Repository.Abstract.ILimitRepository limitRepository;
 @inject Hot4.Repository.Abstract.IPaymentRepository paymentRepository;
 
+@inject Hot4.Service.Abstract.IBankTrxBatchService bankBatchService;
+@inject Hot4.Service.Abstract.IBankTrxService bankTrxService;
+
+@inject Hot4.Service.Abstract.IBrandService brandService;
+
 @using Hot4.DataModel.Models;
 @using Hot4.ViewModel;
-
+<h3>Brand</h3>
+<form method="post" @formname="myformBrand" @onsubmit="GetBrands">
+    <AntiforgeryToken />
+    <button type="submit">Submit</button>
+</form>
+<br />
 <h3>Access</h3>
 <form method="post" @formname="myformAccess" @onsubmit="GetAccess">
     <AntiforgeryToken />
@@ -80,7 +90,13 @@
 </form>
 
 @code {
-
+    private BrandToDo brandToDo { get; set; } = new() {  BrandName = "test",BrandSuffix="UKS",NetworkId=2, WalletTypeId=1};
+    private async Task GetBrands(){
+       // var result = await brandService.GetBrandById(1);
+       // var updated = await brandService.UpdateBrand(brandToDo);
+       // var added = await brandService.AddBrand(brandToDo);
+        var delted = await brandService.DeleteBrand(0);
+    }
     private Access access { get; set; } = new() { AccessCode = "7009373729", AccessPassword = "1700", AccountId = 12177814 };
     private async Task GetAccess()
     {
@@ -92,7 +108,7 @@
     private Account account { get; set; } = new() { AccountName = "prd",  Email = "pradeep123@gmail.com", InsertDate = DateTime.Now, NationalId = "12233", ProfileId = 1, ReferredBy = "7009373728"};
     private async Task GetAccount()
     {
-       // var result = await accountRepository.AddAccount(account);
+        // var result = await accountRepository.AddAccount(account);
         var resultSearch = await accountRepository.SearchAccount("prd",1,10);
     }
 
@@ -104,6 +120,7 @@
 
 
     private SMSSearchModel smsSearchMdl { get; set; } = new() { StartDate = DateTime.Now.AddMonths(-9), EndDate = DateTime.Now, MessageText = "", Mobile = "", PageNo = 1, PageSize = 10, SmppId = -1, StateId = -1 };
+    private BankTrxBatchToDo bankTrxBatchToDo { get; set; } = new() { BankId = 1, BatchDate = DateTime.Now, BatchReference = "no refs", LastUser = "pradeeps" };
     private async Task GetBank()
     {
         // var bankTrxByBatch = await banktrxRepository.GetTranscation_by_Batch(10024185, true);
@@ -119,7 +136,7 @@
         // var bankTrxByType4 = await banktrxRepository.GetPendingTranscation_by_Type(19); //exec xBankTrx_ListPendingOneMoney
 
 
-        var bankDuplicateTrans = await banktrxRepository.GetDuplicateTrx(trnsModelForDuplicate); //exec xBankTrx_FindDuplicate 8,29,'2024-11-17 00:49:34.307','pending',0
+        // var bankDuplicateTrans = await banktrxRepository.GetDuplicateTrx(trnsModelForDuplicate); //exec xBankTrx_FindDuplicate 8,29,'2024-11-17 00:49:34.307','pending',0
 
         // var bankByPaymnetId = await banktrxRepository.GetTranscation_by_PaymentId("E108F4DE-EE68-454D-80F3-40A6BEF053A3"); //exec xBankTrx_GetFromvPayment 'E108F4DE-EE68-454D-80F3-40A6BEF053A3'
 
@@ -129,6 +146,16 @@
         //await bankRepository.AddBank(bnk);
         //  var resAccountSelect = await bankRepository.ListBanks();
 
+        // SERVICE START
+           // 1) BANKTRXBATCH
+         var addBatchService = await bankBatchService.AddBatch(bankTrxBatchToDo);
+        var getBatchService = await bankBatchService.GetBatchById(4545454545);
+       var getBatchService2 = await bankBatchService.GetBatchById(10072061);
+      //  var getBatchBybankid = await bankBatchService.GetBatchByBankId(1);
+       var getCurrentBatchBybankid = await bankBatchService.GetCurrentBatch(1,"amt","sss");
+
+      // 2) BANKTRX
+        var banktrxGet = await bankTrxService.GetTrxById(14187048);
 
     }
 

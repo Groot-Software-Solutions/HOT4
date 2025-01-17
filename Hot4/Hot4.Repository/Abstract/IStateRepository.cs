@@ -1,14 +1,13 @@
 ﻿using Hot4.DataModel.Models;
-using Hot4.ViewModel;
 
 namespace Hot4.Repository.Abstract
 {
     public interface IStateRepository
     {
-        Task<StateModel?> GetStateById(byte stateId);
-        Task<List<StateModel>> ListState();
-        Task AddState(States state);
-        Task UpdateState(States state);
-        Task DeleteState(States state);
+        Task<States?> GetStateById(byte stateId);
+        Task<List<States>> ListState();
+        Task<bool> AddState(States state);
+        Task<bool> UpdateState(States state);
+        Task<bool> DeleteState(States state);
     }
 }

@@ -1,15 +1,14 @@
 ﻿using Hot4.DataModel.Models;
-using Hot4.ViewModel;
 
 namespace Hot4.Repository.Abstract
 {
     public interface IWebRequestRepository
     {
-        Task<List<WebRequestModel>> ListWebRequest(int pageNo, int pageSize);
-        Task AddWebRequest(WebRequests webRequest);
-        Task UpdateWebRequest(WebRequests webRequest);
-        Task DeleteWebRequest(WebRequests webRequest);
-        Task<WebRequestModel?> GetWebRequestById(long webId);
-        Task<List<WebRequestModel>> GetWebRequestByRefAndAccessId(string agentRef, long accessId);
+        Task<List<WebRequests>> ListWebRequest(int pageNo, int pageSize);
+        Task<bool> AddWebRequest(WebRequests webRequest);
+        Task<bool> UpdateWebRequest(WebRequests webRequest);
+        Task<bool> DeleteWebRequest(WebRequests webRequest);
+        Task<WebRequests?> GetWebRequestById(long webId);
+        Task<List<WebRequests>> GetWebRequestByRefAndAccessId(string agentRef, long accessId);
     }
 }

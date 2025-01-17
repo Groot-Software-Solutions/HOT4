@@ -5,18 +5,16 @@ namespace Hot4.Repository.Abstract
 {
     public interface IBankTrxRepository
     {
-        Task<BankTransactionModel?> GetTrxById(long bankTransactionId);
-        Task<List<BankTransactionModel>> GetTrxByBatchId(long bankTransactionBatchId, bool isPending);
-        Task<List<BankTransactionModel>> GetPendingTrxByType(byte bankTransactionTypeId);
-        Task<List<BankTransactionModel>> GetAllTrxByType(byte bankTransactionTypeId); // pending stateId =0
-        Task<BankTransactionModel?> GetTrxByRef(string bankRef);
+        Task<BankTrx?> GetTrxById(long bankTransactionId);
+        Task<List<BankTrx>> GetTrxByBatchId(long bankTransactionBatchId, bool isPending);
+        Task<List<BankTrx>> GetPendingTrxByType(byte bankTransactionTypeId);
+        Task<List<BankTrx>> GetAllTrxByType(byte bankTransactionTypeId); // pending stateId =0
+        Task<BankTrx?> GetTrxByRef(string bankRef);
         Task<long?> GetDuplicateTrx(BankTransactionSearchModel bankTransactionSearch);
-        Task<List<BankTransactionModel>> GetTrxByPaymentId(string paymentId);
+        Task<List<BankTrx>> GetTrxByPaymentId(string paymentId);
         Task<int?> GetEcoCashPendingTrxCount(EcoCashSearchModel ecoCashSearch);
-        Task<long?> AddBankTrx(BankTrx bankTransaction);
-        Task UpdateBankTrx(BankTrx bankTransaction);
-        Task UpdateBankTrxPaymentId(long paymentId, long bankTransactionId);
-        Task UpdateBankTrxState(byte stateId, long bankTransactionId);
-        Task UpdateBankTrxIdentifier(string identifier, long bankTransactionId);
+        Task<bool> AddBankTrx(BankTrx bankTransaction);
+        Task<bool> UpdateBankTrx(BankTrx bankTransaction);
+
     }
 }

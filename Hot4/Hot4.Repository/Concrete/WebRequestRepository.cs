@@ -2,7 +2,6 @@
 using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
-using Hot4.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
@@ -10,97 +9,42 @@ namespace Hot4.Repository.Concrete
     public class WebRequestRepository : RepositoryBase<WebRequests>, IWebRequestRepository
     {
         public WebRequestRepository(HotDbContext context) : base(context) { }
-        public async Task AddWebRequest(WebRequests webRequests)
+        public async Task<bool> AddWebRequest(WebRequests webRequests)
         {
             await Create(webRequests);
             await SaveChanges();
+            return true;
         }
 
-        public async Task DeleteWebRequest(WebRequests webRequests)
+        public async Task<bool> DeleteWebRequest(WebRequests webRequests)
         {
             Delete(webRequests);
             await SaveChanges();
+            return true;
         }
 
-        public async Task<WebRequestModel?> GetWebRequestById(long webId)
+        public async Task<WebRequests?> GetWebRequestById(long webId)
         {
-            var result = await GetById(webId);
-            if (result != null)
-            {
-                return new WebRequestModel
-                {
-                    AccessId = result.AccessId,
-                    AgentReference = result.AgentReference,
-                    Amount = result.Amount,
-                    ChannelId = result.ChannelId,
-                    Cost = result.Cost,
-                    Discount = result.Discount,
-                    HotTypeId = result.HotTypeId,
-                    InsertDate = result.InsertDate,
-                    RechargeId = result.RechargeId,
-                    Reply = result.Reply,
-                    ReplyDate = result.ReplyDate,
-                    ReturnCode = result.ReturnCode,
-                    StateId = result.StateId,
-                    WalletBalance = result.WalletBalance,
-                    WebId = result.WebId,
-
-                };
-            }
-            return null;
+            return await GetById(webId);
         }
 
-        public async Task<List<WebRequestModel>> GetWebRequestByRefAndAccessId(string agentRef, long accessId)
+        public async Task<List<WebRequests>> GetWebRequestByRefAndAccessId(string agentRef, long accessId)
         {
             return await GetByCondition(d => d.AgentReference == agentRef && d.AccessId == accessId)
-                .OrderByDescending(d => d.WebId)
-                .Select(d => new WebRequestModel
-                {
-                    AccessId = d.AccessId,
-                    AgentReference = d.AgentReference,
-                    Amount = d.Amount,
-                    ChannelId = d.ChannelId,
-                    Cost = d.Cost,
-                    Discount = d.Discount,
-                    HotTypeId = d.HotTypeId,
-                    InsertDate = d.InsertDate,
-                    RechargeId = d.RechargeId,
-                    Reply = d.Reply,
-                    ReplyDate = d.ReplyDate,
-                    ReturnCode = d.ReturnCode,
-                    StateId = d.StateId,
-                    WalletBalance = d.WalletBalance,
-                    WebId = d.WebId,
-                }).ToListAsync();
+                .OrderByDescending(d => d.WebId).ToListAsync();
         }
 
-        public async Task<List<WebRequestModel>> ListWebRequest(int pageNo, int pageSize)
+        public async Task<List<WebRequests>> ListWebRequest(int pageNo, int pageSize)
         {
             return await PaginationFilter.GetPagedData(GetAll().OrderByDescending(d => d.WebId), pageNo, pageNo)
-                 .Queryable.Select(d => new WebRequestModel
-                 {
-                     AccessId = d.AccessId,
-                     AgentReference = d.AgentReference,
-                     Amount = d.Amount,
-                     ChannelId = d.ChannelId,
-                     Cost = d.Cost,
-                     Discount = d.Discount,
-                     HotTypeId = d.HotTypeId,
-                     InsertDate = d.InsertDate,
-                     RechargeId = d.RechargeId,
-                     Reply = d.Reply,
-                     ReplyDate = d.ReplyDate,
-                     ReturnCode = d.ReturnCode,
-                     StateId = d.StateId,
-                     WalletBalance = d.WalletBalance,
-                     WebId = d.WebId,
-                 }).ToListAsync();
+                 .Queryable.ToListAsync();
         }
 
-        public async Task UpdateWebRequest(WebRequests webRequests)
+        public async Task<bool> UpdateWebRequest(WebRequests webRequests)
         {
             Update(webRequests);
             await SaveChanges();
+            return true;
         }
     }
 }

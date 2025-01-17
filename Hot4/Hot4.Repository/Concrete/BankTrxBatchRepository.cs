@@ -2,7 +2,6 @@
 using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
-using Hot4.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
@@ -10,36 +9,33 @@ namespace Hot4.Repository.Concrete
     public class BankTrxBatchRepository : RepositoryBase<BankTrxBatch>, IBankTrxBatchRepository
     {
         public BankTrxBatchRepository(HotDbContext context) : base(context) { }
-        public async Task<long> AddBatch(BankTrxBatch bankTrxBatch)
+        public async Task<bool> AddBatch(BankTrxBatch bankTrxBatch)
         {
             await Create(bankTrxBatch);
             await SaveChanges();
-            return bankTrxBatch.BankTrxBatchId;
+            return true;
         }
-        public async Task UpdateBatch(BankTrxBatch bankTrxBatch)
+        public async Task<bool> UpdateBatch(BankTrxBatch bankTrxBatch)
         {
             Update(bankTrxBatch);
             await SaveChanges();
+            return true;
         }
-        public async Task DeleteBatch(BankTrxBatch bankTrxBatch)
+        public async Task<bool> DeleteBatch(BankTrxBatch bankTrxBatch)
         {
             Delete(bankTrxBatch);
             await SaveChanges();
+            return true;
         }
-        public async Task<List<BankBatchModel>> GetBatchByBankId(byte bankId)
+        public async Task<BankTrxBatch?> GetBatchById(long batchId)
+        {
+            return await _context.BankTrxBatch.Include(d => d.Bank).FirstOrDefaultAsync(d => d.BankTrxBatchId == batchId);
+        }
+        public async Task<List<BankTrxBatch>> GetBatchByBankId(byte bankId)
         {
             return await GetByCondition(d => d.BankId == bankId)
                 .Include(d => d.Bank)
-                .OrderBy(d => d.BatchDate)
-                               .Select(d => new BankBatchModel
-                               {
-                                   BankTrxBatchId = d.BankTrxBatchId,
-                                   BankId = d.BankId,
-                                   BankName = d.Bank.Bank,
-                                   BatchDate = d.BatchDate,
-                                   BatchReference = d.BatchReference,
-                                   LastUser = d.LastUser
-                               }).ToListAsync();
+                .OrderBy(d => d.BatchDate).ToListAsync();
         }
         public async Task<long?> GetCurrentBatchByBankIdAndRefId(byte bankId, string batchRef = null)
         {
@@ -49,7 +45,8 @@ namespace Hot4.Repository.Concrete
 
             if (string.IsNullOrEmpty(batchRef))
             {
-                var bankTrxBatchId = await _context.BankTrxBatch.LastOrDefaultAsync(d => d.BankId == bankId
+                var bankTrxBatchId = await _context.BankTrxBatch.OrderByDescending(d => d.BankTrxBatchId)
+                    .FirstOrDefaultAsync(d => d.BankId == bankId
                 && d.BatchDate >= startOfDay
                 && d.BatchDate <= endOfDay);
 
@@ -57,7 +54,8 @@ namespace Hot4.Repository.Concrete
             }
             else
             {
-                var bankTrxBatchId = await _context.BankTrxBatch.LastOrDefaultAsync(d => d.BankId == bankId
+                var bankTrxBatchId = await _context.BankTrxBatch.OrderByDescending(d => d.BankTrxBatchId)
+                    .FirstOrDefaultAsync(d => d.BankId == bankId
                 && d.BatchReference == batchRef
                 && d.BatchDate >= startOfDay && d.BatchDate <= endOfDay);
 
@@ -65,7 +63,7 @@ namespace Hot4.Repository.Concrete
             }
         }
 
-        public async Task<BankBatchModel?> GetCurrentBatch(byte bankId, string batchReference, string lastUser)
+        public async Task<BankTrxBatch?> GetCurrentBatch(byte bankId, string batchReference, string lastUser)
         {
             long? bankTrxBatchId = null;
             if (bankId == (int)BankName.EcoMerchant)
@@ -85,19 +83,12 @@ namespace Hot4.Repository.Concrete
                     LastUser = lastUser,
                     BatchDate = DateTime.Now
                 };
-                bankTrxBatchId = await AddBatch(model);
+                await AddBatch(model);
+                bankTrxBatchId = model.BankTrxBatchId;
             }
-            var result = await GetById(bankTrxBatchId);
-            if (result != null)
+            if (bankTrxBatchId != null)
             {
-                return new BankBatchModel
-                {
-                    BankId = result.BankId,
-                    BankTrxBatchId = result.BankTrxBatchId,
-                    BatchDate = result.BatchDate,
-                    BatchReference = result.BatchReference,
-                    LastUser = result.LastUser
-                };
+                return await GetBatchById(bankTrxBatchId.Value);
             }
             return null;
         }
