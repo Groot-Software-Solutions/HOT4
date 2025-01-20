@@ -10,44 +10,47 @@ namespace Hot4.Repository.Concrete
     public class LimitRepository : RepositoryBase<Limit>, ILimitRepository
     {
         public LimitRepository(HotDbContext context) : base(context) { }
-        public async Task<long> SaveUpdateLimit(Limit limit)
+        public async Task<bool> SaveLimit(Limit limit)
         {
-            var limitExist = await _context.Limit.FirstOrDefaultAsync(d => d.AccountId == limit.AccountId && d.NetworkId == limit.NetworkId);
-            if (limitExist == null)
-            {
-                await Create(limit);
-                await SaveChanges();
-                return limit.LimitId;
-            }
-            else
-            {
-                limitExist.AccountId = limit.AccountId;
-                limitExist.DailyLimit = limit.DailyLimit;
-                limitExist.LimitTypeId = limit.LimitTypeId;
-                limitExist.MonthlyLimit = limit.MonthlyLimit;
-                limitExist.NetworkId = limit.NetworkId;
-                Update(limit);
-                await SaveChanges();
-                return limitExist.LimitId;
-            }
+            await Create(limit);
+            await SaveChanges();
+            return true;
+            //var limitExist = await _context.Limit.FirstOrDefaultAsync(d => d.AccountId == limit.AccountId && d.NetworkId == limit.NetworkId);
+            //if (limitExist == null)
+            //{
+            //    await Create(limit);
+            //    await SaveChanges();
+            //    return limit.LimitId;
+            //}
+            //else
+            //{
+            //    limitExist.AccountId = limit.AccountId;
+            //    limitExist.DailyLimit = limit.DailyLimit;
+            //    limitExist.LimitTypeId = limit.LimitTypeId;
+            //    limitExist.MonthlyLimit = limit.MonthlyLimit;
+            //    limitExist.NetworkId = limit.NetworkId;
+            //    Update(limit);
+            //    await SaveChanges();
+            //    return limitExist.LimitId;
+            //}
         }
-        public async Task<LimitModel?> GetLimitById(long limitId)
+        public async Task<bool> UpdateLimit(Limit limit)
+        {
+            Update(limit);
+            await SaveChanges();
+            return true;
+        }
+        public async Task<bool> DeleteLimit(Limit limit)
+        {
+            Delete(limit);
+            await SaveChanges();
+            return true;
+        }
+        public async Task<Limit?> GetLimitById(long limitId)
         {
 
-            var res = await GetById(limitId);
-            if (res != null)
-            {
-                return new LimitModel
-                {
-                    AccountId = res.AccountId,
-                    DailyLimit = res.DailyLimit,
-                    LimitId = res.LimitId,
-                    LimitTypeId = res.LimitTypeId,
-                    MonthlyLimit = res.MonthlyLimit,
-                    NetworkId = res.NetworkId,
-                };
-            }
-            return null;
+            return await GetById(limitId);
+
         }
         public async Task<LimitPendingModel> GetLimitByNetworkAndAccountId(int networkid, long accountid)
         {
@@ -105,10 +108,6 @@ namespace Hot4.Repository.Concrete
             };
         }
 
-        public async Task DeleteLimit(Limit limit)
-        {
-            Delete(limit);
-            await SaveChanges();
-        }
+
     }
 }

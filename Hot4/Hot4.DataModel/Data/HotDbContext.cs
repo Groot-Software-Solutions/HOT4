@@ -1169,6 +1169,10 @@ namespace Hot4.DataModel.Data
                 entity.HasOne(d => d.Recharge).WithMany(p => p.SelfTopUps)
                     .HasForeignKey(d => d.RechargeId)
                     .HasConstraintName("FK_tblSelfTopUp_tblRecharge");
+                entity.HasOne(d => d.SelfTopUpState).WithMany(p => p.SelfTopUps)
+                    .HasForeignKey(d => d.StateId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_tblSelfTopUp_tblSelfTopUpState");
             });
 
             modelBuilder.Entity<SelfTopUpState>(entity =>

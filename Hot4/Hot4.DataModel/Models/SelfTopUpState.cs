@@ -10,4 +10,5 @@ public partial class SelfTopUpState
     public byte SelfTopUpStateId { get; set; }
 
     public required string SelfTopUpStateName { get; set; }
+    public virtual ICollection<SelfTopUp> SelfTopUps { get; set; } = new List<SelfTopUp>();
 }

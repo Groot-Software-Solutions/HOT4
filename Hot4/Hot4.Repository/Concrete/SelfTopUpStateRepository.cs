@@ -1,7 +1,6 @@
 ﻿using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
-using Hot4.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
@@ -9,29 +8,33 @@ namespace Hot4.Repository.Concrete
     public class SelfTopUpStateRepository : RepositoryBase<SelfTopUpState>, ISelfTopUpStateRepository
     {
         public SelfTopUpStateRepository(HotDbContext context) : base(context) { }
-        public async Task<long> AddSelfTopUpState(SelfTopUpState selfTopUpState)
+        public async Task<bool> AddSelfTopUpState(SelfTopUpState selfTopUpState)
         {
             await Create(selfTopUpState);
             await SaveChanges();
-            return selfTopUpState.SelfTopUpStateId;
+            return true;
         }
-        public async Task DeleteSelfTopUpState(SelfTopUpState selfTopUpState)
+        public async Task<bool> DeleteSelfTopUpState(SelfTopUpState selfTopUpState)
         {
             Delete(selfTopUpState);
             await SaveChanges();
+            return true;
         }
-        public async Task<List<SelfTopUpStateModel>> ListSelfTopUpState()
+
+        public Task<SelfTopUpState?> GetSelfTopUpStateById(byte selfTopUpStateId)
         {
-            return await GetAll().Select(d => new SelfTopUpStateModel
-            {
-                SelfTopUpStateId = d.SelfTopUpStateId,
-                SelfTopUpStateName = d.SelfTopUpStateName,
-            }).ToListAsync();
+            return GetById(selfTopUpStateId);
         }
-        public async Task UpdateSelfTopUpState(SelfTopUpState selfTopUpState)
+
+        public async Task<List<SelfTopUpState>> ListSelfTopUpState()
+        {
+            return await GetAll().ToListAsync();
+        }
+        public async Task<bool> UpdateSelfTopUpState(SelfTopUpState selfTopUpState)
         {
             Update(selfTopUpState);
             await SaveChanges();
+            return true;
         }
     }
 }

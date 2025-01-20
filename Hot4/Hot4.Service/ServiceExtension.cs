@@ -29,7 +29,7 @@ namespace Hot4.Service
             services.AddTransient<IHotTypeRepository, HotTypeRepository>();
             services.AddTransient<ILimitRepository, LimitRepository>();
             services.AddTransient<ILogRepository, LogRepository>();
-            services.AddTransient<INetworkBalanceRepository, NetworkBalanceRepository>();
+
             services.AddTransient<INetworkRepository, NetworkRepository>();
             services.AddTransient<IPaymentRepository, PaymentRepository>();
             services.AddTransient<IPaymentSourceRepository, PaymentSourceRepository>();
@@ -83,7 +83,11 @@ namespace Hot4.Service
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IRechargePrepaidService, RechargePrepaidService>();
             services.AddTransient<IRechargeService, RechargeService>();
-
+            services.AddTransient<ILimitService, LimitService>();
+            services.AddTransient<INetworkService, NetworkService>();
+            services.AddTransient<ISelfTopUpStateService, SelfTopUpStateService>();
+            services.AddTransient<ILogService, LogService>();
+            services.AddTransient<ISelfTopUpService, SelfTopUpService>();
             return services;
         }
     }
