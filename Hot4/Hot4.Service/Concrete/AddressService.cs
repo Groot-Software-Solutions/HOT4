@@ -20,45 +20,8 @@ namespace Hot4.Service.Concrete
         }
         public async Task<AddressModel?> GetAddressById(long accountId)
         {
-            var record = await _addressRepository.GetAddressById(accountId);
-            if (record != null)
-            {
-                return new AddressModel
-                {
-                    AccountId = record.AccountId,
-                    Address1 = record.Address1 ?? "",
-                    Address2 = record.Address2 ?? "",
-                    City = record.City ?? "",
-                    ContactName = record.ContactName ?? "",
-                    ContactNumber = record.ContactNumber ?? "",
-                    VatNumber = record.VatNumber ?? "",
-                    Latitude = record.Latitude ?? 0,
-                    Longitude = record.Longitude ?? 0,
-                    SageId = record.SageId ?? 0,
-                    SageIdusd = record.SageIdusd ?? 0,
-                    InvoiceFreq = record.InvoiceFreq ?? 0,
-                    Confirmed = record.Confirmed ?? false
-                };
-            }
-            else
-            {
-                return new AddressModel
-                {
-                    AccountId = accountId,
-                    Address1 = "",
-                    Address2 = "",
-                   City = "",
-                    ContactName = "",
-                    ContactNumber = "",
-                    VatNumber = "",
-                    Latitude = 0,
-                    Longitude = 0,
-                    SageId = 0,
-                    SageIdusd = 0,
-                    InvoiceFreq = 0,
-                    Confirmed = false
-                };
-            }
+            var record = await GetEntityById(accountId);
+            return _mapper.Map<AddressModel>(record);
         }
         public async Task<bool> SaveAddress(AddressModel addressModel)
         {
@@ -72,7 +35,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> UpdateAddress(AddressModel addressModel)
         {
-            var record = await _addressRepository.GetAddressById(addressModel.AccountId);
+            var record = await GetEntityById(addressModel.AccountId);
             if (record != null)
             {
                 _mapper.Map(addressModel, record);
@@ -82,13 +45,17 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> DeleteAddress(AddressModel addressModel)
         {
-            var record = await _addressRepository.GetAddressById(addressModel.AccountId); 
+            var record = await GetEntityById(addressModel.AccountId); 
             if (record != null )
             {
                return await _addressRepository.DeleteAddress(record);
             }
             return false;
             
+        }
+        private async Task<Address?> GetEntityById(long AccountId)
+        {
+            return await _addressRepository.GetAddressById(AccountId);
         }
     }
 }

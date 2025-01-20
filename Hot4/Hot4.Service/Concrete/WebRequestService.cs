@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
+using Hot4.Repository.Concrete;
 using Hot4.Service.Abstract;
 using Hot4.ViewModel;
 
@@ -23,7 +24,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> DeleteWebRequest(long webId)
         {
-            var record = await _webRequestRepository.GetWebRequestById(webId);
+            var record = await GetEntityById(webId);
             if (record != null)
             {
                 return await _webRequestRepository.DeleteWebRequest(record);
@@ -33,7 +34,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<WebRequestModel?> GetWebRequestById(long webId)
         {
-            var record = await _webRequestRepository.GetWebRequestById(webId);
+            var record = await GetEntityById(webId);
             return Mapper.Map<WebRequestModel>(record);
         }
 
@@ -51,13 +52,18 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> UpdateWebRequest(WebRequestModel webRequest)
         {
-            var record = await _webRequestRepository.GetWebRequestById(webRequest.WebId);
+            var record = await GetEntityById(webRequest.WebId);
             if (record != null)
             {
                 var model = Mapper.Map(webRequest, record);
                 return await _webRequestRepository.UpdateWebRequest(record);
             }
             return false;
+        }
+
+        private async Task<WebRequests?> GetEntityById(long WebId)
+        {
+            return await _webRequestRepository.GetWebRequestById(WebId);
         }
     }
 }

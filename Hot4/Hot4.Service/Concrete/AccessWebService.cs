@@ -19,9 +19,9 @@ namespace Hot4.Service.Concrete
         }
         public async Task<AccessWebModel?> GetAccessWebById(long accessId)
         {
-            var record = await _accessWebRepository.GetAccessWebById(accessId);
-            var model = _mapper.Map<AccessWebModel>(record);
-            return model;
+            var record = await GetEntityById(accessId);
+            return _mapper.Map<AccessWebModel>(record);
+            
             
         }
         public async Task<bool> AddAccessWeb(AccessWebModel accessWebModel)
@@ -36,7 +36,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> UpdateAccessWeb(AccessWebModel accessWebModel)
         {
-            var record = await _accessWebRepository.GetAccessWebById(accessWebModel.AccessId);
+            var record = await GetEntityById(accessWebModel.AccessId);
             if (record != null)
             {
                 _mapper.Map(accessWebModel, record);
@@ -47,13 +47,18 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> DeleteAccessWeb(AccessWebModel accessWebModel)
         {
-            var record = await _accessWebRepository.GetAccessWebById(accessWebModel.AccessId);
+            var record = await GetEntityById(accessWebModel.AccessId);
             if (record != null)
             {
                return await _accessWebRepository.DeleteAccessWeb(record);
             }
             return false;
             
+        }
+
+        private async Task<AccessWeb?> GetEntityById (long AccessId)
+        {
+            return await _accessWebRepository.GetAccessWebById(AccessId);
         }
     }
 }

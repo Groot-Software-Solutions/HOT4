@@ -17,7 +17,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<BankTransactionModel?> GetTrxById(long bankTransactionId)
         {
-            var record = await _bankTrxRepository.GetTrxById(bankTransactionId);
+            var record = await GetEntityById(bankTransactionId);
             return Mapper.Map<BankTransactionModel?>(record);
         }
         public async Task<List<BankTransactionModel>> GetTrxByBatchId(long bankTransactionBatchId, bool isPending)
@@ -63,13 +63,18 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> UpdateBankTrx(BankTrxToDo bankTransaction)
         {
-            var record = await _bankTrxRepository.GetTrxById(bankTransaction.BankTrxId);
+            var record = await GetEntityById(bankTransaction.BankTrxId);
             if (record != null)
             {
                 Mapper.Map(bankTransaction, record);
                 return await _bankTrxRepository.UpdateBankTrx(record);
             }
             return false;
+        }
+
+        private async Task<BankTrx?> GetEntityById (long BankTrxId)
+        {
+            return await _bankTrxRepository.GetTrxById(BankTrxId);
         }
 
     }

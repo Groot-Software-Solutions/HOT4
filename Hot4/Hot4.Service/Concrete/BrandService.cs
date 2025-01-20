@@ -23,7 +23,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> DeleteBrand(byte brandId)
         {
-            var record = await _brandRepository.GetBrandById(brandId);
+            var record = await GetEntityById(brandId);
             if (record != null)
             {
                 return await _brandRepository.DeleteBrand(record);
@@ -33,7 +33,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<BrandModel?> GetBrandById(byte brandId)
         {
-            var record = await _brandRepository.GetBrandById(brandId);
+            var record = await GetEntityById(brandId);
             return Mapper.Map<BrandModel>(record);
         }
 
@@ -51,13 +51,17 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> UpdateBrand(BrandToDo brand)
         {
-            var record = await _brandRepository.GetBrandById(brand.BrandId);
+            var record = await GetEntityById(brand.BrandId);
             if (record != null)
             {
                 Mapper.Map(brand, record);
                 return await _brandRepository.UpdateBrand(record);
             }
             return false;
+        }
+        private async Task<Brand?> GetEntityById (byte BrandId)
+        {
+            return await _brandRepository.GetBrandById(BrandId);
         }
     }
 }

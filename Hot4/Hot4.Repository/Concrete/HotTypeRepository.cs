@@ -31,22 +31,31 @@ namespace Hot4.Repository.Concrete
                           select ht.HotTypeId).LastOrDefaultAsync();
         }
 
-        public async Task AddHotType(HotTypes hotTypes)
+        public async Task<bool> AddHotType(HotTypes hotTypes)
         {
             await Create(hotTypes);
             await SaveChanges();
+            return true;
         }
 
-        public async Task UpdateHotType(HotTypes hotTypes)
+        public async Task<bool> UpdateHotType(HotTypes hotTypes)
         {
             Update(hotTypes);
             await SaveChanges();
+            return true;
         }
 
-        public async Task DeleteHotType(HotTypes hotTypes)
+        public async Task<bool> DeleteHotType(HotTypes hotTypes)
         {
             Delete(hotTypes);
             await SaveChanges();
+            return true;
+        }
+
+        public async Task<HotTypes> GetHotTypeById(byte HotTypeId)
+        {
+            var record = await GetById(HotTypeId);
+            return record;
         }
     }
 }

@@ -10,20 +10,23 @@ namespace Hot4.Repository.Concrete
     {
         public ProductFieldRepository(HotDbContext context) : base(context) { }
 
-        public async Task AddProductField(ProductField productField)
+        public async Task<bool> AddProductField(ProductField productField)
         {
             await Create(productField);
             await SaveChanges();
+            return true;
         }
-        public async Task DeleteProductField(ProductField productField)
+        public async Task<bool> DeleteProductField(ProductField productField)
         {
             Delete(productField);
             await SaveChanges();
+            return true;
         }
-        public async Task UpdateProductField(ProductField productField)
+        public async Task<bool> UpdateProductField(ProductField productField)
         {
             Update(productField);
             await SaveChanges();
+            return true;
         }
         public async Task<List<ProductFieldModel>> ListProductField()
         {
@@ -38,5 +41,9 @@ namespace Hot4.Repository.Concrete
                 }).ToListAsync();
         }
 
+        public async Task<ProductField?> GetProductFieldById(int BrandFieldId)
+        {
+            return await GetById(BrandFieldId);
+        }
     }
 }

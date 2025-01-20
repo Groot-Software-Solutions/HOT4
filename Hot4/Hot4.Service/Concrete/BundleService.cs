@@ -64,5 +64,10 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
+
+        //private async Task<Bundle?> GetEntityById (int BundleId)
+        //{
+        //    return await _bundleRepository.GetBundlesById(BundleId);
+        //}
     }
 }

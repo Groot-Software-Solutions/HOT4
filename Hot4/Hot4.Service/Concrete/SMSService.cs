@@ -35,7 +35,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<SMSModel?> GetSMSById(long smsId)
         {
-            var record = await _smsRepository.GetSMSById(smsId);
+            var record = await GetEntityById(smsId);
             return Mapper.Map<SMSModel>(record);
         }
 
@@ -70,13 +70,18 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> UpdateSMS(SmsToDo sms)
         {
-            var record = await _smsRepository.GetSMSById(sms.Smsid);
+            var record = await GetEntityById(sms.Smsid);
             if (record != null)
             {
                 Mapper.Map(sms, record);
                 return await _smsRepository.UpdateSMS(record);
             }
             return false;
+        }
+
+        private async Task<Sms?> GetEntityById (long Smsid)
+        {
+            return await _smsRepository.GetSMSById(Smsid);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Hot4.Repository.Abstract
 {
     public interface IPaymentRepository
     {
-        Task<PaymentModel?> GetPaymentById(long paymentId);
-        Task<long?> SaveUpdatePayment(Payment payment);
+        Task<Payment?> GetPaymentById(long paymentId);
+        Task<bool> SaveUpdatePayment(Payment payment);
     }
 }

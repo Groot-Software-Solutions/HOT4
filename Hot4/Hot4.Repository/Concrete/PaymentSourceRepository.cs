@@ -10,31 +10,33 @@ namespace Hot4.Repository.Concrete
     {
         public PaymentSourceRepository(HotDbContext context) : base(context) { }
 
-        public async Task AddPaymentSource(PaymentSources paymentSource)
+        public async Task<bool> AddPaymentSource(PaymentSources paymentSource)
         {
             await Create(paymentSource);
             await SaveChanges();
+            return true;
         }
-        public async Task DeletePaymentSource(PaymentSources paymentSource)
+        public async Task<bool> DeletePaymentSource(PaymentSources paymentSource)
         {
             Delete(paymentSource);
             await SaveChanges();
+            return true;
         }
-        public async Task UpdatePaymentSource(PaymentSources paymentSource)
+        public async Task<bool> UpdatePaymentSource(PaymentSources paymentSource)
         {
             Update(paymentSource);
             await SaveChanges();
+            return true;
         }
-        public async Task<List<PaymentSourceModel>> ListPaymentSource()
+        public async Task<List<PaymentSources>> ListPaymentSource()
         {
             return await GetAll()
-                .Select(d => new PaymentSourceModel
-                {
-                    PaymentSourceId = d.PaymentSourceId,
-                    PaymentSource = d.PaymentSource,
-                    PaymentSourceText = d.PaymentSource,
-                    WalletTypeId = d.WalletTypeId,
-                }).ToListAsync();
+                .ToListAsync();
+        }
+        public async Task<PaymentSources> GetPaymentSourceById(byte PaymentSourceId)
+        {
+            var record = await GetById(PaymentSourceId);
+            return record;
         }
     }
 }

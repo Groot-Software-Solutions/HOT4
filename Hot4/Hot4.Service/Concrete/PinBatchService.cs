@@ -23,7 +23,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> DeletePinBatch(PinBatchToDo pinBatches)
         {
-            var record = await _pinBatchRepository.GetPinBatchById(pinBatches.PinBatchId);
+            var record = await GetEntityById(pinBatches.PinBatchId);
             if (record != null)
             {
                 return await _pinBatchRepository.DeletePinBatch(record);
@@ -33,7 +33,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<PinBatchModel?> GetPinBatchById(long pinBatchId)
         {
-            var record = await _pinBatchRepository.GetPinBatchById(pinBatchId);
+            var record = await GetEntityById(pinBatchId);
             return Mapper.Map<PinBatchModel>(record);
         }
 
@@ -45,13 +45,18 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> UpdatePinBatch(PinBatchToDo pinBatches)
         {
-            var record = await _pinBatchRepository.GetPinBatchById(pinBatches.PinBatchId);
+            var record = await GetEntityById(pinBatches.PinBatchId);
             if (record != null)
             {
                 Mapper.Map(pinBatches, record);
                 return await _pinBatchRepository.UpdatePinBatch(record);
             }
             return false;
+        }
+
+        private async Task<PinBatches?> GetEntityById (long PinBatchId)
+        {
+            return await _pinBatchRepository.GetPinBatchById(PinBatchId);
         }
     }
 }
