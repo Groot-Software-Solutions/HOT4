@@ -87,6 +87,7 @@ namespace Hot4.Service
             services.AddTransient<INetworkService, NetworkService>();
             services.AddTransient<ISelfTopUpStateService, SelfTopUpStateService>();
             services.AddTransient<ILogService, LogService>();
+            services.AddTransient<ISelfTopUpService, SelfTopUpService>();
             return services;
         }
     }

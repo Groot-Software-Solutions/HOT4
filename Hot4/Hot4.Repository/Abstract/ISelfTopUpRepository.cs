@@ -1,5 +1,4 @@
 ﻿using Hot4.DataModel.Models;
-using Hot4.ViewModel;
 
 namespace Hot4.Repository.Abstract
 {
@@ -8,8 +7,8 @@ namespace Hot4.Repository.Abstract
         Task<bool> AddSelfTopUp(SelfTopUp selfTopUp);
         Task<bool> UpdateSelfTopUp(SelfTopUp selfTopUp);
         Task<SelfTopUp?> GetSelfTopUpById(long selfTopUpId);
-        Task<List<SelfTopUpModel>> GetSelfTopUpByStateId(byte selfTopUpStateId);
-        Task<List<SelfTopUpModel>> GetSelfTopUpByBankTrxId(long bankTrxId);
+        Task<List<SelfTopUp>> GetSelfTopUpByStateId(byte selfTopUpStateId);
+        Task<List<SelfTopUp>> GetSelfTopUpByBankTrxId(long bankTrxId);
         Task<bool> DeleteSelfTopUp(SelfTopUp selfTopUp);
     }
 }

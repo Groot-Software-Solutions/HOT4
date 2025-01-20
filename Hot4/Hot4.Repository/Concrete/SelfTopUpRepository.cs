@@ -1,7 +1,6 @@
 ﻿using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
-using Hot4.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
@@ -24,7 +23,8 @@ namespace Hot4.Repository.Concrete
         public async Task<SelfTopUp?> GetSelfTopUpById(long selfTopUpId)
         {
             return await _context.SelfTopUp.Where(d => d.SelfTopUpId == selfTopUpId)
-     .Include(d => d.Access).Include(d => d.Brand).FirstOrDefaultAsync();
+                             .Include(d => d.Access).Include(d => d.Brand).Include(d => d.SelfTopUpState)
+                             .FirstOrDefaultAsync();
         }
         public async Task<bool> DeleteSelfTopUp(SelfTopUp selfTopUp)
         {
@@ -32,58 +32,17 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
             return true;
         }
-        public async Task<List<SelfTopUpModel>> GetSelfTopUpByBankTrxId(long bankTrxId)
+        public async Task<List<SelfTopUp>> GetSelfTopUpByBankTrxId(long bankTrxId)
         {
-            return await (from s in _context.SelfTopUp.Where(d => d.BankTrxId == bankTrxId)
-                          .Include(d => d.Access).Include(d => d.Brand)
-                          join st in _context.SelfTopUpState on s.StateId equals st.SelfTopUpStateId
-                          orderby s.SelfTopUpId descending
-                          select new SelfTopUpModel
-                          {
-                              BankTrxId = s.BankTrxId,
-                              AccessCode = s.Access.AccessCode,
-                              AccessId = s.AccessId,
-                              Amount = s.Amount,
-                              BillerNumber = s.BillerNumber,
-                              BrandId = s.BrandId,
-                              BrandName = s.Brand.BrandName,
-                              Currency = s.Currency,
-                              InsertDate = s.InsertDate,
-                              NotificationNumber = s.NotificationNumber,
-                              ProductCode = s.ProductCode,
-                              RechargeId = s.RechargeId,
-                              SelfTopUpId = s.SelfTopUpId,
-                              SelfTopUpStateName = st.SelfTopUpStateName,
-                              StateId = s.StateId,
-                              TargetNumber = s.TargetNumber
-                          }).ToListAsync();
+            return await _context.SelfTopUp.Include(d => d.Access).Include(d => d.Brand).Include(d => d.SelfTopUpState)
+                .Where(d => d.BankTrxId == bankTrxId).OrderBy(d => d.SelfTopUpId).ToListAsync();
         }
-        public async Task<List<SelfTopUpModel>> GetSelfTopUpByStateId(byte selfTopUpStateId)
+        public async Task<List<SelfTopUp>> GetSelfTopUpByStateId(byte selfTopUpStateId)
         {
-            return await (from s in _context.SelfTopUp.Where(d => d.StateId == selfTopUpStateId)
-                 .Include(d => d.Access).Include(d => d.Brand)
-                          join st in _context.SelfTopUpState on s.StateId equals st.SelfTopUpStateId
-                          orderby s.SelfTopUpId
-                          select new SelfTopUpModel
-                          {
-                              BankTrxId = s.BankTrxId,
-                              AccessCode = s.Access.AccessCode,
-                              AccessId = s.AccessId,
-                              Amount = s.Amount,
-                              BillerNumber = s.BillerNumber,
-                              BrandId = s.BrandId,
-                              BrandName = s.Brand.BrandName,
-                              Currency = s.Currency,
-                              InsertDate = s.InsertDate,
-                              NotificationNumber = s.NotificationNumber,
-                              ProductCode = s.ProductCode,
-                              RechargeId = s.RechargeId,
-                              SelfTopUpId = s.SelfTopUpId,
-                              SelfTopUpStateName = st.SelfTopUpStateName,
-                              StateId = s.StateId,
-                              TargetNumber = s.TargetNumber
-                          }).ToListAsync();
+            return await _context.SelfTopUp.Include(d => d.Access).Include(d => d.Brand).Include(d => d.SelfTopUpState)
+                .Where(d => d.StateId == selfTopUpStateId).OrderBy(d => d.SelfTopUpId).ToListAsync();
         }
+
 
     }
 }

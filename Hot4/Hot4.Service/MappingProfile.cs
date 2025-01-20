@@ -8,7 +8,11 @@ namespace Hot4.Service
     {
         public MappingProfile()
         {
-            CreateMap<SelfTopUp, SelfTopUpModel>().ReverseMap();
+            CreateMap<SelfTopUp, SelfTopUpModel>()
+                .ForMember(dst => dst.SelfTopUpStateName, opt => opt.MapFrom(src => src.SelfTopUpState.SelfTopUpStateName))
+                .ForMember(dst => dst.AccessCode, opt => opt.MapFrom(src => src.Access.AccessCode))
+                .ForMember(dst => dst.BrandName, opt => opt.MapFrom(src => src.Brand.BrandName))
+                .ReverseMap();
             CreateMap<SelfTopUp, SelfTopUpToDo>().ReverseMap();
             CreateMap<SelfTopUpState, SelfTopUpStateModel>().ReverseMap();
             CreateMap<Log, LogModel>().ReverseMap();
