@@ -17,37 +17,15 @@ namespace Hot4.Repository.Concrete
         {
             _valueSettings = valueSetting.Value;
         }
-        public async Task<RechargeDetailModel?> GetRechargeById(long rechargeId)
+        public async Task<Recharge?> GetRechargeById(long rechargeId)
         {
-            var result = await _context.Recharge
+            return await _context.Recharge
                               .Include(d => d.State)
                               .Include(d => d.Brand)
                               .ThenInclude(d => d.Network)
                               .FirstOrDefaultAsync(d => d.RechargeId == rechargeId);
-            if (result != null)
-            {
-                return new RechargeDetailModel
-                {
-                    AccessId = result.AccessId,
-                    Amount = result.Amount,
-                    BrandId = result.BrandId,
-                    Mobile = result.Mobile,
-                    BrandName = result.Brand.BrandName,
-                    BrandSuffix = result.Brand.BrandSuffix,
-                    InsertDate = result.InsertDate,
-                    Discount = result.Discount,
-                    Network = result.Brand.Network.Network,
-                    NetworkId = result.Brand.NetworkId,
-                    NetworkPrefix = result.Brand.Network.Prefix,
-                    RechargeDate = result.RechargeDate,
-                    RechargeId = result.RechargeId,
-                    State = result.State.State,
-                    StateId = result.StateId
-                };
-            }
-            return null;
         }
-        public async Task AddRecharge(Recharge recharge, long smsId)
+        public async Task<bool> AddRecharge(Recharge recharge, long smsId)
         {
             await Create(recharge);
             await SaveChanges();
@@ -60,76 +38,48 @@ namespace Hot4.Repository.Concrete
                     SmsId = smsId
                 });
                 await _context.SaveChangesAsync();
+                return true;
             }
+            return false;
         }
-        public async Task UpdateRecharge(Recharge recharge)
+        public async Task<bool> UpdateRecharge(Recharge recharge)
         {
             Update(recharge);
             await SaveChanges();
+            return true;
         }
 
-        public async Task<List<RechargeDetailModel>> FindRechargeByMobileAndAccountId(RechargeFindModel rechargeFind)
+        public async Task<bool> DeleteRecharge(Recharge recharge)
         {
-            IQueryable<RechargeDetailModel> result;
+            Delete(recharge);
+            await SaveChanges();
+            return true;
+        }
+
+        public async Task<List<Recharge>> FindRechargeByMobileAndAccountId(RechargeFindModel rechargeFind)
+        {
+            IQueryable<Recharge> result;
             if (rechargeFind.AccountId > 0)
             {
-                result = from r in _context.Recharge.Include(d => d.State)
+                result = _context.Recharge.Include(d => d.State).Include(d => d.Access)
                          .Include(d => d.Brand).ThenInclude(d => d.Network)
-                         join acss in _context.Access on r.AccessId equals acss.AccessId
-                         where r.Mobile.Contains(rechargeFind.Mobile)
-                         && acss.AccountId == rechargeFind.AccountId
-                         orderby r.RechargeId
-                         select new RechargeDetailModel
-                         {
-                             AccessCode = acss.AccessCode,
-                             AccessId = acss.AccessId,
-                             Amount = r.Amount,
-                             BrandId = r.BrandId,
-                             BrandName = r.Brand.BrandName,
-                             BrandSuffix = r.Brand.BrandSuffix,
-                             Discount = r.Discount,
-                             InsertDate = r.InsertDate,
-                             Mobile = r.Mobile,
-                             Network = r.Brand.Network.Network,
-                             NetworkId = r.Brand.NetworkId,
-                             NetworkPrefix = r.Brand.Network.Prefix,
-                             RechargeDate = r.RechargeDate,
-                             RechargeId = r.RechargeId,
-                             State = r.State.State,
-                             StateId = r.StateId
-                         };
+                         .Where(d => d.Mobile.Contains(rechargeFind.Mobile)
+                           && d.Access.AccountId == rechargeFind.AccountId)
+                         .OrderBy(d => d.RechargeId);
+
+
             }
             else
             {
-                result = from r in _context.Recharge.Include(d => d.State)
+                result = _context.Recharge.Include(d => d.State).Include(d => d.Access)
                          .Include(d => d.Brand).ThenInclude(d => d.Network)
-                         join acss in _context.Access on r.AccessId equals acss.AccessId
-                         where r.Mobile.Contains(rechargeFind.Mobile)
-                         orderby r.RechargeId
-                         select new RechargeDetailModel
-                         {
-                             AccessCode = acss.AccessCode,
-                             AccessId = acss.AccessId,
-                             Amount = r.Amount,
-                             BrandId = r.BrandId,
-                             BrandName = r.Brand.BrandName,
-                             BrandSuffix = r.Brand.BrandSuffix,
-                             Discount = r.Discount,
-                             InsertDate = r.InsertDate,
-                             Mobile = r.Mobile,
-                             Network = r.Brand.Network.Network,
-                             NetworkId = r.Brand.NetworkId,
-                             NetworkPrefix = r.Brand.Network.Prefix,
-                             RechargeDate = r.RechargeDate,
-                             RechargeId = r.RechargeId,
-                             State = r.State.State,
-                             StateId = r.StateId
-                         };
+                         .Where(d => d.Mobile.Contains(rechargeFind.Mobile))
+                         .OrderBy(d => d.RechargeId);
             }
 
             return await PaginationFilter.GetPagedData(result, rechargeFind.PageNo, rechargeFind.PageSize).Queryable.ToListAsync();
         }
-        public async Task<List<RechargeModel>> RechargePendingStsByMulBrands(List<byte> brandIds)
+        public async Task<List<Recharge>> RechargePendingStsByMulBrands(List<byte> brandIds)
         {
 
             var transaction = await _context.Database.BeginTransactionAsync();
@@ -149,17 +99,7 @@ namespace Hot4.Repository.Concrete
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
 
-                return rechargesToUpdate.Select(d => new RechargeModel
-                {
-                    RechargeId = d.RechargeId,
-                    AccessId = d.AccessId,
-                    Amount = d.Amount,
-                    BrandId = d.BrandId,
-                    Discount = d.Discount,
-                    Mobile = d.Mobile,
-                    RechargeDate = d.RechargeDate,
-                    StateId = d.StateId
-                }).ToList();
+                return rechargesToUpdate;
             }
             catch (Exception ex)
             {
@@ -167,7 +107,7 @@ namespace Hot4.Repository.Concrete
                 throw;
             }
         }
-        public async Task<RechargeDetailModel?> RechargePendingStsByBrandId(byte brandId)
+        public async Task<Recharge?> RechargePendingStsByBrandId(byte brandId)
         {
 
             var result = await _context.Recharge
@@ -181,50 +121,18 @@ namespace Hot4.Repository.Concrete
                 result.StateId = (int)SmsState.Busy;
                 _context.Update(result);
                 await _context.SaveChangesAsync();
-
-                return new RechargeDetailModel
-                {
-                    AccessId = result.AccessId,
-                    Amount = result.Amount,
-                    BrandId = result.BrandId,
-                    Mobile = result.Mobile,
-                    BrandName = result.Brand.BrandName,
-                    BrandSuffix = result.Brand.BrandSuffix,
-                    InsertDate = result.InsertDate,
-                    Discount = result.Discount,
-                    Network = result.Brand.Network.Network,
-                    NetworkId = result.Brand.NetworkId,
-                    NetworkPrefix = result.Brand.Network.Prefix,
-                    RechargeDate = result.RechargeDate,
-                    RechargeId = result.RechargeId,
-                    State = SmsState.Busy.ToString(),
-                    StateId = result.StateId
-                };
+                return result;
             }
 
             return null;
         }
-        public async Task<RechargeModel?> GetRechargeWebDuplicate(RechWebDupSearchModel rechWebDup)
+        public async Task<Recharge?> GetRechargeWebDuplicate(RechWebDupSearchModel rechWebDup)
         {
-            var result = await _context.Recharge.FirstOrDefaultAsync(d => d.AccessId == rechWebDup.AccessId
+            return await _context.Recharge.FirstOrDefaultAsync(d => d.AccessId == rechWebDup.AccessId
                         && d.Mobile == rechWebDup.Mobile
                         && d.Amount == rechWebDup.Amount
                         && d.InsertDate > DateTime.Now.AddMinutes(-1));
-            if (result != null)
-            {
-                return new RechargeModel
-                {
-                    AccessId = result.AccessId,
-                    Amount = result.Amount,
-                    BrandId = result.BrandId,
-                    Discount = result.Discount,
-                    Mobile = result.Mobile,
-                    RechargeDate = result.RechargeDate,
-                    RechargeId = result.RechargeId,
-                    StateId = result.StateId
-                };
-            }
-            return null;
+
         }
     }
 }
