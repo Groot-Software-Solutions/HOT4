@@ -136,7 +136,7 @@ namespace Hot4.Repository.Concrete
                     }).ToList();
 
         }
-        public async Task<List<ViewAccountModel>> GetViewAccountList(List<long> accountIds)
+        public async Task<List<ViewAccountModel>> GetViewAccountList(List<long> accountIds, int pageNo, int pageSize)
         {
             var bal = await GetViewBalanceList(accountIds);
 
@@ -157,6 +157,7 @@ namespace Hot4.Repository.Concrete
             return (from a in accountList
                     join b in bal on a.AccountId equals b.AccountId into balances
                     from subB in balances.DefaultIfEmpty()
+                    orderby subB.Balance descending
                     select new ViewAccountModel
                     {
                         AccountId = a.AccountId,
@@ -171,7 +172,7 @@ namespace Hot4.Repository.Concrete
                         ZESABalance = subB != null ? subB.ZESABalance : 0,
                         USDBalance = subB != null ? subB.USDBalance : 0,
                         USDUtilityBalance = subB != null ? subB.USDUtilityBalance : 0
-                    }).OrderByDescending(d => d.Balance).ToList();
+                    }).Skip((pageNo - 1) * pageSize).Take(pageSize).ToList();
         }
     }
 }
