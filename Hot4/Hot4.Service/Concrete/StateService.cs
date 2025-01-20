@@ -23,7 +23,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> DeleteState(byte stateId)
         {
-            var record = await _stateRepository.GetStateById(stateId);
+            var record = await GetEntityById(stateId);
             if (record != null)
             {
                 return await _stateRepository.DeleteState(record);
@@ -33,7 +33,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<StateModel?> GetStateById(byte stateId)
         {
-            var record = await _stateRepository.GetStateById(stateId);
+            var record = await GetEntityById(stateId);
             return Mapper.Map<StateModel>(record);
         }
 
@@ -45,13 +45,18 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> UpdateState(StateModel state)
         {
-            var record = await _stateRepository.GetStateById(state.StateId);
+            var record = await GetEntityById(state.StateId);
             if (record != null)
             {
                 var model = Mapper.Map(state, record);
                 return await _stateRepository.UpdateState(record);
             }
             return false;
+        }
+
+        private async Task<States?> GetEntityById (byte StateId)
+        {
+            return await _stateRepository.GetStateById(StateId);
         }
     }
 }

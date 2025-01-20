@@ -22,7 +22,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<BankTransactionStateModel?> GetBankTrxStateById(byte bankTrxStateId)
         {
-            var record = await _bankTrxStateRepository.GetBankTrxStateById(bankTrxStateId);
+            var record = await GetEntityById(bankTrxStateId);
             return Mapper.Map<BankTransactionStateModel>(record);
         }
         public async Task<bool> AddBankTrxState(BankTransactionStateModel bankState)
@@ -32,7 +32,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> UpdateBankTrxState(BankTransactionStateModel bankState)
         {
-            var record = await _bankTrxStateRepository.GetBankTrxStateById(bankState.BankTrxStateId);
+            var record = await GetEntityById(bankState.BankTrxStateId);
             if (record != null)
             {
                 Mapper.Map(bankState, record);
@@ -42,7 +42,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> DeleteBankTrxState(byte bankTrxStateId)
         {
-            var record = await _bankTrxStateRepository.GetBankTrxStateById(bankTrxStateId);
+            var record = await GetEntityById(bankTrxStateId);
             if (record != null)
             {
                 return await _bankTrxStateRepository.DeleteBankTrxState(record);
@@ -50,5 +50,9 @@ namespace Hot4.Service.Concrete
             return false;
         }
 
+        private async Task<BankTrxStates?> GetEntityById (byte BankTrxStateId)
+        {
+            return await _bankTrxStateRepository.GetBankTrxStateById(BankTrxStateId);
+        }
     }
 }

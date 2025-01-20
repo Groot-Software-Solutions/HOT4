@@ -19,7 +19,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<AccessModel?> GetAccessById(long accessId)
         {
-            var record = await _accessRepository.GetAccessById(accessId);
+            var record = await GetEntityById(accessId);
             return _mapper.Map<AccessModel>(record);
         }
         public async Task<List<AccessModel>> GetAccessByAccountIdAndChannelId(long accountId, byte channelId)
@@ -64,7 +64,7 @@ namespace Hot4.Service.Concrete
         }           
         public async Task<bool> UpdateAccess(AccessModel accessModel)
         {
-            var record =  await _accessRepository.GetAccessById(accessModel.AccessId);           
+            var record =  await GetEntityById(accessModel.AccessId);           
             if (record != null)
             {               
                 _mapper.Map(accessModel, record);
@@ -92,12 +92,12 @@ namespace Hot4.Service.Concrete
         }
         public async Task<long> GetAdminId(long accountId) 
         { 
-          var record = await  _accessRepository.GetAdminId(accountId);
-            return record;
+          return await _accessRepository.GetAdminId(accountId);
+            
         }
         public async Task<bool> PasswordChange(long accessId, string newPassword) 
         {
-            var record = await _accessRepository.GetAccessById(accessId);
+            var record = await GetEntityById(accessId);
             if (record != null)
             {
                return await _accessRepository.PasswordChange(record, accessId , newPassword);
@@ -106,7 +106,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> PasswordChangeDeprecated(long accessId, string passwordHash, string passwordSalt)
         {
-            var record = await _accessRepository.GetAccessById(accessId);
+            var record = await GetEntityById(accessId);
             if (record != null)
             {
             return await _accessRepository.PasswordChangeDeprecated(record, passwordHash, passwordSalt);               
@@ -144,7 +144,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> DeleteAccess(long accessId) 
         {
-            var record = await _accessRepository.GetAccessById(accessId);
+            var record = await GetEntityById(accessId);
             if (record != null)
             {
               return await _accessRepository.DeleteAccess(record);  
@@ -154,7 +154,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> UnDeleteAccess(long accessId) 
         {
-            var record = await _accessRepository.GetAccessById(accessId);
+            var record = await GetEntityById(accessId);
             if (record != null)
             {
               return await _accessRepository.UnDeleteAccess(record);
@@ -163,6 +163,10 @@ namespace Hot4.Service.Concrete
             return false;
             
         }
-        
+        private async Task<Access> GetEntityById(long AccessId)
+        {
+            return await _accessRepository.GetAccessById(AccessId);
+        }
+
     }
 }

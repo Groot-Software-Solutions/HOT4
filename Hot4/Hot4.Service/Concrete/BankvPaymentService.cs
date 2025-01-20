@@ -24,7 +24,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> DeleteBankvPayment(string vPaymentId)
         {
-            var record = await _bankvPaymentRepository.GetBankvPaymentByvPaymentId(vPaymentId);
+            var record = await GetEntityById(vPaymentId);
             if (record != null)
             {
                 return await _bankvPaymentRepository.DeleteBankvPayment(record);
@@ -34,19 +34,24 @@ namespace Hot4.Service.Concrete
 
         public async Task<BankvPaymentModel?> GetBankvPaymentByvPaymentId(string vPaymentId)
         {
-            var record = await _bankvPaymentRepository.GetBankvPaymentByvPaymentId(vPaymentId);
+            var record = await GetEntityById(vPaymentId);
             return Mapper.Map<BankvPaymentModel?>(record);
         }
 
         public async Task<bool> UpdateBankvPayment(BankvPaymentModel bankvPayment)
         {
-            var record = await _bankvPaymentRepository.GetBankvPaymentByvPaymentId(bankvPayment.VPaymentId.ToString());
+            var record = await GetEntityById(bankvPayment.VPaymentId.ToString());
             if (record != null)
             {
                 Mapper.Map(bankvPayment, record);
                 return await _bankvPaymentRepository.UpdateBankvPayment(record);
             }
             return false;
+        }
+
+        private async Task<BankvPayment?> GetEntityById (string VPaymentId)
+        {
+            return await _bankvPaymentRepository.GetBankvPaymentByvPaymentId(VPaymentId);
         }
     }
 }

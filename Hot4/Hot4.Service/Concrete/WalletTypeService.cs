@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
+using Hot4.Repository.Concrete;
 using Hot4.Service.Abstract;
 using Hot4.ViewModel;
 
@@ -23,7 +24,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> DeleteWalletType(int walletTypeId)
         {
-            var record = await _walletTypeRepository.GetWalletTypeById(walletTypeId);
+            var record = await GetEntityById(walletTypeId);
             if (record != null)
             {
                 return await _walletTypeRepository.DeleteWalletType(record);
@@ -33,7 +34,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<WalletTypeModel?> GetWalletTypeById(int walletTypeId)
         {
-            var record = await _walletTypeRepository.GetWalletTypeById(walletTypeId);
+            var record = await GetEntityById(walletTypeId);
             return Mapper.Map<WalletTypeModel>(record);
         }
 
@@ -45,13 +46,19 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> UpdateWalletType(WalletTypeModel walletType)
         {
-            var record = await _walletTypeRepository.GetWalletTypeById(walletType.WalletTypeId);
+            var record = await GetEntityById(walletType.WalletTypeId);
             if (record != null)
             {
                 var model = Mapper.Map(walletType, record);
                 return await _walletTypeRepository.UpdateWalletType(record);
             }
             return false;
+        }
+
+
+        private async Task<WalletType?> GetEntityById(int WalletTypeId)
+        {
+            return await _walletTypeRepository.GetWalletTypeById(WalletTypeId);
         }
     }
 }

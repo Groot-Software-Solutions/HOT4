@@ -31,7 +31,7 @@ namespace Hot4.Service.Concrete
         } 
         public async Task<bool> DeleteConfig(ConfigModel configModel)
         {
-            var record = await _configRepository.GetConfigById(configModel.ConfigId);
+            var record = await GetEntityById(configModel.ConfigId);
             if (record != null)
             {
              return  await _configRepository.DeleteConfig(record);
@@ -40,13 +40,10 @@ namespace Hot4.Service.Concrete
         }
         public async Task<ConfigModel> GetConfigById(byte ConfigId)
         {
-            var record = await _configRepository.GetConfigById(ConfigId);
-            if (record != null)
-            {
-                return _mapper.Map<ConfigModel>(record);
-            }
-            return null;
+            var record = await GetEntityById(ConfigId); 
+            return _mapper.Map<ConfigModel>(record);
         }
+
         public async Task<List<ConfigModel>> ListConfig()
         {
             var records = await _configRepository.ListConfig();
@@ -55,13 +52,18 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> UpdateConfig(ConfigModel configModel)
         {
-            var record = await _configRepository.GetConfigById(configModel.ConfigId);
+            var record = await GetEntityById(configModel.ConfigId);
             if (record != null) 
             {
                 _mapper.Map(configModel, record);
               return await _configRepository.UpdateConfig(record);
             }
             return false;
+        }
+
+        private async Task<Configs> GetEntityById (byte ConfigId)
+        {
+            return await _configRepository.GetConfigById(ConfigId);
         }
     }
 }

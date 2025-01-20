@@ -28,18 +28,10 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
             return true;
         }
-
-        // need to  chcek ListPaymentSource()
-        public async Task<List<PaymentSourceModel>> ListPaymentSource()
+        public async Task<List<PaymentSources>> ListPaymentSource()
         {
             return await GetAll()
-                .Select(d => new PaymentSourceModel
-                {
-                    PaymentSourceId = d.PaymentSourceId,
-                    PaymentSource = d.PaymentSource,
-                   // PaymentSourceText = d.PaymentSource,
-                    WalletTypeId = d.WalletTypeId,
-                }).ToListAsync();
+                .ToListAsync();
         }
         public async Task<PaymentSources> GetPaymentSourceById(byte PaymentSourceId)
         {

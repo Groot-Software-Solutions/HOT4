@@ -35,5 +35,6 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
+
     }
 }

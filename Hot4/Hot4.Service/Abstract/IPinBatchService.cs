@@ -4,6 +4,7 @@ namespace Hot4.Service.Abstract
 {
     public interface IPinBatchService
     {
+
         Task<bool> AddPinBatch(PinBatchToDo pinBatches);
         Task<bool> UpdatePinBatch(PinBatchToDo pinBatches);
         Task<bool> DeletePinBatch(PinBatchToDo pinBatches);

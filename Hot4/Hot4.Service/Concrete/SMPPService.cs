@@ -23,7 +23,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> DeleteSMPP(byte smppId)
         {
-            var record = await _smppRepository.GetSMPPById(smppId);
+            var record = await GetEntityById(smppId);
             if (record != null)
             {
                 return await _smppRepository.DeleteSMPP(record);
@@ -33,7 +33,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<SMPPModel?> GetSMPPById(byte smppId)
         {
-            var record = await _smppRepository.GetSMPPById(smppId);
+            var record = await GetEntityById(smppId);
             return Mapper.Map<SMPPModel>(record);
         }
 
@@ -45,13 +45,18 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> UpdateSMPP(SMPPModel smpp)
         {
-            var record = await _smppRepository.GetSMPPById(smpp.SmppId);
+            var record = await GetEntityById(smpp.SmppId);
             if (record != null)
             {
                 Mapper.Map(smpp, record);
                 return await _smppRepository.UpdateSMPP(record);
             }
             return false;
+        }
+
+        private async Task<Smpp?> GetEntityById (byte SmppId)
+        {
+            return await _smppRepository.GetSMPPById(SmppId);
         }
     }
 }

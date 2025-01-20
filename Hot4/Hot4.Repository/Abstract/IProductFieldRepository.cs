@@ -5,9 +5,10 @@ namespace Hot4.Repository.Abstract
 {
     public interface IProductFieldRepository
     {
+        Task<ProductField> GetProductFieldById(int BrandFieldId);
         Task<List<ProductFieldModel>> ListProductField();
-        Task AddProductField(ProductField productField);
-        Task UpdateProductField(ProductField productField);
-        Task DeleteProductField(ProductField productField);
+        Task <bool>AddProductField(ProductField productField);
+        Task <bool>UpdateProductField(ProductField productField);
+        Task <bool>DeleteProductField(ProductField productField);
     }
 }

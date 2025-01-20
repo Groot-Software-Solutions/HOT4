@@ -37,17 +37,18 @@ namespace Hot4.Service.Concrete
             var record =  await GetEntityById(hotTypeModel.HotTypeId);
             if (record != null) 
             {
-                var model = _mapper.Map<HotTypes>(record);
-            return  await _hotTypeRepository.DeleteHotType(model);
+            return  await _hotTypeRepository.DeleteHotType(record);
             }
             return false;
         }
 
+        // need to check GetHotTypeIdentity
         public Task<byte?> GetHotTypeIdentity(string typeCode, byte splitCount)
         {
             return _hotTypeRepository.GetHotTypeIdentity(typeCode, splitCount);
         }
 
+        // need to chcek ListHotType()
         public Task<List<HotTypeModel>> ListHotType()
         {
             return _hotTypeRepository.ListHotType();
@@ -58,26 +59,22 @@ namespace Hot4.Service.Concrete
             var record = await GetEntityById(hotTypeModel.HotTypeId);
             if (record != null) 
             {
-                var model = _mapper.Map<HotTypes>(record);
-                return await _hotTypeRepository.UpdateHotType(model);
+                _mapper.Map(hotTypeModel,record);
+                return await _hotTypeRepository.UpdateHotType(record);
             }
             return false;
         }
 
         public async Task<HotTypeModel> GetHotTypeById(byte HotTypeId)
         {
-            var record = await _hotTypeRepository.GetHotTypeById(HotTypeId);
+            var record = await GetEntityById(HotTypeId);
             return _mapper.Map<HotTypeModel>(record);
         }
 
-        private async Task<HotTypeModel> GetEntityById(byte HotTypeId)
+        private async Task<HotTypes> GetEntityById(byte HotTypeId)
         {
-            var record = await GetHotTypeById(HotTypeId);
-            if (record != null)
-            {
-                return record;
-            }
-            return null;
+            return await _hotTypeRepository.GetHotTypeById(HotTypeId);
         }
+
     }
 }

@@ -23,7 +23,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> DeleteSubscriber(long subscriberId)
         {
-            var record = await _subscriberRepository.GetSubscriberById(subscriberId);
+            var record = await GetEntityById(subscriberId);
             if (record != null)
             {
                 return await _subscriberRepository.DeleteSubscriber(record);
@@ -33,7 +33,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<SubscriberModel?> GetSubscriberById(long subscriberId)
         {
-            var record = await _subscriberRepository.GetSubscriberById(subscriberId);
+            var record = await GetEntityById(subscriberId);
             return Mapper.Map<SubscriberModel>(record);
         }
 
@@ -45,13 +45,18 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> UpdateSubscriber(SubscriberToDo subscriber)
         {
-            var record = await _subscriberRepository.GetSubscriberById(subscriber.SubscriberId);
+            var record = await GetEntityById(subscriber.SubscriberId);
             if (record != null)
             {
                 var model = Mapper.Map(subscriber, record);
                 return await _subscriberRepository.UpdateSubscriber(record);
             }
             return false;
+        }
+
+        private async Task<Subscriber?> GetEntityById (long SubscriberId)
+        {
+            return await _subscriberRepository.GetSubscriberById(SubscriberId);
         }
     }
 }

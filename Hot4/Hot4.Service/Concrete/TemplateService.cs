@@ -23,7 +23,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> DeleteTemplate(int templateId)
         {
-            var record = await _templateRepository.GetTemplateById(templateId);
+            var record = await GetEntityById(templateId);
             if (record != null)
             {
                 return await _templateRepository.DeleteTemplate(record);
@@ -33,7 +33,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<TemplateModel?> GetTemplateById(int templateId)
         {
-            var model = await _templateRepository.GetTemplateById(templateId);
+            var model = await GetEntityById(templateId);
             return Mapper.Map<TemplateModel>(model);
         }
 
@@ -45,13 +45,18 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> UpdateTemplate(TemplateModel template)
         {
-            var record = await _templateRepository.GetTemplateById(template.TemplateId);
+            var record = await GetEntityById(template.TemplateId);
             if (record != null)
             {
                 var model = Mapper.Map(template, record);
                 return await _templateRepository.UpdateTemplate(record);
             }
             return false;
+        }
+
+        private async Task<Template?> GetEntityById (int TemplateId)
+        {
+            return await _templateRepository.GetTemplateById(TemplateId);
         }
     }
 }

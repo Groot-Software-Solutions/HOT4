@@ -27,5 +27,6 @@ namespace Hot4.Service.Abstract
 
         Task<bool> DeleteAccess(long accessId);
         Task<bool> UnDeleteAccess(long accessId);
+
     }
 }

@@ -35,7 +35,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> UpdateBank(BankModel bankModel)
         {
-            var record =await _bankRepository.GetByBankId(bankModel.BankId);
+            var record =await GetEntityById(bankModel.BankId);
             if (record != null)
             {
                 _mapper.Map(bankModel, record);
@@ -46,7 +46,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> DeleteBank(BankModel bankModel)
         {
-            var record = await _bankRepository.GetByBankId(bankModel.BankId);
+            var record = await GetEntityById(bankModel.BankId);
             if (record != null)
             {   
               return  await _bankRepository.DeleteBank(record);
@@ -56,13 +56,13 @@ namespace Hot4.Service.Concrete
         }
         public async Task<BankModel> GetByBankId(byte BankId)
         {
-            var record = await _bankRepository.GetByBankId(BankId);
+            var record = await GetEntityById(BankId);
+            return _mapper.Map<BankModel>(record);     
+        }
 
-            if (record != null)
-            {
-                return _mapper.Map<BankModel>(record);
-            }
-            return null;
+        private async Task<Banks> GetEntityById (byte BankId)
+        {
+            return await _bankRepository.GetByBankId(BankId);
         }
     }
 }

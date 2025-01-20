@@ -23,7 +23,7 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> DeleteTransfer(long transferId)
         {
-            var record = await _transferRepository.GetTransferById(transferId);
+            var record = await GetEntityById(transferId);
             if (record != null)
             {
                 return await _transferRepository.DeleteTransfer(record);
@@ -43,7 +43,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<TransferModel> GetTransferById(long transferId)
         {
-            var record = await _transferRepository.GetTransferById(transferId);
+            var record = await GetEntityById(transferId);
             return Mapper.Map<TransferModel>(record);
         }
         public async Task<List<TransferModel>> GetTransferByPaymentId(long paymentId)
@@ -60,13 +60,18 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> UpdateTransfer(TransferToDo transfer)
         {
-            var record = await _transferRepository.GetTransferById(transfer.TransferId);
+            var record = await GetEntityById(transfer.TransferId);
             if (record != null)
             {
                 var model = Mapper.Map(transfer, record);
                 return await _transferRepository.UpdateTransfer(record);
             }
             return false;
+        }
+
+        private async Task<Transfer?> GetEntityById(long TransferId)
+        {
+            return await _transferRepository.GetTransferById(TransferId);
         }
     }
 }

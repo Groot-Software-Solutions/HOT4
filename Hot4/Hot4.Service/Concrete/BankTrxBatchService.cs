@@ -24,7 +24,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> UpdateBatch(BankTrxBatchToDo bankTrxBatch)
         {
-            var record = await _bankTrxBatchRepository.GetBatchById(bankTrxBatch.BankTrxBatchId);
+            var record = await GetEntityById(bankTrxBatch.BankTrxBatchId);
             if (record != null)
             {
                 Mapper.Map(bankTrxBatch, record);
@@ -34,7 +34,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> DeleteBatch(long batchId)
         {
-            var record = await _bankTrxBatchRepository.GetBatchById(batchId);
+            var record = await GetEntityById(batchId);
             if (record != null)
             {
                 return await _bankTrxBatchRepository.DeleteBatch(record);
@@ -43,7 +43,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<BankBatchModel?> GetBatchById(long batchId)
         {
-            var record = await _bankTrxBatchRepository.GetBatchById(batchId);
+            var record = await GetEntityById(batchId);
             return Mapper.Map<BankBatchModel?>(record);
         }
 
@@ -62,6 +62,11 @@ namespace Hot4.Service.Concrete
         public async Task<long?> GetCurrentBatchByBankIdAndRefId(byte bankId, string batchRef = null)
         {
             return await _bankTrxBatchRepository.GetCurrentBatchByBankIdAndRefId(bankId, batchRef);
+        }
+
+        private async Task<BankTrxBatch?> GetEntityById (long BankTrxBatchId)
+        {
+            return await _bankTrxBatchRepository.GetBatchById(BankTrxBatchId);
         }
     }
 }

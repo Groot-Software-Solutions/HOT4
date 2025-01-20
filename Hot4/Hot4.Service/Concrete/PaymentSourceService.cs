@@ -47,10 +47,11 @@ namespace Hot4.Service.Concrete
             return _mapper.Map<PaymentSourceModel>(record);
         }
 
-        // need to  chcek ListPaymentSource()
-        public Task<List<PaymentSourceModel>> ListPaymentSource()
+        public async Task<List<PaymentSourceModel>> ListPaymentSource()
         {
-            throw new NotImplementedException();
+            var records = await _paymentSourceRepository.ListPaymentSource();
+            var model = _mapper.Map<List<PaymentSourceModel>>(records);
+            return model;
         }
 
         public async Task<bool> UpdatePaymentSource(PaymentSourceModel paymentSourceModel)
