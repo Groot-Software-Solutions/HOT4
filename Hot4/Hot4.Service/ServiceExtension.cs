@@ -80,7 +80,9 @@ namespace Hot4.Service
             services.AddTransient<IPinBatchTypeService, PinBatchTypeService>();
             services.AddTransient<IPinBatchService, PinBatchService>();
             services.AddTransient<IPinService, PinService>();
-
+            services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IRechargePrepaidService, RechargePrepaidService>();
+            services.AddTransient<IRechargeService, RechargeService>();
 
             return services;
         }

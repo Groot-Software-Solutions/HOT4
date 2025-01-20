@@ -8,6 +8,17 @@ namespace Hot4.Service
     {
         public MappingProfile()
         {
+            CreateMap<Recharge, RechargeModel>().ReverseMap();
+            CreateMap<Recharge, RechargeDetailModel>()
+                .ForMember(dst => dst.BrandName, opt => opt.MapFrom(src => src.BrandId != 0 ? src.Brand.BrandName : null))
+                .ForMember(dst => dst.BrandSuffix, opt => opt.MapFrom(src => src.BrandId != 0 ? src.Brand.BrandSuffix : null))
+                .ForMember(dst => dst.NetworkId, opt => opt.MapFrom(src => src.BrandId != 0 ? src.Brand.NetworkId : 0))
+                .ForMember(dst => dst.Network, opt => opt.MapFrom(src => src.BrandId != 0 ? src.Brand.Network.Network : null))
+                .ForMember(dst => dst.NetworkPrefix, opt => opt.MapFrom(src => src.BrandId != 0 ? src.Brand.Network.Prefix : null))
+                .ForMember(dst => dst.State, opt => opt.MapFrom(src => src.StateId != 0 ? src.State.State : null))
+                .ReverseMap();
+            CreateMap<Account, AccountModel>().ReverseMap();
+            CreateMap<RechargePrepaid, RechargePrepaidModel>().ReverseMap();
             CreateMap<PinBatchTypes, PinBatchTypeModel>().ReverseMap();
             CreateMap<PinBatches, PinBatchModel>()
                 .ForMember(dst => dst.PinBatchType, opt => opt.MapFrom(src => src.PinBatchTypeId != 0 ? src.PinBatchType.PinBatchType : null))

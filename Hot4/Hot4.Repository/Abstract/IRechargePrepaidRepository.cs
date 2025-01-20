@@ -1,12 +1,11 @@
 ﻿using Hot4.DataModel.Models;
-using Hot4.ViewModel;
 
 namespace Hot4.Repository.Abstract
 {
     public interface IRechargePrepaidRepository
     {
-        Task AddRechargePrepaid(RechargePrepaid rechargeprepaid);
-        Task UpdateRechargePrepaid(RechargePrepaid rechargePrepaid);
-        Task<RechargePrepaidModel?> GetRechargePrepaidById(long rechargeId);
+        Task<bool> AddRechargePrepaid(RechargePrepaid rechargeprepaid);
+        Task<bool> UpdateRechargePrepaid(RechargePrepaid rechargePrepaid);
+        Task<RechargePrepaid?> GetRechargePrepaidById(long rechargeId);
     }
 }
