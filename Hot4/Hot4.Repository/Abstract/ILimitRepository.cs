@@ -5,9 +5,11 @@ namespace Hot4.Repository.Abstract
 {
     public interface ILimitRepository
     {
-        Task<long> SaveUpdateLimit(Limit limit);
-        Task<LimitModel?> GetLimitById(long limitId);
+        Task<bool> SaveLimit(Limit limit);
+        Task<bool> UpdateLimit(Limit limit);
+        Task<bool> DeleteLimit(Limit limit);
+        Task<Limit?> GetLimitById(long limitId);
         Task<LimitPendingModel> GetLimitByNetworkAndAccountId(int networkid, long accountid);
-        Task DeleteLimit(Limit limit);
+
     }
 }

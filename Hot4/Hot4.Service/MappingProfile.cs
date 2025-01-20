@@ -8,6 +8,12 @@ namespace Hot4.Service
     {
         public MappingProfile()
         {
+            CreateMap<SelfTopUp, SelfTopUpModel>().ReverseMap();
+            CreateMap<SelfTopUp, SelfTopUpToDo>().ReverseMap();
+            CreateMap<SelfTopUpState, SelfTopUpStateModel>().ReverseMap();
+            CreateMap<Log, LogModel>().ReverseMap();
+            CreateMap<Networks, NetworkModel>().ReverseMap();
+            CreateMap<Limit, LimitModel>().ReverseMap();
             CreateMap<Recharge, RechargeModel>().ReverseMap();
             CreateMap<Recharge, RechargeDetailModel>()
                 .ForMember(dst => dst.BrandName, opt => opt.MapFrom(src => src.BrandId != 0 ? src.Brand.BrandName : null))
@@ -87,9 +93,9 @@ namespace Hot4.Service
             // Configs
             CreateMap<Configs, ConfigModel>().ReverseMap();
             CreateMap<HotTypes, HotTypeModel>().ReverseMap();
-            CreateMap<Payment , PaymentModel>()
+            CreateMap<Payment, PaymentModel>()
                 .ForMember(dst => dst.PaymentSource, opt => opt.MapFrom(src => src.PaymentSource.PaymentSource))
-                .ForMember(dst => dst.PaymentType , opt => opt.MapFrom(src => src.PaymentType.PaymentType)).ReverseMap();
+                .ForMember(dst => dst.PaymentType, opt => opt.MapFrom(src => src.PaymentType.PaymentType)).ReverseMap();
 
 
         }

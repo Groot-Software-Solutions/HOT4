@@ -9,16 +9,28 @@ namespace Hot4.Repository.Concrete
     public class SelfTopUpRepository : RepositoryBase<SelfTopUp>, ISelfTopUpRepository
     {
         public SelfTopUpRepository(HotDbContext context) : base(context) { }
-        public async Task<long> AddSelfTopUp(SelfTopUp selfTopUp)
+        public async Task<bool> AddSelfTopUp(SelfTopUp selfTopUp)
         {
             await Create(selfTopUp);
             await SaveChanges();
-            return selfTopUp.SelfTopUpId;
+            return true;
         }
-        public async Task DeleteSelfTopUp(SelfTopUp selfTopUp)
+        public async Task<bool> UpdateSelfTopUp(SelfTopUp selfTopUp)
+        {
+            Update(selfTopUp);
+            await SaveChanges();
+            return true;
+        }
+        public async Task<SelfTopUp?> GetSelfTopUpById(long selfTopUpId)
+        {
+            return await _context.SelfTopUp.Where(d => d.SelfTopUpId == selfTopUpId)
+     .Include(d => d.Access).Include(d => d.Brand).FirstOrDefaultAsync();
+        }
+        public async Task<bool> DeleteSelfTopUp(SelfTopUp selfTopUp)
         {
             Delete(selfTopUp);
             await SaveChanges();
+            return true;
         }
         public async Task<List<SelfTopUpModel>> GetSelfTopUpByBankTrxId(long bankTrxId)
         {
@@ -72,10 +84,6 @@ namespace Hot4.Repository.Concrete
                               TargetNumber = s.TargetNumber
                           }).ToListAsync();
         }
-        public async Task UpdateSelfTopUp(SelfTopUp selfTopUp)
-        {
-            Update(selfTopUp);
-            await SaveChanges();
-        }
+
     }
 }
