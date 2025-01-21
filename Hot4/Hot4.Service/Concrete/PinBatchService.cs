@@ -25,9 +25,9 @@ namespace Hot4.Service.Concrete
             return false;
         }
 
-        public async Task<bool> DeletePinBatch(PinBatchRecord pinBatches)
+        public async Task<bool> DeletePinBatch(long pinBatchId)
         {
-            var record = await GetEntityById(PinBatchId);
+            var record = await GetEntityById(pinBatchId);
             if (record != null)
             {
                 return await _pinBatchRepository.DeletePinBatch(record);

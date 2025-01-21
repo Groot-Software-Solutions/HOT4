@@ -9,7 +9,7 @@ namespace Hot4.Service.Concrete
     public class HotTypeService : IHotTypeService
     {
         private readonly IHotTypeRepository _hotTypeRepository;
-        private readonly IMapper _mapper;
+        private readonly IMapper Mapper;
 
         public HotTypeService(IHotTypeRepository hotTypeRepository, IMapper mapper)
         {
@@ -20,7 +20,7 @@ namespace Hot4.Service.Concrete
         {
             if (hotTypeModel != null)
             {
-                var model = _mapper.Map<HotTypes>(hotTypeModel);
+                var model = Mapper.Map<HotTypes>(hotTypeModel);
                 return await _hotTypeRepository.AddHotType(model);
             }
             return false;
@@ -43,7 +43,7 @@ namespace Hot4.Service.Concrete
         public async Task<List<HotTypeModel>> ListHotType()
         {
             var records = await _hotTypeRepository.ListHotType();
-            return _mapper.Map<List<HotTypeModel>>(records);
+            return Mapper.Map<List<HotTypeModel>>(records);
         }
 
         public async Task<bool> UpdateHotType(HotTypeRecord hotTypeModel)
@@ -51,7 +51,7 @@ namespace Hot4.Service.Concrete
             var record = await GetEntityById(hotTypeModel.HotTypeId);
             if (record != null)
             {
-                _mapper.Map(hotTypeModel, record);
+                Mapper.Map(hotTypeModel, record);
                 return await _hotTypeRepository.UpdateHotType(record);
             }
             return false;

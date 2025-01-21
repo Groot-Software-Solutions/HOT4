@@ -14,6 +14,6 @@ namespace Hot4.Service.Abstract
         Task<List<ProductMetaDataModel>> ListProductMetaData();
         Task<bool> AddProductMetaData(ProductMetaDataModel productMetaDataModel);
         Task<bool> UpdateProductMetaData(ProductMetaDataModel productMetaDataModel);
-        Task<bool> DeleteProductMetaData(ProductMetaDataModel productMetaDataModel);
+        Task<bool> DeleteProductMetaData(int ProductMetaId);
     }
 }
