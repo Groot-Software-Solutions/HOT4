@@ -19,27 +19,6 @@ namespace Hot4.Repository.Concrete
                          .Include(d => d.BankTrxState)
                          .Include(d => d.BankTrxType)
                          .FirstOrDefaultAsync(d => d.BankTrxId == bankTransactionId);
-            //if (result != null)
-            //{
-            //    return new BankTransactionModel
-            //    {
-            //        Amount = result.Amount,
-            //        Balance = result.Balance,
-            //        BankRef = result.BankRef,
-            //        BankTrxBatchId = result.BankTrxBatchId,
-            //        BankTrxId = result.BankTrxId,
-            //        BankTrxState = result.BankTrxState.BankTrxState,
-            //        BankTrxStateId = result.BankTrxStateId,
-            //        BankTrxType = result.BankTrxType.BankTrxType,
-            //        BankTrxTypeId = result.BankTrxTypeId,
-            //        Branch = result.Branch,
-            //        Identifier = result.Identifier,
-            //        PaymentId = result.PaymentId,
-            //        RefName = result.RefName,
-            //        TrxDate = result.TrxDate,
-            //    };
-            //}
-            //  return null;
         }
         public async Task<List<BankTrx>> GetTrxByBatchId(long bankTransactionBatchId, bool isPending)
         {
@@ -54,24 +33,6 @@ namespace Hot4.Repository.Concrete
                                .Include(d => d.BankTrxType)
                                .OrderByDescending(d => d.BankTrxId)
                                .ToListAsync();
-                //.Select(d => new BankTransactionModel
-                //{
-                //    Amount = d.Amount,
-                //    Balance = d.Balance,
-                //    BankRef = d.BankRef,
-                //    BankTrxBatchId = d.BankTrxBatchId,
-                //    BankTrxId = d.BankTrxId,
-                //    BankTrxState = d.BankTrxState.BankTrxState,
-                //    BankTrxStateId = d.BankTrxStateId,
-                //    BankTrxType = d.BankTrxType.BankTrxType,
-                //    BankTrxTypeId = d.BankTrxTypeId,
-                //    Branch = d.Branch,
-                //    Identifier = d.Identifier,
-                //    PaymentId = d.PaymentId,
-                //    RefName = d.RefName,
-                //    TrxDate = d.TrxDate
-                //}).ToListAsync();
-
             }
             else
             {
@@ -80,23 +41,6 @@ namespace Hot4.Repository.Concrete
                              .Include(d => d.BankTrxType)
                              .OrderByDescending(d => d.BankTrxId)
                              .ToListAsync();
-                //.Select(d => new BankTransactionModel
-                //{
-                //    Amount = d.Amount,
-                //    Balance = d.Balance,
-                //    BankRef = d.BankRef,
-                //    BankTrxBatchId = d.BankTrxBatchId,
-                //    BankTrxId = d.BankTrxId,
-                //    BankTrxState = d.BankTrxState.BankTrxState,
-                //    BankTrxStateId = d.BankTrxStateId,
-                //    BankTrxType = d.BankTrxType.BankTrxType,
-                //    BankTrxTypeId = d.BankTrxTypeId,
-                //    Branch = d.Branch,
-                //    Identifier = d.Identifier,
-                //    PaymentId = d.PaymentId,
-                //    RefName = d.RefName,
-                //    TrxDate = d.TrxDate
-                //}).ToListAsync();
             }
         }
         public async Task<List<BankTrx>> GetPendingTrxByType(byte bankTransactionTypeId)
@@ -110,23 +54,6 @@ namespace Hot4.Repository.Concrete
                              .Include(d => d.BankTrxType)
                              .OrderByDescending(d => d.BankTrxId)
                              .ToListAsync();
-                //.Select(d => new BankTransactionModel
-                //{
-                //    Amount = d.Amount,
-                //    Balance = d.Balance,
-                //    BankRef = d.BankRef,
-                //    BankTrxBatchId = d.BankTrxBatchId,
-                //    BankTrxId = d.BankTrxId,
-                //    BankTrxState = d.BankTrxState.BankTrxState,
-                //    BankTrxStateId = d.BankTrxStateId,
-                //    BankTrxType = d.BankTrxType.BankTrxType,
-                //    BankTrxTypeId = d.BankTrxTypeId,
-                //    Branch = d.Branch,
-                //    Identifier = d.Identifier,
-                //    PaymentId = d.PaymentId,
-                //    RefName = d.RefName,
-                //    TrxDate = d.TrxDate
-                //}).ToListAsync();
             }
             else
             {
@@ -136,23 +63,6 @@ namespace Hot4.Repository.Concrete
                              .Include(d => d.BankTrxType)
                              .OrderByDescending(d => d.BankTrxId)
                              .ToListAsync();
-                //.Select(d => new BankTransactionModel
-                //{
-                //    Amount = d.Amount,
-                //    Balance = d.Balance,
-                //    BankRef = d.BankRef,
-                //    BankTrxBatchId = d.BankTrxBatchId,
-                //    BankTrxId = d.BankTrxId,
-                //    BankTrxState = d.BankTrxState.BankTrxState,
-                //    BankTrxStateId = d.BankTrxStateId,
-                //    BankTrxType = d.BankTrxType.BankTrxType,
-                //    BankTrxTypeId = d.BankTrxTypeId,
-                //    Branch = d.Branch,
-                //    Identifier = d.Identifier,
-                //    PaymentId = d.PaymentId,
-                //    RefName = d.RefName,
-                //    TrxDate = d.TrxDate
-                //}).ToListAsync();
             }
         }
         public async Task<List<BankTrx>> GetAllTrxByType(byte bankTransactionTypeId) // pending state 0
@@ -163,23 +73,7 @@ namespace Hot4.Repository.Concrete
                          .Include(d => d.BankTrxType)
                          .OrderByDescending(d => d.BankTrxId)
                          .ToListAsync();
-            //.Select(d => new BankTransactionModel
-            //{
-            //    Amount = d.Amount,
-            //    Balance = d.Balance,
-            //    BankRef = d.BankRef,
-            //    BankTrxBatchId = d.BankTrxBatchId,
-            //    BankTrxId = d.BankTrxId,
-            //    BankTrxState = d.BankTrxState.BankTrxState,
-            //    BankTrxStateId = d.BankTrxStateId,
-            //    BankTrxType = d.BankTrxType.BankTrxType,
-            //    BankTrxTypeId = d.BankTrxTypeId,
-            //    Branch = d.Branch,
-            //    Identifier = d.Identifier,
-            //    PaymentId = d.PaymentId,
-            //    RefName = d.RefName,
-            //    TrxDate = d.TrxDate
-            //}).ToListAsync();
+
         }
         public async Task<BankTrx?> GetTrxByRef(string bankRef)
         {
@@ -187,27 +81,7 @@ namespace Hot4.Repository.Concrete
                           .LastOrDefaultAsync(d => d.BankRef == bankRef
                          && d.BankTrxStateId == (int)BankTransactionStates.BusyConfirming
                          && d.BankTrxTypeId == (int)BankTransactionTypes.EcoCash);
-            //if (result != null)
-            //{
-            //    return new BankTransactionModel
-            //    {
-            //        Amount = result.Amount,
-            //        Balance = result.Balance,
-            //        BankRef = result.BankRef,
-            //        BankTrxBatchId = result.BankTrxBatchId,
-            //        BankTrxId = result.BankTrxId,
-            //        BankTrxState = result.BankTrxState.BankTrxState,
-            //        BankTrxStateId = result.BankTrxStateId,
-            //        BankTrxType = result.BankTrxType.BankTrxType,
-            //        BankTrxTypeId = result.BankTrxTypeId,
-            //        Branch = result.Branch,
-            //        Identifier = result.Identifier,
-            //        PaymentId = result.PaymentId,
-            //        RefName = result.RefName,
-            //        TrxDate = result.TrxDate
-            //    };
-            //}
-            //return null;
+
         }
 
         public async Task<long?> GetDuplicateTrx(BankTransactionSearchModel bankTransactionSearch)
