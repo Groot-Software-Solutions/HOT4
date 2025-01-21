@@ -46,14 +46,21 @@ namespace Hot4.Service.Concrete
             return _mapper.Map<ProductFieldModel>(record);
         }
 
-        public Task<List<ProductFieldModel>> ListProductField()
+        public async Task<List<ProductFieldModel>> ListProductField()
         {
-            throw new NotImplementedException();
+            var records = await _productFieldRepository.ListProductField();
+            return _mapper.Map<List<ProductFieldModel>>(records);
         }
 
-        public Task<bool> UpdateProductField(ProductFieldModel productFieldModel)
+        public async Task<bool> UpdateProductField(ProductFieldModel productFieldModel)
         {
-            throw new NotImplementedException();
+            var record = await GetEntityById(productFieldModel.BrandFieldId);
+            if (record != null)
+            {
+                _mapper.Map(productFieldModel, record);
+                return await _productFieldRepository.UpdateProductField(record);
+            }
+            return false;
         }
 
         private async Task<ProductField> GetEntityById (int BrandFieldId)

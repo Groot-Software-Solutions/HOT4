@@ -5,9 +5,10 @@ namespace Hot4.Repository.Abstract
 {
     public interface IReservationLogRepository
     {
-        Task AddReservationLog(ReservationLog reservationLog);
-        Task UpdateReservationLog(ReservationLog reservationLog);
-        Task DeleteReservationLog(ReservationLog reservationLog);
-        Task<List<ReservationLogModel>> ListReservationLog(int pageNo, int pageSize);
+        Task<ReservationLog> GetReservationLogById(long ReservationLogId);
+        Task<bool> AddReservationLog(ReservationLog reservationLog);
+        Task<bool> UpdateReservationLog(ReservationLog reservationLog);
+        Task<bool> DeleteReservationLog(ReservationLog reservationLog);
+        Task<List<ReservationLog>> ListReservationLog(int pageNo, int pageSize);
     }
 }
