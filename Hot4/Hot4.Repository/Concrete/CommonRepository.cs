@@ -15,13 +15,23 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<float> GetPrePaidStockBalance(int brandId)
         {
-            return (float)await (from r in _context.Recharge
-                                 where r.BrandId == brandId && r.StateId == (int)SmsState.Success
-                                 join rp in _context.RechargePrepaid on r.RechargeId equals rp.RechargeId
-                                 where rp.FinalWallet != 0
-                                 orderby r.RechargeId descending
-                                 select rp.FinalWallet
-                           ).Take(2).DefaultIfEmpty(0).MinAsync();
+            if (brandId == (int)Brands.ZETDC)
+            {
+                return (float)await _context.RechargePrepaid.Include(d => d.Recharge)
+                    .Where(d => d.Recharge.BrandId == brandId
+                    && d.Recharge.StateId == (int)SmsState.Success)
+                    .OrderByDescending(d => d.Recharge.RechargeId)
+                    .Select(d => d.InitialBalance).LastOrDefaultAsync();
+            }
+            else
+            {
+                return (float)await _context.RechargePrepaid.Include(d => d.Recharge)
+                    .Where(d => d.Recharge.BrandId == brandId
+                    && d.Recharge.StateId == (int)SmsState.Success
+                    && d.FinalWallet != 0)
+                    .OrderByDescending(d => d.Recharge.RechargeId)
+                    .Select(d => d.FinalWallet).Take(2).DefaultIfEmpty(0).MinAsync();
+            }
         }
         public async Task<decimal> GetBalance(long accountId)
         {

@@ -2,7 +2,6 @@
 using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
-using Hot4.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
@@ -10,37 +9,35 @@ namespace Hot4.Repository.Concrete
     public class LogRepository : RepositoryBase<Log>, ILogRepository
     {
         public LogRepository(HotDbContext context) : base(context) { }
-        public async Task AddLog(Log log)
+        public async Task<bool> AddLog(Log log)
         {
             log.LogDate = DateTime.Now;
             await Create(log);
             await SaveChanges();
+            return true;
         }
-        public async Task UpdateLog(Log log)
+        public async Task<bool> UpdateLog(Log log)
         {
             Update(log);
             await SaveChanges();
+            return true;
         }
-        public async Task DeleteLog(Log log)
+        public Task<Log?> GetLogById(long logId)
+        {
+            return GetById(logId);
+        }
+        public async Task<bool> DeleteLog(Log log)
         {
             Delete(log);
             await SaveChanges();
+            return true;
         }
-        public async Task<List<LogModel>> ListLog(int pageNo, int pageSize)
+        public async Task<List<Log>> ListLog(int pageNo, int pageSize)
         {
             return await PaginationFilter.GetPagedData(GetAll().OrderByDescending(d => d.LogId), pageNo, pageSize).Queryable
-                               .Select(d => new LogModel
-                               {
-                                   LogDate = d.LogDate,
-                                   LogDescription = d.LogDescription,
-                                   LogMethod = d.LogMethod,
-                                   LogModule = d.LogModule,
-                                   LogObject = d.LogObject,
-                                   Idnumber = d.Idnumber,
-                                   Idtype = d.Idtype,
-                                   LogId = d.LogId
-                               }).ToListAsync();
+                              .ToListAsync();
         }
+
 
     }
 }

@@ -1,13 +1,13 @@
 ﻿using Hot4.DataModel.Models;
-using Hot4.ViewModel;
 
 namespace Hot4.Repository.Abstract
 {
     public interface ISelfTopUpStateRepository
     {
-        Task<long> AddSelfTopUpState(SelfTopUpState selfTopUpState);
-        Task UpdateSelfTopUpState(SelfTopUpState selfTopUpState);
-        Task DeleteSelfTopUpState(SelfTopUpState selfTopUpState);
-        Task<List<SelfTopUpStateModel>> ListSelfTopUpState();
+        Task<bool> AddSelfTopUpState(SelfTopUpState selfTopUpState);
+        Task<bool> UpdateSelfTopUpState(SelfTopUpState selfTopUpState);
+        Task<bool> DeleteSelfTopUpState(SelfTopUpState selfTopUpState);
+        Task<SelfTopUpState?> GetSelfTopUpStateById(byte selfTopUpStateId);
+        Task<List<SelfTopUpState>> ListSelfTopUpState();
     }
 }

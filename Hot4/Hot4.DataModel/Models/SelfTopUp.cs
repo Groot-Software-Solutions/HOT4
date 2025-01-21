@@ -38,4 +38,5 @@ public partial class SelfTopUp
     public virtual Brand Brand { get; set; }
 
     public virtual Recharge? Recharge { get; set; }
+    public virtual SelfTopUpState SelfTopUpState { get; set; }
 }
