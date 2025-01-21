@@ -6,8 +6,8 @@ namespace Hot4.Service.Abstract
     {
         Task<BundleModel?> GetBundlesById(int bundleId);
         Task<List<BundleModel>> ListBundles();
-        Task<bool> AddBundle(BundleToDo bundleModel);
-        Task<bool> UpdateBundle(BundleToDo bundleModel);
+        Task<bool> AddBundle(BundleRecord bundleModel);
+        Task<bool> UpdateBundle(BundleRecord bundleModel);
         Task<bool> DeleteBundle(int bundleId);
     }
 }

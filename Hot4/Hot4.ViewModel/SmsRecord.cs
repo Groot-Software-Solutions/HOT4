@@ -1,6 +1,6 @@
 ﻿namespace Hot4.ViewModel
 {
-    public class SmsToDo
+    public class SmsRecord
     {
         public long Smsid { get; set; }
         public byte? SmppId { get; set; }

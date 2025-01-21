@@ -15,7 +15,7 @@ namespace Hot4.Service.Concrete
             _subscriberRepository = subscriberRepository;
             Mapper = mapper;
         }
-        public async Task<bool> AddSubscriber(SubscriberToDo subscriber)
+        public async Task<bool> AddSubscriber(SubscriberRecord subscriber)
         {
             var model = Mapper.Map<Subscriber>(subscriber);
             return await _subscriberRepository.AddSubscriber(model);
@@ -43,7 +43,7 @@ namespace Hot4.Service.Concrete
             return Mapper.Map<List<SubscriberModel>>(records);
         }
 
-        public async Task<bool> UpdateSubscriber(SubscriberToDo subscriber)
+        public async Task<bool> UpdateSubscriber(SubscriberRecord subscriber)
         {
             var record = await GetEntityById(subscriber.SubscriberId);
             if (record != null)

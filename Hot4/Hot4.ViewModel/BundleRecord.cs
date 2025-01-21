@@ -1,6 +1,6 @@
 ﻿namespace Hot4.ViewModel
 {
-    public class BundleToDo
+    public class BundleRecord
     {
         public int BundleId { get; set; }
         public byte BrandId { get; set; }

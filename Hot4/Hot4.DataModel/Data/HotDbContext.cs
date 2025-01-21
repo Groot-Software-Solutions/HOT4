@@ -1308,9 +1308,9 @@ namespace Hot4.DataModel.Data
 
             modelBuilder.Entity<StockData>(entity =>
             {
-                entity
-                    .HasNoKey()
-                    .ToTable("tblStockData");
+                entity.HasKey(e => e.StockDataId);
+                entity.Property(e => e.StockDataId).ValueGeneratedOnAdd();
+                entity.ToTable("tblStockData");
 
                 entity.Property(e => e.BrandName)
                     .HasMaxLength(50)

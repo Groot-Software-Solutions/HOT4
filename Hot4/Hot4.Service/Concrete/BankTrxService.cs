@@ -55,13 +55,13 @@ namespace Hot4.Service.Concrete
         {
             return _bankTrxRepository.GetEcoCashPendingTrxCount(ecoCashSearch);
         }
-        public async Task<bool> AddBankTrx(BankTrxToDo bankTransaction)
+        public async Task<bool> AddBankTrx(BankTrxRecord bankTransaction)
         {
             var model = Mapper.Map<BankTrx>(bankTransaction);
             return await _bankTrxRepository.AddBankTrx(model);
         }
 
-        public async Task<bool> UpdateBankTrx(BankTrxToDo bankTransaction)
+        public async Task<bool> UpdateBankTrx(BankTrxRecord bankTransaction)
         {
             var record = await GetEntityById(bankTransaction.BankTrxId);
             if (record != null)

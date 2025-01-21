@@ -96,22 +96,8 @@ namespace Hot4.Repository.Concrete
                     await _context.SaveChangesAsync();
                     await transaction.CommitAsync();
 
-                    return smsDetail;
-                    //return smsDetail.Select(d => new SMSModel
-                    //{
-                    //    Direction = d.Direction,
-                    //    InsertDate = d.InsertDate,
-                    //    Mobile = d.Mobile.Replace(" ", ""),
-                    //    Priority = d.Priority.Priority,
-                    //    PriorityId = d.PriorityId,
-                    //    SmppId = d.SmppId,
-                    //    SMSDate = d.Smsdate,
-                    //    SMSId = d.Smsid,
-                    //    SMSIDIn = d.SmsidIn,
-                    //    SMSText = d.Smstext,
-                    //    State = SmsState.Busy.ToString(),
-                    //    StateId = d.StateId,
-                    //}).ToList();
+                    return await _context.Sms.Include(d => d.State).Include(d => d.Priority)
+                     .Where(d => smsDetail.Select(m => m.Smsid).Contains(d.Smsid)).ToListAsync();
                 }
                 catch (Exception ex)
                 {
@@ -145,22 +131,9 @@ namespace Hot4.Repository.Concrete
                     await _context.SaveChangesAsync();
                     await transaction.CommitAsync();
 
-                    return smsDetail;
-                    //return smsDetail.Select(d => new SMSModel
-                    //{
-                    //    Direction = d.Direction,
-                    //    InsertDate = d.InsertDate,
-                    //    Mobile = d.Mobile.Replace(" ", ""),
-                    //    Priority = d.Priority.Priority,
-                    //    PriorityId = d.PriorityId,
-                    //    SmppId = d.SmppId,
-                    //    SMSDate = d.Smsdate,
-                    //    SMSId = d.Smsid,
-                    //    SMSIDIn = d.SmsidIn,
-                    //    SMSText = d.Smstext,
-                    //    State = SmsState.Busy.ToString(),
-                    //    StateId = d.StateId,
-                    //}).ToList();
+                    return await _context.Sms.Include(d => d.State).Include(d => d.Priority)
+                        .Where(d => smsDetail.Select(m => m.Smsid).Contains(d.Smsid)).ToListAsync();
+
                 }
                 catch (Exception ex)
                 {
@@ -184,38 +157,9 @@ namespace Hot4.Repository.Concrete
                          where acss.AccountId == accountId
                          orderby sms.Smsdate descending
                          select sms;
-            //select new
-            //{
-            //    sms.Direction,
-            //    sms.InsertDate,
-            //    sms.Priority.Priority,
-            //    sms.PriorityId,
-            //    sms.Smsid,
-            //    sms.Smsdate,
-            //    sms.SmppId,
-            //    sms.SmsidIn,
-            //    sms.Smstext,
-            //    sms.State.State,
-            //    sms.StateId,
-            //    sms.Mobile
-            //};
 
             return await PaginationFilter.GetPagedData(result, pageNo, pageSize).Queryable.ToListAsync();
-            //.Select(d => new SMSModel
-            //{
-            //    Direction = d.Direction,
-            //    InsertDate = d.InsertDate,
-            //    Mobile = d.Mobile.Replace(" ", ""),
-            //    Priority = d.Priority,
-            //    PriorityId = d.PriorityId,
-            //    SmppId = d.SmppId,
-            //    SMSDate = d.Smsdate,
-            //    SMSId = d.Smsid,
-            //    SMSIDIn = d.SmsidIn,
-            //    SMSText = d.Smstext,
-            //    State = d.State,
-            //    StateId = d.StateId,
-            // }).ToListAsync();
+
 
         }
         public async Task<Sms?> GetSMSById(long smsId)
@@ -223,23 +167,6 @@ namespace Hot4.Repository.Concrete
             return await _context.Sms.Include(d => d.State).Include(d => d.Priority)
                 .FirstOrDefaultAsync(d => d.Smsid == smsId);
 
-            //.Select(d => new SMSModel
-            //{
-            //    Direction = d.Direction,
-            //    InsertDate = d.InsertDate,
-            //    Mobile = d.Mobile.Replace(" ", ""),
-            //    Priority = d.Priority.Priority,
-            //    PriorityId = d.PriorityId,
-            //    SmppId = d.SmppId,
-            //    SMSDate = d.Smsdate,
-            //    SMSId = d.Smsid,
-            //    SMSIDIn = d.SmsidIn,
-            //    SMSText = d.Smstext,
-            //    State = d.State.State,
-            //    StateId = d.StateId,
-            //})
-
-            //.ToListAsync();
         }
         public async Task<List<Sms>> SMSSearch(SMSSearchModel smsSearch)
         {
@@ -261,22 +188,9 @@ namespace Hot4.Repository.Concrete
                         && EF.Constant(states).Contains(d.StateId)
                         && (string.IsNullOrEmpty(smsSearch.Mobile) || d.Mobile.Contains(smsSearch.Mobile))
                         && (string.IsNullOrEmpty(smsSearch.MessageText) || d.Smstext.Contains(smsSearch.MessageText)))
-                    .Include(d => d.State).Include(d => d.Priority).OrderBy(d => d.Smsdate), smsSearch.PageNo, smsSearch.PageSize).Queryable.ToListAsync();
-                //.Select(d => new SMSModel
-                //{
-                //    Direction = d.Direction,
-                //    InsertDate = d.InsertDate,
-                //    Mobile = d.Mobile.Replace(" ", ""),
-                //    Priority = d.Priority.Priority,
-                //    PriorityId = d.PriorityId,
-                //    SmppId = d.SmppId,
-                //    SMSDate = d.Smsdate,
-                //    SMSId = d.Smsid,
-                //    SMSIDIn = d.SmsidIn,
-                //    SMSText = d.Smstext,
-                //    State = d.State.State,
-                //    StateId = d.StateId,
-                //}).ToListAsync();
+                    .Include(d => d.State).Include(d => d.Priority)
+                    .OrderBy(d => d.Smsdate), smsSearch.PageNo, smsSearch.PageSize)
+                    .Queryable.ToListAsync();
 
             }
             else
@@ -287,23 +201,10 @@ namespace Hot4.Repository.Concrete
                   && EF.Constant(states).Contains(d.StateId)
                   && d.Mobile.Contains(smsSearch.Mobile)
                   && d.Smstext.Contains(smsSearch.MessageText)
-                ).Include(d => d.State).Include(d => d.Priority).OrderBy(d => d.Smsdate), smsSearch.PageNo, smsSearch.PageSize).Queryable.ToListAsync();
-                //                  .Select(d => new SMSModel
-                //                  {
-                //                      Direction = d.Direction,
-                //                      InsertDate = d.InsertDate,
-                //                      Mobile = d.Mobile.Replace(" ", ""),
-                //                      Priority = d.Priority.Priority,
-                //                      PriorityId = d.PriorityId,
-                //                      SmppId = d.SmppId,
-                //                      SMSDate = d.Smsdate,
-                //                      SMSId = d.Smsid,
-                //                      SMSIDIn = d.SmsidIn,
-                //                      SMSText = d.Smstext,
-                //                      State = d.State.State,
-                //                      StateId = d.StateId,
-                //                  })
-                //.ToListAsync();
+                ).Include(d => d.State).Include(d => d.Priority)
+                .OrderBy(d => d.Smsdate), smsSearch.PageNo, smsSearch.PageSize)
+                    .Queryable.ToListAsync();
+
             }
         }
         public async Task<Sms?> DuplicateRecharge(DuplicateRechargeSrchModel smsDuplicateSearch)
@@ -313,25 +214,6 @@ namespace Hot4.Repository.Concrete
                              && d.Mobile == smsDuplicateSearch.Mobile
                              && d.Smsdate > DateTime.Now.AddMinutes(-5));
 
-            //if (result != null)
-            //{
-            //    return new SMSModel
-            //    {
-            //        Direction = result.Direction,
-            //        InsertDate = result.InsertDate,
-            //        Mobile = result.Mobile.Replace(" ", ""),
-            //        Priority = result.Priority.Priority,
-            //        PriorityId = result.PriorityId,
-            //        SmppId = result.SmppId,
-            //        SMSDate = result.Smsdate,
-            //        SMSId = result.Smsid,
-            //        SMSIDIn = result.SmsidIn,
-            //        SMSText = result.Smstext,
-            //        State = result.State.State,
-            //        StateId = result.StateId,
-            //    };
-            //}
-            //return null;
         }
         public async Task<bool> Resend(string mobile, string rechargeMobile)
         {

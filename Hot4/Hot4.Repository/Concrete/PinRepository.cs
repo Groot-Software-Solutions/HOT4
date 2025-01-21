@@ -187,6 +187,7 @@ namespace Hot4.Repository.Concrete
         }
         public async Task<long> PinRechargePromo(PinRechargePromoPayload pinRechargePromo)
         {
+
             var access = await (from acss in _context.Access.Include(d => d.Account)
                                 where acss.AccessCode == pinRechargePromo.AccessCode
                                 join prfDsc in _context.ProfileDiscount.Include(d => d.Brand)

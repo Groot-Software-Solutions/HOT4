@@ -16,13 +16,13 @@ namespace Hot4.Service.Concrete
             this.Mapper = mapper;
         }
 
-        public async Task<bool> AddBatch(BankTrxBatchToDo bankTrxBatch)
+        public async Task<bool> AddBatch(BankTrxBatchRecord bankTrxBatch)
         {
             var model = Mapper.Map<BankTrxBatch>(bankTrxBatch);
             await _bankTrxBatchRepository.AddBatch(model);
             return true;
         }
-        public async Task<bool> UpdateBatch(BankTrxBatchToDo bankTrxBatch)
+        public async Task<bool> UpdateBatch(BankTrxBatchRecord bankTrxBatch)
         {
             var record = await GetEntityById(bankTrxBatch.BankTrxBatchId);
             if (record != null)

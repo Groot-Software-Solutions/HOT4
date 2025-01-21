@@ -16,7 +16,7 @@ namespace Hot4.Service.Concrete
             _bundleRepository = bundleRepository;
             _mapper = mapper;
         }
-        public async Task<bool> AddBundle(BundleToDo bundleModel)
+        public async Task<bool> AddBundle(BundleRecord bundleModel)
         {
             if (bundleModel != null)
             {
@@ -47,7 +47,7 @@ namespace Hot4.Service.Concrete
             return _mapper.Map<List<BundleModel>>(records);
 
         }
-        public async Task<bool> UpdateBundle(BundleToDo bundleModel)
+        public async Task<bool> UpdateBundle(BundleRecord bundleModel)
         {
             var record = await GetEntityById(bundleModel.BundleId);
 

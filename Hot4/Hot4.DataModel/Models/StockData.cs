@@ -2,6 +2,7 @@
 
 public partial class StockData
 {
+    public byte StockDataId { get; set; }
     public string? BrandName { get; set; }
 
     public decimal? PinValue { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Hot4.ViewModel
 {
-    public class TransferToDo
+    public class TransferRecord
     {
         public long TransferId { get; set; }
         public byte ChannelId { get; set; }
