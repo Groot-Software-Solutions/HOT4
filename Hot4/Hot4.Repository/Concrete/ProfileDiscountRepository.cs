@@ -9,79 +9,39 @@ namespace Hot4.Repository.Concrete
     public class ProfileDiscountRepository : RepositoryBase<ProfileDiscount>, IProfileDiscountRepository
     {
         public ProfileDiscountRepository(HotDbContext context) : base(context) { }
-
-        public async Task<ProfileDiscountModel?> GetPrfDiscountById(int prfDiscountId)
+        public async Task<ProfileDiscount?> GetPrfDiscountById(int prfDiscountId)
         {
-            var result = await _context.ProfileDiscount
+            return await _context.ProfileDiscount
                                .Include(d => d.Brand)
                                .ThenInclude(d => d.Network)
-                               .FirstOrDefaultAsync(d => d.ProfileDiscountId == prfDiscountId);
-            if (result != null)
-            {
-                return new ProfileDiscountModel
-                {
-                    ProfileDiscountId = result.ProfileDiscountId,
-                    Discount = result.Discount,
-                    ProfileId = result.ProfileId,
-                    BrandId = result.BrandId,
-                    BrandName = result.Brand.BrandName,
-                    BrandSuffix = result.Brand.BrandSuffix,
-                    NetworkId = result.Brand.NetworkId,
-                    Network = result.Brand.Network.Network,
-                    NetworkPrefix = result.Brand.Network.Prefix,
-                };
-            }
-            return null;
+                               .FirstOrDefaultAsync(d => d.ProfileDiscountId == prfDiscountId);          
         }
-        public async Task<int> AddPrfDiscount(ProfileDiscount profileDiscount)
+        public async Task<bool> AddPrfDiscount(ProfileDiscount profileDiscount)
         {
             await Create(profileDiscount);
             await SaveChanges();
-            return profileDiscount.ProfileDiscountId;
+            return true;
         }
-        public async Task UpdatePrfDiscount(ProfileDiscount profileDiscount)
+        public async Task<bool> UpdatePrfDiscount(ProfileDiscount profileDiscount)
         {
             Update(profileDiscount);
             await SaveChanges();
+            return true;
         }
-        public async Task DeletePrfDiscount(ProfileDiscount profileDiscount)
+        public async Task<bool> DeletePrfDiscount(ProfileDiscount profileDiscount)
         {
             Delete(profileDiscount);
             await SaveChanges();
+            return true;
         }
-        public async Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileId(int profileId)
+        public async Task<List<ProfileDiscount>> GetPrfDiscountByProfileId(int profileId)
         {
-            return await GetByCondition(d => d.ProfileId == profileId)
-                         .Select(d => new ProfileDiscountModel
-                         {
-                             ProfileDiscountId = d.ProfileDiscountId,
-                             Discount = d.Discount,
-                             ProfileId = d.ProfileId,
-                             BrandId = d.BrandId,
-                             BrandName = d.Brand.BrandName,
-                             BrandSuffix = d.Brand.BrandSuffix,
-                             NetworkId = d.Brand.NetworkId,
-                             Network = d.Brand.Network.Network,
-                             NetworkPrefix = d.Brand.Network.Prefix,
-                         }).ToListAsync();
+            return await GetByCondition(d => d.ProfileId == profileId).ToListAsync();
         }
-        public async Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileAndBrandId(int profileId, int brandId)
+        public async Task<List<ProfileDiscount>> GetPrfDiscountByProfileAndBrandId(int profileId, int brandId)
         {
             return await GetByCondition(d => d.ProfileId == profileId && d.BrandId == brandId)
-                         .Include(d => d.Brand).ThenInclude(d => d.Network)
-                         .Select(d => new ProfileDiscountModel
-                         {
-                             ProfileDiscountId = d.ProfileDiscountId,
-                             Discount = d.Discount,
-                             ProfileId = d.ProfileId,
-                             BrandId = d.BrandId,
-                             BrandName = d.Brand.BrandName,
-                             BrandSuffix = d.Brand.BrandSuffix,
-                             NetworkId = d.Brand.NetworkId,
-                             Network = d.Brand.Network.Network,
-                             NetworkPrefix = d.Brand.Network.Prefix,
-
-                         }).ToListAsync();
+                         .Include(d => d.Brand).ThenInclude(d => d.Network).ToListAsync();
 
         }
 

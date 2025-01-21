@@ -9,51 +9,33 @@ namespace Hot4.Repository.Concrete
     public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
         public ProductRepository(HotDbContext context) : base(context) { }
-
-        public async Task<ProductModel?> GetProductById(int productId)
+        public async Task<Product?> GetProductById(byte productId)
         {
-            var result = await GetById(productId);
-            if (result != null)
-            {
-                return new ProductModel
-                {
-                    BrandId = result.BrandId,
-                    Name = result.Name,
-                    ProductId = result.ProductId,
-                    ProductStateId = result.ProductStateId,
-                    WalletTypeId = result.WalletTypeId,
-                };
-            }
-
-            return null;
+            return await GetById(productId);
         }
 
-        public async Task AddProduct(Product product)
+        public async Task<bool> AddProduct(Product product)
         {
             await Create(product);
             await SaveChanges();
+            return true;
         }
-        public async Task UpdateProduct(Product product)
+        public async Task<bool> UpdateProduct(Product product)
         {
             Update(product);
             await SaveChanges();
+            return true;
         }
 
-        public async Task DeleteProduct(Product product)
+        public async Task<bool> DeleteProduct(Product product)
         {
             Delete(product);
             await SaveChanges();
+            return true;
         }
-        public async Task<List<ProductModel>> ListProduct()
+        public async Task<List<Product>> ListProduct()
         {
-            return await GetAll().Select(d => new ProductModel
-            {
-                BrandId = d.BrandId,
-                Name = d.Name,
-                ProductId = d.ProductId,
-                WalletTypeId = d.WalletTypeId,
-                ProductStateId = d.ProductStateId,
-            }).ToListAsync();
+            return await GetAll().ToListAsync();
         }
     }
 }

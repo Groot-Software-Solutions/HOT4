@@ -10,42 +10,32 @@ namespace Hot4.Repository.Concrete
     {
         public ProfileRepository(HotDbContext context) : base(context) { }
 
-        public async Task AddProfile(Profile profile)
+        public async Task<bool> AddProfile(Profile profile)
         {
             await Create(profile);
             await SaveChanges();
+            return true;
         }
-        public async Task DeleteProfile(Profile profile)
+        public async Task<bool> DeleteProfile(Profile profile)
         {
             Delete(profile);
             await SaveChanges();
+            return true;
         }
-        public async Task<ProfileModel?> GetProfileById(int profileId)
+        public async Task<Profile?> GetProfileById(int profileId)
         {
-            var result = await GetById(profileId);
-            if (result != null)
-            {
-                return new ProfileModel
-                {
-                    ProfileId = result.ProfileId,
-                    ProfileName = result.ProfileName,
-                };
-            }
-            return null;
+            return await GetById(profileId);
+           
         }
-        public async Task<List<ProfileModel>> ListProfile()
+        public async Task<List<Profile>> ListProfile()
         {
-            return await GetAll()
-                .Select(d => new ProfileModel
-                {
-                    ProfileId = d.ProfileId,
-                    ProfileName = d.ProfileName,
-                }).ToListAsync();
+            return await GetAll().ToListAsync();
         }
-        public async Task UpdateProfile(Profile profile)
+        public async Task<bool> UpdateProfile(Profile profile)
         {
             Update(profile);
             await SaveChanges();
+            return true;    
         }
     }
 }

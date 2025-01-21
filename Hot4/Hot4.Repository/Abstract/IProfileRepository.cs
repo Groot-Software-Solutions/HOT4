@@ -5,10 +5,10 @@ namespace Hot4.Repository.Abstract
 {
     public interface IProfileRepository
     {
-        Task<ProfileModel?> GetProfileById(int profileId);
-        Task<List<ProfileModel>> ListProfile();
-        Task DeleteProfile(Profile profile);
-        Task AddProfile(Profile profile);
-        Task UpdateProfile(Profile profile);
+        Task<Profile?> GetProfileById(int profileId);
+        Task<List<Profile>> ListProfile();
+        Task<bool> DeleteProfile(Profile profile);
+        Task<bool> AddProfile(Profile profile);
+        Task<bool> UpdateProfile(Profile profile);
     }
 }

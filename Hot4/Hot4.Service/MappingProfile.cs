@@ -1,6 +1,7 @@
 ﻿
 using Hot4.DataModel.Models;
 using Hot4.ViewModel;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Hot4.Service
 {
@@ -103,6 +104,26 @@ namespace Hot4.Service
             CreateMap<Payment, PaymentModel>()
                 .ForMember(dst => dst.PaymentSource, opt => opt.MapFrom(src => src.PaymentSource.PaymentSource))
                 .ForMember(dst => dst.PaymentType, opt => opt.MapFrom(src => src.PaymentType.PaymentType)).ReverseMap();
+
+            CreateMap<ProductField, ProductFieldModel>().ReverseMap();
+
+            CreateMap<ProductMetaData, ProductMetaDataModel>()
+                .ForMember(dst => dst.BrandMetaId , opt => opt.MapFrom(src => src.ProductMetaId)).ReverseMap();
+
+            CreateMap<ProductMetaDataType, ProductMetaDataTypeModel>().ReverseMap();
+
+            CreateMap<Product, ProductModel>().ReverseMap();
+
+            CreateMap<ProfileDiscount, ProfileDiscountModel>()
+                .ForMember(dst => dst.BrandName, opt => opt.MapFrom(src => src.Brand.BrandName))
+                .ForMember(dst => dst.BrandSuffix, opt => opt.MapFrom(src => src.Brand.BrandSuffix))
+                .ForMember(dst => dst.NetworkId, opt => opt.MapFrom(src => src.Brand.NetworkId))
+                .ForMember(dst => dst.Network, opt => opt.MapFrom(src => src.Brand.Network))
+                .ForMember(dst => dst.NetworkPrefix, opt => opt.MapFrom(src => src.Brand.Network.Prefix)).ReverseMap();
+
+            CreateMap<Profile, ProfileModel>().ReverseMap();
+            CreateMap<ReservationLog, ReservationLogModel>().ReverseMap();
+
 
 
         }
