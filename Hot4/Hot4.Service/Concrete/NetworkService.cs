@@ -17,15 +17,20 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> AddNetwork(NetworkModel networks)
         {
-            var model = Mapper.Map<Networks>(networks);
-            return await _networkRepository.AddNetwork(model);
+            if (networks != null)
+            {
+                var model = Mapper.Map<Networks>(networks);
+                return await _networkRepository.AddNetwork(model);
+            }
+            return false;
+            
         }
         public async Task<bool> UpdateNetwork(NetworkModel networks)
         {
             var record = await GetEntityById(networks.NetworkId);
             if (record != null)
             {
-                var model = Mapper.Map(networks, record);
+                Mapper.Map(networks, record);
                 return await _networkRepository.UpdateNetwork(record);
             }
             return false;
@@ -44,18 +49,15 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         public async Task<List<NetworkBalanceModel>> GetBrandNetworkBalance()
         {
             return await _networkRepository.GetBrandNetworkBalance();
         }
-
         public async Task<List<NetworkModel>> GetNetworkIdentityByMobile(string mobile)
         {
             var records = await _networkRepository.GetNetworkIdentityByMobile(mobile);
             return Mapper.Map<List<NetworkModel>>(records);
         }
-
         private async Task<Networks?> GetEntityById(byte networkId)
         {
             return await _networkRepository.GetNetworkById(networkId);

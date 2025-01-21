@@ -6,7 +6,7 @@ namespace Hot4.Service.Abstract
     {
         Task<bool> SaveLimit(LimitModel limit);
         Task<bool> UpdateLimit(LimitModel limit);
-        Task<bool> DeleteLimit(LimitModel limit);
+        Task<bool> DeleteLimit(long LimitId);
         Task<LimitModel?> GetLimitById(long limitId);
         Task<LimitPendingModel?> GetLimitByNetworkAndAccountId(int networkid, long accountid);
     }

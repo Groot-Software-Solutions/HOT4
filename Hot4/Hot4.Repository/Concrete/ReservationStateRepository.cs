@@ -9,28 +9,33 @@ namespace Hot4.Repository.Concrete
     public class ReservationStateRepository : RepositoryBase<ReservationStates>, IReservationStateRepository
     {
         public ReservationStateRepository(HotDbContext context) : base(context) { }
-        public async Task AddReservationState(ReservationStates reservationState)
+        public async Task<bool> AddReservationState(ReservationStates reservationState)
         {
             await Create(reservationState);
             await SaveChanges();
+            return true;
         }
-        public async Task DeleteReservationState(ReservationStates reservationState)
+        public async Task<bool> DeleteReservationState(ReservationStates reservationState)
         {
             Delete(reservationState);
             await SaveChanges();
+            return true;
         }
-        public async Task<List<ReservationStateModel>> ListReservationState()
+
+        public async Task<ReservationStates?> GetReservationStateById(byte ReservationStateId)
         {
-            return await GetAll().Select(d => new ReservationStateModel
-            {
-                ReservationStateId = d.ReservationStateId,
-                ReservationState = d.ReservationState
-            }).ToListAsync();
+            return await GetById(ReservationStateId);
         }
-        public async Task UpdateReservationState(ReservationStates reservationState)
+
+        public async Task<List<ReservationStates>> ListReservationState()
+        {
+            return await GetAll().ToListAsync();
+        }
+        public async Task<bool> UpdateReservationState(ReservationStates reservationState)
         {
             Update(reservationState);
             await SaveChanges();
+            return true;
         }
     }
 }

@@ -88,6 +88,28 @@ namespace Hot4.Service
             services.AddTransient<ISelfTopUpStateService, SelfTopUpStateService>();
             services.AddTransient<ILogService, LogService>();
             services.AddTransient<ISelfTopUpService, SelfTopUpService>();
+
+            services.AddTransient<IAccessService, AccessService>();
+            services.AddTransient<IAccessWebService, AccessWebService>();
+            services.AddTransient<IAddressService, AddressService>();
+            services.AddTransient<IBankService, BankService>();
+            services.AddTransient<IBundleService, BundleService>();
+            services.AddTransient<IChannelService, ChannelService>();
+            services.AddTransient<IConfigService, ConfigService>();
+            services.AddTransient<IHotTypeService, HotTypeService>();
+            services.AddTransient<IPaymentService, PaymentService>();
+            services.AddTransient<IPaymentSourceService, PaymentSourceService>();
+            services.AddTransient<IPaymentTypeService, PaymentTypeService>();
+            services.AddTransient<IProductFieldService, ProductFieldService>();
+            services.AddTransient<IProductMetaDataService, ProductMetaDataService>();
+            services.AddTransient<IProductMetaDataTypeService, ProductMetaDataTypeService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IProfileDiscountService, ProfileDiscountService>();
+            services.AddTransient<IProfileService, ProfileService>();
+            services.AddTransient<IReservationLogService, ReservationLogService>();
+            services.AddTransient<IReservationService, ReservationService>();
+            services.AddTransient<IReservationStateService, ReservationStateService>();
+
             return services;
         }
     }

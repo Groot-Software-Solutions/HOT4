@@ -14,31 +14,28 @@ namespace Hot4.Service.Concrete
     public class BundleService : IBundleService
     {
         private readonly IBundleRepository  _bundleRepository;
-        private readonly IMapper _mapper;
-
+        private readonly IMapper Mapper;
         public BundleService(IBundleRepository bundleRepository , IMapper mapper)
         {
             _bundleRepository = bundleRepository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
         public async Task<bool> AddBundle(BundleModel bundleModel)
         {
             if (bundleModel != null)
             {
-             var model = _mapper.Map<Bundle>(bundleModel);
-            return   await _bundleRepository.AddBundle(model);
+             var model = Mapper.Map<Bundle>(bundleModel);
+            return await _bundleRepository.AddBundle(model);
             }
             return false;
-        }
-       
+        }    
         public async Task<bool> DeleteBundle(BundleModel bundleModel)
         {
             var record = await _bundleRepository.GetBundlesById(bundleModel.BundleId);
             if (record != null)
             {
-                var model = _mapper.Map<Bundle>(record);
-             return  await _bundleRepository.DeleteBundle(model);
-               
+             var model = Mapper.Map<Bundle>(record);
+             return await _bundleRepository.DeleteBundle(model);               
             }
             return false;   
         }
@@ -49,8 +46,7 @@ namespace Hot4.Service.Concrete
         }        
         public async Task<List<BundleModel>> ListBundles()
         {
-            return await _bundleRepository.ListBundles();
-           
+            return await _bundleRepository.ListBundles();           
         }      
         public async Task<bool> UpdateBundle(BundleModel bundleModel)
         {
@@ -58,7 +54,7 @@ namespace Hot4.Service.Concrete
 
             if (record != null) 
             {
-                var model = _mapper.Map<Bundle>(record); 
+                var model = Mapper.Map<Bundle>(record); 
               return  await _bundleRepository.UpdateBundle(model);
                
             }

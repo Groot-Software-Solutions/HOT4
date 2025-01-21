@@ -98,6 +98,11 @@ namespace Hot4.Service
             // Configs
             CreateMap<Configs, ConfigModel>().ReverseMap();
             CreateMap<HotTypes, HotTypeModel>().ReverseMap();
+
+            CreateMap<PaymentTypes, PaymentTypeModel>()
+                .ForMember(dst => dst.PaymentTypeText  , opt => opt.MapFrom(src => src.PaymentType))
+                .ReverseMap();
+
             CreateMap<Payment, PaymentModel>()
                 .ForMember(dst => dst.PaymentSource, opt => opt.MapFrom(src => src.PaymentSource.PaymentSource))
                 .ForMember(dst => dst.PaymentType, opt => opt.MapFrom(src => src.PaymentType.PaymentType)).ReverseMap();
@@ -120,6 +125,8 @@ namespace Hot4.Service
 
             CreateMap<Profile, ProfileModel>().ReverseMap();
             CreateMap<ReservationLog, ReservationLogModel>().ReverseMap();
+            CreateMap<Reservation, ReservationModel>().ReverseMap();
+            CreateMap<ReservationStates, ReservationStateModel>().ReverseMap();
 
 
 

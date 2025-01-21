@@ -15,11 +15,15 @@ namespace Hot4.Service.Concrete
             _rechargePrepaidRepository = rechargePrepaidRepository;
             Mapper = mapper;
         }
-
         public async Task<bool> AddRechargePrepaid(RechargePrepaidModel rechargeprepaid)
         {
-            var model = Mapper.Map<RechargePrepaid>(rechargeprepaid);
-            return await _rechargePrepaidRepository.AddRechargePrepaid(model);
+            if (rechargeprepaid != null)
+            {
+                var model = Mapper.Map<RechargePrepaid>(rechargeprepaid);
+                return await _rechargePrepaidRepository.AddRechargePrepaid(model);
+            }
+            return false;
+            
         }
 
         public async Task<RechargePrepaidModel?> GetRechargePrepaidById(long rechargeId)

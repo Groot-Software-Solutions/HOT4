@@ -10,25 +10,23 @@ namespace Hot4.Service.Concrete
     public class AccessWebService : IAccessWebService
     {
         private readonly IAccessWebRepository _accessWebRepository;
-        private readonly IMapper _mapper;
+        private readonly IMapper Mapper;
 
         public AccessWebService(IAccessWebRepository accessWebRepository , IMapper mapper)
         {
             _accessWebRepository = accessWebRepository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
         public async Task<AccessWebModel?> GetAccessWebById(long accessId)
         {
             var record = await GetEntityById(accessId);
-            return _mapper.Map<AccessWebModel>(record);
-            
-            
+            return Mapper.Map<AccessWebModel>(record);            
         }
         public async Task<bool> AddAccessWeb(AccessWebModel accessWebModel)
         {
             if (accessWebModel != null)
             {
-                var model = _mapper.Map<AccessWeb>(accessWebModel);
+                var model = Mapper.Map<AccessWeb>(accessWebModel);
                return await _accessWebRepository.AddAccessWeb(model);    
             }
             return false;
@@ -39,23 +37,20 @@ namespace Hot4.Service.Concrete
             var record = await GetEntityById(accessWebModel.AccessId);
             if (record != null)
             {
-                _mapper.Map(accessWebModel, record);
+                Mapper.Map(accessWebModel, record);
                return await _accessWebRepository.UpdateAccessWeb(record);
             }
-            return false;
-            
+            return false;            
         }
-        public async Task<bool> DeleteAccessWeb(AccessWebModel accessWebModel)
+        public async Task<bool> DeleteAccessWeb(long AccessId)
         {
-            var record = await GetEntityById(accessWebModel.AccessId);
+            var record = await GetEntityById(AccessId);
             if (record != null)
             {
                return await _accessWebRepository.DeleteAccessWeb(record);
             }
-            return false;
-            
+            return false;            
         }
-
         private async Task<AccessWeb?> GetEntityById (long AccessId)
         {
             return await _accessWebRepository.GetAccessWebById(AccessId);

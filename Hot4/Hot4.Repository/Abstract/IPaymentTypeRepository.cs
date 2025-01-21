@@ -5,9 +5,10 @@ namespace Hot4.Repository.Abstract
 {
     public interface IPaymentTypeRepository
     {
-        Task<List<PaymentTypeModel>> ListPaymentType();
-        Task AddPaymentType(PaymentTypes paymentType);
-        Task UpdatePaymentType(PaymentTypes paymentType);
-        Task DeletePaymentType(PaymentTypes paymentType);
+        Task<PaymentTypes> GetPaymentTypeById(byte PaymentTypeId);
+        Task<List<PaymentTypes>> ListPaymentType();
+        Task<bool> AddPaymentType(PaymentTypes paymentType);
+        Task<bool> UpdatePaymentType(PaymentTypes paymentType);
+        Task<bool> DeletePaymentType(PaymentTypes paymentType);
     }
 }

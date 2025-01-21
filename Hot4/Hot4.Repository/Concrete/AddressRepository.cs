@@ -10,13 +10,7 @@ namespace Hot4.Repository.Concrete
         public AddressRepository(HotDbContext context) : base(context) { }
         public async Task<Address?> GetAddressById(long accountId)
         {
-            var record = await GetById(accountId);
-            if (record != null)
-            {
-                return record;
-            }
-
-            return null;
+            return await GetById(accountId);
         }
         public async Task<bool> SaveAddress(Address address)
         {

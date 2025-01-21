@@ -13,19 +13,16 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
             return true;
         }
-
         public async Task<bool> DeleteBankvPayment(BankvPayment bankvPayment)
         {
             Delete(bankvPayment);
             await SaveChanges();
             return true;
         }
-
         public async Task<BankvPayment?> GetBankvPaymentByvPaymentId(string vPaymentId)
         {
             return await GetById(vPaymentId);
         }
-
         public async Task<bool> UpdateBankvPayment(BankvPayment bankvPayment)
         {
             Update(bankvPayment);

@@ -5,9 +5,10 @@ namespace Hot4.Repository.Abstract
 {
     public interface IReservationStateRepository
     {
-        Task AddReservationState(ReservationStates reservationState);
-        Task UpdateReservationState(ReservationStates reservationState);
-        Task DeleteReservationState(ReservationStates reservationState);
-        Task<List<ReservationStateModel>> ListReservationState();
+        Task <bool>AddReservationState(ReservationStates reservationState);
+        Task<bool> UpdateReservationState(ReservationStates reservationState);
+        Task <bool>DeleteReservationState(ReservationStates reservationState);
+        Task<List<ReservationStates>> ListReservationState();
+        Task<ReservationStates> GetReservationStateById(byte ReservationStateId);
     }
 }

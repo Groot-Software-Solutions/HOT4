@@ -9,25 +9,22 @@ namespace Hot4.Service.Concrete
     public class ChannelService : IChannelService
     {
         private readonly IChannelRepository _channelRepository;
-        private readonly IMapper _mapper;
-
-
+        private readonly IMapper Mapper;
         public ChannelService(IChannelRepository channelRepository , IMapper mapper)
         {
             _channelRepository = channelRepository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
         public async Task<List<ChannelModel>> ListChannel()
         {
             var records = await _channelRepository.ListChannel();
-            var model = _mapper.Map<List<ChannelModel>>(records);
-            return model; 
+            return Mapper.Map<List<ChannelModel>>(records); 
         }
         public async Task<bool> AddChannel(ChannelModel channelModel)
         {
             if (channelModel != null)
             {
-                var model = _mapper.Map<Channels>(channelModel);
+                var model = Mapper.Map<Channels>(channelModel);
                return await _channelRepository.AddChannel(model);
             }
             return false;
@@ -37,14 +34,14 @@ namespace Hot4.Service.Concrete
             var record = await GetEntityById(channelModel.ChannelId);
             if (record != null)
             {
-                _mapper.Map(channelModel, record);
+             Mapper.Map(channelModel, record);
              return  await _channelRepository.UpdateChannel(record);
             }
             return false;
         }
-        public async Task<bool> DeleteChannel(ChannelModel channelModel)
+        public async Task<bool> DeleteChannel(byte ChannelId)
         {
-            var record = await GetEntityById(channelModel.ChannelId);
+            var record = await GetEntityById(ChannelId);
             if (record != null)
             {
               return await _channelRepository.DeleteChannel(record);
@@ -54,9 +51,8 @@ namespace Hot4.Service.Concrete
         public async Task<ChannelModel> GetByChannelId(byte channelId)
         {
             var record = await GetEntityById(channelId);
-            return _mapper.Map<ChannelModel>(record);
+            return Mapper.Map<ChannelModel>(record);
         }
-
         private async Task<Channels> GetEntityById(byte ChannelId) 
         {
             return await _channelRepository.GetByChannelId(ChannelId);

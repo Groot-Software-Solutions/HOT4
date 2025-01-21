@@ -32,10 +32,9 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
             return true;
         }
-        public Task<Configs> GetConfigById(byte ConfigId)
+        public async Task<Configs?> GetConfigById(byte ConfigId)
         {
-            var record = GetById(ConfigId);
-            return record;
+            return await GetById(ConfigId);
         }
     }
 }

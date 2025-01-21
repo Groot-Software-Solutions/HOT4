@@ -14,24 +14,24 @@ namespace Hot4.Service.Concrete
     public class ConfigService : IConfigService
     {
         private readonly IConfigRepository _configRepository;
-        private readonly IMapper _mapper;
+        private readonly IMapper Mapper;
         public ConfigService(IConfigRepository configRepository , IMapper mapper)
         {
             _configRepository = configRepository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
         public async Task<bool> AddConfig(ConfigModel configModel)
         {
             if (configModel != null)
             {
-                var model = _mapper.Map<Configs>(configModel);
+                var model = Mapper.Map<Configs>(configModel);
              return  await _configRepository.AddConfig(model);
             }
             return false;
         } 
-        public async Task<bool> DeleteConfig(ConfigModel configModel)
+        public async Task<bool> DeleteConfig(byte ConfigId)
         {
-            var record = await GetEntityById(configModel.ConfigId);
+            var record = await GetEntityById(ConfigId);
             if (record != null)
             {
              return  await _configRepository.DeleteConfig(record);
@@ -41,26 +41,23 @@ namespace Hot4.Service.Concrete
         public async Task<ConfigModel> GetConfigById(byte ConfigId)
         {
             var record = await GetEntityById(ConfigId); 
-            return _mapper.Map<ConfigModel>(record);
+            return Mapper.Map<ConfigModel>(record);
         }
-
         public async Task<List<ConfigModel>> ListConfig()
         {
             var records = await _configRepository.ListConfig();
-            return  _mapper.Map<List<ConfigModel>>(records);
-            
+            return  Mapper.Map<List<ConfigModel>>(records);           
         }
         public async Task<bool> UpdateConfig(ConfigModel configModel)
         {
             var record = await GetEntityById(configModel.ConfigId);
             if (record != null) 
             {
-                _mapper.Map(configModel, record);
+                Mapper.Map(configModel, record);
               return await _configRepository.UpdateConfig(record);
             }
             return false;
         }
-
         private async Task<Configs> GetEntityById (byte ConfigId)
         {
             return await _configRepository.GetConfigById(ConfigId);

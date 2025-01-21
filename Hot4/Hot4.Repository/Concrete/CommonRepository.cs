@@ -67,7 +67,6 @@ namespace Hot4.Repository.Concrete
 
             return paymentsSum + rechargeSum;
         }
-
         public async Task<decimal> GetSaleValue(long accountId)
         {
             var discountAvg = await (from d in _context.ProfileDiscount
@@ -88,7 +87,6 @@ namespace Hot4.Repository.Concrete
             }
             return returnValue;
         }
-
         public async Task<List<ViewBalanceModel>> GetViewBalanceList(List<long> accountIds)
         {
             var paymentData = await (from p in _context.Payment.Where(d => EF.Constant(accountIds)

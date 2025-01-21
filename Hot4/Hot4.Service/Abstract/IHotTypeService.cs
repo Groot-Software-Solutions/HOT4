@@ -15,6 +15,6 @@ namespace Hot4.Service.Abstract
         Task<byte?> GetHotTypeIdentity(string typeCode, byte splitCount);
         Task<bool> AddHotType(HotTypeModel hotTypeModel);
         Task<bool> UpdateHotType(HotTypeModel hotTypeModel);
-        Task<bool> DeleteHotType(HotTypeModel hotTypeModel);
+        Task<bool> DeleteHotType(byte HotTypeId);
     }
 }

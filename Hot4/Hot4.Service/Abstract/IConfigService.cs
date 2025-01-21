@@ -14,6 +14,6 @@ namespace Hot4.Service.Abstract
         Task<List<ConfigModel>> ListConfig();
         Task<bool> AddConfig(ConfigModel configModel);
         Task<bool> UpdateConfig(ConfigModel configModel);
-        Task<bool> DeleteConfig(ConfigModel configModel);
+        Task<bool> DeleteConfig(byte ConfigId);
     }
 }

@@ -8,6 +8,6 @@ namespace Hot4.Service.Abstract
         Task<AccessWebModel?> GetAccessWebById(long accessId);
         Task<bool> AddAccessWeb(AccessWebModel accessWebModel);
         Task <bool>UpdateAccessWeb(AccessWebModel accessWebModel);
-        Task<bool> DeleteAccessWeb(AccessWebModel accessWebModel);
+        Task<bool> DeleteAccessWeb(long AccessId);
     }
 }

@@ -14,56 +14,51 @@ namespace Hot4.Service.Concrete
     public class ProductMetaDataTypeService : IProductMetaDataTypeService
     {
         private readonly IProductMetaDataTypeRepository _productMetaDataTypeRepository;
-        private readonly IMapper _mapper;
+        private readonly IMapper Mapper;
 
         public ProductMetaDataTypeService(IProductMetaDataTypeRepository productMetaDataTypeRepository, IMapper mapper)
         {
             _productMetaDataTypeRepository = productMetaDataTypeRepository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
         public async Task<bool> AddProductMetaDataType(ProductMetaDataTypeModel productMetaDataTypeModel)
         {
             if (productMetaDataTypeModel != null)
             {
-              var model =  _mapper.Map<ProductMetaDataType>(productMetaDataTypeModel);
+              var model =  Mapper.Map<ProductMetaDataType>(productMetaDataTypeModel);
                 return await _productMetaDataTypeRepository.AddProductMetaDataType(model);
             }
             return false;
         }
-
-        public async Task<bool> DeleteProductMetaDataType(ProductMetaDataTypeModel productMetaDataTypeModel)
+        public async Task<bool> DeleteProductMetaDataType(byte ProductMetaDataTypeId)
         {
-            var record = await GetEntityById(productMetaDataTypeModel.ProductMetaDataTypeId);
+            var record = await GetEntityById(ProductMetaDataTypeId);
             if (record != null)
             {
                return await _productMetaDataTypeRepository.DeleteProductMetaDataType(record);
             }
             return false;
         }
-
         public async Task<ProductMetaDataTypeModel> GetProductMetaDataTypeById(byte ProductMetaDataTypeId)
         {
             var record = await _productMetaDataTypeRepository.GetProductMetaDataTypeById(ProductMetaDataTypeId);
-            return _mapper.Map<ProductMetaDataTypeModel>(record);   
+            return Mapper.Map<ProductMetaDataTypeModel>(record);   
         }
-
         public async Task<List<ProductMetaDataTypeModel>> ListProductMetaDataType()
         {
             var records = await _productMetaDataTypeRepository.ListProductMetaDataType();
-            return  _mapper.Map<List<ProductMetaDataTypeModel>>(records);
+            return  Mapper.Map<List<ProductMetaDataTypeModel>>(records);
         }
-
         public async Task<bool> UpdateProductMetaDataType(ProductMetaDataTypeModel productMetaDataTypeModel)
         {
             var record = await GetEntityById(productMetaDataTypeModel.ProductMetaDataTypeId); 
             if (record != null)
             {
-                _mapper.Map(productMetaDataTypeModel, record);
+                Mapper.Map(productMetaDataTypeModel, record);
               await _productMetaDataTypeRepository.UpdateProductMetaDataType(record);
             }
             return false;
         }
-
         private async Task<ProductMetaDataType> GetEntityById (byte ProductMetaDataTypeId)
         {
             return await _productMetaDataTypeRepository.GetProductMetaDataTypeById (ProductMetaDataTypeId);

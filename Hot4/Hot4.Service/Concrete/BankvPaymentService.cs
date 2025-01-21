@@ -8,7 +8,7 @@ namespace Hot4.Service.Concrete
 {
     public class BankvPaymentService : IBankvPaymentService
     {
-        private IBankvPaymentRepository _bankvPaymentRepository;
+        private readonly IBankvPaymentRepository _bankvPaymentRepository;
         private readonly IMapper Mapper;
 
         public BankvPaymentService(IBankvPaymentRepository bankvPaymentRepository, IMapper mapper)
@@ -18,10 +18,13 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> AddBankvPayment(BankvPaymentModel bankvPayment)
         {
-            var model = Mapper.Map<BankvPayment>(bankvPayment);
-            return await _bankvPaymentRepository.AddBankvPayment(model);
+            if (bankvPayment != null)
+            {
+                var model = Mapper.Map<BankvPayment>(bankvPayment);
+                return await _bankvPaymentRepository.AddBankvPayment(model);
+            }
+            return false;            
         }
-
         public async Task<bool> DeleteBankvPayment(string vPaymentId)
         {
             var record = await GetEntityById(vPaymentId);
@@ -31,13 +34,11 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         public async Task<BankvPaymentModel?> GetBankvPaymentByvPaymentId(string vPaymentId)
         {
             var record = await GetEntityById(vPaymentId);
             return Mapper.Map<BankvPaymentModel?>(record);
         }
-
         public async Task<bool> UpdateBankvPayment(BankvPaymentModel bankvPayment)
         {
             var record = await GetEntityById(bankvPayment.VPaymentId.ToString());
@@ -48,7 +49,6 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         private async Task<BankvPayment?> GetEntityById (string VPaymentId)
         {
             return await _bankvPaymentRepository.GetBankvPaymentByvPaymentId(VPaymentId);

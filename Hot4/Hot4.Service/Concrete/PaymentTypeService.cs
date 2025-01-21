@@ -1,4 +1,7 @@
-﻿using Hot4.Service.Abstract;
+﻿using AutoMapper;
+using Hot4.DataModel.Models;
+using Hot4.Repository.Abstract;
+using Hot4.Service.Abstract;
 using Hot4.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -10,29 +13,54 @@ namespace Hot4.Service.Concrete
 {
     public class PaymentTypeService : IPaymentTypeService
     {
-        public Task<bool> AddPaymentType(PaymentTypeModel paymentTypeModel)
+        private readonly IPaymentTypeRepository _paymentTypeRepository;
+        private readonly IMapper Mapper;
+        public PaymentTypeService(IPaymentTypeRepository paymentTypeRepository , IMapper mapper)
         {
-            throw new NotImplementedException();
+            _paymentTypeRepository = paymentTypeRepository;
+            Mapper = mapper;
         }
-
-        public Task<bool> DeletePaymentType(PaymentTypeModel paymentTypeModel)
+        public async Task<bool> AddPaymentType(PaymentTypeModel paymentTypeModel)
         {
-            throw new NotImplementedException();
+            if (paymentTypeModel != null)
+            {
+                var model = Mapper.Map<PaymentTypes>(paymentTypeModel);
+              return await _paymentTypeRepository.AddPaymentType(model);
+            }
+            return false;
         }
-
-        public Task<PaymentTypeModel> GetPaymentTypeById(byte PaymentTypeId)
+        public async Task<bool> DeletePaymentType(byte PaymentTypeId)
         {
-            throw new NotImplementedException();
+            var record = await GetEntityById(PaymentTypeId);
+            if (record != null)
+            {
+              return await _paymentTypeRepository.DeletePaymentType(record);
+            }
+            return false;
         }
-
-        public Task<List<PaymentTypeModel>> ListPaymentType()
+        public async Task<PaymentTypeModel> GetPaymentTypeById(byte PaymentTypeId)
         {
-            throw new NotImplementedException();
+            var record = await GetEntityById(PaymentTypeId);
+            return Mapper.Map<PaymentTypeModel>(record);
         }
-
-        public Task<bool> UpdatePaymentType(PaymentTypeModel paymentTypeModel)
+        public async Task<List<PaymentTypeModel>> ListPaymentType()
         {
-            throw new NotImplementedException();
+            var records = await _paymentTypeRepository.ListPaymentType();
+            return Mapper.Map<List<PaymentTypeModel>>(records);
+        }
+        public async Task<bool> UpdatePaymentType(PaymentTypeModel paymentTypeModel)
+        {
+            var record = await GetEntityById(paymentTypeModel.PaymentTypeId); 
+            if (record != null)
+            {
+                Mapper.Map(paymentTypeModel , record);
+                return await _paymentTypeRepository.UpdatePaymentType(record);
+            }
+            return false;
+        }
+        private async Task<PaymentTypes> GetEntityById (byte PaymentTypeId)
+        {
+            return await _paymentTypeRepository.GetPaymentTypeById(PaymentTypeId);
         }
     }
 }

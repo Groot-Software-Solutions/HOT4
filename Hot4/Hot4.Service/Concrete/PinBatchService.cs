@@ -8,7 +8,7 @@ namespace Hot4.Service.Concrete
 {
     public class PinBatchService : IPinBatchService
     {
-        private IPinBatchRepository _pinBatchRepository;
+        private readonly IPinBatchRepository _pinBatchRepository;
         private readonly IMapper Mapper;
         public PinBatchService(IPinBatchRepository pinBatchRepository, IMapper mapper)
         {
@@ -17,32 +17,32 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> AddPinBatch(PinBatchToDo pinBatches)
         {
-            var model = Mapper.Map<PinBatches>(pinBatches);
-            return await _pinBatchRepository.AddPinBatch(model);
+            if (pinBatches != null)
+            {
+                var model = Mapper.Map<PinBatches>(pinBatches);
+                return await _pinBatchRepository.AddPinBatch(model);
+            }
+            return false;
         }
-
-        public async Task<bool> DeletePinBatch(PinBatchToDo pinBatches)
+        public async Task<bool> DeletePinBatch(long PinBatchId)
         {
-            var record = await GetEntityById(pinBatches.PinBatchId);
+            var record = await GetEntityById(PinBatchId);
             if (record != null)
             {
                 return await _pinBatchRepository.DeletePinBatch(record);
             }
             return false;
         }
-
         public async Task<PinBatchModel?> GetPinBatchById(long pinBatchId)
         {
             var record = await GetEntityById(pinBatchId);
             return Mapper.Map<PinBatchModel>(record);
         }
-
         public async Task<List<PinBatchModel>> GetPinBatchByPinBatchTypeId(byte pinBatchTypeId)
         {
             var records = await _pinBatchRepository.GetPinBatchByPinBatchTypeId(pinBatchTypeId);
             return Mapper.Map<List<PinBatchModel>>(records);
         }
-
         public async Task<bool> UpdatePinBatch(PinBatchToDo pinBatches)
         {
             var record = await GetEntityById(pinBatches.PinBatchId);
@@ -53,7 +53,6 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         private async Task<PinBatches?> GetEntityById (long PinBatchId)
         {
             return await _pinBatchRepository.GetPinBatchById(PinBatchId);

@@ -6,7 +6,7 @@ namespace Hot4.Service.Abstract
     {
         Task<bool> AddPinBatchType(PinBatchTypeModel pinBatchTypes);
         Task<bool> UpdatePinBatchType(PinBatchTypeModel pinBatchTypes);
-        Task<bool> DeletePinBatchType(PinBatchTypeModel pinBatchTypes);
+        Task<bool> DeletePinBatchType(byte PinBatchTypeId);
         Task<List<PinBatchTypeModel>> ListPinBatchType();
     }
 }
