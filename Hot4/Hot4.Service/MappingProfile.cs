@@ -93,8 +93,11 @@ namespace Hot4.Service
             // Channel
             CreateMap<Channels, ChannelModel>().ReverseMap();
             // Bundel
-            CreateMap<Bundle, BundleModel>().ReverseMap();
-            // Configs
+            CreateMap<Bundle, BundleModel>()
+                .ForMember(dst => dst.Network, opt => opt.MapFrom(src => src.Brand.Network.Network))
+                .ForMember(dst => dst.BrandName, opt => opt.MapFrom(src => src.Brand.BrandName))
+                .ReverseMap();
+            CreateMap<Bundle, BundleToDo>().ReverseMap();
             CreateMap<Configs, ConfigModel>().ReverseMap();
             CreateMap<HotTypes, HotTypeModel>().ReverseMap();
             CreateMap<Payment, PaymentModel>()

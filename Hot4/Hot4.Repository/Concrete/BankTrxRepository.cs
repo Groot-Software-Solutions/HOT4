@@ -237,23 +237,7 @@ namespace Hot4.Repository.Concrete
                           where bp.VPaymentId == vpaymentId
                           orderby bnkTrx.BankTrxId descending
                           select bnkTrx).ToListAsync();
-            //.Select(d => new BankTransactionModel
-            //{
-            //    Amount = d.Amount,
-            //    Balance = d.Balance,
-            //    BankRef = d.BankRef,
-            //    BankTrxBatchId = d.BankTrxBatchId,
-            //    BankTrxId = d.BankTrxId,
-            //    BankTrxState = d.BankTrxState.BankTrxState,
-            //    BankTrxStateId = d.BankTrxStateId,
-            //    BankTrxType = d.BankTrxType.BankTrxType,
-            //    BankTrxTypeId = d.BankTrxTypeId,
-            //    Branch = d.Branch,
-            //    Identifier = d.Identifier,
-            //    PaymentId = d.PaymentId,
-            //    RefName = d.RefName,
-            //    TrxDate = d.TrxDate
-            //}).ToListAsync();
+
         }
         public async Task<int?> GetEcoCashPendingTrxCount(EcoCashSearchModel ecoCashSearch)
         {

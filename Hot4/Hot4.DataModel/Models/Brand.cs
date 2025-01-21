@@ -32,4 +32,5 @@ public partial class Brand
     public virtual ICollection<SelfTopUp> SelfTopUps { get; set; } = new List<SelfTopUp>();
 
     public virtual ICollection<Subscriber> Subscribers { get; set; } = new List<Subscriber>();
+    public virtual ICollection<Bundle> Bundle { get; set; } = new List<Bundle>();
 }

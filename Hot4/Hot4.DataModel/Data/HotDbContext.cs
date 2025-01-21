@@ -398,6 +398,11 @@ namespace Hot4.DataModel.Data
                     .HasDefaultValue("");
                 entity.Property(e => e.ProductCode).HasMaxLength(10);
                 entity.Property(e => e.ValidityPeriod).HasComment("Validity Period in Days");
+
+                entity.HasOne(d => d.Brand).WithMany(p => p.Bundle)
+                .HasForeignKey(d => d.BrandId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblBundle_tblBrand");
             });
 
             modelBuilder.Entity<Channels>(entity =>
