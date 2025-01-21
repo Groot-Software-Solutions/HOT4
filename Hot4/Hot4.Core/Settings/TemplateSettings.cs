@@ -9,5 +9,7 @@
         public string PinRechargePromoLowFund { get; set; }
         public string PinRechargePromoStock { get; set; }
         public string PinRechargePromoSuccess { get; set; }
+        public string RechargeNotificationSubject { get; set; }
+        public string RechargeNotificationBody { get; set; }
     }
 }
