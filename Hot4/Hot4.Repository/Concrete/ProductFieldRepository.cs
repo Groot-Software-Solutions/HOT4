@@ -28,17 +28,10 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
             return true;
         }
-        public async Task<List<ProductFieldModel>> ListProductField()
+        public async Task<List<ProductField>> ListProductField()
         {
-            return await GetAll()
-                .Select(d => new ProductFieldModel
-                {
-                    BrandFieldId = d.BrandFieldId,
-                    DataType = d.DataType,
-                    Description = d.Description,
-                    FieldName = d.FieldName,
-                    ProductId = d.ProductId
-                }).ToListAsync();
+            return await GetAll().ToListAsync();
+              
         }
 
         public async Task<ProductField?> GetProductFieldById(int BrandFieldId)

@@ -5,12 +5,12 @@ namespace Hot4.Repository.Abstract
 {
     public interface IProfileDiscountRepository
     {
-        Task<ProfileDiscountModel?> GetPrfDiscountById(int prfDiscountId);
-        Task<int> AddPrfDiscount(ProfileDiscount prfDiscount);
-        Task UpdatePrfDiscount(ProfileDiscount prfDiscount);
-        Task DeletePrfDiscount(ProfileDiscount prfDiscount);
-        Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileId(int profileId);
-        Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileAndBrandId(int profileId, int brandId);
+        Task<ProfileDiscount?> GetPrfDiscountById(int prfDiscountId);
+        Task<bool> AddPrfDiscount(ProfileDiscount prfDiscount);
+        Task<bool> UpdatePrfDiscount(ProfileDiscount prfDiscount);
+        Task<bool> DeletePrfDiscount(ProfileDiscount prfDiscount);
+        Task<List<ProfileDiscount>> GetPrfDiscountByProfileId(int profileId);
+        Task<List<ProfileDiscount>> GetPrfDiscountByProfileAndBrandId(int profileId, int brandId);
 
     }
 }
