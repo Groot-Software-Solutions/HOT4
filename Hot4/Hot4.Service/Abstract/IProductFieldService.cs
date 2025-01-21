@@ -14,6 +14,6 @@ namespace Hot4.Service.Abstract
         Task<List<ProductFieldModel>> ListProductField();
         Task<bool> AddProductField(ProductFieldModel productFieldModel);
         Task<bool> UpdateProductField(ProductFieldModel productFieldModel);
-        Task<bool> DeleteProductField(ProductFieldModel productFieldModel);
+        Task<bool> DeleteProductField(int BrandFieldId);
     }
 }

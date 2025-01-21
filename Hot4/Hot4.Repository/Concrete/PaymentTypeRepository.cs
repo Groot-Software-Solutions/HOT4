@@ -9,31 +9,31 @@ namespace Hot4.Repository.Concrete
     public class PaymentTypeRepository : RepositoryBase<PaymentTypes>, IPaymentTypeRepository
     {
         public PaymentTypeRepository(HotDbContext context) : base(context) { }
-
-        public async Task AddPaymentType(PaymentTypes paymentType)
+        public async Task<bool> AddPaymentType(PaymentTypes paymentType)
         {
             await Create(paymentType);
             await SaveChanges();
+            return true;
         }
-        public async Task DeletePaymentType(PaymentTypes paymentType)
+        public async Task<bool> DeletePaymentType(PaymentTypes paymentType)
         {
             Delete(paymentType);
             await SaveChanges();
+            return true;
         }
-        public async Task UpdatePaymentType(PaymentTypes paymentType)
+        public async Task<bool> UpdatePaymentType(PaymentTypes paymentType)
         {
             Update(paymentType);
             await SaveChanges();
+            return true;
         }
-        public async Task<List<PaymentTypeModel>> ListPaymentType()
+        public async Task<List<PaymentTypes>> ListPaymentType()
         {
-            return await GetAll()
-                .Select(d => new PaymentTypeModel
-                {
-                    PaymentTypeId = d.PaymentTypeId,
-                    PaymentType = d.PaymentType,
-                    PaymentTypeText = d.PaymentType
-                }).ToListAsync();
+            return await GetAll().ToListAsync();
+        }
+        public async Task<PaymentTypes?> GetPaymentTypeById(byte PaymentTypeId)
+        {
+            return await GetById(PaymentTypeId);
         }
     }
 }

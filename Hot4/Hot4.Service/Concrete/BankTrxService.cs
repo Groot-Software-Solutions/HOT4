@@ -8,7 +8,7 @@ namespace Hot4.Service.Concrete
 {
     public class BankTrxService : IBankTrxService
     {
-        private IBankTrxRepository _bankTrxRepository;
+        private readonly IBankTrxRepository _bankTrxRepository;
         private readonly IMapper Mapper;
         public BankTrxService(IBankTrxRepository bankTrxRepository, IMapper mapper)
         {
@@ -40,7 +40,6 @@ namespace Hot4.Service.Concrete
             var record = await _bankTrxRepository.GetTrxByRef(bankRef);
             return Mapper.Map<BankTransactionModel?>(record);
         }
-
         public async Task<long?> GetDuplicateTrx(BankTransactionSearchModel bankTransactionSearch)
         {
             return await _bankTrxRepository.GetDuplicateTrx(bankTransactionSearch);
@@ -57,8 +56,12 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> AddBankTrx(BankTrxRecord bankTransaction)
         {
-            var model = Mapper.Map<BankTrx>(bankTransaction);
-            return await _bankTrxRepository.AddBankTrx(model);
+            if (bankTransaction != null)
+            {
+                var model = Mapper.Map<BankTrx>(bankTransaction);
+                return await _bankTrxRepository.AddBankTrx(model);
+            }
+            return false;
         }
 
         public async Task<bool> UpdateBankTrx(BankTrxRecord bankTransaction)
@@ -71,7 +74,6 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         private async Task<BankTrx?> GetEntityById (long BankTrxId)
         {
             return await _bankTrxRepository.GetTrxById(BankTrxId);

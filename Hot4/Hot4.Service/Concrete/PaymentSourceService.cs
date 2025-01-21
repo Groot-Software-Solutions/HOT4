@@ -14,57 +14,51 @@ namespace Hot4.Service.Concrete
     public class PaymentSourceService : IPaymentSourceService
     {
         private readonly IPaymentSourceRepository _paymentSourceRepository;
-        private readonly IMapper _mapper;
+        private readonly IMapper Mapper;
 
         public PaymentSourceService(IPaymentSourceRepository paymentSourceRepository, IMapper mapper)
         {
             _paymentSourceRepository = paymentSourceRepository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
         public async Task<bool> AddPaymentSource(PaymentSourceModel paymentSourceModel)
         {
             if (paymentSourceModel != null )
             {
-                var model = _mapper.Map<PaymentSources>(paymentSourceModel);
+                var model = Mapper.Map<PaymentSources>(paymentSourceModel);
                 return await _paymentSourceRepository.AddPaymentSource(model);
             }
             return false;
         }
-
-        public async Task<bool> DeletePaymentSource(PaymentSourceModel paymentSourceModel)
+        public async Task<bool> DeletePaymentSource(byte PaymentSourceId)
         {
-            var record = await GetEntityById(paymentSourceModel.PaymentSourceId);
+            var record = await GetEntityById(PaymentSourceId);
             if (record != null)
             {
                 return await _paymentSourceRepository.DeletePaymentSource(record);
             }
             return false;
         }
-
         public async Task<PaymentSourceModel> GetPaymentSourceById(byte PaymentSourceId)
         {
             var record = await GetEntityById(PaymentSourceId);
-            return _mapper.Map<PaymentSourceModel>(record);
+            return Mapper.Map<PaymentSourceModel>(record);
         }
-
         public async Task<List<PaymentSourceModel>> ListPaymentSource()
         {
             var records = await _paymentSourceRepository.ListPaymentSource();
-            var model = _mapper.Map<List<PaymentSourceModel>>(records);
-            return model;
+            return Mapper.Map<List<PaymentSourceModel>>(records);
         }
-
         public async Task<bool> UpdatePaymentSource(PaymentSourceModel paymentSourceModel)
         {
             var record = await GetEntityById(paymentSourceModel.PaymentSourceId);
             if (record != null)
             {
-                _mapper.Map(paymentSourceModel, record);
+                Mapper.Map(paymentSourceModel, record);
                 return await _paymentSourceRepository.UpdatePaymentSource(record);
             }
             return false; 
         }
-
         private async Task<PaymentSources> GetEntityById(byte PaymentSourceId)
         {
             return await _paymentSourceRepository.GetPaymentSourceById(PaymentSourceId);

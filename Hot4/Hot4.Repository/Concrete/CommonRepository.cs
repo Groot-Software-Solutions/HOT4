@@ -86,7 +86,6 @@ namespace Hot4.Repository.Concrete
             }
             return returnValue;
         }
-
         public async Task<List<ViewBalanceModel>> GetViewBalanceList(List<long> accountIds)
         {
             var paymentData = await _context.Payment

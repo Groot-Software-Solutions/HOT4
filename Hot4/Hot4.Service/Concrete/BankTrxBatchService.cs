@@ -8,7 +8,7 @@ namespace Hot4.Service.Concrete
 {
     public class BankTrxBatchService : IBankTrxBatchService
     {
-        private IBankTrxBatchRepository _bankTrxBatchRepository;
+        private readonly IBankTrxBatchRepository _bankTrxBatchRepository;
         private readonly IMapper Mapper;
         public BankTrxBatchService(IBankTrxBatchRepository bankTrxBatchRepository, IMapper mapper)
         {
@@ -18,9 +18,12 @@ namespace Hot4.Service.Concrete
 
         public async Task<bool> AddBatch(BankTrxBatchRecord bankTrxBatch)
         {
-            var model = Mapper.Map<BankTrxBatch>(bankTrxBatch);
-            await _bankTrxBatchRepository.AddBatch(model);
-            return true;
+            if (bankTrxBatch != null)
+            {
+              var model = Mapper.Map<BankTrxBatch>(bankTrxBatch);
+              return  await _bankTrxBatchRepository.AddBatch(model);
+            }         
+            return false;
         }
         public async Task<bool> UpdateBatch(BankTrxBatchRecord bankTrxBatch)
         {
@@ -46,24 +49,20 @@ namespace Hot4.Service.Concrete
             var record = await GetEntityById(batchId);
             return Mapper.Map<BankBatchModel?>(record);
         }
-
         public async Task<List<BankBatchModel>> GetBatchByBankId(byte bankId)
         {
             var records = await _bankTrxBatchRepository.GetBatchByBankId(bankId);
             return Mapper.Map<List<BankBatchModel>>(records);
         }
-
         public async Task<BankBatchModel?> GetCurrentBatch(byte bankId, string batchReference, string lastUser)
         {
             var record = await _bankTrxBatchRepository.GetCurrentBatch(bankId, batchReference, lastUser);
             return Mapper.Map<BankBatchModel?>(record);
         }
-
         public async Task<long?> GetCurrentBatchByBankIdAndRefId(byte bankId, string batchRef = null)
         {
             return await _bankTrxBatchRepository.GetCurrentBatchByBankIdAndRefId(bankId, batchRef);
         }
-
         private async Task<BankTrxBatch?> GetEntityById (long BankTrxBatchId)
         {
             return await _bankTrxBatchRepository.GetBatchById(BankTrxBatchId);

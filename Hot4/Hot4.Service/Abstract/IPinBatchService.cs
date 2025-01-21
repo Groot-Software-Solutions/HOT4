@@ -7,7 +7,7 @@ namespace Hot4.Service.Abstract
 
         Task<bool> AddPinBatch(PinBatchRecord pinBatches);
         Task<bool> UpdatePinBatch(PinBatchRecord pinBatches);
-        Task<bool> DeletePinBatch(PinBatchRecord pinBatches);
+        Task<bool> DeletePinBatch(long pinBatchId);
         Task<List<PinBatchModel>> GetPinBatchByPinBatchTypeId(byte pinBatchTypeId);
         Task<PinBatchModel?> GetPinBatchById(long pinBatchId);
     }

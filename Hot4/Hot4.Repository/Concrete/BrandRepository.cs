@@ -15,14 +15,12 @@ namespace Hot4.Repository.Concrete
             return await _context.Brand.Include(d => d.Network)
                 .FirstOrDefaultAsync(d => d.BrandId == BrandId);
         }
-
         public async Task<List<Brand>> GetBrandIdentity(BrandIdentitySearchModel brandIdentitySearchModel)
         {
             return await GetByCondition(d => d.NetworkId == brandIdentitySearchModel.NetworkId
                          && d.BrandSuffix == brandIdentitySearchModel.BrandSuffix)
                          .Include(d => d.Network).ToListAsync();
         }
-
         public async Task<List<Brand>> ListBrand()
         {
             return await GetAll()

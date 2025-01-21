@@ -62,7 +62,6 @@ namespace Hot4.Repository.Concrete
                 return bankTrxBatchId?.BankTrxBatchId;
             }
         }
-
         public async Task<BankTrxBatch?> GetCurrentBatch(byte bankId, string batchReference, string lastUser)
         {
             long? bankTrxBatchId = null;

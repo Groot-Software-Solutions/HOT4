@@ -14,17 +14,17 @@ namespace Hot4.Service.Concrete
     public class ReservationLogService : IReservationLogService
     {
         private readonly IReservationLogRepository _reservationLogRepository;
-        private readonly IMapper _mapper;
+        private readonly IMapper Mapper;
         public ReservationLogService(IReservationLogRepository reservationLogRepository , IMapper mapper)
         {
             _reservationLogRepository = reservationLogRepository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
         public async Task<bool> AddReservationLog(ReservationLogModel reservationLogModel)
         {
             if (reservationLogModel != null)
             {
-                var model = _mapper.Map<ReservationLog>(reservationLogModel);
+                var model = Mapper.Map<ReservationLog>(reservationLogModel);
                 return await _reservationLogRepository.AddReservationLog(model);
             }
             return false;
@@ -43,13 +43,13 @@ namespace Hot4.Service.Concrete
         public async Task<ReservationLogModel> GetReservationLogById(long ReservationLogId)
         {
             var record = await getEntityById(ReservationLogId);
-            return _mapper.Map<ReservationLogModel>(record);
+            return Mapper.Map<ReservationLogModel>(record);
         }
 
         public async Task<List<ReservationLogModel>> ListReservationLog(int pageNo, int pageSize)
         {
             var records = await _reservationLogRepository.ListReservationLog(pageNo, pageSize);
-            return  _mapper.Map<List<ReservationLogModel>>(records);
+            return  Mapper.Map<List<ReservationLogModel>>(records);
         }
 
         public async Task<bool> UpdateReservationLog(ReservationLogModel reservationLogModel)
@@ -57,7 +57,7 @@ namespace Hot4.Service.Concrete
             var record = await getEntityById(reservationLogModel.ReservationId);
             if (record != null)
             {
-                _mapper.Map(reservationLogModel , record);
+                Mapper.Map(reservationLogModel , record);
                 return await _reservationLogRepository.UpdateReservationLog(record);
             }
             return true;

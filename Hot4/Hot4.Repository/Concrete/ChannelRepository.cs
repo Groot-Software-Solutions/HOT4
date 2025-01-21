@@ -34,10 +34,9 @@ namespace Hot4.Repository.Concrete
                 .ToListAsync();
             return records;  
         }
-        public async Task<Channels> GetByChannelId(byte channelId)
+        public async Task<Channels?> GetByChannelId(byte channelId)
         {
-            var record = await GetById(channelId);
-            return record;
+            return await GetById(channelId);
         }
     }
 }

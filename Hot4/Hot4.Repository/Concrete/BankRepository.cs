@@ -33,10 +33,9 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
             return true;
         }
-        public Task<Banks> GetByBankId(byte BankId)
+        public async Task<Banks?> GetByBankId(byte BankId)
         {
-            var record = GetById(BankId);
-            return record;
+            return await GetById(BankId);
         }
     }
 }

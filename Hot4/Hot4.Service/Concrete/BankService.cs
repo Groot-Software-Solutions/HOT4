@@ -9,26 +9,24 @@ namespace Hot4.Service.Concrete
     public class BankService : IBankService
     {
         private readonly IBankRepository _bankRepository;
-        private readonly IMapper _mapper;
+        private readonly IMapper Mapper;
 
         public BankService(IBankRepository bankRepository , IMapper mapper)
         {
             _bankRepository = bankRepository;
-            _mapper = mapper;
+            Mapper = mapper;
             
         }
         public async Task<List<BankModel>> ListBanks()
         {
             var records = await _bankRepository.ListBanks();
-            var model =  _mapper.Map< List<BankModel>>(records);
-            return model;
-
+            return  Mapper.Map< List<BankModel>>(records);
         }
         public async Task<bool> AddBank(BankModel bankModel)
         {
             if (bankModel != null)
             {
-              var model = _mapper.Map<Banks>(bankModel);
+              var model = Mapper.Map<Banks>(bankModel);
               return  await _bankRepository.AddBank(model);
             }
             return false;
@@ -38,28 +36,25 @@ namespace Hot4.Service.Concrete
             var record =await GetEntityById(bankModel.BankId);
             if (record != null)
             {
-                _mapper.Map(bankModel, record);
+                Mapper.Map(bankModel, record);
                return await _bankRepository.UpdateBank(record);
             }
-            return false;
-            
+            return false;            
         }
-        public async Task<bool> DeleteBank(BankModel bankModel)
+        public async Task<bool> DeleteBank(byte BankId)
         {
-            var record = await GetEntityById(bankModel.BankId);
+            var record = await GetEntityById(BankId);
             if (record != null)
             {   
               return  await _bankRepository.DeleteBank(record);
             }
-            return false;
-            
+            return false;            
         }
         public async Task<BankModel> GetByBankId(byte BankId)
         {
             var record = await GetEntityById(BankId);
-            return _mapper.Map<BankModel>(record);     
+            return Mapper.Map<BankModel>(record);     
         }
-
         private async Task<Banks> GetEntityById (byte BankId)
         {
             return await _bankRepository.GetByBankId(BankId);

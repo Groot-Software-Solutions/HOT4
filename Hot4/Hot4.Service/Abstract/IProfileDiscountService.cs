@@ -13,7 +13,7 @@ namespace Hot4.Service.Abstract
         Task<ProfileDiscountModel?> GetPrfDiscountById(int ProfileDiscountId);
         Task<bool> AddPrfDiscount(ProfileDiscountModel profileDiscountModel);
         Task<bool> UpdatePrfDiscount(ProfileDiscountModel profileDiscountModel);
-        Task<bool> DeletePrfDiscount(ProfileDiscountModel profileDiscountModel);
+        Task<bool> DeletePrfDiscount(int ProfileDiscountId);
         Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileId(int profileId);
         Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileAndBrandId(int profileId, int brandId);
 

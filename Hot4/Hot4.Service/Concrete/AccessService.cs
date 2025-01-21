@@ -11,29 +11,28 @@ namespace Hot4.Service.Concrete
     public class AccessService : IAccessService
     {
         private readonly IAccessRepository _accessRepository;
-        private readonly IMapper _mapper;
+        private readonly IMapper Mapper;
         public AccessService(IAccessRepository accessRepository , IMapper mapper)
         {
             _accessRepository = accessRepository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
         public async Task<AccessModel?> GetAccessById(long accessId)
         {
             var record = await GetEntityById(accessId);
-            return _mapper.Map<AccessModel>(record);
+            return Mapper.Map<AccessModel>(record);
         }
         public async Task<List<AccessModel>> GetAccessByAccountIdAndChannelId(long accountId, byte channelId)
         {
             var records = await _accessRepository.GetAccessByAccountIdAndChannelId(accountId, channelId);
-            return _mapper.Map<List<AccessModel>>(records);
-            
+            return Mapper.Map<List<AccessModel>>(records);            
         }
         public async Task<AccountAccessModel?> GetAccessByCode(string accessCode)
         {
             var record = await _accessRepository.GetAccessByCode(accessCode);
             if (record != null)
             {
-                var model = _mapper.Map<AccountAccessModel>(record);
+                var model = Mapper.Map<AccountAccessModel>(record);
                 model.AccessPassword = "********";
                 model.PasswordHash = "********";
                 return model;             
@@ -45,7 +44,7 @@ namespace Hot4.Service.Concrete
         {
             if (accessModel != null )
             {
-                var model = _mapper.Map<Access>(accessModel);
+                var model = Mapper.Map<Access>(accessModel);
                return await _accessRepository.AddAccess(model);
                
             }
@@ -55,31 +54,28 @@ namespace Hot4.Service.Concrete
         {
             if (accessModel != null )
             {
-                var model = _mapper.Map<Access>(accessModel);
+                var model = Mapper.Map<Access>(accessModel);
                return await _accessRepository.AddAccessDeprecated(model);
                 
             }
-            return false;
-            
+            return false;            
         }           
         public async Task<bool> UpdateAccess(AccessModel accessModel)
         {
             var record =  await GetEntityById(accessModel.AccessId);           
             if (record != null)
             {               
-                _mapper.Map(accessModel, record);
+                Mapper.Map(accessModel, record);
                return await _accessRepository.UpdateAccess(record);
                
             }
             return false; 
-
         }
         public async Task<List<AccountAccessModel>> GetAccessByAccountId(long accountId, bool isGetAll, bool isDeleted)
         {
             var records = await _accessRepository.GetAccessByAccountId(accountId, isGetAll, isDeleted);
-
             if (records != null) { 
-                var model =  _mapper.Map<List<AccountAccessModel>>(records);
+                var model =  Mapper.Map<List<AccountAccessModel>>(records);
                 foreach (var accessModel in model)
                 {
                     accessModel.AccessPassword = "********";
@@ -92,8 +88,7 @@ namespace Hot4.Service.Concrete
         }
         public async Task<long> GetAdminId(long accountId) 
         { 
-          return await _accessRepository.GetAdminId(accountId);
-            
+          return await _accessRepository.GetAdminId(accountId);     
         }
         public async Task<bool> PasswordChange(long accessId, string newPassword) 
         {
@@ -116,31 +111,26 @@ namespace Hot4.Service.Concrete
         public async Task<AccountAccessModel?> GetLoginDetails(string accessCode, string accessPassword)
         {
             var record = await _accessRepository.GetLoginDetails(accessCode, accessPassword);
-
             if (record != null)
             {
-                var model = _mapper.Map<AccountAccessModel>(record);                
+                var model = Mapper.Map<AccountAccessModel>(record);                
                 model.AccessPassword = "********";
                 model.PasswordHash = "********";
                 return model;
             }
-
             return null;
         }
         public async Task<AccountAccessModel?> GetLoginDetailsByAccessCode(string accessCode)
         {
             var record  = await _accessRepository.GetLoginDetailsByAccessCode(accessCode);
-
             if (record != null)
             {
-                var model = _mapper.Map<AccountAccessModel>(record);
+                var model = Mapper.Map<AccountAccessModel>(record);
                 model.AccessPassword = "********";
                 model.PasswordHash = "********";
                 return model;
             }
-
             return null;
-
         }
         public async Task<bool> DeleteAccess(long accessId) 
         {
@@ -149,8 +139,7 @@ namespace Hot4.Service.Concrete
             {
               return await _accessRepository.DeleteAccess(record);  
             }
-            return false;
-             
+            return false;            
         }
         public async Task<bool> UnDeleteAccess(long accessId) 
         {
@@ -159,11 +148,9 @@ namespace Hot4.Service.Concrete
             {
               return await _accessRepository.UnDeleteAccess(record);
             }
-
-            return false;
-            
+            return false;            
         }
-        private async Task<Access> GetEntityById(long AccessId)
+        private async Task<Access?> GetEntityById(long AccessId)
         {
             return await _accessRepository.GetAccessById(AccessId);
         }

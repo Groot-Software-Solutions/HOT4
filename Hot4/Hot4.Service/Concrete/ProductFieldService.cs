@@ -14,25 +14,24 @@ namespace Hot4.Service.Concrete
     public class ProductFieldService : IProductFieldService
     {
         private readonly IProductFieldRepository _productFieldRepository;
-        private readonly IMapper _mapper;
+        private readonly IMapper Mapper;
         public ProductFieldService(IProductFieldRepository productFieldRepository , IMapper mapper)
         {
             _productFieldRepository = productFieldRepository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
         public async Task<bool> AddProductField(ProductFieldModel productFieldModel)
         {
             if (productFieldModel != null)
             {
-                var model = _mapper.Map<ProductField>( productFieldModel);
+                var model = Mapper.Map<ProductField>( productFieldModel);
                return await _productFieldRepository.AddProductField(model);
             }
             return false;
         }
-
-        public async Task<bool> DeleteProductField(ProductFieldModel productFieldModel)
+        public async Task<bool> DeleteProductField(int BrandFieldId)
         {
-            var record = await GetEntityById(productFieldModel.BrandFieldId);
+            var record = await GetEntityById(BrandFieldId);
             if (record != null)
             {
                 return await _productFieldRepository.DeleteProductField(record);
@@ -43,13 +42,13 @@ namespace Hot4.Service.Concrete
         public async Task<ProductFieldModel> GetProductFieldById(int BrandFieldId)    
         {
             var record =  await GetEntityById(BrandFieldId);
-            return _mapper.Map<ProductFieldModel>(record);
+            return Mapper.Map<ProductFieldModel>(record);
         }
 
         public async Task<List<ProductFieldModel>> ListProductField()
         {
             var records = await _productFieldRepository.ListProductField();
-            return _mapper.Map<List<ProductFieldModel>>(records);
+            return Mapper.Map<List<ProductFieldModel>>(records);
         }
 
         public async Task<bool> UpdateProductField(ProductFieldModel productFieldModel)
@@ -57,7 +56,7 @@ namespace Hot4.Service.Concrete
             var record = await GetEntityById(productFieldModel.BrandFieldId);
             if (record != null)
             {
-                _mapper.Map(productFieldModel, record);
+                Mapper.Map(productFieldModel, record);
                 return await _productFieldRepository.UpdateProductField(record);
             }
             return false;

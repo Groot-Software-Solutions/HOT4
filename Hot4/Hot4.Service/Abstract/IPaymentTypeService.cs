@@ -14,6 +14,6 @@ namespace Hot4.Service.Abstract
         Task<List<PaymentTypeModel>> ListPaymentType();
         Task<bool> AddPaymentType(PaymentTypeModel paymentTypeModel);
         Task<bool> UpdatePaymentType(PaymentTypeModel paymentTypeModel);
-        Task<bool> DeletePaymentType(PaymentTypeModel paymentTypeModel);
+        Task<bool> DeletePaymentType(byte PaymentTypeId);
     }
 }

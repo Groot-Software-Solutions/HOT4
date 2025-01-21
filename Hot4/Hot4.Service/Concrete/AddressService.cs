@@ -3,6 +3,7 @@ using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
 using Hot4.Service.Abstract;
 using Hot4.ViewModel;
+using Microsoft.Identity.Client;
 using System.Net;
 
 namespace Hot4.Service.Concrete
@@ -11,23 +12,23 @@ namespace Hot4.Service.Concrete
     {
 
         private readonly IAddressRepository _addressRepository;
-        private readonly IMapper _mapper;
+        private readonly IMapper Mapper;
 
         public AddressService(IAddressRepository addressRepository, IMapper mapper)
         {
             _addressRepository = addressRepository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
         public async Task<AddressModel?> GetAddressById(long accountId)
         {
             var record = await GetEntityById(accountId);
-            return _mapper.Map<AddressModel>(record);
+            return Mapper.Map<AddressModel>(record);
         }
         public async Task<bool> SaveAddress(AddressModel addressModel)
         {
             if (addressModel != null)
             {
-                var model = _mapper.Map<Address>(addressModel);
+                var model = Mapper.Map<Address>(addressModel);
                return await _addressRepository.SaveAddress(model);
             }
             return false;
@@ -38,20 +39,19 @@ namespace Hot4.Service.Concrete
             var record = await GetEntityById(addressModel.AccountId);
             if (record != null)
             {
-                _mapper.Map(addressModel, record);
+                Mapper.Map(addressModel, record);
                 return await _addressRepository.UpdateAddress(record);
             }
             return false;
         }
-        public async Task<bool> DeleteAddress(AddressModel addressModel)
+        public async Task<bool> DeleteAddress(long AccountId)
         {
-            var record = await GetEntityById(addressModel.AccountId); 
+            var record = await GetEntityById(AccountId); 
             if (record != null )
             {
                return await _addressRepository.DeleteAddress(record);
             }
-            return false;
-            
+            return false;            
         }
         private async Task<Address?> GetEntityById(long AccountId)
         {

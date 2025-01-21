@@ -7,15 +7,10 @@ namespace Hot4.Repository.Concrete
 {
     public class AccessWebRepository : RepositoryBase<AccessWeb>, IAccessWebRepository
     {
-        public AccessWebRepository(HotDbContext context) : base(context) { }
-        public async Task<AccessWeb?> GetAccessWebById(long accessId)
+       public AccessWebRepository(HotDbContext context) : base(context) { }
+       public async Task<AccessWeb?> GetAccessWebById(long accessId)
         {
-            var record = await GetById(accessId);
-            if (record != null)
-            {
-                return record;
-            }
-            return null;
+            return await GetById(accessId);
         }
        public async Task<bool> AddAccessWeb(AccessWeb accessWeb)
         {
@@ -29,15 +24,13 @@ namespace Hot4.Repository.Concrete
             Update(accessWeb);
             await SaveChanges();
             return true;
-
         }
-        public async Task<bool> DeleteAccessWeb(AccessWeb accessWeb)
+       public async Task<bool> DeleteAccessWeb(AccessWeb accessWeb)
         {
             Delete(accessWeb);
             await SaveChanges();
             return true;
         }
         
-
     }
 }

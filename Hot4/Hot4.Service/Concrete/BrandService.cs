@@ -17,10 +17,13 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> AddBrand(BrandRecord brand)
         {
-            var model = Mapper.Map<Brand>(brand);
-            return await _brandRepository.AddBrand(model);
+            if (brand != null)
+            {
+                var model = Mapper.Map<Brand>(brand);
+                return await _brandRepository.AddBrand(model);
+            }
+            return false;           
         }
-
         public async Task<bool> DeleteBrand(byte brandId)
         {
             var record = await GetEntityById(brandId);
@@ -30,19 +33,16 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         public async Task<BrandModel?> GetBrandById(byte brandId)
         {
             var record = await GetEntityById(brandId);
             return Mapper.Map<BrandModel>(record);
         }
-
         public async Task<List<BrandModel>> GetBrandIdentity(BrandIdentitySearchModel brandIdentitySearchModel)
         {
             var records = await _brandRepository.GetBrandIdentity(brandIdentitySearchModel);
             return Mapper.Map<List<BrandModel>>(records);
         }
-
         public async Task<List<BrandModel>> ListBrand()
         {
             var records = await _brandRepository.ListBrand();

@@ -9,7 +9,7 @@ namespace Hot4.Service.Abstract
         Task<List<ChannelModel>> ListChannel();
         Task<bool> AddChannel(ChannelModel channelModel);
         Task<bool> UpdateChannel(ChannelModel channelModel);
-        Task<bool> DeleteChannel(ChannelModel channelModel);
+        Task<bool> DeleteChannel(byte ChannelId);
         
     }
 }

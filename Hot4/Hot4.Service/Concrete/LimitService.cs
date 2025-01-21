@@ -15,22 +15,20 @@ namespace Hot4.Service.Concrete
             _limitRepository = limitRepository;
             Mapper = mapper;
         }
-        public async Task<bool> DeleteLimit(LimitModel limit)
+        public async Task<bool> DeleteLimit(long LimitId)
         {
-            var record = await GetEntityById(limit.LimitId);
+            var record = await GetEntityById(LimitId);
             if (record != null)
             {
                 return await _limitRepository.DeleteLimit(record);
             }
             return false;
         }
-
         public async Task<LimitModel?> GetLimitById(long limitId)
         {
             var record = await GetEntityById(limitId);
             return Mapper.Map<LimitModel?>(record);
         }
-
         public async Task<LimitPendingModel?> GetLimitByNetworkAndAccountId(int networkid, long accountid)
         {
             var record = await _limitRepository.GetLimitByNetworkAndAccountId(networkid, accountid);
@@ -54,13 +52,15 @@ namespace Hot4.Service.Concrete
             }
             return record;
         }
-
         public async Task<bool> SaveLimit(LimitModel limit)
         {
-            var model = Mapper.Map<Limit>(limit);
-            return await _limitRepository.SaveLimit(model);
+            if (limit != null)
+            {
+                var model = Mapper.Map<Limit>(limit);
+                return await _limitRepository.SaveLimit(model);
+            }
+            return false;
         }
-
         public async Task<bool> UpdateLimit(LimitModel limit)
         {
             var record = await GetEntityById(limit.LimitId);

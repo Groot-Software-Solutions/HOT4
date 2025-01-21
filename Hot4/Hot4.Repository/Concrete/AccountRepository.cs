@@ -31,20 +31,6 @@ namespace Hot4.Repository.Concrete
         public async Task<Account?> GetAccountById(long accountId)
         {
             return await GetById(accountId);
-            //if (result != null)
-            //{
-            //    return new AccountModel
-            //    {
-            //        AccountName = result.AccountName,
-            //        AccountId = result.AccountId,
-            //        Email = result.Email,
-            //        InsertDate = result.InsertDate,
-            //        NationalId = result.NationalId,
-            //        ReferredBy = result.ReferredBy,
-            //        ProfileId = result.ProfileId,
-            //    };
-            //}
-            //return null;
         }
         public async Task<List<ViewAccountModel>> SearchAccount(string filter, int pageNo, int pageSize)
         {
@@ -66,7 +52,6 @@ namespace Hot4.Repository.Concrete
             var result = await _commonRepository.GetViewAccountList(new List<long>() { accountId }, 1, 10);
             return result.FirstOrDefault();
         }
-
         public async Task<bool> DeleteAccount(Account account)
         {
             Delete(account);

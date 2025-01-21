@@ -16,11 +16,14 @@ namespace Hot4.Service.Concrete
             Mapper = mapper;
         }
         public async Task<bool> AddAccount(AccountModel account)
-        {
-            var model = Mapper.Map<Account>(account);
-            return await _accountRepository.AddAccount(model);
+        {          
+            if (account != null)
+            {
+                var model = Mapper.Map<Account>(account);
+                return await _accountRepository.AddAccount(model);
+            }
+            return false;           
         }
-
         public async Task<bool> DeleteAccount(long accountId)
         {
             var record = await GetEntityById(accountId);
@@ -30,23 +33,19 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         public async Task<AccountModel?> GetAccountById(long accountId)
         {
             var record = await GetEntityById(accountId);
             return Mapper.Map<AccountModel>(record);
         }
-
         public async Task<ViewAccountModel?> GetAccountDetailById(long accountId)
         {
             return await _accountRepository.GetAccountDetailById(accountId);
         }
-
         public async Task<List<ViewAccountModel>> SearchAccount(string filter, int pageNo, int pageSize)
         {
             return await _accountRepository.SearchAccount(filter, pageNo, pageSize);
         }
-
         public async Task<bool> UpdateAccount(AccountModel account)
         {
             var record = await GetEntityById(account.AccountId);

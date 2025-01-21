@@ -13,7 +13,7 @@ namespace Hot4.Service.Abstract
         Task<ProductModel?> GetProductById(byte productId);
         Task<bool> AddProduct(ProductModel productModel);
         Task<bool> UpdateProduct(ProductModel productModel);
-        Task<bool> DeleteProduct(ProductModel productModel);
+        Task<bool> DeleteProduct(byte ProductId);
         Task<List<ProductModel>> ListProduct();
     }
 }

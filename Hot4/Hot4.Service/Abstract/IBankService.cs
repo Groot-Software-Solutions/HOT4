@@ -9,6 +9,6 @@ namespace Hot4.Service.Abstract
         Task<List<BankModel>> ListBanks();
         Task <bool>AddBank(BankModel bankModel);
         Task <bool>UpdateBank(BankModel bankModel);
-        Task<bool> DeleteBank(BankModel bankModel);
+        Task<bool> DeleteBank(byte BankId);
     }
 }

@@ -16,25 +16,24 @@ namespace Hot4.Service.Concrete
     public class ProfileService : IProfileService
     {
         private readonly IProfileRepository _profileRepository;
-        private readonly IMapper _mapper;
-
+        private readonly IMapper Mapper;
         public ProfileService(IProfileRepository profileRepository, IMapper mapper)
         {
             _profileRepository = profileRepository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
         public async Task<bool> AddProfile(ProfileModel profileModel)
         {
             if (profileModel != null)
             {
-                var model = _mapper.Map<Profile>(profileModel);
+                var model = Mapper.Map<Profile>(profileModel);
                 return await _profileRepository.AddProfile(model);
             }
             return false;
         }
-        public async Task<bool> DeleteProfile(ProfileModel profileModel)
+        public async Task<bool> DeleteProfile(int ProfileId)
         {
-            var record = await GetEntityById(profileModel.ProfileId);
+            var record = await GetEntityById(ProfileId);
             if (record != null)
             {
                return await _profileRepository.DeleteProfile(record);
@@ -44,19 +43,19 @@ namespace Hot4.Service.Concrete
         public async Task<ProfileModel?> GetProfileById(int profileId)
         {
             var record = await GetEntityById(profileId);
-            return _mapper.Map<ProfileModel>(record);
+            return Mapper.Map<ProfileModel>(record);
         }
         public async Task<List<ProfileModel>> ListProfile()
         {
             var records =await _profileRepository.ListProfile();
-            return _mapper.Map<List<ProfileModel>>(records);
+            return Mapper.Map<List<ProfileModel>>(records);
         }
         public async Task<bool> UpdateProfile(ProfileModel profileModel)
         {
             var record = await GetEntityById(profileModel.ProfileId);
             if (record != null)
             {
-                _mapper.Map(profileModel , record);
+                Mapper.Map(profileModel , record);
                 return await _profileRepository.AddProfile(record);
             }
             return false;

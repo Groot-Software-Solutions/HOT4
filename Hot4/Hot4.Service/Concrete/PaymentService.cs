@@ -14,23 +14,23 @@ namespace Hot4.Service.Concrete
     public class PaymentService : IPaymentService
     {
         private readonly IPaymentRepository _paymentRepository;
-        private readonly IMapper _mapper;
+        private readonly IMapper Mapper;
 
         public PaymentService(IPaymentRepository paymentRepository , IMapper mapper)
         {
             _paymentRepository = paymentRepository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
         public async Task<PaymentModel?> GetPaymentById(long paymentId)
         {
             var record = await _paymentRepository.GetPaymentById(paymentId);
-            return _mapper.Map<PaymentModel>(record);                      
+            return Mapper.Map<PaymentModel>(record);                      
         }
         public async Task<bool> SaveUpdatePayment(PaymentModel paymentModel)
         {
             if (paymentModel != null)
             {
-               var model =  _mapper.Map<Payment>(paymentModel);
+               var model =  Mapper.Map<Payment>(paymentModel);
                return await _paymentRepository.SaveUpdatePayment(model);
             }
             return false;

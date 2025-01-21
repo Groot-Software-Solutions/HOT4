@@ -14,63 +14,55 @@ namespace Hot4.Service.Concrete
     public class ProfileDiscountService : IProfileDiscountService
     {
         private readonly IProfileDiscountRepository _profileDiscountRepository;
-        private readonly IMapper _mapper;
-
+        private readonly IMapper Mapper;
         public ProfileDiscountService(IProfileDiscountRepository profileDiscountRepository , IMapper mapper)
         {
             _profileDiscountRepository = profileDiscountRepository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
         public async Task<bool> AddPrfDiscount(ProfileDiscountModel profileDiscountModel)
         {
             if (profileDiscountModel != null )
             {
-               var model = _mapper.Map<ProfileDiscount>(profileDiscountModel);
+               var model = Mapper.Map<ProfileDiscount>(profileDiscountModel);
                 return await _profileDiscountRepository.AddPrfDiscount(model);
             }
             return false;
         }
-
-        public async Task<bool> DeletePrfDiscount(ProfileDiscountModel profileDiscountModel)
+        public async Task<bool> DeletePrfDiscount(int ProfileDiscountId)
         {
-            var record = await GetEntityById(profileDiscountModel.ProfileDiscountId);
+            var record = await GetEntityById(ProfileDiscountId);
             if (record != null)
             {
                 return await _profileDiscountRepository.DeletePrfDiscount(record);
             }
             return false;
         }
-
         public async Task<ProfileDiscountModel?> GetPrfDiscountById(int ProfileDiscountId)
         {
             var record = await GetEntityById(ProfileDiscountId);
-            return _mapper.Map<ProfileDiscountModel?>(record);
+            return Mapper.Map<ProfileDiscountModel?>(record);
         }
-
         public async Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileAndBrandId(int profileId, int brandId)
         {
             var records = await _profileDiscountRepository.GetPrfDiscountByProfileAndBrandId(profileId , brandId);
-            return  _mapper.Map<List<ProfileDiscountModel>>(records);
-
+            return  Mapper.Map<List<ProfileDiscountModel>>(records);
         }
-
         public async Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileId(int profileId)
         {
             var records = await GetEntityById(profileId);
-            return _mapper.Map<List<ProfileDiscountModel>>(records);
+            return Mapper.Map<List<ProfileDiscountModel>>(records);
         }
-
         public async Task<bool> UpdatePrfDiscount(ProfileDiscountModel profileDiscountModel)
         {
             var record = await GetEntityById(profileDiscountModel.ProfileId);
             if (record != null)
             {
-                _mapper.Map(profileDiscountModel , record);
+                Mapper.Map(profileDiscountModel , record);
                 return await _profileDiscountRepository.UpdatePrfDiscount(record);
             }
             return false;
         }
-
         private async Task<ProfileDiscount?> GetEntityById (int ProfileDiscountId)
         {
             return await _profileDiscountRepository.GetPrfDiscountById(ProfileDiscountId);

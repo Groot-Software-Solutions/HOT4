@@ -14,25 +14,24 @@ namespace Hot4.Service.Concrete
     public class ProductMetaDataService : IProductMetaDataService
     {
         private readonly IProductMetaDataRepository _productMetaDataRepository;
-        private readonly IMapper _mapper;
-
+        private readonly IMapper Mapper;
         public ProductMetaDataService(IProductMetaDataRepository productMetaDataRepository , IMapper mapper)
         {
             _productMetaDataRepository = productMetaDataRepository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
         public async Task<bool> AddProductMetaData(ProductMetaDataModel productMetaDataModel)
         {
             if (productMetaDataModel != null)
             {
-                var model = _mapper.Map<ProductMetaData>(productMetaDataModel);
+                var model = Mapper.Map<ProductMetaData>(productMetaDataModel);
                 return await _productMetaDataRepository.AddProductMetaData(model);
             }
             return false;
         }
-        public async Task<bool> DeleteProductMetaData(ProductMetaDataModel productMetaDataModel)
+        public async Task<bool> DeleteProductMetaData(int ProductMetaId)
         {
-            var record = await GetEntityById(productMetaDataModel.BrandMetaId);
+            var record = await GetEntityById(ProductMetaId);
             if (record != null)
             {
                 return await _productMetaDataRepository.DeleteProductMetaData(record);
@@ -43,21 +42,19 @@ namespace Hot4.Service.Concrete
         public async Task<ProductMetaDataModel> GetProductMetaDataById(int ProductMetaId)
         {
             var record = await GetEntityById(ProductMetaId);
-            return  _mapper.Map<ProductMetaDataModel>(record);
+            return  Mapper.Map<ProductMetaDataModel>(record);
         }
-
         public async Task<List<ProductMetaDataModel>> ListProductMetaData()
         {
             var records = await _productMetaDataRepository.ListProductMetaData();
-            return _mapper.Map<List<ProductMetaDataModel>>(records);
+            return Mapper.Map<List<ProductMetaDataModel>>(records);
         }
-
         public async Task<bool> UpdateProductMetaData(ProductMetaDataModel productMetaDataModel)
         {
             var record = await GetEntityById(productMetaDataModel.BrandMetaId);
             if(record != null)
             {
-                _mapper.Map(productMetaDataModel, record);
+                Mapper.Map(productMetaDataModel, record);
                await _productMetaDataRepository.UpdateProductMetaData(record);
             }
             return false;

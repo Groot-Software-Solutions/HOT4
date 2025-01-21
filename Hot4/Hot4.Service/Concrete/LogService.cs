@@ -17,10 +17,13 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> AddLog(LogModel log)
         {
-            var model = Mapper.Map<Log>(log);
-            return await _logRepository.AddLog(model);
+            if (log != null)
+            {
+                var model = Mapper.Map<Log>(log);
+                return await _logRepository.AddLog(model);
+            } 
+            return false;
         }
-
         public async Task<bool> DeleteLog(long logId)
         {
             var record = await GetEntityById(logId);
@@ -30,19 +33,16 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         public async Task<LogModel?> GetLogById(long logId)
         {
             var record = await GetEntityById(logId);
             return Mapper.Map<LogModel?>(record);
         }
-
         public async Task<List<LogModel>> ListLog(int pageNumber, int pageSize)
         {
             var records = await _logRepository.ListLog(pageNumber, pageSize);
             return Mapper.Map<List<LogModel>>(records);
         }
-
         public async Task<bool> UpdateLog(LogModel log)
         {
             var record = await GetEntityById(log.LogId);

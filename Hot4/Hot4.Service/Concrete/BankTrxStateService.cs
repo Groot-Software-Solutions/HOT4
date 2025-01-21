@@ -8,7 +8,7 @@ namespace Hot4.Service.Concrete
 {
     public class BankTrxStateService : IBankTrxStateService
     {
-        private IBankTrxStateRepository _bankTrxStateRepository;
+        private readonly IBankTrxStateRepository _bankTrxStateRepository;
         private readonly IMapper Mapper;
         public BankTrxStateService(IBankTrxStateRepository bankTrxStateRepository, IMapper mapper)
         {
@@ -27,8 +27,13 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> AddBankTrxState(BankTransactionStateModel bankState)
         {
-            var model = Mapper.Map<BankTrxStates>(bankState);
-            return await _bankTrxStateRepository.AddBankTrxState(model);
+            if (bankState != null)
+            {
+                var model = Mapper.Map<BankTrxStates>(bankState);
+                return await _bankTrxStateRepository.AddBankTrxState(model);
+            }
+            return false;
+            
         }
         public async Task<bool> UpdateBankTrxState(BankTransactionStateModel bankState)
         {
@@ -49,7 +54,6 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         private async Task<BankTrxStates?> GetEntityById (byte BankTrxStateId)
         {
             return await _bankTrxStateRepository.GetBankTrxStateById(BankTrxStateId);

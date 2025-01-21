@@ -8,7 +8,6 @@ namespace Hot4.Repository.Concrete
     public class BankTrxStateRepository : RepositoryBase<BankTrxStates>, IBankTrxStateRepository
     {
         public BankTrxStateRepository(HotDbContext context) : base(context) { }
-
         public async Task<List<BankTrxStates>> ListBankTrxStates()
         {
             return await GetAll().OrderBy(d => d.BankTrxState)

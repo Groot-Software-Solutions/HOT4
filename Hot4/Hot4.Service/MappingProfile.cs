@@ -107,6 +107,9 @@ namespace Hot4.Service
                 .ForMember(dst => dst.HotTypeCodeId, opt => opt.MapFrom(src => src.HotTypeCodes.Select(d => d.HotTypeCodeId).FirstOrDefault()))
                 .ReverseMap();
             CreateMap<HotTypes, HotTypeRecord>().ReverseMap();
+            CreateMap<PaymentTypes, PaymentTypeModel>()
+                .ForMember(dst => dst.PaymentTypeText  , opt => opt.MapFrom(src => src.PaymentType))
+                .ReverseMap();
             CreateMap<Payment, PaymentModel>()
                 .ForMember(dst => dst.PaymentSource, opt => opt.MapFrom(src => src.PaymentSource.PaymentSource))
                 .ForMember(dst => dst.PaymentType, opt => opt.MapFrom(src => src.PaymentType.PaymentType)).ReverseMap();
@@ -123,6 +126,8 @@ namespace Hot4.Service
     .ForMember(dst => dst.NetworkPrefix, opt => opt.MapFrom(src => src.Brand.Network.Prefix)).ReverseMap();
             CreateMap<Profile, ProfileModel>().ReverseMap();
             CreateMap<ReservationLog, ReservationLogModel>().ReverseMap();
+            CreateMap<Reservation, ReservationModel>().ReverseMap();
+            CreateMap<ReservationStates, ReservationStateModel>().ReverseMap();
 
         }
     }
