@@ -2,6 +2,7 @@
 {
     public class StockDataModel
     {
+        public byte StockDataId { get; set; }
         public string? BrandName { get; set; }
         public decimal? PinValue { get; set; }
         public int? Available { get; set; }

@@ -4,8 +4,8 @@ namespace Hot4.Service.Abstract
 {
     public interface ISMSService
     {
-        Task<bool> AddSMS(SmsToDo sms);
-        Task<bool> UpdateSMS(SmsToDo sms);
+        Task<bool> AddSMS(SmsRecord sms);
+        Task<bool> UpdateSMS(SmsRecord sms);
         Task<List<EmailModel>> SmsBulkSend(string messageText);
         Task<List<SMSModel>> SMSInbox();
         Task<List<SMSModel>> SMSOutbox();

@@ -3,11 +3,6 @@ using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
 using Hot4.Service.Abstract;
 using Hot4.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hot4.Service.Concrete
 {
@@ -20,7 +15,7 @@ namespace Hot4.Service.Concrete
             _bundleRepository = bundleRepository;
             Mapper = mapper;
         }
-        public async Task<bool> AddBundle(BundleModel bundleModel)
+        public async Task<bool> AddBundle(BundleRecord bundleModel)
         {
             if (bundleModel != null)
             {
@@ -29,41 +24,43 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }    
-        public async Task<bool> DeleteBundle(BundleModel bundleModel)
+        public async Task<bool> DeleteBundle(int bundleId)
         {
-            var record = await _bundleRepository.GetBundlesById(bundleModel.BundleId);
+            var record = await GetEntityById(bundleId);
             if (record != null)
             {
-             var model = Mapper.Map<Bundle>(record);
-             return await _bundleRepository.DeleteBundle(model);               
-            }
-            return false;   
-        }
-
-        public async Task<BundleModel?> GetBundlesById(int bundleId)
-        {
-            return await _bundleRepository.GetBundlesById(bundleId);
-        }        
-        public async Task<List<BundleModel>> ListBundles()
-        {
-            return await _bundleRepository.ListBundles();           
-        }      
-        public async Task<bool> UpdateBundle(BundleModel bundleModel)
-        {
-            var record = await _bundleRepository.GetBundlesById(bundleModel.BundleId);
-
-            if (record != null) 
-            {
-                var model = Mapper.Map<Bundle>(record); 
-              return  await _bundleRepository.UpdateBundle(model);
-               
+                return await _bundleRepository.DeleteBundle(record);
             }
             return false;
         }
 
-        //private async Task<Bundle?> GetEntityById (int BundleId)
-        //{
-        //    return await _bundleRepository.GetBundlesById(BundleId);
-        //}
+        public async Task<BundleModel?> GetBundlesById(int bundleId)
+        {
+            var record = await GetEntityById(bundleId);
+            return Mapper.Map<BundleModel?>(record);
+        }
+        public async Task<List<BundleModel>> ListBundles()
+        {
+            var records = await _bundleRepository.ListBundles();
+            return Mapper.Map<List<BundleModel>>(records);
+
+        }
+        public async Task<bool> UpdateBundle(BundleRecord bundleModel)
+        {
+            var record = await GetEntityById(bundleModel.BundleId);
+
+            if (record != null)
+            {
+                var model = Mapper.Map(bundleModel, record);
+                return await _bundleRepository.UpdateBundle(record);
+
+            }
+            return false;
+        }
+
+        private async Task<Bundle?> GetEntityById(int bundleId)
+        {
+            return await _bundleRepository.GetBundlesById(bundleId);
+        }
     }
 }

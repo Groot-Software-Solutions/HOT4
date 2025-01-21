@@ -1,8 +1,6 @@
-﻿using Hot4.Core.Enums;
-using Hot4.DataModel.Data;
+﻿using Hot4.DataModel.Data;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
-using Hot4.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hot4.Repository.Concrete
@@ -12,23 +10,12 @@ namespace Hot4.Repository.Concrete
         public BundleRepository(HotDbContext context) : base(context) { }
 
         // need to correct GetBundlesById
-        public async Task<BundleModel?> GetBundlesById(int bundleId)
+        public async Task<Bundle?> GetBundlesById(int bundleId)
         {
-            return await (from bundle in _context.Bundle
-                          where bundle.BundleId == bundleId
-                          join brand in _context.Brand.Include(d=>d.Network) on bundle.BrandId equals brand.BrandId
-                          select new BundleModel
-                          {
-                              BundleId = bundle.BundleId,
-                              BrandId = bundle.BrandId,
-                              Name = bundle.Name,
-                              Description = bundle.Description,
-                              Amount = bundle.Amount,
-                              ProductCode = bundle.ProductCode,
-                              ValidityPeriod = bundle.ValidityPeriod,
-                              Enabled = bundle.Enabled,
-                              Network = brand.Network.Network
-                          }).FirstOrDefaultAsync();
+            return await _context.Bundle.Include(d => d.Brand)
+                 .ThenInclude(d => d.Network)
+                .FirstOrDefaultAsync(d => d.BundleId == bundleId);
+
         }
         public async Task<bool> AddBundle(Bundle bundle)
         {
@@ -48,26 +35,11 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
             return true;
         }
-
-        // need to correct ListBundles()
-        public async Task<List<BundleModel>> ListBundles()
+        public async Task<List<Bundle>> ListBundles()
         {
-            return await (from bundle in _context.Bundle
-                          where bundle.Enabled
-                          join brand in _context.Brand.Include(d=>d.Network) on bundle.BrandId equals brand.BrandId
-
-                          select new BundleModel
-                          {
-                              BundleId = bundle.BundleId,
-                              BrandId = bundle.BrandId,
-                              Name = bundle.Name,
-                              Description = bundle.Description,
-                              Amount = bundle.Amount,
-                              ProductCode = bundle.ProductCode,
-                              ValidityPeriod = bundle.ValidityPeriod,
-                              Enabled = bundle.Enabled,
-                              Network = brand.Network.Network
-                          }).OrderBy(d =>
+            return await _context.Bundle.Include(d => d.Brand)
+                .ThenInclude(d => d.Network)
+              .OrderBy(d =>
         d.BundleId == 59 ? 3 :
         d.BundleId == 60 ? 4 :
         d.BundleId == 45 ? 5 :
@@ -137,16 +109,12 @@ namespace Hot4.Repository.Concrete
         d.BundleId == 74 ? 78 :
         d.BundleId == 76 ? 79 :
         d.BundleId == 78 ? 80 :
-        200) // Default case
+        200)
     .ThenBy(b => b.BrandId)
     .ThenBy(b => b.ValidityPeriod)
     .ThenBy(b => b.Amount)
     .ThenBy(b => b.Name)
     .ToListAsync();
         }
-
-
-
-
     }
 }

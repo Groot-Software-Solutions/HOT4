@@ -15,7 +15,8 @@ namespace Hot4.Service.Concrete
             _bankTrxBatchRepository = bankTrxBatchRepository;
             this.Mapper = mapper;
         }
-        public async Task<bool> AddBatch(BankTrxBatchToDo bankTrxBatch)
+
+        public async Task<bool> AddBatch(BankTrxBatchRecord bankTrxBatch)
         {
             if (bankTrxBatch != null)
             {
@@ -24,7 +25,7 @@ namespace Hot4.Service.Concrete
             }         
             return false;
         }
-        public async Task<bool> UpdateBatch(BankTrxBatchToDo bankTrxBatch)
+        public async Task<bool> UpdateBatch(BankTrxBatchRecord bankTrxBatch)
         {
             var record = await GetEntityById(bankTrxBatch.BankTrxBatchId);
             if (record != null)

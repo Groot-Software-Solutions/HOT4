@@ -1,6 +1,6 @@
 ﻿namespace Hot4.ViewModel
 {
-    public class SubscriberToDo
+    public class SubscriberRecord
     {
         public long SubscriberId { get; set; }
         public long AccountId { get; set; }

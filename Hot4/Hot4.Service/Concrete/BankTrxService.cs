@@ -54,7 +54,7 @@ namespace Hot4.Service.Concrete
         {
             return _bankTrxRepository.GetEcoCashPendingTrxCount(ecoCashSearch);
         }
-        public async Task<bool> AddBankTrx(BankTrxToDo bankTransaction)
+        public async Task<bool> AddBankTrx(BankTrxRecord bankTransaction)
         {
             if (bankTransaction != null)
             {
@@ -63,7 +63,8 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        public async Task<bool> UpdateBankTrx(BankTrxToDo bankTransaction)
+
+        public async Task<bool> UpdateBankTrx(BankTrxRecord bankTransaction)
         {
             var record = await GetEntityById(bankTransaction.BankTrxId);
             if (record != null)

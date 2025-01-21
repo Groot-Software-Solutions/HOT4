@@ -4,8 +4,8 @@ namespace Hot4.Service.Abstract
 {
     public interface ISelfTopUpService
     {
-        Task<bool> AddSelfTopUp(SelfTopUpToDo selfTopUp);
-        Task<bool> UpdateSelfTopUp(SelfTopUpToDo selfTopUp);
+        Task<bool> AddSelfTopUp(SelfTopUpRecord selfTopUp);
+        Task<bool> UpdateSelfTopUp(SelfTopUpRecord selfTopUp);
         Task<SelfTopUpModel?> GetSelfTopUpById(long selfTopUpId);
         Task<List<SelfTopUpModel>> GetSelfTopUpByStateId(byte selfTopUpStateId);
         Task<List<SelfTopUpModel>> GetSelfTopUpByBankTrxId(long bankTrxId);

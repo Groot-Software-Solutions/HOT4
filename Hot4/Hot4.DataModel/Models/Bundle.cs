@@ -4,7 +4,7 @@ public partial class Bundle
 {
     public int BundleId { get; set; }
 
-    public int BrandId { get; set; }
+    public byte BrandId { get; set; }
 
     public required string Name { get; set; }
 
@@ -18,4 +18,5 @@ public partial class Bundle
     public int? ValidityPeriod { get; set; }
 
     public bool Enabled { get; set; }
+    public virtual Brand Brand { get; set; }
 }

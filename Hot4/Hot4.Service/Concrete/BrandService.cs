@@ -15,7 +15,7 @@ namespace Hot4.Service.Concrete
             _brandRepository = brandRepository;
             Mapper = mapper;
         }
-        public async Task<bool> AddBrand(BrandToDo brand)
+        public async Task<bool> AddBrand(BrandRecord brand)
         {
             if (brand != null)
             {
@@ -48,7 +48,8 @@ namespace Hot4.Service.Concrete
             var records = await _brandRepository.ListBrand();
             return Mapper.Map<List<BrandModel>>(records);
         }
-        public async Task<bool> UpdateBrand(BrandToDo brand)
+
+        public async Task<bool> UpdateBrand(BrandRecord brand)
         {
             var record = await GetEntityById(brand.BrandId);
             if (record != null)

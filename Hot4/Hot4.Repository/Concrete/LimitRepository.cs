@@ -73,29 +73,48 @@ namespace Hot4.Repository.Concrete
             var startDateDaily = DateTime.Today;
 
             // Get daily sales
-            salesDaily = (float)await (from r in _context.Recharge
-                                       where r.RechargeDate >= startDateDaily && r.RechargeDate <= DateTime.Now
-                                       && new[] { (int)SmsState.Busy, (int)SmsState.Success }.Contains(r.StateId)
-                                       join a in _context.Access on r.AccessId equals a.AccessId
-                                       where a.AccountId == accountid
-                                       join b in _context.Brand on r.BrandId equals b.BrandId
-                                       where (b.NetworkId == networkid || (
-                                       (networkid == (int)NetworkName.Econet ? b.NetworkId == (int)NetworkName.Econet078 : false)
-                                       ))
-                                       && b.WalletTypeId == (int)WalletTypes.ZWG
-                                       select r.Amount).SumAsync();
+            salesDaily = (float)await _context.Recharge.Include(d => d.Access).Include(d => d.Brand)
+                        .Where(d => d.RechargeDate >= startDateDaily && d.RechargeDate <= DateTime.Now
+                        && new[] { (int)SmsState.Busy, (int)SmsState.Success }.Contains(d.StateId)
+                        && d.Access.AccountId == accountid
+                        && d.Brand.WalletTypeId == (int)WalletTypes.ZWG
+                        && (d.Brand.NetworkId == networkid ||
+                              (networkid == (int)NetworkName.Econet ? d.Brand.NetworkId == (int)NetworkName.Econet078 : false))
+                         ).SumAsync(d => d.Amount);
+
+
+            //var salesDaily = (float)await (from r in _context.Recharge
+            //                                where r.RechargeDate >= startDateDaily && r.RechargeDate <= DateTime.Now
+            //                                && new[] { (int)SmsState.Busy, (int)SmsState.Success }.Contains(r.StateId)
+            //                                join a in _context.Access on r.AccessId equals a.AccessId
+            //                                where a.AccountId == accountid
+            //                                join b in _context.Brand on r.BrandId equals b.BrandId
+            //                                where (b.NetworkId == networkid || (
+            //                                (networkid == (int)NetworkName.Econet ? b.NetworkId == (int)NetworkName.Econet078 : false)
+            //                                ))
+            //                                && b.WalletTypeId == (int)WalletTypes.ZWG
+            //                                select r.Amount).SumAsync();
 
             // Get monthly sales
-            salesMonthly = (float)await (from r in _context.Recharge
-                                         where r.RechargeDate >= startDateMonthly && r.RechargeDate <= DateTime.Now
-                                         && new[] { (int)SmsState.Busy, (int)SmsState.Success }.Contains(r.StateId)
-                                         join a in _context.Access on r.AccessId equals a.AccessId
-                                         where a.AccountId == accountid
-                                         join b in _context.Brand on r.BrandId equals b.BrandId
-                                         where (b.NetworkId == networkid ||
-                                         (networkid == (int)NetworkName.Econet ? b.NetworkId == (int)NetworkName.Econet078 : false))
-                                         && b.WalletTypeId == (int)WalletTypes.ZWG
-                                         select r.Amount).SumAsync();
+            salesMonthly = (float)await _context.Recharge.Include(d => d.Access).Include(d => d.Brand)
+                      .Where(d => d.RechargeDate >= startDateMonthly && d.RechargeDate <= DateTime.Now
+                      && new[] { (int)SmsState.Busy, (int)SmsState.Success }.Contains(d.StateId)
+                      && d.Access.AccountId == accountid
+                      && d.Brand.WalletTypeId == (int)WalletTypes.ZWG
+                      && (d.Brand.NetworkId == networkid ||
+                            (networkid == (int)NetworkName.Econet ? d.Brand.NetworkId == (int)NetworkName.Econet078 : false))
+                       ).SumAsync(d => d.Amount);
+
+            //salesMonthly = (float)await (from r in _context.Recharge
+            //                             where r.RechargeDate >= startDateMonthly && r.RechargeDate <= DateTime.Now
+            //                             && new[] { (int)SmsState.Busy, (int)SmsState.Success }.Contains(r.StateId)
+            //                             join a in _context.Access on r.AccessId equals a.AccessId
+            //                             where a.AccountId == accountid
+            //                             join b in _context.Brand on r.BrandId equals b.BrandId
+            //                             where (b.NetworkId == networkid ||
+            //                             (networkid == (int)NetworkName.Econet ? b.NetworkId == (int)NetworkName.Econet078 : false))
+            //                             && b.WalletTypeId == (int)WalletTypes.ZWG
+            //                             select r.Amount).SumAsync();
 
             return new LimitPendingModel
             {

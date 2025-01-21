@@ -14,33 +14,27 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
             return true;
         }
-
-        //public async Task<bool> DeleteStockData(StockData stockData)
-        //{
-        //    Delete(stockData);
-        //    await SaveChanges();
-        //    return true;
-        //}
+        public async Task<bool> DeleteStockData(StockData stockData)
+        {
+            Delete(stockData);
+            await SaveChanges();
+            return true;
+        }
 
         public async Task<List<StockData>> ListStockData()
         {
             return await GetAll().ToListAsync();
-            //{
-            //    Available = d.Available,
-            //    BrandName = d.BrandName,
-            //    LastSold = d.LastSold,
-            //    MonthSold = d.MonthSold,
-            //    PinValue = d.PinValue,
-            //    Sold = d.Sold,
-            //    WeekSold = d.WeekSold,
-            //}).ToListAsync();
         }
 
-        //public async Task<bool> UpdateStockData(StockData stockData)
-        //{
-        //    Update(stockData);
-        //    await SaveChanges();
-        //    return true;
-        //}
+        public async Task<bool> UpdateStockData(StockData stockData)
+        {
+            Update(stockData);
+            await SaveChanges();
+            return true;
+        }
+        public async Task<StockData?> GetStockDataById(byte stockDataId)
+        {
+            return await GetById(stockDataId);
+        }
     }
 }

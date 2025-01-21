@@ -1,6 +1,6 @@
 ﻿namespace Hot4.ViewModel
 {
-    public class BrandToDo
+    public class BrandRecord
     {
         public byte BrandId { get; set; }
         public byte NetworkId { get; set; }

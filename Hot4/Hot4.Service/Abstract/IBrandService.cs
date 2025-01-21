@@ -7,8 +7,8 @@ namespace Hot4.Service.Abstract
         Task<BrandModel?> GetBrandById(byte BrandId);
         Task<List<BrandModel>> GetBrandIdentity(BrandIdentitySearchModel brandIdentitySearchModel);
         Task<List<BrandModel>> ListBrand();
-        Task<bool> AddBrand(BrandToDo brand);
-        Task<bool> UpdateBrand(BrandToDo brand);
+        Task<bool> AddBrand(BrandRecord brand);
+        Task<bool> UpdateBrand(BrandRecord brand);
         Task<bool> DeleteBrand(byte brandId);
     }
 }

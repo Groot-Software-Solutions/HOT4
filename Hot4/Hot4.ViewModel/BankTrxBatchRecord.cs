@@ -1,6 +1,6 @@
 ﻿namespace Hot4.ViewModel
 {
-    public class BankTrxBatchToDo
+    public class BankTrxBatchRecord
     {
         public long BankTrxBatchId { get; set; }
         public byte BankId { get; set; }

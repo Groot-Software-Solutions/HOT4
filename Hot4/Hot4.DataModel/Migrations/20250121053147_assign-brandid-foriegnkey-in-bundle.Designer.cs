@@ -4,6 +4,7 @@ using Hot4.DataModel.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hot4.DataModel.Migrations
 {
     [DbContext(typeof(HotDbContext))]
-    partial class HotDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250121053147_assign-brandid-foriegnkey-in-bundle")]
+    partial class assignbrandidforiegnkeyinbundle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1944,12 +1947,6 @@ namespace Hot4.DataModel.Migrations
 
             modelBuilder.Entity("Hot4.DataModel.Models.StockData", b =>
                 {
-                    b.Property<byte>("StockDataId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<byte>("StockDataId"));
-
                     b.Property<int?>("Available")
                         .HasColumnType("int");
 
@@ -1972,8 +1969,6 @@ namespace Hot4.DataModel.Migrations
 
                     b.Property<decimal?>("WeekSold")
                         .HasColumnType("money");
-
-                    b.HasKey("StockDataId");
 
                     b.ToTable("tblStockData", (string)null);
                 });

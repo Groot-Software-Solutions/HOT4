@@ -15,7 +15,7 @@ namespace Hot4.Service.Concrete
             _pinRepository = pinRepository;
             Mapper = mapper;
         }
-        public async Task<bool> AddPin(PinToDo pin)
+        public async Task<bool> AddPin(PinRecord pin)
         {
             if (pin != null)
             {

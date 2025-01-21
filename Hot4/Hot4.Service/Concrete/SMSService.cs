@@ -15,7 +15,7 @@ namespace Hot4.Service.Concrete
             _smsRepository = smsRepository;
             Mapper = mapper;
         }
-        public async Task<bool> AddSMS(SmsToDo sms)
+        public async Task<bool> AddSMS(SmsRecord sms)
         {
             var model = Mapper.Map<Sms>(sms);
             return await _smsRepository.AddSMS(model);
@@ -68,7 +68,7 @@ namespace Hot4.Service.Concrete
             return Mapper.Map<List<SMSModel>>(records);
         }
 
-        public async Task<bool> UpdateSMS(SmsToDo sms)
+        public async Task<bool> UpdateSMS(SmsRecord sms)
         {
             var record = await GetEntityById(sms.Smsid);
             if (record != null)

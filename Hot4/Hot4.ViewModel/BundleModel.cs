@@ -10,6 +10,7 @@
         public int? ValidityPeriod { get; set; }
         public bool Enabled { get; set; }
         public int BrandId { get; set; }
+        public string BrandName { get; set; }
         public string Network { get; set; }
     }
 }
