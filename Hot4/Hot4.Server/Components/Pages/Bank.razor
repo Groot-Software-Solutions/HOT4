@@ -90,7 +90,7 @@
 </form>
 
 @code {
-    private BrandToDo brandToDo { get; set; } = new() {  BrandName = "test",BrandSuffix="UKS",NetworkId=2, WalletTypeId=1};
+    private BrandRecord brandToDo { get; set; } = new() {  BrandName = "test",BrandSuffix="UKS",NetworkId=2, WalletTypeId=1};
     private async Task GetBrands(){
        // var result = await brandService.GetBrandById(1);
        // var updated = await brandService.UpdateBrand(brandToDo);
@@ -120,7 +120,7 @@
 
 
     private SMSSearchModel smsSearchMdl { get; set; } = new() { StartDate = DateTime.Now.AddMonths(-9), EndDate = DateTime.Now, MessageText = "", Mobile = "", PageNo = 1, PageSize = 10, SmppId = -1, StateId = -1 };
-    private BankTrxBatchToDo bankTrxBatchToDo { get; set; } = new() { BankId = 1, BatchDate = DateTime.Now, BatchReference = "no refs", LastUser = "pradeeps" };
+    private BankTrxBatchRecord bankTrxBatchToDo { get; set; } = new() { BankId = 1, BatchDate = DateTime.Now, BatchReference = "no refs", LastUser = "pradeeps" };
     private async Task GetBank()
     {
         // var bankTrxByBatch = await banktrxRepository.GetTranscation_by_Batch(10024185, true);

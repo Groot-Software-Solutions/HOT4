@@ -15,7 +15,7 @@ namespace Hot4.Service.Concrete
             _selfTopUpRepository = selfTopUpRepository;
             Mapper = mapper;
         }
-        public async Task<bool> AddSelfTopUp(SelfTopUpToDo selfTopUp)
+        public async Task<bool> AddSelfTopUp(SelfTopUpRecord selfTopUp)
         {
             var model = Mapper.Map<SelfTopUp>(selfTopUp);
             return await _selfTopUpRepository.AddSelfTopUp(model);
@@ -49,7 +49,7 @@ namespace Hot4.Service.Concrete
             return Mapper.Map<List<SelfTopUpModel>>(records);
         }
 
-        public async Task<bool> UpdateSelfTopUp(SelfTopUpToDo selfTopUp)
+        public async Task<bool> UpdateSelfTopUp(SelfTopUpRecord selfTopUp)
         {
             var record = await GetEntityById(selfTopUp.SelfTopUpId);
             if (record != null)

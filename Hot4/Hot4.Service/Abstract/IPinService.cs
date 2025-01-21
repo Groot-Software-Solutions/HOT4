@@ -4,7 +4,7 @@ namespace Hot4.Service.Abstract
 {
     public interface IPinService
     {
-        Task<bool> AddPin(PinToDo pin);
+        Task<bool> AddPin(PinRecord pin);
         Task<List<PinDetailModel>> GetPinDetailByBatchId(long pinBatchId);
         Task<List<PinLoadedModel>> GetPinLoadedByBatchId(long pinBatchId);
         Task<List<PinLoadedModel>> GetPinStock();

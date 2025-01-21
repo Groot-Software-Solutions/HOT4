@@ -15,13 +15,13 @@ namespace Hot4.Service.Concrete
             _pinBatchRepository = pinBatchRepository;
             Mapper = mapper;
         }
-        public async Task<bool> AddPinBatch(PinBatchToDo pinBatches)
+        public async Task<bool> AddPinBatch(PinBatchRecord pinBatches)
         {
             var model = Mapper.Map<PinBatches>(pinBatches);
             return await _pinBatchRepository.AddPinBatch(model);
         }
 
-        public async Task<bool> DeletePinBatch(PinBatchToDo pinBatches)
+        public async Task<bool> DeletePinBatch(PinBatchRecord pinBatches)
         {
             var record = await GetEntityById(pinBatches.PinBatchId);
             if (record != null)
@@ -43,7 +43,7 @@ namespace Hot4.Service.Concrete
             return Mapper.Map<List<PinBatchModel>>(records);
         }
 
-        public async Task<bool> UpdatePinBatch(PinBatchToDo pinBatches)
+        public async Task<bool> UpdatePinBatch(PinBatchRecord pinBatches)
         {
             var record = await GetEntityById(pinBatches.PinBatchId);
             if (record != null)

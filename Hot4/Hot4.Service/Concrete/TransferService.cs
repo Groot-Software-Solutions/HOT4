@@ -15,7 +15,7 @@ namespace Hot4.Service.Concrete
             _transferRepository = transferRepository;
             Mapper = mapper;
         }
-        public async Task<bool> AddTransfer(TransferToDo transfer)
+        public async Task<bool> AddTransfer(TransferRecord transfer)
         {
             var model = Mapper.Map<Transfer>(transfer);
             return await _transferRepository.AddTransfer(model);
@@ -58,7 +58,7 @@ namespace Hot4.Service.Concrete
             return Mapper.Map<List<TransferModel>>(records);
         }
 
-        public async Task<bool> UpdateTransfer(TransferToDo transfer)
+        public async Task<bool> UpdateTransfer(TransferRecord transfer)
         {
             var record = await GetEntityById(transfer.TransferId);
             if (record != null)

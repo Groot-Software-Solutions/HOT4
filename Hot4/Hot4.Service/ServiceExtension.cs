@@ -29,7 +29,6 @@ namespace Hot4.Service
             services.AddTransient<IHotTypeRepository, HotTypeRepository>();
             services.AddTransient<ILimitRepository, LimitRepository>();
             services.AddTransient<ILogRepository, LogRepository>();
-
             services.AddTransient<INetworkRepository, NetworkRepository>();
             services.AddTransient<IPaymentRepository, PaymentRepository>();
             services.AddTransient<IPaymentSourceRepository, PaymentSourceRepository>();
@@ -62,32 +61,52 @@ namespace Hot4.Service
             services.AddTransient<IWalletTypeRepository, WalletTypeRepository>();
             services.AddTransient<IStockDataRepository, StockDataRepository>();
 
+            services.AddTransient<IAccessService, AccessService>();
+            services.AddTransient<IAccessWebService, AccessWebService>();
+            services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IAddressService, AddressService>();
+            services.AddTransient<IBankService, BankService>();
             services.AddTransient<IBankTrxBatchService, BankTrxBatchService>();
             services.AddTransient<IBankTrxService, BankTrxService>();
             services.AddTransient<IBankTrxStateService, BankTrxStateService>();
             services.AddTransient<IBankTrxTypeService, BankTrxTypeService>();
             services.AddTransient<IBankvPaymentService, BankvPaymentService>();
             services.AddTransient<IBrandService, BrandService>();
+            services.AddTransient<IBundleService, BundleService>();
+            services.AddTransient<IChannelService, ChannelService>();
+            services.AddTransient<IConfigService, ConfigService>();
+            services.AddTransient<IHotTypeService, HotTypeService>();
+            services.AddTransient<ILimitService, LimitService>();
+            services.AddTransient<ILogService, LogService>();
+            services.AddTransient<INetworkService, NetworkService>();
+            services.AddTransient<IPaymentService, PaymentService>();
+            services.AddTransient<IPaymentSourceService, PaymentSourceService>();
+            services.AddTransient<IPaymentTypeService, PaymentTypeService>();
+            services.AddTransient<IPinBatchService, PinBatchService>();
+            services.AddTransient<IPinBatchTypeService, PinBatchTypeService>();
+            services.AddTransient<IPinService, PinService>();
+            services.AddTransient<IProductFieldService, ProductFieldService>();
+            services.AddTransient<IProductMetaDataService, ProductMetaDataService>();
+            services.AddTransient<IProductMetaDataTypeService, ProductMetaDataTypeService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IProfileDiscountService, ProfileDiscountService>();
+            services.AddTransient<IProfileService, ProfileService>();
+            services.AddTransient<IRechargePrepaidService, RechargePrepaidService>();
+            services.AddTransient<IRechargeService, RechargeService>();
+            services.AddTransient<IReservationLogService, ReservationLogService>();
+            services.AddTransient<ISelfTopUpService, SelfTopUpService>();
+            services.AddTransient<ISelfTopUpStateService, SelfTopUpStateService>();
             services.AddTransient<ISMPPService, SMPPService>();
             services.AddTransient<ISMSService, SMSService>();
             services.AddTransient<IStateService, StateService>();
             services.AddTransient<IStatisticsService, StatisticsService>();
+            services.AddTransient<IStockDataService, StockDataService>();
             services.AddTransient<ISubscriberService, SubscriberService>();
             services.AddTransient<ITemplateService, TemplateService>();
             services.AddTransient<ITransferService, TransferService>();
             services.AddTransient<IWalletTypeService, WalletTypeService>();
             services.AddTransient<IWebRequestService, WebRequestService>();
-            services.AddTransient<IPinBatchTypeService, PinBatchTypeService>();
-            services.AddTransient<IPinBatchService, PinBatchService>();
-            services.AddTransient<IPinService, PinService>();
-            services.AddTransient<IAccountService, AccountService>();
-            services.AddTransient<IRechargePrepaidService, RechargePrepaidService>();
-            services.AddTransient<IRechargeService, RechargeService>();
-            services.AddTransient<ILimitService, LimitService>();
-            services.AddTransient<INetworkService, NetworkService>();
-            services.AddTransient<ISelfTopUpStateService, SelfTopUpStateService>();
-            services.AddTransient<ILogService, LogService>();
-            services.AddTransient<ISelfTopUpService, SelfTopUpService>();
+
             return services;
         }
     }

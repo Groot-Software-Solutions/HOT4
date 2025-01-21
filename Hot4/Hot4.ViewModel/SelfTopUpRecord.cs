@@ -1,6 +1,6 @@
 ﻿namespace Hot4.ViewModel
 {
-    public class SelfTopUpToDo
+    public class SelfTopUpRecord
     {
         public long SelfTopUpId { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace Hot4.ViewModel
 {
-    public class PinBatchToDo
+    public class PinBatchRecord
     {
         public long PinBatchId { get; set; }
         public required string PinBatch { get; set; }
