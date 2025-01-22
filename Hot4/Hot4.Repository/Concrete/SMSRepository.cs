@@ -15,9 +15,11 @@ namespace Hot4.Repository.Concrete
     public class SMSRepository : RepositoryBase<Sms>, ISMSRepository
     {
         private ValueSettings _valueSettings { get; }
+
         public SMSRepository(HotDbContext context, IOptions<ValueSettings> valueSettings) : base(context)
         {
             _valueSettings = valueSettings.Value;
+
         }
 
         public async Task<bool> AddSMS(Sms sms)
@@ -32,7 +34,7 @@ namespace Hot4.Repository.Concrete
             await SaveChanges();
             return true;
         }
-        public async Task<List<Access>> SmsBulkSend(string messageText)
+        public async Task<List<Access>?> SmsBulkSend(string messageText)
         {
             var accountIds = await _context.Payment.Where(d => d.PaymentDate > DateTime.Now.AddDays(-90)
                               && d.PaymentTypeId != (int)PaymentMethodType.Writeoff)
@@ -65,12 +67,12 @@ namespace Hot4.Repository.Concrete
             await _context.SaveChangesAsync();
             */
 
-            var emailLists = await _context.Access.Include(d => d.Account)
+            return await _context.Access.Include(d => d.Account)
                     .Where(d => d.ChannelId == (int)ChannelName.Web
                     && EF.Constant(accountIds).Contains(d.AccountId)
                     ).ToListAsync();
 
-            return emailLists.Where(d => Helper.CheckValidEmail(d.AccessCode)).ToList();
+            // return emailLists.Where(d => Helper.CheckValidEmail(d.AccessCode)).ToList();
 
         }
         public async Task<List<Sms>> SMSInbox()

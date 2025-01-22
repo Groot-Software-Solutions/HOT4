@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using Hot4.Core.Helper;
+using Hot4.Core.Settings;
 using Hot4.DataModel.Models;
 using Hot4.Repository.Abstract;
 using Hot4.Service.Abstract;
 using Hot4.ViewModel;
+using Microsoft.Extensions.Options;
 
 namespace Hot4.Service.Concrete
 {
@@ -10,10 +13,12 @@ namespace Hot4.Service.Concrete
     {
         private readonly ISMSRepository _smsRepository;
         private readonly IMapper Mapper;
-        public SMSService(ISMSRepository smsRepository, IMapper mapper)
+        private TemplateSettings _templateSettings { get; }
+        public SMSService(ISMSRepository smsRepository, IMapper mapper, IOptions<TemplateSettings> templateSettings)
         {
             _smsRepository = smsRepository;
             Mapper = mapper;
+            _templateSettings = templateSettings.Value;
         }
         public async Task<bool> AddSMS(SmsRecord sms)
         {
@@ -46,7 +51,25 @@ namespace Hot4.Service.Concrete
         public async Task<List<EmailModel>> SmsBulkSend(string messageText)
         {
             var records = await _smsRepository.SmsBulkSend(messageText);
-            return Mapper.Map<List<EmailModel>>(records);
+            var result = new List<EmailModel>();
+            if (records != null && records.Any())
+            {
+                var emailLists = records.Where(d => Helper.CheckValidEmail(d.AccessCode)).ToList();
+                //  string subject = "HOT Recharge Notification " + DateTime.Now.ToString("yyyy-MM-dd");
+                string subject = _templateSettings.RechargeNotificationSubject + " " + DateTime.Now.ToString("yyyy-MM-dd");
+                foreach (var emailData in emailLists)
+                {
+                    string emailAddress = emailData.AccessCode;
+                    string accountName = emailData.Account.AccountName;
+                    //  string htmlBody = $"Dear {accountName}<br><br>{messageText}<br><br>Best regards <br>the HOT Recharge Team";
+                    //  string htmlBody= string.Format(_templateSettings.RechargeNotificationBody, accountName, messageText);
+                    string htmlBody = _templateSettings.RechargeNotificationBody.Replace("accountName", accountName).Replace("messageText", messageText);
+                    // Email.SendEmail(emailAddress, subject, htmlBody);
+                }
+                return Mapper.Map<List<EmailModel>>(emailLists);
+            }
+            return result;
+
         }
         public async Task<List<SMSModel>> SMSInbox()
         {

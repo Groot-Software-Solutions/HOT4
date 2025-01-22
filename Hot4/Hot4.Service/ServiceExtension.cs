@@ -94,6 +94,8 @@ namespace Hot4.Service
             services.AddTransient<IRechargePrepaidService, RechargePrepaidService>();
             services.AddTransient<IRechargeService, RechargeService>();
             services.AddTransient<IReservationLogService, ReservationLogService>();
+            services.AddTransient<IReservationService, ReservationService>();
+            services.AddTransient<IReservationStateService, ReservationStateService>();
             services.AddTransient<ISelfTopUpService, SelfTopUpService>();
             services.AddTransient<ISelfTopUpStateService, SelfTopUpStateService>();
             services.AddTransient<ISMPPService, SMPPService>();
