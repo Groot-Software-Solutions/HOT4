@@ -24,14 +24,19 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        public async Task<bool> DeletePinBatchType(byte PinBatchTypeId)
+        public async Task<bool> DeletePinBatchType(byte pinBatchTypeId)
         {
-            var record = await GetEntityById(PinBatchTypeId);
+            var record = await GetEntityById(pinBatchTypeId);
             if (record != null)
             {
                 return await _pinBatchTypeRepository.DeletePinBatchType(record);
             }
             return false;
+        }
+        public async Task<PinBatchTypeModel> GetPinBatchById(byte pinBatchTypeId)
+        {
+            var record = await GetEntityById(pinBatchTypeId);
+            return Mapper.Map<PinBatchTypeModel>(record);
         }
         public async Task<List<PinBatchTypeModel>> ListPinBatchType()
         {
@@ -48,9 +53,9 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        private async Task<PinBatchTypes?> GetEntityById(byte PinBatchTypeId)
+        private async Task<PinBatchTypes?> GetEntityById(byte pinBatchTypeId)
         {
-            return await _pinBatchTypeRepository.GetPinBatchTypeById(PinBatchTypeId);
+            return await _pinBatchTypeRepository.GetPinBatchTypeById(pinBatchTypeId);
         }
     }
 }

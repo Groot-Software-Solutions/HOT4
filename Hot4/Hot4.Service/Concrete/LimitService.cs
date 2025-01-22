@@ -15,9 +15,9 @@ namespace Hot4.Service.Concrete
             _limitRepository = limitRepository;
             Mapper = mapper;
         }
-        public async Task<bool> DeleteLimit(long LimitId)
+        public async Task<bool> DeleteLimit(long limitId)
         {
-            var record = await GetEntityById(LimitId);
+            var record = await GetEntityById(limitId);
             if (record != null)
             {
                 return await _limitRepository.DeleteLimit(record);

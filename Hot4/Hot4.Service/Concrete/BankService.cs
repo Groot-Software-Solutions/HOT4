@@ -41,23 +41,23 @@ namespace Hot4.Service.Concrete
             }
             return false;            
         }
-        public async Task<bool> DeleteBank(byte BankId)
+        public async Task<bool> DeleteBank(byte bankId)
         {
-            var record = await GetEntityById(BankId);
+            var record = await GetEntityById(bankId);
             if (record != null)
             {   
               return  await _bankRepository.DeleteBank(record);
             }
             return false;            
         }
-        public async Task<BankModel> GetByBankId(byte BankId)
+        public async Task<BankModel> GetByBankId(byte bankId)
         {
-            var record = await GetEntityById(BankId);
+            var record = await GetEntityById(bankId);
             return Mapper.Map<BankModel>(record);     
         }
-        private async Task<Banks> GetEntityById (byte BankId)
+        private async Task<Banks> GetEntityById (byte bankId)
         {
-            return await _bankRepository.GetByBankId(BankId);
+            return await _bankRepository.GetByBankId(bankId);
         }
     }
 }

@@ -10,10 +10,10 @@ namespace Hot4.Service.Abstract
 {
     public interface IPaymentTypeService
     {
-        Task<PaymentTypeModel> GetPaymentTypeById(byte PaymentTypeId);
+        Task<PaymentTypeModel> GetPaymentTypeById(byte paymentTypeId);
         Task<List<PaymentTypeModel>> ListPaymentType();
         Task<bool> AddPaymentType(PaymentTypeModel paymentTypeModel);
         Task<bool> UpdatePaymentType(PaymentTypeModel paymentTypeModel);
-        Task<bool> DeletePaymentType(byte PaymentTypeId);
+        Task<bool> DeletePaymentType(byte paymentTypeId);
     }
 }

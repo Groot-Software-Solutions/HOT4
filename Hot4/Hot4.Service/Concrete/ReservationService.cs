@@ -16,7 +16,6 @@ namespace Hot4.Service.Concrete
     { 
         private readonly IReservationRepository _reservationRepository;
         private readonly IMapper Mapper;
-
         public ReservationService(IReservationRepository reservationRepository , IMapper mapper)
         {
             _reservationRepository = reservationRepository;
@@ -31,30 +30,25 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
-        public async Task<bool> DeleteReservation(ReservationModel reservationModel)
+        public async Task<bool> DeleteReservation(long reservationId)
         {
-            var record = await GetEntityById(reservationModel.ReservationId);
-
+            var record = await GetEntityById(reservationId);
             if (record != null) 
             {
                return await _reservationRepository.DeleteReservation(record);
             }
             return false;
         }
-
         public  async Task<ReservationModel> GetReservationById(long reservationId)
         {
             var record = await GetEntityById(reservationId);
             return Mapper.Map<ReservationModel>(record);
         }
-
         public async Task<List<ReservationModel>> GetReservationByRechargeId(long rechargeId)
         {
             var records = await _reservationRepository.GetReservationByRechargeId(rechargeId);
             return Mapper.Map<List<ReservationModel>>(records);
         }
-
         public async Task<bool> UpdateReservation(ReservationModel reservationModel)
         {
             var record = await GetEntityById(reservationModel.ReservationId);
@@ -65,10 +59,9 @@ namespace Hot4.Service.Concrete
             }
             return true;
         }
-
-        private async Task<Reservation> GetEntityById (long ReservationId)
+        private async Task<Reservation> GetEntityById (long reservationId)
         {
-            return await _reservationRepository.GetReservationById(ReservationId);
+            return await _reservationRepository.GetReservationById(reservationId);
         }
     }
 }

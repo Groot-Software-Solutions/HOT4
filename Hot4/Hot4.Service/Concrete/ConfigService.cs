@@ -29,18 +29,18 @@ namespace Hot4.Service.Concrete
             }
             return false;
         } 
-        public async Task<bool> DeleteConfig(byte ConfigId)
+        public async Task<bool> DeleteConfig(byte configId)
         {
-            var record = await GetEntityById(ConfigId);
+            var record = await GetEntityById(configId);
             if (record != null)
             {
              return  await _configRepository.DeleteConfig(record);
             }
             return false;
         }
-        public async Task<ConfigModel> GetConfigById(byte ConfigId)
+        public async Task<ConfigModel> GetConfigById(byte configId)
         {
-            var record = await GetEntityById(ConfigId); 
+            var record = await GetEntityById(configId); 
             return Mapper.Map<ConfigModel>(record);
         }
         public async Task<List<ConfigModel>> ListConfig()
@@ -58,9 +58,9 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        private async Task<Configs> GetEntityById (byte ConfigId)
+        private async Task<Configs> GetEntityById (byte configId)
         {
-            return await _configRepository.GetConfigById(ConfigId);
+            return await _configRepository.GetConfigById(configId);
         }
     }
 }

@@ -29,9 +29,9 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        public async Task<bool> DeleteProductMetaData(int ProductMetaId)
+        public async Task<bool> DeleteProductMetaData(int productMetaId)
         {
-            var record = await GetEntityById(ProductMetaId);
+            var record = await GetEntityById(productMetaId);
             if (record != null)
             {
                 return await _productMetaDataRepository.DeleteProductMetaData(record);
@@ -39,9 +39,9 @@ namespace Hot4.Service.Concrete
             return false;
 
         }
-        public async Task<ProductMetaDataModel> GetProductMetaDataById(int ProductMetaId)
+        public async Task<ProductMetaDataModel> GetProductMetaDataById(int productMetaId)
         {
-            var record = await GetEntityById(ProductMetaId);
+            var record = await GetEntityById(productMetaId);
             return  Mapper.Map<ProductMetaDataModel>(record);
         }
         public async Task<List<ProductMetaDataModel>> ListProductMetaData()
@@ -59,9 +59,9 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        private async Task<ProductMetaData> GetEntityById (int ProductMetaId)
+        private async Task<ProductMetaData> GetEntityById (int productMetaId)
         {
-            return await _productMetaDataRepository.GetProductMetaDataById(ProductMetaId);
+            return await _productMetaDataRepository.GetProductMetaDataById(productMetaId);
         }
     }
 }

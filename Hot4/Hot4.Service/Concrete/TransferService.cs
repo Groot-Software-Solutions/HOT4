@@ -8,7 +8,7 @@ namespace Hot4.Service.Concrete
 {
     public class TransferService : ITransferService
     {
-        private ITransferRepository _transferRepository;
+        private readonly ITransferRepository _transferRepository;
         private readonly IMapper Mapper;
         public TransferService(ITransferRepository transferRepository, IMapper mapper)
         {
@@ -17,10 +17,14 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> AddTransfer(TransferRecord transfer)
         {
-            var model = Mapper.Map<Transfer>(transfer);
-            return await _transferRepository.AddTransfer(model);
+            if (transfer == null)
+            {
+                var model = Mapper.Map<Transfer>(transfer);
+                return await _transferRepository.AddTransfer(model);
+            }
+            return false;
+            
         }
-
         public async Task<bool> DeleteTransfer(long transferId)
         {
             var record = await GetEntityById(transferId);
@@ -30,13 +34,11 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         public async Task<StockTradeModel> GetStockTrade(StockTradeSearchModel stockTradeSearch)
         {
             var records = await _transferRepository.GetStockTrade(stockTradeSearch);
             return Mapper.Map<StockTradeModel>(records);
         }
-
         public async Task<decimal> GetStockTradeBalByAccountId(long accountId)
         {
             return await _transferRepository.GetStockTradeBalByAccountId(accountId);
@@ -51,13 +53,11 @@ namespace Hot4.Service.Concrete
             var records = await _transferRepository.GetTransferByPaymentId(paymentId);
             return Mapper.Map<List<TransferModel>>(records);
         }
-
         public async Task<List<TransferModel>> ListTransfer(int pageNo, int pageSize)
         {
             var records = await _transferRepository.ListTransfer(pageNo, pageSize);
             return Mapper.Map<List<TransferModel>>(records);
         }
-
         public async Task<bool> UpdateTransfer(TransferRecord transfer)
         {
             var record = await GetEntityById(transfer.TransferId);
@@ -68,7 +68,6 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         private async Task<Transfer?> GetEntityById(long TransferId)
         {
             return await _transferRepository.GetTransferById(TransferId);

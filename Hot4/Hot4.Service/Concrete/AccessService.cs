@@ -150,9 +150,9 @@ namespace Hot4.Service.Concrete
             }
             return false;            
         }
-        private async Task<Access?> GetEntityById(long AccessId)
+        private async Task<Access?> GetEntityById(long accessId)
         {
-            return await _accessRepository.GetAccessById(AccessId);
+            return await _accessRepository.GetAccessById(accessId);
         }
 
     }

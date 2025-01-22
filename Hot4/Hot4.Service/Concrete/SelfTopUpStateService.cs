@@ -17,10 +17,13 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> AddSelfTopUpState(SelfTopUpStateModel selfTopUpState)
         {
-            var model = Mapper.Map<SelfTopUpState>(selfTopUpState);
-            return await _selfTopUpStateRepository.AddSelfTopUpState(model);
+            if (selfTopUpState != null)
+            {
+                var model = Mapper.Map<SelfTopUpState>(selfTopUpState);
+                return await _selfTopUpStateRepository.AddSelfTopUpState(model);
+            }
+            return false;
         }
-
         public async Task<bool> DeleteSelfTopUpState(byte selfTopUpStateId)
         {
             var record = await GetEntityById(selfTopUpStateId);
@@ -30,19 +33,16 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         public async Task<SelfTopUpStateModel?> GetSelfTopUpStateById(byte selfTopUpStateId)
         {
             var record = await GetEntityById(selfTopUpStateId);
             return Mapper.Map<SelfTopUpStateModel?>(record);
         }
-
         public async Task<List<SelfTopUpStateModel>> ListSelfTopUpState()
         {
             var records = await _selfTopUpStateRepository.ListSelfTopUpState();
             return Mapper.Map<List<SelfTopUpStateModel>>(records);
         }
-
         public async Task<bool> UpdateSelfTopUpState(SelfTopUpStateModel selfTopUpState)
         {
             var record = await GetEntityById(selfTopUpState.SelfTopUpStateId);

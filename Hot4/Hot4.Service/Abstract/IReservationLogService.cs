@@ -13,7 +13,7 @@ namespace Hot4.Service.Abstract
         Task<ReservationLogModel> GetReservationLogById(long ReservationLogId);
         Task<bool> AddReservationLog(ReservationLogModel  reservationLogModel);
         Task<bool> UpdateReservationLog(ReservationLogModel reservationLogModel);
-        Task<bool> DeleteReservationLog(ReservationLogModel reservationLogModel);
+        Task<bool> DeleteReservationLog(long reservationLogId);
         Task<List<ReservationLogModel>> ListReservationLog(int pageNo, int pageSize);
     }
 }

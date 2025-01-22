@@ -44,18 +44,18 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        public async Task<bool> DeleteAddress(long AccountId)
+        public async Task<bool> DeleteAddress(long accountId)
         {
-            var record = await GetEntityById(AccountId); 
+            var record = await GetEntityById(accountId); 
             if (record != null )
             {
                return await _addressRepository.DeleteAddress(record);
             }
             return false;            
         }
-        private async Task<Address?> GetEntityById(long AccountId)
+        private async Task<Address?> GetEntityById(long accountId)
         {
-            return await _addressRepository.GetAddressById(AccountId);
+            return await _addressRepository.GetAddressById(accountId);
         }
     }
 }

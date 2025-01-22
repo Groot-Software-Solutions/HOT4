@@ -8,7 +8,7 @@ namespace Hot4.Service.Concrete
 {
     public class SubscriberService : ISubscriberService
     {
-        private ISubscriberRepository _subscriberRepository;
+        private readonly ISubscriberRepository _subscriberRepository;
         private readonly IMapper Mapper;
         public SubscriberService(ISubscriberRepository subscriberRepository, IMapper mapper)
         {
@@ -17,10 +17,13 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> AddSubscriber(SubscriberRecord subscriber)
         {
-            var model = Mapper.Map<Subscriber>(subscriber);
-            return await _subscriberRepository.AddSubscriber(model);
+            if (subscriber != null)
+            {
+                var model = Mapper.Map<Subscriber>(subscriber);
+                return await _subscriberRepository.AddSubscriber(model);
+            }
+            return true;            
         }
-
         public async Task<bool> DeleteSubscriber(long subscriberId)
         {
             var record = await GetEntityById(subscriberId);
@@ -30,19 +33,16 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         public async Task<SubscriberModel?> GetSubscriberById(long subscriberId)
         {
             var record = await GetEntityById(subscriberId);
             return Mapper.Map<SubscriberModel>(record);
         }
-
         public async Task<List<SubscriberModel>> ListSubscriber(int pageNo, int pageSize)
         {
             var records = await _subscriberRepository.ListSubscriber(pageNo, pageSize);
             return Mapper.Map<List<SubscriberModel>>(records);
         }
-
         public async Task<bool> UpdateSubscriber(SubscriberRecord subscriber)
         {
             var record = await GetEntityById(subscriber.SubscriberId);
@@ -53,7 +53,6 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         private async Task<Subscriber?> GetEntityById (long SubscriberId)
         {
             return await _subscriberRepository.GetSubscriberById(SubscriberId);

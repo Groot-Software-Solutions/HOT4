@@ -48,7 +48,6 @@ namespace Hot4.Service.Concrete
             var records = await _brandRepository.ListBrand();
             return Mapper.Map<List<BrandModel>>(records);
         }
-
         public async Task<bool> UpdateBrand(BrandRecord brand)
         {
             var record = await GetEntityById(brand.BrandId);
@@ -59,9 +58,9 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        private async Task<Brand?> GetEntityById (byte BrandId)
+        private async Task<Brand?> GetEntityById (byte brandId)
         {
-            return await _brandRepository.GetBrandById(BrandId);
+            return await _brandRepository.GetBrandById(brandId);
         }
     }
 }

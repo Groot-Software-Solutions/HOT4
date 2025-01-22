@@ -11,7 +11,7 @@ namespace Hot4.Service.Abstract
     {
         Task<ProfileModel?> GetProfileById(int profileId);
         Task<List<ProfileModel>> ListProfile();
-        Task<bool> DeleteProfile(int ProfileId);
+        Task<bool> DeleteProfile(int profileId);
         Task<bool> AddProfile(ProfileModel profileModel);
         Task<bool> UpdateProfile(ProfileModel profileModel);
     }

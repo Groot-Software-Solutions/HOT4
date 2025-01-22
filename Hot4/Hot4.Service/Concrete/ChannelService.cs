@@ -39,9 +39,9 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        public async Task<bool> DeleteChannel(byte ChannelId)
+        public async Task<bool> DeleteChannel(byte channelId)
         {
-            var record = await GetEntityById(ChannelId);
+            var record = await GetEntityById(channelId);
             if (record != null)
             {
               return await _channelRepository.DeleteChannel(record);
@@ -53,9 +53,9 @@ namespace Hot4.Service.Concrete
             var record = await GetEntityById(channelId);
             return Mapper.Map<ChannelModel>(record);
         }
-        private async Task<Channels> GetEntityById(byte ChannelId) 
+        private async Task<Channels> GetEntityById(byte channelId) 
         {
-            return await _channelRepository.GetByChannelId(ChannelId);
+            return await _channelRepository.GetByChannelId(channelId);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Hot4.Service.Abstract
 {
     public interface IBrandService
     {
-        Task<BrandModel?> GetBrandById(byte BrandId);
+        Task<BrandModel?> GetBrandById(byte brandId);
         Task<List<BrandModel>> GetBrandIdentity(BrandIdentitySearchModel brandIdentitySearchModel);
         Task<List<BrandModel>> ListBrand();
         Task<bool> AddBrand(BrandRecord brand);

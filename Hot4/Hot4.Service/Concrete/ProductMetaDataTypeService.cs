@@ -30,18 +30,18 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        public async Task<bool> DeleteProductMetaDataType(byte ProductMetaDataTypeId)
+        public async Task<bool> DeleteProductMetaDataType(byte productMetaDataTypeId)
         {
-            var record = await GetEntityById(ProductMetaDataTypeId);
+            var record = await GetEntityById(productMetaDataTypeId);
             if (record != null)
             {
                return await _productMetaDataTypeRepository.DeleteProductMetaDataType(record);
             }
             return false;
         }
-        public async Task<ProductMetaDataTypeModel> GetProductMetaDataTypeById(byte ProductMetaDataTypeId)
+        public async Task<ProductMetaDataTypeModel> GetProductMetaDataTypeById(byte productMetaDataTypeId)
         {
-            var record = await _productMetaDataTypeRepository.GetProductMetaDataTypeById(ProductMetaDataTypeId);
+            var record = await _productMetaDataTypeRepository.GetProductMetaDataTypeById(productMetaDataTypeId);
             return Mapper.Map<ProductMetaDataTypeModel>(record);   
         }
         public async Task<List<ProductMetaDataTypeModel>> ListProductMetaDataType()
@@ -59,9 +59,9 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        private async Task<ProductMetaDataType> GetEntityById (byte ProductMetaDataTypeId)
+        private async Task<ProductMetaDataType> GetEntityById (byte productMetaDataTypeId)
         {
-            return await _productMetaDataTypeRepository.GetProductMetaDataTypeById (ProductMetaDataTypeId);
+            return await _productMetaDataTypeRepository.GetProductMetaDataTypeById (productMetaDataTypeId);
         }
     }
 }

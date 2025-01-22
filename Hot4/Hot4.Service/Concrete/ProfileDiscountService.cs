@@ -29,18 +29,18 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        public async Task<bool> DeletePrfDiscount(int ProfileDiscountId)
+        public async Task<bool> DeletePrfDiscount(int profileDiscountId)
         {
-            var record = await GetEntityById(ProfileDiscountId);
+            var record = await GetEntityById(profileDiscountId);
             if (record != null)
             {
                 return await _profileDiscountRepository.DeletePrfDiscount(record);
             }
             return false;
         }
-        public async Task<ProfileDiscountModel?> GetPrfDiscountById(int ProfileDiscountId)
+        public async Task<ProfileDiscountModel?> GetPrfDiscountById(int profileDiscountId)
         {
-            var record = await GetEntityById(ProfileDiscountId);
+            var record = await GetEntityById(profileDiscountId);
             return Mapper.Map<ProfileDiscountModel?>(record);
         }
         public async Task<List<ProfileDiscountModel>> GetPrfDiscountByProfileAndBrandId(int profileId, int brandId)
@@ -63,9 +63,9 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        private async Task<ProfileDiscount?> GetEntityById (int ProfileDiscountId)
+        private async Task<ProfileDiscount?> GetEntityById (int profileDiscountId)
         {
-            return await _profileDiscountRepository.GetPrfDiscountById(ProfileDiscountId);
+            return await _profileDiscountRepository.GetPrfDiscountById(profileDiscountId);
         }
     }
 }

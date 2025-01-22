@@ -49,9 +49,9 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        private async Task<BankvPayment?> GetEntityById (string VPaymentId)
+        private async Task<BankvPayment?> GetEntityById (string vPaymentId)
         {
-            return await _bankvPaymentRepository.GetBankvPaymentByvPaymentId(VPaymentId);
+            return await _bankvPaymentRepository.GetBankvPaymentByvPaymentId(vPaymentId);
         }
     }
 }

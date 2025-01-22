@@ -13,9 +13,8 @@ namespace Hot4.Service.Concrete
         public BankTrxBatchService(IBankTrxBatchRepository bankTrxBatchRepository, IMapper mapper)
         {
             _bankTrxBatchRepository = bankTrxBatchRepository;
-            this.Mapper = mapper;
+            Mapper = mapper;
         }
-
         public async Task<bool> AddBatch(BankTrxBatchRecord bankTrxBatch)
         {
             if (bankTrxBatch != null)
@@ -63,9 +62,9 @@ namespace Hot4.Service.Concrete
         {
             return await _bankTrxBatchRepository.GetCurrentBatchByBankIdAndRefId(bankId, batchRef);
         }
-        private async Task<BankTrxBatch?> GetEntityById (long BankTrxBatchId)
+        private async Task<BankTrxBatch?> GetEntityById (long bankTrxBatchId)
         {
-            return await _bankTrxBatchRepository.GetBatchById(BankTrxBatchId);
+            return await _bankTrxBatchRepository.GetBatchById(bankTrxBatchId);
         }
     }
 }

@@ -30,18 +30,18 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        public async Task<bool> DeletePaymentSource(byte PaymentSourceId)
+        public async Task<bool> DeletePaymentSource(byte paymentSourceId)
         {
-            var record = await GetEntityById(PaymentSourceId);
+            var record = await GetEntityById(paymentSourceId);
             if (record != null)
             {
                 return await _paymentSourceRepository.DeletePaymentSource(record);
             }
             return false;
         }
-        public async Task<PaymentSourceModel> GetPaymentSourceById(byte PaymentSourceId)
+        public async Task<PaymentSourceModel> GetPaymentSourceById(byte paymentSourceId)
         {
-            var record = await GetEntityById(PaymentSourceId);
+            var record = await GetEntityById(paymentSourceId);
             return Mapper.Map<PaymentSourceModel>(record);
         }
         public async Task<List<PaymentSourceModel>> ListPaymentSource()
@@ -59,9 +59,9 @@ namespace Hot4.Service.Concrete
             }
             return false; 
         }
-        private async Task<PaymentSources> GetEntityById(byte PaymentSourceId)
+        private async Task<PaymentSources> GetEntityById(byte paymentSourceId)
         {
-            return await _paymentSourceRepository.GetPaymentSourceById(PaymentSourceId);
+            return await _paymentSourceRepository.GetPaymentSourceById(paymentSourceId);
         }
     }
 }

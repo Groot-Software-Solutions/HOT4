@@ -8,19 +8,22 @@ namespace Hot4.Service.Concrete
 {
     public class SMPPService : ISMPPService
     {
-        private ISMPPRepository _smppRepository;
+        private readonly ISMPPRepository _smppRepository;
         private readonly IMapper Mapper;
         public SMPPService(ISMPPRepository smppRepository, IMapper mapper)
         {
             _smppRepository = smppRepository;
             Mapper = mapper;
         }
-        public Task<bool> AddSMPP(SMPPModel smpp)
+        public async Task<bool> AddSMPP(SMPPModel smpp)
         {
-            var model = Mapper.Map<Smpp>(smpp);
-            return _smppRepository.AddSMPP(model);
+            if (smpp != null)
+            {
+                var model = Mapper.Map<Smpp>(smpp);
+                return await _smppRepository.AddSMPP(model);
+            }
+            return false;
         }
-
         public async Task<bool> DeleteSMPP(byte smppId)
         {
             var record = await GetEntityById(smppId);
@@ -30,19 +33,16 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         public async Task<SMPPModel?> GetSMPPById(byte smppId)
         {
             var record = await GetEntityById(smppId);
             return Mapper.Map<SMPPModel>(record);
         }
-
         public async Task<List<SMPPModel>> ListSMPP()
         {
             var records = await _smppRepository.ListSMPP();
             return Mapper.Map<List<SMPPModel>>(records);
         }
-
         public async Task<bool> UpdateSMPP(SMPPModel smpp)
         {
             var record = await GetEntityById(smpp.SmppId);
@@ -53,7 +53,6 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         private async Task<Smpp?> GetEntityById (byte SmppId)
         {
             return await _smppRepository.GetSMPPById(SmppId);

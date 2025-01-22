@@ -10,10 +10,10 @@ namespace Hot4.Service.Abstract
 {
     public interface IProductFieldService 
     {
-        Task<ProductFieldModel> GetProductFieldById(int BrandFieldId);
+        Task<ProductFieldModel> GetProductFieldById(int brandFieldId);
         Task<List<ProductFieldModel>> ListProductField();
         Task<bool> AddProductField(ProductFieldModel productFieldModel);
         Task<bool> UpdateProductField(ProductFieldModel productFieldModel);
-        Task<bool> DeleteProductField(int BrandFieldId);
+        Task<bool> DeleteProductField(int brandFieldId);
     }
 }

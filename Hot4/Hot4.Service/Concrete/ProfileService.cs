@@ -31,9 +31,9 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        public async Task<bool> DeleteProfile(int ProfileId)
+        public async Task<bool> DeleteProfile(int profileId)
         {
-            var record = await GetEntityById(ProfileId);
+            var record = await GetEntityById(profileId);
             if (record != null)
             {
                return await _profileRepository.DeleteProfile(record);
@@ -60,9 +60,9 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        private async Task<Profile?> GetEntityById (int ProfileId)
+        private async Task<Profile?> GetEntityById (int profileId)
         {
-            return await _profileRepository.GetProfileById(ProfileId);
+            return await _profileRepository.GetProfileById(profileId);
         }
     }
 }

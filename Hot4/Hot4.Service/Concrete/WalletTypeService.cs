@@ -9,7 +9,7 @@ namespace Hot4.Service.Concrete
 {
     public class WalletTypeService : IWalletTypeService
     {
-        private IWalletTypeRepository _walletTypeRepository;
+        private readonly IWalletTypeRepository _walletTypeRepository;
         private readonly IMapper Mapper;
         public WalletTypeService(IWalletTypeRepository walletTypeRepository, IMapper mapper)
         {
@@ -18,10 +18,14 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> AddWalletType(WalletTypeModel walletType)
         {
-            var model = Mapper.Map<WalletType>(walletType);
-            return await _walletTypeRepository.AddWalletType(model);
+            if (walletType != null)
+            {
+                var model = Mapper.Map<WalletType>(walletType);
+                return await _walletTypeRepository.AddWalletType(model);
+            }
+            return true;
+            
         }
-
         public async Task<bool> DeleteWalletType(int walletTypeId)
         {
             var record = await GetEntityById(walletTypeId);
@@ -31,19 +35,16 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         public async Task<WalletTypeModel?> GetWalletTypeById(int walletTypeId)
         {
             var record = await GetEntityById(walletTypeId);
             return Mapper.Map<WalletTypeModel>(record);
         }
-
         public async Task<List<WalletTypeModel>> ListWalletType()
         {
             var records = await _walletTypeRepository.ListWalletType();
             return Mapper.Map<List<WalletTypeModel>>(records);
         }
-
         public async Task<bool> UpdateWalletType(WalletTypeModel walletType)
         {
             var record = await GetEntityById(walletType.WalletTypeId);
@@ -54,8 +55,6 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
-
         private async Task<WalletType?> GetEntityById(int WalletTypeId)
         {
             return await _walletTypeRepository.GetWalletTypeById(WalletTypeId);
