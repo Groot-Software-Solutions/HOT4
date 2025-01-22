@@ -8,7 +8,7 @@ namespace Hot4.Service.Concrete
 {
     public class StateService : IStateService
     {
-        private IStateRepository _stateRepository;
+        private readonly IStateRepository _stateRepository;
         private readonly IMapper Mapper;
         public StateService(IStateRepository stateRepository, IMapper mapper)
         {
@@ -17,10 +17,13 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> AddState(StateModel state)
         {
-            var model = Mapper.Map<States>(state);
-            return await _stateRepository.AddState(model);
+            if (state != null) 
+            {
+                var model = Mapper.Map<States>(state);
+                return await _stateRepository.AddState(model);
+            }
+            return false;
         }
-
         public async Task<bool> DeleteState(byte stateId)
         {
             var record = await GetEntityById(stateId);
@@ -30,19 +33,16 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         public async Task<StateModel?> GetStateById(byte stateId)
         {
             var record = await GetEntityById(stateId);
             return Mapper.Map<StateModel>(record);
         }
-
         public async Task<List<StateModel>> ListState()
         {
             var records = await _stateRepository.ListState();
             return Mapper.Map<List<StateModel>>(records);
         }
-
         public async Task<bool> UpdateState(StateModel state)
         {
             var record = await GetEntityById(state.StateId);
@@ -53,7 +53,6 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         private async Task<States?> GetEntityById (byte StateId)
         {
             return await _stateRepository.GetStateById(StateId);

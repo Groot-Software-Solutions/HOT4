@@ -53,9 +53,9 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        private async Task<BankTrxTypes?> GetEntityById (byte BankTrxTypeId)
+        private async Task<BankTrxTypes?> GetEntityById (byte bankTrxTypeId)
         {
-            return await _bankTrxTypeRepository.GetBankTrxTypeById(BankTrxTypeId);
+            return await _bankTrxTypeRepository.GetBankTrxTypeById(bankTrxTypeId);
         }
     }
 }

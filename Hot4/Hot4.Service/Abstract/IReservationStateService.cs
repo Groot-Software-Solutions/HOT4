@@ -12,7 +12,7 @@ namespace Hot4.Service.Abstract
     {
         Task<bool> AddReservationState(ReservationStateModel reservationStateModel);
         Task<bool> UpdateReservationState(ReservationStateModel reservationStateModel);
-        Task<bool> DeleteReservationState(ReservationStateModel reservationStateModel);
+        Task<bool> DeleteReservationState(byte reservationStateId);
         Task<List<ReservationStateModel>> ListReservationState();
         Task<ReservationStateModel> GetReservationStateById(byte ReservationStateId);
     }

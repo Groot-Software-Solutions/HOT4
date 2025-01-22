@@ -29,18 +29,18 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        public async Task<bool> DeletePaymentType(byte PaymentTypeId)
+        public async Task<bool> DeletePaymentType(byte paymentTypeId)
         {
-            var record = await GetEntityById(PaymentTypeId);
+            var record = await GetEntityById(paymentTypeId);
             if (record != null)
             {
               return await _paymentTypeRepository.DeletePaymentType(record);
             }
             return false;
         }
-        public async Task<PaymentTypeModel> GetPaymentTypeById(byte PaymentTypeId)
+        public async Task<PaymentTypeModel> GetPaymentTypeById(byte paymentTypeId)
         {
-            var record = await GetEntityById(PaymentTypeId);
+            var record = await GetEntityById(paymentTypeId);
             return Mapper.Map<PaymentTypeModel>(record);
         }
         public async Task<List<PaymentTypeModel>> ListPaymentType()
@@ -58,9 +58,9 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        private async Task<PaymentTypes> GetEntityById (byte PaymentTypeId)
+        private async Task<PaymentTypes> GetEntityById (byte paymentTypeId)
         {
-            return await _paymentTypeRepository.GetPaymentTypeById(PaymentTypeId);
+            return await _paymentTypeRepository.GetPaymentTypeById(paymentTypeId);
         }
     }
 }

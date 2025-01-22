@@ -5,10 +5,10 @@ namespace Hot4.Service.Abstract
 {
     public interface IBankService
     {
-        Task<BankModel> GetByBankId(byte BankId);
+        Task<BankModel> GetByBankId(byte bankId);
         Task<List<BankModel>> ListBanks();
         Task <bool>AddBank(BankModel bankModel);
         Task <bool>UpdateBank(BankModel bankModel);
-        Task<bool> DeleteBank(byte BankId);
+        Task<bool> DeleteBank(byte bankId);
     }
 }

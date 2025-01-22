@@ -10,10 +10,10 @@ namespace Hot4.Service.Abstract
 {
     public interface IProductMetaDataService
     {
-        Task<ProductMetaDataModel> GetProductMetaDataById(int ProductMetaId);
+        Task<ProductMetaDataModel> GetProductMetaDataById(int productMetaId);
         Task<List<ProductMetaDataModel>> ListProductMetaData();
         Task<bool> AddProductMetaData(ProductMetaDataModel productMetaDataModel);
         Task<bool> UpdateProductMetaData(ProductMetaDataModel productMetaDataModel);
-        Task<bool> DeleteProductMetaData(int ProductMetaId);
+        Task<bool> DeleteProductMetaData(int productMetaId);
     }
 }

@@ -74,9 +74,9 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        private async Task<BankTrx?> GetEntityById (long BankTrxId)
+        private async Task<BankTrx?> GetEntityById (long bankTrxId)
         {
-            return await _bankTrxRepository.GetTrxById(BankTrxId);
+            return await _bankTrxRepository.GetTrxById(bankTrxId);
         }
 
     }

@@ -10,10 +10,10 @@ namespace Hot4.Service.Abstract
 {
     public interface IConfigService
     {
-        Task<ConfigModel> GetConfigById(byte ConfigId);
+        Task<ConfigModel> GetConfigById(byte configId);
         Task<List<ConfigModel>> ListConfig();
         Task<bool> AddConfig(ConfigModel configModel);
         Task<bool> UpdateConfig(ConfigModel configModel);
-        Task<bool> DeleteConfig(byte ConfigId);
+        Task<bool> DeleteConfig(byte configId);
     }
 }

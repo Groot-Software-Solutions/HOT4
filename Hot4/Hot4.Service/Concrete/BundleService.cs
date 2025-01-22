@@ -33,7 +33,6 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         public async Task<BundleModel?> GetBundlesById(int bundleId)
         {
             var record = await GetEntityById(bundleId);
@@ -57,7 +56,6 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         private async Task<Bundle?> GetEntityById(int bundleId)
         {
             return await _bundleRepository.GetBundlesById(bundleId);

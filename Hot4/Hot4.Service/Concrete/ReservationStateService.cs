@@ -15,7 +15,6 @@ namespace Hot4.Service.Concrete
     {
         private readonly IReservationStateRepository _reservationStateRepository;
         private readonly IMapper Mapper;
-
         public ReservationStateService(IReservationStateRepository reservationStateRepository , IMapper mapper)
         {
             _reservationStateRepository = reservationStateRepository;
@@ -30,29 +29,25 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
-        public async Task<bool> DeleteReservationState(ReservationStateModel reservationStateModel)
+        public async Task<bool> DeleteReservationState(byte reservationStateId)
         {
-            var record = await GetEntityById(reservationStateModel.ReservationStateId);
+            var record = await GetEntityById(reservationStateId);
             if (record != null)
             {
                return await _reservationStateRepository.DeleteReservationState(record);
             }
             return false;
         }
-
-        public async Task<ReservationStateModel> GetReservationStateById(byte ReservationStateId)
+        public async Task<ReservationStateModel> GetReservationStateById(byte reservationStateId)
         {
-            var record = await GetEntityById(ReservationStateId);
+            var record = await GetEntityById(reservationStateId);
             return  Mapper.Map<ReservationStateModel>(record);
         }
-
         public async Task<List<ReservationStateModel>> ListReservationState()
         {
             var records = await _reservationStateRepository.ListReservationState();
             return Mapper.Map< List<ReservationStateModel>>(records);
         }
-
         public async Task<bool> UpdateReservationState(ReservationStateModel reservationStateModel)
         {
             var record = await GetEntityById(reservationStateModel.ReservationStateId);
@@ -60,13 +55,11 @@ namespace Hot4.Service.Concrete
             {
                 Mapper.Map(reservationStateModel , record);
                 return await _reservationStateRepository.UpdateReservationState(record);  
-
             }
             return false;
         }
-
-        private async Task<ReservationStates> GetEntityById (byte ReservationStateId)
+        private async Task<ReservationStates> GetEntityById (byte reservationStateId)
         {
-            return await _reservationStateRepository.GetReservationStateById(ReservationStateId);        } 
+            return await _reservationStateRepository.GetReservationStateById(reservationStateId);        } 
     }
 }

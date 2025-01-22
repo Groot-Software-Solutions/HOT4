@@ -42,18 +42,18 @@ namespace Hot4.Service.Concrete
             }
             return false;            
         }
-        public async Task<bool> DeleteAccessWeb(long AccessId)
+        public async Task<bool> DeleteAccessWeb(long accessId)
         {
-            var record = await GetEntityById(AccessId);
+            var record = await GetEntityById(accessId);
             if (record != null)
             {
                return await _accessWebRepository.DeleteAccessWeb(record);
             }
             return false;            
         }
-        private async Task<AccessWeb?> GetEntityById (long AccessId)
+        private async Task<AccessWeb?> GetEntityById (long accessId)
         {
-            return await _accessWebRepository.GetAccessWebById(AccessId);
+            return await _accessWebRepository.GetAccessWebById(accessId);
         }
     }
 }

@@ -17,10 +17,13 @@ namespace Hot4.Service.Concrete
         }
         public async Task<bool> AddStockData(StockDataModel stockData)
         {
-            var model = Mapper.Map<StockDataModel, StockData>(stockData);
-            return await _stockDataRepository.AddStockData(model);
+            if (stockData != null)
+            {
+                var model = Mapper.Map<StockData>(stockData);
+                return await _stockDataRepository.AddStockData(model);
+            }
+            return false;
         }
-
         public async Task<bool> DeleteStockData(byte stockDataId)
         {
             var record = await GetEntityById(stockDataId);
@@ -30,19 +33,16 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
         public async Task<StockDataModel?> GetStockDataById(byte stockDataId)
         {
             var record = await GetEntityById(stockDataId);
             return Mapper.Map<StockDataModel?>(record);
         }
-
         public async Task<List<StockDataModel>> ListStockData()
         {
             var records = await _stockDataRepository.ListStockData();
             return Mapper.Map<List<StockDataModel>>(records);
         }
-
         public async Task<bool> UpdateStockData(StockDataModel stockData)
         {
             var record = await GetEntityById(stockData.StockDataId);

@@ -29,29 +29,25 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-
-        public async Task<bool> DeleteReservationLog(ReservationLogModel reservationLogModel)
+        public async Task<bool> DeleteReservationLog(long reservationLogId)
         {
-            var record = await getEntityById(reservationLogModel.ReservationId);
+            var record = await getEntityById(reservationLogId);
             if (record != null)
             {
                 return await _reservationLogRepository.DeleteReservationLog(record);
             }
             return false;
         }
-
-        public async Task<ReservationLogModel> GetReservationLogById(long ReservationLogId)
+        public async Task<ReservationLogModel> GetReservationLogById(long reservationLogId)
         {
-            var record = await getEntityById(ReservationLogId);
+            var record = await getEntityById(reservationLogId);
             return Mapper.Map<ReservationLogModel>(record);
         }
-
         public async Task<List<ReservationLogModel>> ListReservationLog(int pageNo, int pageSize)
         {
             var records = await _reservationLogRepository.ListReservationLog(pageNo, pageSize);
             return  Mapper.Map<List<ReservationLogModel>>(records);
         }
-
         public async Task<bool> UpdateReservationLog(ReservationLogModel reservationLogModel)
         {
             var record = await getEntityById(reservationLogModel.ReservationId);
@@ -62,10 +58,9 @@ namespace Hot4.Service.Concrete
             }
             return true;
         }
-
-        private async Task<ReservationLog> getEntityById (long ReservationLogId)
+        private async Task<ReservationLog> getEntityById (long reservationLogId)
         {
-            return await _reservationLogRepository.GetReservationLogById(ReservationLogId);
+            return await _reservationLogRepository.GetReservationLogById(reservationLogId);
         }
     }
 }

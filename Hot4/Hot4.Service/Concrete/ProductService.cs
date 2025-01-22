@@ -29,9 +29,9 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
-        public async Task<bool> DeleteProduct(byte ProductId)
+        public async Task<bool> DeleteProduct(byte productId)
         {
-            var record = await GetEntityById(ProductId);
+            var record = await GetEntityById(productId);
             if (record != null)
             {
                 return await _productRepository.DeleteProduct(record);
