@@ -22,6 +22,13 @@
 
 @inject Hot4.Service.Abstract.IBrandService brandService;
 
+@inject Hot4.Service.Abstract.IAccessService _accessService;
+@inject Hot4.Service.Abstract.IAccountService _accountService;
+
+@inject Hot4.Service.Abstract.IRechargeService _rechargeService;
+@inject Hot4.Service.Abstract.ISMSService _sMSService;
+@inject Hot4.Service.Abstract.IAccessWebService _accessWebService;
+
 @using Hot4.DataModel.Models;
 @using Hot4.ViewModel;
 <h3>Brand</h3>
@@ -89,35 +96,89 @@
     <button type="submit">Submit</button>
 </form>
 
+
+<h3>Access Service</h3>
+<form method="get" @formname="GetAccessByIdss" @onsubmit="GetAccessById">
+    <AntiforgeryToken />
+    <button type="submit">Get</button>
+</form>
+
 @code {
     private BrandRecord brandToDo { get; set; } = new() {  BrandName = "test",BrandSuffix="UKS",NetworkId=2, WalletTypeId=1};
     private async Task GetBrands(){
-       // var result = await brandService.GetBrandById(1);
-       // var updated = await brandService.UpdateBrand(brandToDo);
-       // var added = await brandService.AddBrand(brandToDo);
+        // var result = await brandService.GetBrandById(1);
+        // var updated = await brandService.UpdateBrand(brandToDo);
+        // var added = await brandService.AddBrand(brandToDo);
         var delted = await brandService.DeleteBrand(0);
     }
     private Access access { get; set; } = new() { AccessCode = "7009373729", AccessPassword = "1700", AccountId = 12177814 };
+    public bool? Deleted { get; set; }
+    // private AccessModel accessModel { get; set; } = new() { AccountId = 10001001, ChannelId = 1, AccessCode = "0774301441", AccessPassword = "5676", Deleted = true };
+
+    private AccessModel accessModel { get; set; } = new AccessModel
+        {
+            //AccessId = 10475532,
+            AccountId = 10000001,
+            ChannelId = 1, 
+            AccessCode = "0774175561",
+            AccessPassword = "6558",
+            Deleted = true , 
+           // PasswordHash = "somehashedvalue", 
+           // PasswordSalt = "somesaltvalue", 
+            InsertDate = DateTime.UtcNow 
+        };
+
+
     private async Task GetAccess()
     {
+        //  var resultPasswordChangeDeprecated = await _accessService.PasswordChangeDeprecated(12208728, "fb766dd61be3bfd60e0edf1fdd6f8cc8", "536e798a6b4ff16f87e8");
+        //var result = _accessService.AddAccessDeprecated(accessModel);
+        // var resultPasswordChange = await _accessService.PasswordChange(10475532 ,"12345677");
         // access.ChannelId = 2;
+        //  var resultGetLoginDetailsByAccessCode = await _accessService.GetLoginDetailsByAccessCode("0774656354");
+        // var resultGetAdminId = await _accessService.GetAdminId(10000040);
+        // var resultGetAccessByAccountId = await _accessService.GetAccessByAccountId(10000001, false, true); 
+        // var resultDeleteAccess = await _accessService.DeleteAccess(10475532);
+        // var result = await _accessService.UnDeleteAccess(10475532);
+        // var result =    await _accessService.AddAccess(accessModel);
+        // var result =  await _accessService.UpdateAccess(accessModel); 
         // await accessRepository.AddAccess(access);
-        // var result = await accessRepository.GetLoginDetails("7009373729", "1700");
-       // await accessRepository.PasswordChange(12208706, "1900");
+        //  var result = await accessRepository.GetLoginDetails("7009373729", "1700");
+        //var resultService = await _accessService.GetLoginDetails("7009373729", "1700");
+        //  var resultGetAccessByAccountIdAndChannelId = await _accessService.GetAccessByAccountIdAndChannelId(10000001, 1);
+        //   var resultGetAccessByCode = await _accessService.GetAccessByCode("0774175561");
+        //   var resultGetById = await _accessService.GetAccessById(10475532);
+        //    await accessRepository.PasswordChange(access, 12208706, "1900");
     }
     private Account account { get; set; } = new() { AccountName = "prd",  Email = "pradeep123@gmail.com", InsertDate = DateTime.Now, NationalId = "12233", ProfileId = 1, ReferredBy = "7009373728"};
+
+    private AccountModel accountModel { get; set; } = new AccountModel
+    {
+            AccountId = 12177815,
+         AccountName = "pinkys",
+         Email = "pinkys@gmail.com",
+         NationalId = "12234",
+         ReferredBy = "7009373728",
+            InsertDate = DateTime.Now,
+            ProfileId = 6
+    };
     private async Task GetAccount()
     {
         // var result = await accountRepository.AddAccount(account);
-        var resultSearch = await accountRepository.SearchAccount("prd",1,10);
+        //var resultSearch = await accountRepository.SearchAccount("prd",1,10);
+
+        // var resultGetAccountById = await _accountService.GetAccountById(10000001);
+        //  var resultGetAccountDetailById = await _accountService.GetAccountDetailById(10000001);
+        var resultSearchAccount = await _accountService.SearchAccount("ssa", 1, 100); // not working
+                                                                                      //  var resultAddAccount = await _accountService.AddAccount(accountModel); 
+                                                                                      // var resultUpdateAccount = await _accountService.UpdateAccount(accountModel);
+                                                                                      // var resultDeleteAccount = await _accountService.DeleteAccount(12177815);
     }
 
     private Banks bnk { get; set; } = new() { Bank = "testbnk", BankId = 19 };
     private EcoCashSearchModel ecoCashSerchMdl { get; set; } = new() { Amount = .20m, date = DateTime.Now, Mobile = "0777931881" };
 
     private BankTransactionSearchModel trnsModelForDuplicate { get; set; } = new() { Amount = 29, Balance = 0, BankId = 8, BankRef = "pending", TrxDate = Convert.ToDateTime("2024-11-17 00:49:34.307") };
-
-
 
     private SMSSearchModel smsSearchMdl { get; set; } = new() { StartDate = DateTime.Now.AddMonths(-9), EndDate = DateTime.Now, MessageText = "", Mobile = "", PageNo = 1, PageSize = 10, SmppId = -1, StateId = -1 };
     private BankTrxBatchRecord bankTrxBatchToDo { get; set; } = new() { BankId = 1, BatchDate = DateTime.Now, BatchReference = "no refs", LastUser = "pradeeps" };
@@ -147,14 +208,14 @@
         //  var resAccountSelect = await bankRepository.ListBanks();
 
         // SERVICE START
-           // 1) BANKTRXBATCH
+        // 1) BANKTRXBATCH
         // var addBatchService = await bankBatchService.AddBatch(bankTrxBatchToDo);
         var getBatchService = await bankBatchService.GetBatchById(4545454545);
-       var getBatchService2 = await bankBatchService.GetBatchById(10072061);
-      //  var getBatchBybankid = await bankBatchService.GetBatchByBankId(1);
-       var getCurrentBatchBybankid = await bankBatchService.GetCurrentBatch(1,"amt","sss");
+        var getBatchService2 = await bankBatchService.GetBatchById(10072061);
+        //  var getBatchBybankid = await bankBatchService.GetBatchByBankId(1);
+        var getCurrentBatchBybankid = await bankBatchService.GetCurrentBatch(1,"amt","sss");
 
-      // 2) BANKTRX
+        // 2) BANKTRX
         var banktrxGet = await bankTrxService.GetTrxById(14187048);
 
     }
@@ -164,13 +225,13 @@
 
     private async Task GetPin()
     {
-         var pinByBatchId = await pinRepository.GetPinDetailByBatchId(10008274); //exec xPin_List 10008274
+        var pinByBatchId = await pinRepository.GetPinDetailByBatchId(10008274); //exec xPin_List 10008274
 
         var pinLoaded = await pinRepository.GetPinLoadedByBatchId(10008274);  //exec xPin_Loaded 10008274
 
-         var pinStock = await pinRepository.GetPinStock();  //exec xPin_Stock
+        var pinStock = await pinRepository.GetPinStock();  //exec xPin_Stock
 
-         var pinRecharge = await pinRepository.PinRecharge(pinRechargePayload);
+        var pinRecharge = await pinRepository.PinRecharge(pinRechargePayload);
         var pinRechargePromo = await pinRepository.PinRechargePromo(pinRechargePromoPayload);
         // var pinRedeemedPromo = await pinRepository.PinRedeemedPromo(10008274);
     }
@@ -187,28 +248,152 @@
         var result = await webRequestRepository.GetWebRequestByRefAndAccessId("", 10664643);
     }
 
+    private DuplicateRechargeSrchModel duplicateRechargeSrchModel { get; set; } = new DuplicateRechargeSrchModel
+    {
+            SmsId = 751904467,
+            Mobile = "0774432304",
+            SmsText = "We have topped up your account with $7.00."
+    };
+
+    private SmsRecord smsRecord { get; set; } = new SmsRecord
+    {
+        SmppId = null,
+            StateId = 2 , 
+            PriorityId = 1,
+            Mobile = "0774432304",
+            Direction =true, 
+             InsertDate = DateTime.Now,
+            Smstext = "We have topped up your account with $5.00.",
+             Smsdate = DateTime.Now
+
+
+    };
+
+    private SmsRecord updateSmsRecord { get; set; } = new SmsRecord
+        {
+            Smsid = 751904467,
+            Mobile = "0774432304",
+            Smstext = "We have topped up your account with $7.00.",
+             StateId = 3 ,
+              Direction = true,
+               InsertDate = DateTime.Now,
+                PriorityId = 1 ,
+                 Smsdate = DateTime.Now
+
+        };
+
+    private SMSSearchModel smsSearch { get; set; } = new SMSSearchModel
+    {
+            Mobile = "0774432304",
+            StartDate = new DateTime(2025, 1, 30, 15, 2, 22, 260),
+            EndDate = new DateTime(2025, 1,30 , 15, 2,22,260),
+            MessageText = "We have topped up your account with $7.00.",
+            StateId = 3,
+            PageNo = 1, 
+            PageSize = 10
+            
+    };
+
     private async Task GetSMS()
     {
         //var result = await smsRepository.SmsBulkSend("Testing message");
         // var resultS = await smsRepository.SmsBulkSmsSend("testing demo SmsBulkSmsSend");
         // var resultEmailAgg = await smsRepository.EmailAggregators();
         //  var resultEmailCorp = await smsRepository.EmailCorporates();
-          var resultSMSInbox = await smsRepository.SMSInbox();
+        //  var resultSMSInbox = await smsRepository.SMSInbox();
 
-        DateTime dt = Convert.ToDateTime("2024-10-29 00:49:34.307");
-        var resultSMSInboxs = await smsRepository.GetSMSByAccountSMSDate(11552422,dt,1,10);
-        var resultSMSSearch = await smsRepository.SMSSearch(smsSearchMdl);
+        //   DateTime dt = Convert.ToDateTime("2024-10-29 00:49:34.307");
+        //  var resultSMSInboxs = await smsRepository.GetSMSByAccountSMSDate(11552422,dt,1,10);
+        //  var resultSMSSearch = await smsRepository.SMSSearch(smsSearchMdl);
+
+        //  var resultAddSMS = await _sMSService.AddSMS(smsRecord);
+        // var resultUpdateSMS = await _sMSService.UpdateSMS(updateSmsRecord);
+        //  var resultDuplicateRecharge = await _sMSService.DuplicateRecharge(duplicateRechargeSrchModel);
+        //  var resultGetSMSById = await _sMSService.GetSMSById(750958151);
+        //   DateTime smsDate = new DateTime(2024, 11, 16, 23, 56, 0);
+        //   var resultGetSMSByAccountSMSDate = await _sMSService.GetSMSByAccountSMSDate(12177811, smsDate, 1, 10);
+
+        // var resultGetSMSById = await _sMSService.GetSMSById(750958151);
+
+        // var resultResend = await _sMSService.Resend("0762365102", "ecocash 1");
+
+        // var resultSmsBulkSend = await _sMSService.SmsBulkSend("hSKDHASJDHKSHDHJskdjhaksjdh");
+
+        //   var resultSMSInbox = await _sMSService.SMSInbox();
+
+        // var resultSMSOutbox = await _sMSService.SMSOutbox();
+
+        var resultsmsRecords = await _sMSService.SMSSearch(smsSearch);
+
+
     }
 
     private RechargeAggSearchModel rechargeAggSearchModel { get; set; } = new() { AccountId = 10520030, StartDate = DateTime.Now.AddMonths(-9), EndDate = DateTime.Now, PageNo = 1, PageSize = 10 };
-    private RechargeFindModel rechargeFindModel { get; set; } = new() { AccountId = 10520030, Mobile = "0777931881", PageNo = 1, PageSize = 10 };
+    // private RechargeFindModel rechargeFindModel { get; set; } = new() { AccountId = 10520030, Mobile = "0777931881", PageNo = 1, PageSize = 10 };
+
+    private RechargeModel rechargeModel { get; set; } = new RechargeModel
+    {
+            Mobile = "0715520162",
+         Amount = 80,
+            RechargeDate = DateTime.Now,
+            StateId = 2 , 
+            AccessId = 10545635,
+            BrandId = 3 , 
+            InsertDate = DateTime.Now,
+    };
+
+    private RechargeFindModel rechargeFindModel { get; set; } = new RechargeFindModel
+    {
+            Mobile = "0715520162",
+            PageNo = 1,
+            PageSize = 2
+    };
+
+    private RechWebDupSearchModel rechWebDupSearchModel { get; set; } = new RechWebDupSearchModel
+    {
+            AccessId = 10545635,
+            Amount = 80,
+            Mobile = "0715520162"
+
+    };
+
+    List<byte> multibrandid = new List<byte>
+    {
+        1,2,3,4,5,6,7,8,9,38,19,32,27
+    };
+
+    private RechargeModel updateRechargeModel { get; set; } = new RechargeModel
+        {
+            Mobile = "0774704773",
+            RechargeId = 185528694,
+            StateId = 1,
+            BrandId = 5,
+            Discount = 6,
+            AccessId = 12057204,
+             Amount = 10, 
+              InsertDate = DateTime.Now,
+               RechargeDate =  DateTime.Now
+
+        };
 
     private async Task GetRecharge()
     {
-         var resultFind = await rechargeRepository.FindRechargeByMobileAndAccountId(rechargeFindModel);
-         var resultByBrandIds = await rechargeRepository.RechargePendingStsByMulBrands(new List<byte>{1,2,3});
+        // var resultFind = await rechargeRepository.FindRechargeByMobileAndAccountId(rechargeFindModel);
+        // var resultByBrandIds = await rechargeRepository.RechargePendingStsByMulBrands(new List<byte>{1,2,3});
+        // var resultByBrandId = await rechargeRepository.RechargePendingStsByBrandId(1);
 
-        var resultByBrandId = await rechargeRepository.RechargePendingStsByBrandId(1);
+        // var resultGetRechargeById = await _rechargeService.GetRechargeById(185040027);
+
+        //  var resultAddRechargeWithOutSmsDetails = await _rechargeService.AddRechargeWithOutSmsDetails(rechargeModel);
+        // var resultDeleteRecharge = await _rechargeService.DeleteRecharge(185528691);
+
+        //  var resultFindRechargeByMobileAndAccountId =await _rechargeService.FindRechargeByMobileAndAccountId(rechargeFindModel);
+        //  var resultGetEntityById = await _rechargeService.GetRechargeById(185040027);
+        //  var resultGetRechargeWebDuplicate = await _rechargeService.GetRechargeWebDuplicate(rechWebDupSearchModel);
+        // var resultRechargePendingStsByBrandId = await _rechargeService.RechargePendingStsByBrandId(5);
+        // var resultRechargePendingStsByMulBrands = await _rechargeService.RechargePendingStsByMulBrands(multibrandid);
+        // var resultUpdateRecharge = await _rechargeService.UpdateRecharge(updateRechargeModel);
+        var resultAddRecharge = await _rechargeService.AddRecharge(rechargeModel, 750958151);
     }
 
 
@@ -220,6 +405,10 @@
     private async Task GetPayment()
     {
         var result = await paymentRepository.SaveUpdatePayment(payment);
+    }
+    private async Task GetAccessById()
+    {
+        var result = await _accessService.GetAccessById(10475532);
     }
 
 }
