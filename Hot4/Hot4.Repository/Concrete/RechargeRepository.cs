@@ -42,6 +42,12 @@ namespace Hot4.Repository.Concrete
             }
             return false;
         }
+        public async Task<bool> AddRechargeWithOutSmsDetails(Recharge recharge)
+        {
+            await Create(recharge);
+            await SaveChanges();
+            return true;
+        }
         public async Task<bool> UpdateRecharge(Recharge recharge)
         {
             Update(recharge);
