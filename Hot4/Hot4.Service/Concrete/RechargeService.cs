@@ -24,6 +24,11 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
+        public async Task<bool> AddRechargeWithOutSmsDetails(RechargeModel rechargeModel)
+        {
+            var model = Mapper.Map<Recharge>(rechargeModel);
+            return await _rechargeRepository.AddRechargeWithOutSmsDetails(model);
+        }
         public async Task<bool> DeleteRecharge(long rechargeId)
         {
             var record = await GetEntityById(rechargeId);
@@ -70,5 +75,6 @@ namespace Hot4.Service.Concrete
             }
             return false;
         }
+
     }
 }
