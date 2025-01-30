@@ -47,7 +47,7 @@ namespace Hot4.Service.Concrete
         public async Task<bool> Resend(string mobile, string rechargeMobile)
         {
             return await _smsRepository.Resend(mobile, rechargeMobile);
-        }
+        }   
         public async Task<List<EmailModel>> SmsBulkSend(string messageText)
         {
             var records = await _smsRepository.SmsBulkSend(messageText);

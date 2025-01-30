@@ -9,6 +9,8 @@ namespace Hot4.Repository.Abstract
         Task<bool> UpdateRecharge(Recharge recharge);
         Task<bool> DeleteRecharge(Recharge recharge);
         Task<bool> AddRecharge(Recharge recharge, long smsId);
+        // AddRecharge without smsId
+        Task<bool> AddRechargeWithOutSmsDetails(Recharge recharge);
         Task<List<Recharge>> FindRechargeByMobileAndAccountId(RechargeFindModel rechargeFind);
         Task<List<Recharge>> RechargePendingStsByMulBrands(List<byte> brandIds);
         Task<Recharge?> RechargePendingStsByBrandId(byte brandId);
