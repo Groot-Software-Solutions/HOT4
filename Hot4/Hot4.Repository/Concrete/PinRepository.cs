@@ -15,7 +15,6 @@ namespace Hot4.Repository.Concrete
         public HotDbContext _context;
         private TemplateSettings _templateSettings { get; }
         private ValueSettings _valueSetting { get; }
-
         public PinRepository(HotDbContext context, ICommonRepository commonRepository, IOptions<TemplateSettings> templateSetting, IOptions<ValueSettings> valueSetting) : base(context)
         {
             _commonRepository = commonRepository;
@@ -91,7 +90,6 @@ namespace Hot4.Repository.Concrete
 
             return new List<PinLoadedModel>();
         }
-
         public async Task<List<PinLoadedModel>> GetPinStock()
         {
             var result = await PinSummary(0, (int)PinStateType.Available);
@@ -109,7 +107,6 @@ namespace Hot4.Repository.Concrete
             }
             return new List<PinLoadedModel>();
         }
-
         public async Task<List<PinLoadedModel>> GetPinStockPromo()
         {
             var result = await PinSummary(0, (int)PinStateType.AvailablePromotional);
