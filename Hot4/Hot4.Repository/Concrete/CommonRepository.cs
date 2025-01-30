@@ -208,7 +208,7 @@ namespace Hot4.Repository.Concrete
             return (from a in accountList
                     join b in bal on a.AccountId equals b.AccountId into balances
                     from subB in balances.DefaultIfEmpty()
-                    orderby subB.Balance descending
+                   // orderby subB.Balance descending
                     select new ViewAccountModel
                     {
                         AccountId = a.AccountId,

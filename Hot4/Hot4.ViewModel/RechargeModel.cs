@@ -19,5 +19,11 @@
         public DateTime RechargeDate { get; set; }
 
         public DateTime? InsertDate { get; set; }
+        // zesa
+        public bool IsSuccessFul { get; set; }
+        // telone 
+        public decimal Denomination { get; set; }
+        public long Quantity { get; set; }
+
     }
 }

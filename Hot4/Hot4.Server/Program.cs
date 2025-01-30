@@ -32,6 +32,7 @@ builder.Services.AddItemServices();
 builder.Services.Configure<TemplateSettings>(builder.Configuration.GetSection("TemplateSettings"));
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.Configure<ValueSettings>(builder.Configuration.GetSection("ValueSettings"));
+builder.Services.Configure<NetworkSettings>(builder.Configuration.GetSection("Network_Setting"));
 builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingProfile)));
 
 
