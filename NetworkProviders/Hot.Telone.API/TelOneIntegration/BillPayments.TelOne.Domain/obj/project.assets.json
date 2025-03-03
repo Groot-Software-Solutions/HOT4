@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\hot4.latest\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\BillPayments.TelOne.Domain\\TelOne.Domain.csproj",
+      "projectUniqueName": "D:\\Project\\HOT4-latest\\HOT4\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\BillPayments.TelOne.Domain\\TelOne.Domain.csproj",
       "projectName": "TelOne.Domain",
-      "projectPath": "D:\\Project\\hot4.latest\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\BillPayments.TelOne.Domain\\TelOne.Domain.csproj",
+      "projectPath": "D:\\Project\\HOT4-latest\\HOT4\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\BillPayments.TelOne.Domain\\TelOne.Domain.csproj",
       "packagesPath": "C:\\Users\\Sarbjeet\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\hot4.latest\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\BillPayments.TelOne.Domain\\obj\\",
+      "outputPath": "D:\\Project\\HOT4-latest\\HOT4\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\BillPayments.TelOne.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Sarbjeet\\AppData\\Roaming\\NuGet\\NuGet.Config",

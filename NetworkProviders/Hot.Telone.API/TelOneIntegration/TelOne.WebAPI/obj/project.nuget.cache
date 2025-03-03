@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rCYWHL/NscY=",
+  "dgSpecHash": "ohAc9g6/0/g=",
   "success": true,
-  "projectFilePath": "D:\\Project\\hot4.latest\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\TelOne.WebAPI\\TelOne.WebAPI.csproj",
+  "projectFilePath": "D:\\Project\\HOT4-latest\\HOT4\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\TelOne.WebAPI\\TelOne.WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sarbjeet\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
     "C:\\Users\\Sarbjeet\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\9.0.0\\mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",

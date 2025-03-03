@@ -8104,11 +8104,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\hot4.latest\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\TelOne.WebAPI\\TelOne.WebAPI.csproj",
+      "projectUniqueName": "D:\\Project\\HOT4-latest\\HOT4\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\TelOne.WebAPI\\TelOne.WebAPI.csproj",
       "projectName": "TelOne.WebAPI",
-      "projectPath": "D:\\Project\\hot4.latest\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\TelOne.WebAPI\\TelOne.WebAPI.csproj",
+      "projectPath": "D:\\Project\\HOT4-latest\\HOT4\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\TelOne.WebAPI\\TelOne.WebAPI.csproj",
       "packagesPath": "C:\\Users\\Sarbjeet\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\hot4.latest\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\TelOne.WebAPI\\obj\\",
+      "outputPath": "D:\\Project\\HOT4-latest\\HOT4\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\TelOne.WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Sarbjeet\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8126,11 +8126,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Project\\hot4.latest\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\BillPayments.TelOne.Application\\TelOne.Application.csproj": {
-              "projectPath": "D:\\Project\\hot4.latest\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\BillPayments.TelOne.Application\\TelOne.Application.csproj"
+            "D:\\Project\\HOT4-latest\\HOT4\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\BillPayments.TelOne.Application\\TelOne.Application.csproj": {
+              "projectPath": "D:\\Project\\HOT4-latest\\HOT4\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\BillPayments.TelOne.Application\\TelOne.Application.csproj"
             },
-            "D:\\Project\\hot4.latest\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\BillPayments.TelOne.Infrastructure\\TelOne.Infrastructure.csproj": {
-              "projectPath": "D:\\Project\\hot4.latest\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\BillPayments.TelOne.Infrastructure\\TelOne.Infrastructure.csproj"
+            "D:\\Project\\HOT4-latest\\HOT4\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\BillPayments.TelOne.Infrastructure\\TelOne.Infrastructure.csproj": {
+              "projectPath": "D:\\Project\\HOT4-latest\\HOT4\\NetworkProviders\\Hot.Telone.API\\TelOneIntegration\\BillPayments.TelOne.Infrastructure\\TelOne.Infrastructure.csproj"
             }
           }
         }
