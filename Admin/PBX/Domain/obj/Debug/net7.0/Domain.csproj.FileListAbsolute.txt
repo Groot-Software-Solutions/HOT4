@@ -1,0 +1,12 @@
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Domain\bin\Debug\net7.0\Domain.deps.json
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Domain\bin\Debug\net7.0\Domain.dll
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Domain\bin\Debug\net7.0\Domain.pdb
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Domain\obj\Debug\net7.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Domain\obj\Debug\net7.0\Domain.AssemblyInfoInputs.cache
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Domain\obj\Debug\net7.0\Domain.AssemblyInfo.cs
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Domain\obj\Debug\net7.0\Domain.csproj.CoreCompileInputs.cache
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Domain\obj\Debug\net7.0\Domain.sourcelink.json
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Domain\obj\Debug\net7.0\Domain.dll
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Domain\obj\Debug\net7.0\refint\Domain.dll
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Domain\obj\Debug\net7.0\Domain.pdb
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Domain\obj\Debug\net7.0\ref\Domain.dll

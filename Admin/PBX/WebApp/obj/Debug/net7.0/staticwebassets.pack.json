@@ -1,0 +1,109 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\css\\dropdown\\dropdown.css",
+      "PackagePath": "staticwebassets\\css\\dropdown\\dropdown.css"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\css\\main.css",
+      "PackagePath": "staticwebassets\\css\\main.css"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "PackagePath": "staticwebassets\\css\\open-iconic"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "PackagePath": "staticwebassets\\css\\open-iconic"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\css\\open-iconic\\README.md",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\README.md"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\img\\arrow-left.svg",
+      "PackagePath": "staticwebassets\\img\\arrow-left.svg"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\img\\conversaton.svg",
+      "PackagePath": "staticwebassets\\img\\conversaton.svg"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\img\\message.svg",
+      "PackagePath": "staticwebassets\\img\\message.svg"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\img\\notselected.svg",
+      "PackagePath": "staticwebassets\\img\\notselected.svg"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\img\\sms_read.svg",
+      "PackagePath": "staticwebassets\\img\\sms_read.svg"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\img\\sms_unread.svg",
+      "PackagePath": "staticwebassets\\img\\sms_unread.svg"
+    },
+    {
+      "Id": "D:\\Project\\HOT4-latest\\HOT4\\Admin\\PBX\\WebApp\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.WebApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.WebApp.props",
+      "PackagePath": "build\\WebApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.WebApp.props",
+      "PackagePath": "buildMultiTargeting\\WebApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.WebApp.props",
+      "PackagePath": "buildTransitive\\WebApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

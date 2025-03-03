@@ -1,0 +1,16 @@
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\bin\Debug\net7.0\Application.deps.json
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\bin\Debug\net7.0\Application.dll
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\bin\Debug\net7.0\Application.pdb
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\bin\Debug\net7.0\Domain.dll
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\bin\Debug\net7.0\Domain.pdb
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\obj\Debug\net7.0\Application.csproj.AssemblyReference.cache
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\obj\Debug\net7.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\obj\Debug\net7.0\Application.AssemblyInfoInputs.cache
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\obj\Debug\net7.0\Application.AssemblyInfo.cs
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\obj\Debug\net7.0\Application.csproj.CoreCompileInputs.cache
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\obj\Debug\net7.0\Application.sourcelink.json
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\obj\Debug\net7.0\Applicat.44B5EDA2.Up2Date
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\obj\Debug\net7.0\Application.dll
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\obj\Debug\net7.0\refint\Application.dll
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\obj\Debug\net7.0\Application.pdb
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Application\obj\Debug\net7.0\ref\Application.dll

@@ -1,0 +1,10 @@
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Database\bin\Debug\Database.dacpac
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Database\bin\Debug\Database.dll
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Database\bin\Debug\Database.pdb
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Database\obj\Debug\Database.sqlproj.AssemblyReference.cache
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Database\obj\Debug\Model.xml
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Database\obj\Debug\refactor.xml
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Database\obj\Debug\postdeploy.sql
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Database\obj\Debug\predeploy.sql
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Database\obj\Debug\Database.dll
+D:\Project\HOT4-latest\HOT4\Admin\PBX\Database\obj\Debug\Database.pdb
