@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hot.Econet.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+073543b4d8f7bff841924c31aae0d3da3bc46ec4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Hot.Econet.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hot.Econet.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

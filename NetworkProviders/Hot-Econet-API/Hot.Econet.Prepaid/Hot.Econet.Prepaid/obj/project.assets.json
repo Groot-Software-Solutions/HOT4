@@ -1465,11 +1465,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\hot4.latest\\NetworkProviders\\Hot-Econet-API\\Hot.Econet.Prepaid\\Hot.Econet.Prepaid\\Hot.Econet.Prepaid.csproj",
+      "projectUniqueName": "D:\\Project\\HOT4-latest\\HOT4\\NetworkProviders\\Hot-Econet-API\\Hot.Econet.Prepaid\\Hot.Econet.Prepaid\\Hot.Econet.Prepaid.csproj",
       "projectName": "Hot.Econet.Prepaid",
-      "projectPath": "D:\\Project\\hot4.latest\\NetworkProviders\\Hot-Econet-API\\Hot.Econet.Prepaid\\Hot.Econet.Prepaid\\Hot.Econet.Prepaid.csproj",
+      "projectPath": "D:\\Project\\HOT4-latest\\HOT4\\NetworkProviders\\Hot-Econet-API\\Hot.Econet.Prepaid\\Hot.Econet.Prepaid\\Hot.Econet.Prepaid.csproj",
       "packagesPath": "C:\\Users\\Sarbjeet\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\hot4.latest\\NetworkProviders\\Hot-Econet-API\\Hot.Econet.Prepaid\\Hot.Econet.Prepaid\\obj\\",
+      "outputPath": "D:\\Project\\HOT4-latest\\HOT4\\NetworkProviders\\Hot-Econet-API\\Hot.Econet.Prepaid\\Hot.Econet.Prepaid\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Sarbjeet\\AppData\\Roaming\\NuGet\\NuGet.Config",

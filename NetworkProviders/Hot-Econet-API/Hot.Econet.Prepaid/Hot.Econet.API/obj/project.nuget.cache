@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3uN1A3/nUyc=",
+  "dgSpecHash": "hnQdAiE6mjs=",
   "success": true,
-  "projectFilePath": "D:\\Project\\hot4.latest\\NetworkProviders\\Hot-Econet-API\\Hot.Econet.Prepaid\\Hot.Econet.API\\Hot.Econet.API.csproj",
+  "projectFilePath": "D:\\Project\\HOT4-latest\\HOT4\\NetworkProviders\\Hot-Econet-API\\Hot.Econet.Prepaid\\Hot.Econet.API\\Hot.Econet.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sarbjeet\\.nuget\\packages\\horizon.xmlrpc.client\\2.5.0\\horizon.xmlrpc.client.2.5.0.nupkg.sha512",
     "C:\\Users\\Sarbjeet\\.nuget\\packages\\horizon.xmlrpc.core\\2.5.0\\horizon.xmlrpc.core.2.5.0.nupkg.sha512",
