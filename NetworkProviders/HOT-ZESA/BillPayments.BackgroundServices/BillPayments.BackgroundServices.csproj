@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>8cc161f8-c2cd-4c86-ad8e-1627c5f68571</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.7.18" />
+    <PackageReference Include="Hangfire.Core" Version="1.7.18" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.7.18" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BillPayments.Application\BillPayments.Application.csproj" />
+    <ProjectReference Include="..\BillPayments.Infrastructure\BillPayments.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+</Project>

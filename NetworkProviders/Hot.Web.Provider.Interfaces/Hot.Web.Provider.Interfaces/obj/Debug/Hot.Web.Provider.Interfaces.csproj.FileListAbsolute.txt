@@ -1,0 +1,4 @@
+F:\Hot4\Hot4.Latest\src\NetworkProviders\Hot.Web.Provider.Interfaces\Hot.Web.Provider.Interfaces\obj\Debug\Hot.Web.Provider.Interfaces.csproj.AssemblyReference.cache
+F:\Hot4\Hot4.Latest\src\NetworkProviders\Hot.Web.Provider.Interfaces\Hot.Web.Provider.Interfaces\obj\Debug\Hot.Web.Provider.Interfaces.csproj.CoreCompileInputs.cache
+D:\Project\hot4.latest\NetworkProviders\Hot.Web.Provider.Interfaces\Hot.Web.Provider.Interfaces\obj\Debug\Hot.Web.Provider.Interfaces.csproj.AssemblyReference.cache
+D:\Project\hot4.latest\NetworkProviders\Hot.Web.Provider.Interfaces\Hot.Web.Provider.Interfaces\obj\Debug\Hot.Web.Provider.Interfaces.csproj.CoreCompileInputs.cache

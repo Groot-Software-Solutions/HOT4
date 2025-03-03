@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+	  <Nullable>enable</Nullable>
+	  <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Commons\HotCoreV3\Hot\Hot.Infrastructure\Hot.Infrastructure.csproj" />
+		<ProjectReference Include="..\Hot.Nyaradzo\Hot.Nyaradzo.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="D:\Project\hot4.latest\Commons\HotCoreV3\Hot\tests\Hot.Tests.Common\Hot.Tests.Common.csproj" />
+	</ItemGroup>
+
+
+</Project>

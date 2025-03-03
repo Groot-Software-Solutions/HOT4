@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Bogus" Version="35.6.1" />
+	  <PackageReference Include="FluentAssertions" Version="6.12.1" />
+	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+	  <PackageReference Include="NSubstitute" Version="5.3.0" />
+	  <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.6">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="6.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Actions\" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Commons\HotCoreV3\Hot\Hot.Infrastructure\Hot.Infrastructure.csproj" />
+		<ProjectReference Include="..\Hot.Nyaradzo\Hot.Nyaradzo.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="D:\Project\hot4.latest\Commons\HotCoreV3\Hot\Hot.Application\Hot.Application.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="D:\Project\hot4.latest\Commons\HotCoreV3\Hot\Hot.Domain\Hot.Domain.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="D:\Project\hot4.latest\Commons\HotCoreV3\Hot\tests\Hot.Tests.Common\Hot.Tests.Common.csproj" />
+	</ItemGroup>
+
+</Project>

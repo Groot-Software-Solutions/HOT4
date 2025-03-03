@@ -1,0 +1,1 @@
+﻿global using Hot.Econet.Prepaid.Models;

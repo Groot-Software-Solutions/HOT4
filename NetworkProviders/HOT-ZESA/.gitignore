@@ -1,0 +1,27 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/BillPayments/.vs/BillPayments
+/BillPayements.FakeGateway/obj
+/BillPayments.Application/obj
+/BillPayments.Console/obj
+/BillPayments.Domain/obj
+/BillPayments.Infrastructure/obj
+/BillPayments.WebAPI/bin/Debug/netcoreapp3.1
+/BillPayments.WebAPI/obj
+/BillPayements.FakeGateway/bin/Debug/netcoreapp3.1
+/BillPayments.BackgroundTasks/obj
+/BillPayments.BackgroundTasks/bin/Debug/netstandard2.0
+/BillPayments.BackgroundServices/bin/Debug/net5.0
+/BillPayments.BackgroundServices/obj
+/BillPayments.Application/bin
+/BillPayments.BackgroundServices/bin/Debug/netcoreapp3.1
+/BillPayments.BackgroundTasks/bin
+/BillPayments.Console/bin/Debug/netcoreapp3.1
+/BillPayments.Domain/bin
+/BillPayments.Infrastructure/bin
+/BillPayments.WebAPI/bin/Release/netcoreapp3.1
+/DomainTests/bin/Debug/netcoreapp3.1
+/DomainTests/obj
+/.vs

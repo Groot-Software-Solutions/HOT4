@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://econetvas.econet.co.zw/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="econetvas" targetNamespace="http://econetvas.econet.co.zw/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://econetvas.econet.co.zw/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="Authenticate">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="username" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="serviceId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AuthenticateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="isAuthenticated" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="NewElement" type="xs:string" />
+      <xs:element name="NewOperationResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="activateCRBT">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="CRBTActivation" type="tns:activateCRBTRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="activateCRBTResponse" type="tns:activateCRBTResponseType" />
+      <xs:element name="activateCRBTResponse1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="balanceEnquiry">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="balanceRequest" type="tns:BalanceRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="balanceEnquiryResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="balanceResponse" type="tns:BalanceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="billPay">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="billPayRequest" type="tns:BillPaymentRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="billPayResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="billPayResponse" type="tns:BillPaymentResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="billPayReversal">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="billPayReversalRequest" type="tns:BillPaymentReversalRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="billPayReversalResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="billPayReversalResponse" type="tns:BillPaymentReversalResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="broadBandCredit" type="tns:broadBandCreditType" />
+      <xs:element name="broadBandCreditResponse" type="tns:broadBandCreditResponseType" />
+      <xs:element name="broadBandReversal">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="originalBroadBandCredit" type="tns:broadBandRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="broadBandReversalResponse" type="tns:broadBandReversalResponseType" />
+      <xs:element name="broadBandReversalResponse1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="creditReversal">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="originalCredit" type="tns:CreditRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="creditReversalResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="reversalResult" type="tns:CreditReversalResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="creditSubscriber">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="creditSubscriberRequest" type="tns:CreditRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="creditSubscriberResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="creditSubcriberResponse" type="tns:CreditResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="deActivateCRBT">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="CRBTDeactivation" type="tns:deactivateCBRTRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="deActivateCRBTResponse1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="CRBTDeactivation" type="tns:deActivateCRBTResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="debitSubscriber">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="debitSubscriberRequest" type="tns:DebitRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="debitSubscriberResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="debitSubscriberResponse" type="tns:DebitResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="txtCredit">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="txtCreditRequest" type="tns:TextCreditRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="txtCreditResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="txtCreditResponse" type="tns:TextCreditResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="txtDebit">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="txtDebitRequest" type="tns:TextDebitRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="txtDebitResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="txtDebitResponse" type="tns:TextDebitResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="txtReversal">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="originalTxtCredit" type="tns:TextCreditRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="txtReversalResponse" type="tns:txtReversalResponseType" />
+      <xs:element name="txtReversalResponse1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="CreditRequest">
+        <xs:sequence>
+          <xs:element name="reference" type="xs:string" />
+          <xs:element name="amount" type="xs:double" />
+          <xs:element name="targetMobileNumber" type="xs:string" />
+          <xs:element name="serviceId" type="xs:string" />
+          <xs:element name="serviceProviderId" type="xs:string" />
+          <xs:element name="sourceMobileNumber" type="xs:string" />
+          <xs:element name="numberOfDays" type="xs:int" />
+          <xs:element name="username" type="xs:string" />
+          <xs:element name="password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreditResponse">
+        <xs:sequence>
+          <xs:element name="creditReq" type="tns:CreditRequest" />
+          <xs:element name="responseCode" type="xs:string" />
+          <xs:element name="narrative" type="xs:string" />
+          <xs:element name="initialBalance" type="xs:double" />
+          <xs:element name="daysAdded" type="xs:int" />
+          <xs:element name="finalBalance" type="xs:double" />
+          <xs:element name="expiryDate" type="xs:date" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="broadBandRequest">
+        <xs:sequence>
+          <xs:element name="ref" type="xs:string" />
+          <xs:element name="sourceMobileNumber" type="xs:string" />
+          <xs:element name="targetMobileNumber" type="xs:string" />
+          <xs:element name="amount" type="xs:double" />
+          <xs:element name="quantity" type="xs:string" />
+          <xs:element name="serviceid" type="xs:string" />
+          <xs:element name="serviceProviderId" type="xs:string" />
+          <xs:element name="username" type="xs:string" />
+          <xs:element name="password" type="xs:string" />
+          <xs:element name="numofdays" type="xs:int" />
+          <xs:element name="initialBalance" type="xs:string" />
+          <xs:element name="finalBalance" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="broadBandReversalResponseType">
+        <xs:sequence>
+          <xs:element name="broadBandReversalResult" type="tns:broadBandReversalResultType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="broadBandReversalResultType">
+        <xs:sequence>
+          <xs:element name="ref" type="xs:string" />
+          <xs:element name="responseCode" type="xs:string" />
+          <xs:element name="narrative" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DebitRequest">
+        <xs:sequence>
+          <xs:element name="reference" type="xs:string" />
+          <xs:element name="amount" type="xs:double" />
+          <xs:element name="serviceId" type="xs:string" />
+          <xs:element name="serviceProviderId" type="xs:string" />
+          <xs:element name="sourceMobileNumber" type="xs:string" />
+          <xs:element name="targetMobileNumber" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DebitResponse">
+        <xs:sequence>
+          <xs:element name="debitReq" type="tns:DebitRequest" />
+          <xs:element name="responseCode" type="xs:string" />
+          <xs:element name="narrative" type="xs:string" />
+          <xs:element name="initialBalance" type="xs:double" />
+          <xs:element name="finalBalance" type="xs:double" />
+          <xs:element name="expiryDate" type="xs:date" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="broadBandCreditType">
+        <xs:sequence>
+          <xs:element name="broadBandCreditRequest" type="tns:broadBandRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="broadBandCreditResponseType">
+        <xs:sequence>
+          <xs:element name="broadBandCreditResponse" type="tns:broadBandResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="broadBandResponse">
+        <xs:sequence>
+          <xs:element name="reference" type="xs:string" />
+          <xs:element name="responseCode" type="xs:string" />
+          <xs:element name="narrative" type="xs:string" />
+          <xs:element name="mobileNumber" type="xs:string" />
+          <xs:element name="initialBalance" type="xs:string" />
+          <xs:element name="finalBalance" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreditReversalResult">
+        <xs:sequence>
+          <xs:element name="responseCode" type="xs:string" />
+          <xs:element name="narrative" type="xs:string" />
+          <xs:element name="originalCreditRequest" type="tns:CreditRequest" />
+          <xs:element name="initialBalance" type="xs:double" />
+          <xs:element name="finalBalance" type="xs:double" />
+          <xs:element name="numberOfDays" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TextCreditRequest">
+        <xs:sequence>
+          <xs:element name="serviceId" type="xs:string" />
+          <xs:element name="reference" type="xs:string" />
+          <xs:element name="serviceProviderId" type="xs:string" />
+          <xs:element name="amount" type="xs:double" />
+          <xs:element name="targetMobileNumber" type="xs:string" />
+          <xs:element name="numberOfTexts" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TextCreditResponse">
+        <xs:sequence>
+          <xs:element name="textCreditRequest" type="tns:TextCreditRequest" />
+          <xs:element name="responseCode" type="xs:string" />
+          <xs:element name="narrative" type="xs:string" />
+          <xs:element name="numberOfTextsAdded" type="xs:int" />
+          <xs:element name="initialBalance" type="xs:string" />
+          <xs:element name="finalBalance" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BillPaymentReversalRequest">
+        <xs:sequence>
+          <xs:element name="reference" type="xs:string" />
+          <xs:element name="targetMobileNumber" type="xs:string" />
+          <xs:element name="amount" type="xs:string" />
+          <xs:element name="serviceId" type="xs:string" />
+          <xs:element name="serviceProviderId" type="xs:string" />
+          <xs:element name="sourceMobileNumber" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BillPaymentReversalResponse">
+        <xs:sequence>
+          <xs:element name="billReversalRequest" type="tns:BillPaymentReversalRequest" />
+          <xs:element name="responseCode" type="xs:string" />
+          <xs:element name="narrative" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="txtReversalResponseType">
+        <xs:sequence>
+          <xs:element name="txtReversalResult" type="tns:TextCreditRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BillPaymentRequest">
+        <xs:sequence>
+          <xs:element name="reference" type="xs:string" />
+          <xs:element name="targetMobileNumber" type="xs:string" />
+          <xs:element name="serviceId" type="xs:string" />
+          <xs:element name="serviceProviderId" type="xs:string" />
+          <xs:element name="amount" type="xs:double" />
+          <xs:element name="sourceMobileNumber" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BillPaymentResponse">
+        <xs:sequence>
+          <xs:element name="paymentRequest" type="tns:BillPaymentRequest" />
+          <xs:element name="responseCode" type="xs:string" />
+          <xs:element name="narrative" type="xs:string" />
+          <xs:element name="balance" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BalanceRequest">
+        <xs:sequence>
+          <xs:element name="reference" type="xs:string" />
+          <xs:element name="mobileNumber" type="xs:string" />
+          <xs:element name="serviceId" type="xs:string" />
+          <xs:element name="serviceProviderId" type="xs:string" />
+          <xs:element name="dedicatedAccount" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BalanceResponse">
+        <xs:sequence>
+          <xs:element name="balanceRequest" type="tns:BalanceRequest" />
+          <xs:element name="currentBalance" type="xs:double" />
+          <xs:element name="classOfService" type="xs:string" />
+          <xs:element name="responseCode" type="xs:string" />
+          <xs:element name="narrative" type="xs:string" />
+          <xs:element name="maximumCredit" type="xs:double" />
+          <xs:element name="expiryDate" type="xs:date" />
+          <xs:element name="minimumTopup" type="xs:double" />
+          <xs:element name="suscriberType" type="xs:string" />
+          <xs:element name="maximumTopup" type="xs:double" />
+          <xs:element name="activationDate" type="xs:date" />
+          <xs:element name="platform" type="xs:string" />
+          <xs:element name="dedicatedAccountNumber" type="xs:string" />
+          <xs:element name="dedicatedAccountBalance" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deactivateCBRTRequest">
+        <xs:sequence>
+          <xs:element name="reference" type="xs:string" />
+          <xs:element name="mobileNumber" type="xs:string" />
+          <xs:element name="serviceId" type="xs:string" />
+          <xs:element name="serviceProviderId" type="xs:string" />
+          <xs:element name="username" type="xs:string" />
+          <xs:element name="password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deActivateCRBTResponse">
+        <xs:sequence>
+          <xs:element name="reference" type="xs:string" />
+          <xs:element name="responseCode" type="xs:string" />
+          <xs:element name="mobileNumber" type="xs:string" />
+          <xs:element name="narrative" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="activateCRBTRequest">
+        <xs:sequence>
+          <xs:element name="reference" type="xs:string" />
+          <xs:element name="mobileNumber" type="xs:string" />
+          <xs:element name="serviceId" type="xs:string" />
+          <xs:element name="serviceProviderId" type="xs:string" />
+          <xs:element name="username" type="xs:string" />
+          <xs:element name="password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="activateCRBTResponseType">
+        <xs:sequence>
+          <xs:element name="CRBTResponse" type="tns:CRBTActivationResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CRBTActivationResponse">
+        <xs:sequence>
+          <xs:element name="reference" type="xs:string" />
+          <xs:element name="mobileNumber" type="xs:string" />
+          <xs:element name="responseCode" type="xs:string" />
+          <xs:element name="narrative" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TextDebitRequest">
+        <xs:sequence>
+          <xs:element name="reference" type="xs:string" />
+          <xs:element name="serviceId" type="xs:string" />
+          <xs:element name="serviceProviderId" type="xs:string" />
+          <xs:element name="amount" type="xs:double" />
+          <xs:element name="targetMobileNumber" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TextDebitResponse">
+        <xs:sequence>
+          <xs:element name="textDebitRequest" type="tns:TextDebitRequest" />
+          <xs:element name="responseCode" type="xs:string" />
+          <xs:element name="narrative" type="xs:string" />
+          <xs:element name="numberOfTextsRemoved" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="creditSubscriberResponse">
+    <wsdl:part name="parameters" element="tns:creditSubscriberResponse" />
+  </wsdl:message>
+  <wsdl:message name="creditSubscriber">
+    <wsdl:part name="parameters" element="tns:creditSubscriber" />
+  </wsdl:message>
+  <wsdl:message name="deActivateCRBTResponse">
+    <wsdl:part name="parameters" element="tns:deActivateCRBTResponse1" />
+  </wsdl:message>
+  <wsdl:message name="broadBandCreditResponse">
+    <wsdl:part name="parameters" element="tns:broadBandCreditResponse" />
+  </wsdl:message>
+  <wsdl:message name="broadBandReversal">
+    <wsdl:part name="parameters" element="tns:broadBandReversal" />
+  </wsdl:message>
+  <wsdl:message name="debitSubscriber">
+    <wsdl:part name="parameters" element="tns:debitSubscriber" />
+  </wsdl:message>
+  <wsdl:message name="broadBandCredit">
+    <wsdl:part name="parameters" element="tns:broadBandCredit" />
+  </wsdl:message>
+  <wsdl:message name="txtCreditResponse">
+    <wsdl:part name="parameters" element="tns:txtCreditResponse" />
+  </wsdl:message>
+  <wsdl:message name="balanceEnquiryResponse">
+    <wsdl:part name="parameters" element="tns:balanceEnquiryResponse" />
+  </wsdl:message>
+  <wsdl:message name="creditReversal">
+    <wsdl:part name="parameters" element="tns:creditReversal" />
+  </wsdl:message>
+  <wsdl:message name="txtCredit">
+    <wsdl:part name="parameters" element="tns:txtCredit" />
+  </wsdl:message>
+  <wsdl:message name="broadBandReversalResponse">
+    <wsdl:part name="parameters" element="tns:broadBandReversalResponse" />
+  </wsdl:message>
+  <wsdl:message name="billPayReversal">
+    <wsdl:part name="parameters" element="tns:billPayReversal" />
+  </wsdl:message>
+  <wsdl:message name="billPayResponse">
+    <wsdl:part name="parameters" element="tns:billPayResponse" />
+  </wsdl:message>
+  <wsdl:message name="txtReversal">
+    <wsdl:part name="parameters" element="tns:txtReversal" />
+  </wsdl:message>
+  <wsdl:message name="txtReversalResponse">
+    <wsdl:part name="parameters" element="tns:txtReversalResponse" />
+  </wsdl:message>
+  <wsdl:message name="debitSubscriberResponse">
+    <wsdl:part name="parameters" element="tns:debitSubscriberResponse" />
+  </wsdl:message>
+  <wsdl:message name="billPay">
+    <wsdl:part name="parameters" element="tns:billPay" />
+  </wsdl:message>
+  <wsdl:message name="balanceEnquiry">
+    <wsdl:part name="parameters" element="tns:balanceEnquiry" />
+  </wsdl:message>
+  <wsdl:message name="deActivateCRBT">
+    <wsdl:part name="parameters" element="tns:deActivateCRBT" />
+  </wsdl:message>
+  <wsdl:message name="activateCRBTResponse">
+    <wsdl:part name="parameters" element="tns:activateCRBTResponse" />
+  </wsdl:message>
+  <wsdl:message name="creditReversalResponse">
+    <wsdl:part name="parameters" element="tns:creditReversalResponse" />
+  </wsdl:message>
+  <wsdl:message name="billPayReversalResponse">
+    <wsdl:part name="parameters" element="tns:billPayReversalResponse" />
+  </wsdl:message>
+  <wsdl:message name="activateCRBT">
+    <wsdl:part name="parameters" element="tns:activateCRBT" />
+  </wsdl:message>
+  <wsdl:portType name="econetvas">
+    <wsdl:operation name="creditSubscriber">
+      <wsdl:input name="creditSubscriber" message="tns:creditSubscriber" />
+      <wsdl:output name="creditSubscriberResponse" message="tns:creditSubscriberResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="broadBandReversal">
+      <wsdl:input name="broadBandReversal" message="tns:broadBandReversal" />
+      <wsdl:output name="broadBandReversalResponse" message="tns:broadBandReversalResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="debitSubscriber">
+      <wsdl:input name="debitSubscriber" message="tns:debitSubscriber" />
+      <wsdl:output name="debitSubscriberResponse" message="tns:debitSubscriberResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="broadBandCredit">
+      <wsdl:input name="broadBandCredit" message="tns:broadBandCredit" />
+      <wsdl:output name="broadBandCreditResponse" message="tns:broadBandCreditResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="creditReversal">
+      <wsdl:input name="creditReversal" message="tns:creditReversal" />
+      <wsdl:output name="creditReversalResponse" message="tns:creditReversalResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="txtCredit">
+      <wsdl:input name="txtCredit" message="tns:txtCredit" />
+      <wsdl:output name="txtCreditResponse" message="tns:txtCreditResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="billPayReversal">
+      <wsdl:input name="billPayReversal" message="tns:billPayReversal" />
+      <wsdl:output name="billPayReversalResponse" message="tns:billPayReversalResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="txtReversal">
+      <wsdl:input name="txtReversal" message="tns:txtReversal" />
+      <wsdl:output name="txtReversalResponse" message="tns:txtReversalResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="billPay">
+      <wsdl:input name="billPay" message="tns:billPay" />
+      <wsdl:output name="billPayResponse" message="tns:billPayResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="balanceEnquiry">
+      <wsdl:input name="balanceEnquiry" message="tns:balanceEnquiry" />
+      <wsdl:output name="balanceEnquiryResponse" message="tns:balanceEnquiryResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="deActivateCRBT">
+      <wsdl:input name="deActivateCRBT" message="tns:deActivateCRBT" />
+      <wsdl:output name="deActivateCRBTResponse" message="tns:deActivateCRBTResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="activateCRBT">
+      <wsdl:input name="activateCRBT" message="tns:activateCRBT" />
+      <wsdl:output name="activateCRBTResponse" message="tns:activateCRBTResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="econetvasSoapBinding" type="tns:econetvas">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="creditSubscriber">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/creditSubscriber" style="document" />
+      <wsdl:input name="creditSubscriber">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="creditSubscriberResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="broadBandReversal">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/broadBandReversal" style="document" />
+      <wsdl:input name="broadBandReversal">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="broadBandReversalResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="debitSubscriber">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/debitSubscriber" style="document" />
+      <wsdl:input name="debitSubscriber">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="debitSubscriberResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="broadBandCredit">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/broadBandCredit" style="document" />
+      <wsdl:input name="broadBandCredit">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="broadBandCreditResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="txtCredit">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/txtCredit" style="document" />
+      <wsdl:input name="txtCredit">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="txtCreditResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="creditReversal">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/creditReversal" style="document" />
+      <wsdl:input name="creditReversal">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="creditReversalResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="billPayReversal">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/billPayReversal" style="document" />
+      <wsdl:input name="billPayReversal">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="billPayReversalResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="txtReversal">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/txtReversal" style="document" />
+      <wsdl:input name="txtReversal">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="txtReversalResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="billPay">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/billPay" style="document" />
+      <wsdl:input name="billPay">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="billPayResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="balanceEnquiry">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/balanceEnquiry" style="document" />
+      <wsdl:input name="balanceEnquiry">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="balanceEnquiryResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deActivateCRBT">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/deActivateCRBT" style="document" />
+      <wsdl:input name="deActivateCRBT">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deActivateCRBTResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="activateCRBT">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/activateCRBT" style="document" />
+      <wsdl:input name="activateCRBT">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="activateCRBTResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="econetvas">
+    <wsdl:port name="econetvasSOAP" binding="tns:econetvasSoapBinding">
+      <soap:address location="http://192.168.104.174:9081/EconetVasWeb/econetvas" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

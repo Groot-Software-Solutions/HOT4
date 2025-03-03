@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>740c63f0-bc66-4887-8656-31f362c5c092</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BillPayments.TelOne.Application\TelOne.Application.csproj" />
+    <ProjectReference Include="..\BillPayments.TelOne.Infrastructure\TelOne.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,12 @@
+D:\Project\hot4.latest\NetworkProviders\Hot-Econet-API\Hot.Econet.Prepaid\Hot.Econet.Prepaid\bin\Debug\net7.0\Hot.Econet.Prepaid.deps.json
+D:\Project\hot4.latest\NetworkProviders\Hot-Econet-API\Hot.Econet.Prepaid\Hot.Econet.Prepaid\bin\Debug\net7.0\Hot.Econet.Prepaid.dll
+D:\Project\hot4.latest\NetworkProviders\Hot-Econet-API\Hot.Econet.Prepaid\Hot.Econet.Prepaid\bin\Debug\net7.0\Hot.Econet.Prepaid.pdb
+D:\Project\hot4.latest\NetworkProviders\Hot-Econet-API\Hot.Econet.Prepaid\Hot.Econet.Prepaid\obj\Debug\net7.0\Hot.Econet.Prepaid.csproj.AssemblyReference.cache
+D:\Project\hot4.latest\NetworkProviders\Hot-Econet-API\Hot.Econet.Prepaid\Hot.Econet.Prepaid\obj\Debug\net7.0\Hot.Econet.Prepaid.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\hot4.latest\NetworkProviders\Hot-Econet-API\Hot.Econet.Prepaid\Hot.Econet.Prepaid\obj\Debug\net7.0\Hot.Econet.Prepaid.AssemblyInfoInputs.cache
+D:\Project\hot4.latest\NetworkProviders\Hot-Econet-API\Hot.Econet.Prepaid\Hot.Econet.Prepaid\obj\Debug\net7.0\Hot.Econet.Prepaid.AssemblyInfo.cs
+D:\Project\hot4.latest\NetworkProviders\Hot-Econet-API\Hot.Econet.Prepaid\Hot.Econet.Prepaid\obj\Debug\net7.0\Hot.Econet.Prepaid.csproj.CoreCompileInputs.cache
+D:\Project\hot4.latest\NetworkProviders\Hot-Econet-API\Hot.Econet.Prepaid\Hot.Econet.Prepaid\obj\Debug\net7.0\Hot.Econet.Prepaid.dll
+D:\Project\hot4.latest\NetworkProviders\Hot-Econet-API\Hot.Econet.Prepaid\Hot.Econet.Prepaid\obj\Debug\net7.0\refint\Hot.Econet.Prepaid.dll
+D:\Project\hot4.latest\NetworkProviders\Hot-Econet-API\Hot.Econet.Prepaid\Hot.Econet.Prepaid\obj\Debug\net7.0\Hot.Econet.Prepaid.pdb
+D:\Project\hot4.latest\NetworkProviders\Hot-Econet-API\Hot.Econet.Prepaid\Hot.Econet.Prepaid\obj\Debug\net7.0\ref\Hot.Econet.Prepaid.dll
