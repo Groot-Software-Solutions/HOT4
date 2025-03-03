@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net7.0</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DbContext\Dtos\**" />
+    <EmbeddedResource Remove="DbContext\Dtos\**" />
+    <None Remove="DbContext\Dtos\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.35" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="OneOf" Version="3.0.271" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Net.Http.Json" Version="8.0.1" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="6.0.0" />
+    <PackageReference Include="System.ServiceModel.Federation" Version="6.2.0" />
+    <PackageReference Include="System.ServiceModel.Http" Version="6.2.0" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="6.2.0" />
+    <PackageReference Include="System.ServiceModel.Security" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hot.Application\Hot.Application.csproj" />
+  </ItemGroup>
+
+</Project>

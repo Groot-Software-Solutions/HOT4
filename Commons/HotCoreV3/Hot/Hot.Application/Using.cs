@@ -1,0 +1,10 @@
+﻿global using Hot.Application.Common.Exceptions;
+global using Hot.Application.Common.Interfaces;
+global using Hot.Application.Common.Extensions;
+global using Hot.Application.Common.Helpers;
+global using Hot.Application.Common.Models;
+global using Hot.Domain.Entities;
+global using Hot.Domain.Enums;
+global using MediatR;
+global using Microsoft.Extensions.Logging;
+global using OneOf;

@@ -1,0 +1,16 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "http://10.10.31.60:8017/telecel.asmx"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, TelecelAPI"
+    ],
+    "targetFramework": "net7.0",
+    "typeReuseMode": "None"
+  }
+}

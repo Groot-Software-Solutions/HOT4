@@ -1,0 +1,17 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "http://10.10.31.60:8017/econet.asmx"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "internalTypeAccess": true,
+    "namespaceMappings": [
+      "*, EconetAPI"
+    ],
+    "targetFramework": "net6.0",
+    "typeReuseMode": "None"
+  }
+}
