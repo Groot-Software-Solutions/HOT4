@@ -1,0 +1,29 @@
+﻿
+<li class="contact @(IsActive ? "active":"")" @onclick="@(() => OnClick.InvokeAsync(Model.Mobile))">
+   <div class="wrap">
+    @if(Model.NumberofUnreadSMS >0) {
+        <i>@Model.NumberofUnreadSMS</i>
+    }
+        <img src="/img/sms_@((Model.NumberofUnreadSMS >0) ? "unread" : "read").svg"
+             alt="" />
+        <div class="meta">
+            <p class="name">@Helper.FormatMobile(Model.Mobile)</p>
+            @if (Model.LastSMS is not null)
+            {
+                <p class="preview">@((Model.LastSMS.DirectionId == SMSDirection.Out ? "You: ": "") + Model.LastSMS.Text)</p>
+                <p class="time">@Helper.FormatTime(Model.LastSMS.Date)</p>
+            }
+           
+        </div>
+    </div>
+</li> 
+
+@code {
+    [Parameter]
+    public MobileSMSDetails Model { get; set; }
+    [Parameter]
+    public bool IsActive { get; set; }
+    [Parameter]
+    public EventCallback<string> OnClick { get; set; }
+
+}

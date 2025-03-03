@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="AfriBalanceEnquiry">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestParam" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AfriBalanceEnquiryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AfriBalanceEnquiryResult" type="tns:Balance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Balance">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Header" type="tns:Header" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountTypes" type="tns:ArrayOfAnyType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Header">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SystemReferenceNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DealerReferenceNo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AccountType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubscriberNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Balance" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LoginResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AaaProvision">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="record" type="tns:Provision" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Provision">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Passwd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mdn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IpAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IpMask" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AaaProvisionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AaaProvisionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AaaEdit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="record" type="tns:Update" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Update">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Passwd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mdn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IpAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IpMask" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AaaEditResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AaaEditResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AfriRecharge">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestParam" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Recharge">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RHeader" type="tns:RHeader" />
+          <s:element minOccurs="0" maxOccurs="1" name="RechargeType" type="tns:RechargeType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SystemReferenceNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DealerReferenceNo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RechargeType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SubscriberNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AmountRecharge" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Balance" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValidityPeriod" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AfriRechargeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AfriRechargeResult" type="tns:Recharge" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AfriTransfer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestParam" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Transfer">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="THeader" type="tns:THeader" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransferType" type="tns:TransferType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="THeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SystemReferenceNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DealerReferenceNo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransferType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubscriberNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubscriberBalanceOld" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubscriberBalanceNew" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransfereeNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransfereeNoBalanceOld" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransfereeNoBalanceNew" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AfriTransferResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AfriTransferResult" type="tns:Transfer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AfriEncrypt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="str" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="secretkey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AfriEncryptResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AfriEncryptResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AfriProductPurchase">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestParam" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProductPurchase">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PHeader" type="tns:PHeader" />
+          <s:element minOccurs="0" maxOccurs="1" name="PurchaseType" type="tns:PurchaseType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SystemReferenceNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DealerReferenceNo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PurchaseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubscriberNo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AfriProductPurchaseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AfriProductPurchaseResult" type="tns:ProductPurchase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GurooRegisterFromDealer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strDealerNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strSubscriberNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strFirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strLastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCountryCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAddress1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAddress2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPostalCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCountry" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strStateCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strMobileNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strEmailAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNationalId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPassport" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Response">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Header" type="tns:RespHeader" />
+          <s:element minOccurs="0" maxOccurs="1" name="Details" type="tns:Details" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RespHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Details">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GurooRegisterFromDealerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GurooRegisterFromDealerResult" type="tns:Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AfriBalanceEnquirySoapIn">
+    <wsdl:part name="parameters" element="tns:AfriBalanceEnquiry" />
+  </wsdl:message>
+  <wsdl:message name="AfriBalanceEnquirySoapOut">
+    <wsdl:part name="parameters" element="tns:AfriBalanceEnquiryResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="AaaProvisionSoapIn">
+    <wsdl:part name="parameters" element="tns:AaaProvision" />
+  </wsdl:message>
+  <wsdl:message name="AaaProvisionSoapOut">
+    <wsdl:part name="parameters" element="tns:AaaProvisionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AaaEditSoapIn">
+    <wsdl:part name="parameters" element="tns:AaaEdit" />
+  </wsdl:message>
+  <wsdl:message name="AaaEditSoapOut">
+    <wsdl:part name="parameters" element="tns:AaaEditResponse" />
+  </wsdl:message>
+  <wsdl:message name="AfriRechargeSoapIn">
+    <wsdl:part name="parameters" element="tns:AfriRecharge" />
+  </wsdl:message>
+  <wsdl:message name="AfriRechargeSoapOut">
+    <wsdl:part name="parameters" element="tns:AfriRechargeResponse" />
+  </wsdl:message>
+  <wsdl:message name="AfriTransferSoapIn">
+    <wsdl:part name="parameters" element="tns:AfriTransfer" />
+  </wsdl:message>
+  <wsdl:message name="AfriTransferSoapOut">
+    <wsdl:part name="parameters" element="tns:AfriTransferResponse" />
+  </wsdl:message>
+  <wsdl:message name="AfriEncryptSoapIn">
+    <wsdl:part name="parameters" element="tns:AfriEncrypt" />
+  </wsdl:message>
+  <wsdl:message name="AfriEncryptSoapOut">
+    <wsdl:part name="parameters" element="tns:AfriEncryptResponse" />
+  </wsdl:message>
+  <wsdl:message name="AfriProductPurchaseSoapIn">
+    <wsdl:part name="parameters" element="tns:AfriProductPurchase" />
+  </wsdl:message>
+  <wsdl:message name="AfriProductPurchaseSoapOut">
+    <wsdl:part name="parameters" element="tns:AfriProductPurchaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="GurooRegisterFromDealerSoapIn">
+    <wsdl:part name="parameters" element="tns:GurooRegisterFromDealer" />
+  </wsdl:message>
+  <wsdl:message name="GurooRegisterFromDealerSoapOut">
+    <wsdl:part name="parameters" element="tns:GurooRegisterFromDealerResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="AfriBalanceEnquiry">
+      <wsdl:input message="tns:AfriBalanceEnquirySoapIn" />
+      <wsdl:output message="tns:AfriBalanceEnquirySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AaaProvision">
+      <wsdl:input message="tns:AaaProvisionSoapIn" />
+      <wsdl:output message="tns:AaaProvisionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AaaEdit">
+      <wsdl:input message="tns:AaaEditSoapIn" />
+      <wsdl:output message="tns:AaaEditSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AfriRecharge">
+      <wsdl:input message="tns:AfriRechargeSoapIn" />
+      <wsdl:output message="tns:AfriRechargeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AfriTransfer">
+      <wsdl:input message="tns:AfriTransferSoapIn" />
+      <wsdl:output message="tns:AfriTransferSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AfriEncrypt">
+      <wsdl:input message="tns:AfriEncryptSoapIn" />
+      <wsdl:output message="tns:AfriEncryptSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AfriProductPurchase">
+      <wsdl:input message="tns:AfriProductPurchaseSoapIn" />
+      <wsdl:output message="tns:AfriProductPurchaseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GurooRegisterFromDealer">
+      <wsdl:input message="tns:GurooRegisterFromDealerSoapIn" />
+      <wsdl:output message="tns:GurooRegisterFromDealerSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AfriBalanceEnquiry">
+      <soap:operation soapAction="http://tempuri.org/AfriBalanceEnquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AaaProvision">
+      <soap:operation soapAction="http://tempuri.org/AaaProvision" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AaaEdit">
+      <soap:operation soapAction="http://tempuri.org/AaaEdit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AfriRecharge">
+      <soap:operation soapAction="http://tempuri.org/AfriRecharge" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AfriTransfer">
+      <soap:operation soapAction="http://tempuri.org/AfriTransfer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AfriEncrypt">
+      <soap:operation soapAction="http://tempuri.org/AfriEncrypt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AfriProductPurchase">
+      <soap:operation soapAction="http://tempuri.org/AfriProductPurchase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GurooRegisterFromDealer">
+      <soap:operation soapAction="http://tempuri.org/GurooRegisterFromDealer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AfriBalanceEnquiry">
+      <soap12:operation soapAction="http://tempuri.org/AfriBalanceEnquiry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AaaProvision">
+      <soap12:operation soapAction="http://tempuri.org/AaaProvision" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AaaEdit">
+      <soap12:operation soapAction="http://tempuri.org/AaaEdit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AfriRecharge">
+      <soap12:operation soapAction="http://tempuri.org/AfriRecharge" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AfriTransfer">
+      <soap12:operation soapAction="http://tempuri.org/AfriTransfer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AfriEncrypt">
+      <soap12:operation soapAction="http://tempuri.org/AfriEncrypt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AfriProductPurchase">
+      <soap12:operation soapAction="http://tempuri.org/AfriProductPurchase" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GurooRegisterFromDealer">
+      <soap12:operation soapAction="http://tempuri.org/GurooRegisterFromDealer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="https://africom.ai.co.zw/service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="https://africom.ai.co.zw/service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

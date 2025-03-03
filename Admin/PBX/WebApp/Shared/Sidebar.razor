@@ -1,0 +1,50 @@
+﻿<div id="sidepanel">
+
+    <div id="search">
+        <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+        <input type="text" placeholder="Search messages..." @bind-value="@Filter" @bind-value:event="oninput"  />
+    </div>
+    <div id="contacts">
+        <ul>
+
+            @if (conversations == null)
+            {
+                <li class="contact">
+                    <div class="wrap"> 
+                        <div class="meta">
+                            <p class="name">Loading...</p>
+                            <p class="preview">
+                                Conversations loading
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            }
+            else
+            {
+                @foreach (var item in conversations.Where(c=>c.Mobile.Contains(Filter)))
+                {
+                     <Contact 
+                        Model="@item" 
+                        OnClick="@(() => ConversationSelected.InvokeAsync(item.Mobile))" 
+                        IsActive="@(item.Mobile == Mobile)" 
+                        />
+                }
+            }
+
+        </ul>
+    </div>
+    
+</div>
+
+@code {
+    [Parameter] public List<MobileSMSDetails> conversations { get; set; }
+
+    [Parameter] public EventCallback<string> ConversationSelected { get; set; }
+
+    [Parameter] public string Mobile { get; set; }
+
+    private string Filter { get; set; } = "";
+
+    
+}

@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Status]
+(
+	[Id] SMALLINT NOT NULL PRIMARY KEY, 
+    [Status] NVARCHAR(10) NOT NULL
+)

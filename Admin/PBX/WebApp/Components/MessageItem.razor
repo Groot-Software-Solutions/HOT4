@@ -1,0 +1,11 @@
+﻿<li class="@(!IsReply ? "replies" : "sent")">
+    <p>@Text
+        <span>@Helper.FormatTime(Date)</span>
+    </p>
+</li>
+
+@code {
+    [Parameter] public bool IsReply { get; set; }
+    [Parameter] public string Text { get; set; }
+    [Parameter] public DateTime Date { get; set; }
+}

@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[SMS]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Mobile] NVARCHAR(12) NOT NULL, 
+    [Text] NVARCHAR(1000) NOT NULL, 
+    [Date] DATETIME NOT NULL DEFAULT getdate(), 
+    [DirectionId] SMALLINT NOT NULL DEFAULT 0, 
+    [StatusId] SMALLINT NOT NULL DEFAULT 0, 
+    [User] NVARCHAR(150) NOT NULL DEFAULT system_user, 
+    CONSTRAINT [FK_SMS_To_Direction] FOREIGN KEY (DirectionId) REFERENCES Direction(Id),
+    CONSTRAINT [FK_SMS_To_Status] FOREIGN KEY (StatusId) REFERENCES Status(Id)
+)

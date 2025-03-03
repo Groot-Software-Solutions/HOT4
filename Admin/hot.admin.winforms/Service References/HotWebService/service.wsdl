@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HOTBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AccessPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmptyString" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HOTBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HOTBalanceResult" type="tns:ReturnObject" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnObject">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReturnMsg" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnValue" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="HOTRecharge">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AccessPAssword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetMobile" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HOTRechargeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HOTRechargeResult" type="tns:ReturnObject" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetailRecharge">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AccessPAssword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetMobile" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetailRechargeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetailRechargeResult" type="tns:ReturnObject" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HOTPhoneBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AccessPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetMobile" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HOTPhoneBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HOTPhoneBalanceResult" type="tns:ReturnObject" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HOTRechargeReversal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AccessPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OldRechargeID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HOTRechargeReversalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HOTRechargeReversalResult" type="tns:ReturnObject" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="xEcoCashPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AccessPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TrxDateTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="TrxAmount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="MSISDN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerAccount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SenderName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RetrievalReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SystemsAuditTrace" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EcoCashReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="xEcoCashPaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xEcoCashPaymentResult" type="tns:ReturnObject" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HOTBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:HOTBalance" />
+  </wsdl:message>
+  <wsdl:message name="HOTBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:HOTBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="HOTRechargeSoapIn">
+    <wsdl:part name="parameters" element="tns:HOTRecharge" />
+  </wsdl:message>
+  <wsdl:message name="HOTRechargeSoapOut">
+    <wsdl:part name="parameters" element="tns:HOTRechargeResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetailRechargeSoapIn">
+    <wsdl:part name="parameters" element="tns:RetailRecharge" />
+  </wsdl:message>
+  <wsdl:message name="RetailRechargeSoapOut">
+    <wsdl:part name="parameters" element="tns:RetailRechargeResponse" />
+  </wsdl:message>
+  <wsdl:message name="HOTPhoneBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:HOTPhoneBalance" />
+  </wsdl:message>
+  <wsdl:message name="HOTPhoneBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:HOTPhoneBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="HOTRechargeReversalSoapIn">
+    <wsdl:part name="parameters" element="tns:HOTRechargeReversal" />
+  </wsdl:message>
+  <wsdl:message name="HOTRechargeReversalSoapOut">
+    <wsdl:part name="parameters" element="tns:HOTRechargeReversalResponse" />
+  </wsdl:message>
+  <wsdl:message name="xEcoCashPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:xEcoCashPayment" />
+  </wsdl:message>
+  <wsdl:message name="xEcoCashPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:xEcoCashPaymentResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="HOTBalance">
+      <wsdl:input message="tns:HOTBalanceSoapIn" />
+      <wsdl:output message="tns:HOTBalanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HOTRecharge">
+      <wsdl:input message="tns:HOTRechargeSoapIn" />
+      <wsdl:output message="tns:HOTRechargeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetailRecharge">
+      <wsdl:input message="tns:RetailRechargeSoapIn" />
+      <wsdl:output message="tns:RetailRechargeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HOTPhoneBalance">
+      <wsdl:input message="tns:HOTPhoneBalanceSoapIn" />
+      <wsdl:output message="tns:HOTPhoneBalanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HOTRechargeReversal">
+      <wsdl:input message="tns:HOTRechargeReversalSoapIn" />
+      <wsdl:output message="tns:HOTRechargeReversalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="xEcoCashPayment">
+      <wsdl:input message="tns:xEcoCashPaymentSoapIn" />
+      <wsdl:output message="tns:xEcoCashPaymentSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HOTBalance">
+      <soap:operation soapAction="http://tempuri.org/HOTBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HOTRecharge">
+      <soap:operation soapAction="http://tempuri.org/HOTRecharge" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetailRecharge">
+      <soap:operation soapAction="http://tempuri.org/RetailRecharge" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HOTPhoneBalance">
+      <soap:operation soapAction="http://tempuri.org/HOTPhoneBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HOTRechargeReversal">
+      <soap:operation soapAction="http://tempuri.org/HOTRechargeReversal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="xEcoCashPayment">
+      <soap:operation soapAction="http://tempuri.org/xEcoCashPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HOTBalance">
+      <soap12:operation soapAction="http://tempuri.org/HOTBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HOTRecharge">
+      <soap12:operation soapAction="http://tempuri.org/HOTRecharge" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetailRecharge">
+      <soap12:operation soapAction="http://tempuri.org/RetailRecharge" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HOTPhoneBalance">
+      <soap12:operation soapAction="http://tempuri.org/HOTPhoneBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HOTRechargeReversal">
+      <soap12:operation soapAction="http://tempuri.org/HOTRechargeReversal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="xEcoCashPayment">
+      <soap12:operation soapAction="http://tempuri.org/xEcoCashPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="http://10.10.11.60:8008/service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="http://10.10.11.60:8008/service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

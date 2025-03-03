@@ -1,0 +1,89 @@
+﻿@inject IPBXClient client
+@inject IJSRuntime JSRuntime
+
+<PageTitleComponent Value="@GetPageTitle()" />
+
+<div id="frame">
+    <Sidebar conversations="@conversations"
+             Mobile="@SelectedMobile"
+             ConversationSelected="SelectConversation" />
+    <MessageArea messages="@messages"
+                 Mobile="@SelectedMobile"
+                 ReplySent="ReplySent" />
+</div>
+
+@code {
+
+
+    private List<MobileSMSDetails>? conversations { get; set; }
+    private List<SMS>? messages { get; set; }
+    private string? SelectedMobile { get; set; }
+    private int NumberOfUnreadMessages { get; set; }
+
+    private string GetPageTitle() => $"PBX SMS Inbox ({NumberOfUnreadMessages} Unread)";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetConversationList();
+        CreatePeriodicConversationChecker();
+    }
+
+    private async Task GetConversationList()
+    {
+        conversations = (List<MobileSMSDetails>)await client.GetListOfMobileSMSsAsync();
+        NumberOfUnreadMessages = conversations.Sum(s => s.NumberofUnreadSMS); 
+    }
+
+    private async Task GetConversation()
+    {
+        try
+        {
+            messages = null;
+            if (SelectedMobile is null) return; 
+            messages = await client.GetSMSsForNumberAsync(SelectedMobile);
+        }
+        catch (Exception ex)
+        { 
+            Console.WriteLine(ex.ToString());   
+            throw;
+        }
+
+    }
+
+    private async Task RefreshConversationItems()
+    {
+        await GetConversation();
+        await GetConversationList();
+        await InvokeAsync(() => StateHasChanged());
+    }
+
+    private async Task SelectConversation(string Mobile)
+    {
+        SelectedMobile = Mobile;
+        if (conversations is null) return;
+        var conversation = conversations.First(s => s.Mobile == Mobile);
+        if (conversation.NumberofUnreadSMS > 0)
+        {
+            await client.MarkSMSAsReadAsync(conversation.LastSMS.Id);
+        }
+        await RefreshConversationItems();
+    }
+
+    private async Task ReplySent(ReplytoSMSRequest reply)
+    {
+        await client.ReplyToSMSAsync(reply);
+        await RefreshConversationItems();
+    }
+
+    private void CreatePeriodicConversationChecker()
+    {
+        Task.Factory.StartNew(() =>
+        {
+            while (true)
+            {
+                Task.Delay(10000).GetAwaiter().GetResult();
+                RefreshConversationItems().GetAwaiter().GetResult();
+            }
+        }, TaskCreationOptions.LongRunning);
+    }
+}

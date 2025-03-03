@@ -1,0 +1,111 @@
+﻿
+@inject IJSRuntime JSRuntime
+
+<div class="content">
+    @if (Mobile != null)
+    {
+    <div class="contact-profile">
+        <img src="/img/conversaton.svg" alt="" />
+        <p>@Helper.FormatMobile(Mobile)</p>
+        <div class="social-media">
+
+        </div>
+    </div>
+    <div class="messages">
+        <ul>
+            @if (messages == null)
+                {
+
+                }
+                else
+                {
+                    foreach (var item in messages)
+                    {
+            <MessageItem IsReply="@(item.DirectionId == SMSDirection.In)"
+                         Text="@item.Text"
+                         Date="@item.Date" />
+                    }
+
+                }
+        </ul>
+    </div>
+    <div class="message-input">
+        <div class="wrap">
+            <input id="reply-text" type="text"
+                   placeholder="Write your message..."
+                   @onkeyup="ReplyOnEnter"
+                   @bind-value="reply.Text" />
+
+            <button class="submit" @onclick="NewMessage">
+                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            </button>
+            <div class="dropup">
+                <button class="dropbtn"> 
+                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+                </button>
+                <div class="dropup-content"> 
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    }
+    else
+    {
+    <div class="notselected">
+        <img src="img/arrow-left.svg" class="arrow">
+        <p>Select a Conversation</p>
+        <img src="img/notselected.svg">
+    </div>
+    }
+</div>
+
+@code {
+    [Parameter] public string Mobile { get; set; }
+
+    [Parameter] public List<SMS> messages { get; set; }
+
+    [Parameter] public EventCallback<ReplytoSMSRequest> ReplySent { get; set; }
+
+    private SMS reply = new SMS();
+
+    private async Task ReplyOnEnter(KeyboardEventArgs eventArgs)
+    {
+        if (eventArgs.Key == "Enter")
+        {
+            await NewMessage();
+        }
+    }
+    protected override  Task OnAfterRenderAsync(bool firstRender)
+    {
+
+        JSRuntime.InvokeAsync<bool>("updateScroll");
+        JSRuntime.InvokeVoidAsync("jsfunction.focusElement", "reply-text");
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+    private async Task NewMessage()
+    {
+        var ToSend = SetReply(reply);
+        messages.Add(ToSend);
+        reply = RefreshSMS();
+        var conversationId = messages.Where(s => s.DirectionId == SMSDirection.In).FirstOrDefault().Id;
+        await ReplySent.InvokeAsync(new ReplytoSMSRequest() { Reply = ToSend, ReplyToId = conversationId });
+
+    }
+
+    private SMS RefreshSMS()
+    {
+        return SetReply(new SMS());
+    }
+
+    private SMS SetReply(SMS reply)
+    {
+        reply.Date = DateTime.Now;
+        reply.Mobile = Mobile;
+        reply.DirectionId = SMSDirection.Out;
+        return reply;
+    }
+
+}

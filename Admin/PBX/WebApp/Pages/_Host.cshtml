@@ -1,0 +1,46 @@
+﻿@page "/"
+@namespace WebApp.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html class="">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <link rel="shortcut icon" type="image/x-icon" href="fav.ico" />
+    <link rel="mask-icon" type="" href="fav.svg" color="#111" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300" rel="stylesheet" type="text/css" />
+    <script src="https://use.typekit.net/hoy3lrg.js"></script>
+    <script>
+        try {
+            Typekit.load({ async: true });
+        } catch (e) { }
+    </script>
+    <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
+    <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css" />
+    <link href="css/dropdown/dropdown.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <title>Hot PBX Messages</title>
+</head>
+<body>
+    <app>
+        <component type="typeof(App)" render-mode="ServerPrerendered" />
+    </app>
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="~/js/site.js"></script>
+    <script src="_framework/blazor.server.js"></script>
+</body>
+</html>
