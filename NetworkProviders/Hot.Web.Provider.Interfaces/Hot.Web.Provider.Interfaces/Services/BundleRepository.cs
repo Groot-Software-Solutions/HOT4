@@ -76,7 +76,7 @@ namespace Hot.Web.Provider.Interfaces.Services
                     {
                         retval = (from BundleProduct item in list where item.BrandId == BrandId && item.Amount == Amount select item).Single();
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         return null;
                     }

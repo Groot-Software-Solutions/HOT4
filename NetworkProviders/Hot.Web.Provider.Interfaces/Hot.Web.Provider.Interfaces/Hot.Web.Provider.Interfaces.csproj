@@ -43,6 +43,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Hot.EconetBundle">
+      <HintPath>C:\Users\Sarbjeet\Downloads\Econet.Bundle.Tester\Hot.Econet.Bundle\bin\Debug\Hot.EconetBundle.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -347,10 +350,6 @@
     <WCFMetadataStorage Include="Service References\EPayGateway\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\HOT5\Hot.Econet.Bundle\Hot.Econet.Bundle\Hot.EconetBundle.csproj">
-      <Project>{bf18da98-e4ce-4ccc-9615-5405c311291b}</Project>
-      <Name>Hot.EconetBundle</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Hot.API.Interface\Hot.API.Interface\Hot.API.Interface.csproj">
       <Project>{0772FB26-AF41-48F6-B163-2D49024A55A1}</Project>
       <Name>Hot.API.Interface</Name>
@@ -389,5 +388,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-	 
 </Project>

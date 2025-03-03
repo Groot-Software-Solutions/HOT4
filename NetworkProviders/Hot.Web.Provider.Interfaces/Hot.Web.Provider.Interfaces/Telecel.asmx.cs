@@ -64,7 +64,7 @@ namespace Hot.Web.Provider.Interfaces
                     response.resultdescription = "Recharge below Minimum of $1";
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 response.resultcode = "-1";
                 response.responseValue = "Provider Webservice Failure: Telecel webservice Failed";
@@ -106,7 +106,7 @@ namespace Hot.Web.Provider.Interfaces
                     response.resultdescription = "Recharge below Minimum of $1";
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 response.resultcode = "-1";
                 response.responseValue = "Provider Webservice Failure: Telecel webservice Failed";
@@ -277,7 +277,7 @@ namespace Hot.Web.Provider.Interfaces
                         };
                         return result;
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         return new BalanceResponse();
                     }
