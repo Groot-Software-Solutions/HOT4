@@ -12,3 +12,17 @@ F:\Hot4\Hot4.Latest\src\Customer APIs\WhatsAppBot\Infrastructure\obj\Debug\netco
 F:\Hot4\Hot4.Latest\src\Customer APIs\WhatsAppBot\Infrastructure\obj\Debug\netcoreapp3.1\Infrastr.15EFFBFE.Up2Date
 F:\Hot4\Hot4.Latest\src\Customer APIs\WhatsAppBot\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.dll
 F:\Hot4\Hot4.Latest\src\Customer APIs\WhatsAppBot\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.pdb
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.deps.json
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.dll
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.pdb
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Infrastructure\bin\Debug\netcoreapp3.1\Domain.dll
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Infrastructure\bin\Debug\netcoreapp3.1\Domain.pdb
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.AssemblyReference.cache
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfoInputs.cache
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfo.cs
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CoreCompileInputs.cache
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.sourcelink.json
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Infrastructure\obj\Debug\netcoreapp3.1\Infrastr.15EFFBFE.Up2Date
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.dll
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.pdb

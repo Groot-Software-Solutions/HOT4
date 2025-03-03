@@ -8,3 +8,13 @@ F:\Hot4\Hot4.Latest\src\Customer APIs\WhatsAppBot\Domain\obj\Debug\netcoreapp3.1
 F:\Hot4\Hot4.Latest\src\Customer APIs\WhatsAppBot\Domain\obj\Debug\netcoreapp3.1\Domain.sourcelink.json
 F:\Hot4\Hot4.Latest\src\Customer APIs\WhatsAppBot\Domain\obj\Debug\netcoreapp3.1\Domain.dll
 F:\Hot4\Hot4.Latest\src\Customer APIs\WhatsAppBot\Domain\obj\Debug\netcoreapp3.1\Domain.pdb
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Domain\bin\Debug\netcoreapp3.1\Domain.deps.json
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Domain\bin\Debug\netcoreapp3.1\Domain.dll
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Domain\bin\Debug\netcoreapp3.1\Domain.pdb
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Domain\obj\Debug\netcoreapp3.1\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfoInputs.cache
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfo.cs
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CoreCompileInputs.cache
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Domain\obj\Debug\netcoreapp3.1\Domain.sourcelink.json
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Domain\obj\Debug\netcoreapp3.1\Domain.dll
+D:\Project\HOT4-latest\HOT4\Customer APIs\WhatsAppBot\Domain\obj\Debug\netcoreapp3.1\Domain.pdb

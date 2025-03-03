@@ -1,25 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\ConsoleApp\\ConsoleApp.csproj": {}
+    "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\ConsoleApp\\ConsoleApp.csproj": {}
   },
   "projects": {
-    "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\ConsoleApp\\ConsoleApp.csproj": {
+    "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\ConsoleApp\\ConsoleApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\ConsoleApp\\ConsoleApp.csproj",
+        "projectUniqueName": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\ConsoleApp\\ConsoleApp.csproj",
         "projectName": "ConsoleApp",
-        "projectPath": "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\ConsoleApp\\ConsoleApp.csproj",
-        "packagesPath": "C:\\Users\\Pradeep Negi\\.nuget\\packages\\",
-        "outputPath": "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\ConsoleApp\\obj\\",
+        "projectPath": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\ConsoleApp\\ConsoleApp.csproj",
+        "packagesPath": "C:\\Users\\Sarbjeet\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\ConsoleApp\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Pradeep Negi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Sarbjeet\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,11 +29,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\Domain\\Domain.csproj": {
-                "projectPath": "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\Domain\\Domain.csproj"
+              "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\Domain\\Domain.csproj"
               },
-              "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\Infrastructure\\Infrastructure.csproj"
+              "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -52,8 +47,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "netcoreapp3.1": {
@@ -92,26 +86,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\Domain\\Domain.csproj": {
+    "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\Pradeep Negi\\.nuget\\packages\\",
-        "outputPath": "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\Domain\\obj\\",
+        "projectPath": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Sarbjeet\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Pradeep Negi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Sarbjeet\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -137,8 +126,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "netcoreapp3.1": {
@@ -159,26 +147,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\Infrastructure\\Infrastructure.csproj": {
+    "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Pradeep Negi\\.nuget\\packages\\",
-        "outputPath": "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\Infrastructure\\obj\\",
+        "projectPath": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Sarbjeet\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Pradeep Negi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Sarbjeet\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -193,8 +176,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\Domain\\Domain.csproj": {
-                "projectPath": "F:\\Hot4\\Hot4.Latest\\src\\Customer APIs\\WhatsAppBot\\Domain\\Domain.csproj"
+              "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\WhatsAppBot\\Domain\\Domain.csproj"
               }
             }
           }
@@ -208,8 +191,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "netcoreapp3.1": {
@@ -276,7 +258,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
