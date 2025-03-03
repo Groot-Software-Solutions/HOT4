@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="http://econetvas.econet.co.zw/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="econetvas" targetNamespace="http://econetvas.econet.co.zw/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="Econetvas_schema1.xsd" namespace="http://econetvas.econet.co.zw/" />
+    </xsd:schema>
+  </types>
+  <message name="billPayReversal">
+    <part name="parameters" element="tns:billPayReversal" />
+  </message>
+  <message name="txtCreditResponse">
+    <part name="parameters" element="tns:txtCreditResponse" />
+  </message>
+  <message name="creditReversalResponse">
+    <part name="parameters" element="tns:creditReversalResponse" />
+  </message>
+  <message name="balanceEnquiryResponse">
+    <part name="parameters" element="tns:balanceEnquiryResponse" />
+  </message>
+  <message name="txtCredit">
+    <part name="parameters" element="tns:txtCredit" />
+  </message>
+  <message name="broadBandReversalResponse">
+    <part name="parameters" element="tns:broadBandReversalResponse" />
+  </message>
+  <message name="creditReversal">
+    <part name="parameters" element="tns:creditReversal" />
+  </message>
+  <message name="balanceEnquiry">
+    <part name="parameters" element="tns:balanceEnquiry" />
+  </message>
+  <message name="broadBandReversal">
+    <part name="parameters" element="tns:broadBandReversal" />
+  </message>
+  <message name="billPayResponse">
+    <part name="parameters" element="tns:billPayResponse" />
+  </message>
+  <message name="creditSubscriberResponse">
+    <part name="parameters" element="tns:creditSubscriberResponse" />
+  </message>
+  <message name="billPay">
+    <part name="parameters" element="tns:billPay" />
+  </message>
+  <message name="creditSubscriber">
+    <part name="parameters" element="tns:creditSubscriber" />
+  </message>
+  <message name="txtReversal">
+    <part name="parameters" element="tns:txtReversal" />
+  </message>
+  <message name="txtReversalResponse">
+    <part name="parameters" element="tns:txtReversalResponse" />
+  </message>
+  <message name="deActivateCRBTResponse">
+    <part name="parameters" element="tns:deActivateCRBTResponse1" />
+  </message>
+  <message name="debitSubscriber">
+    <part name="parameters" element="tns:debitSubscriber" />
+  </message>
+  <message name="activateCRBT">
+    <part name="parameters" element="tns:activateCRBT" />
+  </message>
+  <message name="debitSubscriberResponse">
+    <part name="parameters" element="tns:debitSubscriberResponse" />
+  </message>
+  <message name="deActivateCRBT">
+    <part name="parameters" element="tns:deActivateCRBT" />
+  </message>
+  <message name="activateCRBTResponse">
+    <part name="parameters" element="tns:activateCRBTResponse" />
+  </message>
+  <message name="broadBandCredit">
+    <part name="parameters" element="tns:broadBandCredit" />
+  </message>
+  <message name="billPayReversalResponse">
+    <part name="parameters" element="tns:billPayReversalResponse" />
+  </message>
+  <message name="broadBandCreditResponse">
+    <part name="parameters" element="tns:broadBandCreditResponse" />
+  </message>
+  <portType name="econetvas">
+    <operation name="balanceEnquiry">
+      <input message="tns:balanceEnquiry" />
+      <output message="tns:balanceEnquiryResponse" />
+    </operation>
+    <operation name="billPay">
+      <input message="tns:billPay" />
+      <output message="tns:billPayResponse" />
+    </operation>
+    <operation name="deActivateCRBT">
+      <input message="tns:deActivateCRBT" />
+      <output message="tns:deActivateCRBTResponse" />
+    </operation>
+    <operation name="activateCRBT">
+      <input message="tns:activateCRBT" />
+      <output message="tns:activateCRBTResponse" />
+    </operation>
+    <operation name="billPayReversal">
+      <input message="tns:billPayReversal" />
+      <output message="tns:billPayReversalResponse" />
+    </operation>
+    <operation name="creditSubscriber">
+      <input message="tns:creditSubscriber" />
+      <output message="tns:creditSubscriberResponse" />
+    </operation>
+    <operation name="debitSubscriber">
+      <input message="tns:debitSubscriber" />
+      <output message="tns:debitSubscriberResponse" />
+    </operation>
+    <operation name="txtCredit">
+      <input message="tns:txtCredit" />
+      <output message="tns:txtCreditResponse" />
+    </operation>
+    <operation name="txtReversal">
+      <input message="tns:txtReversal" />
+      <output message="tns:txtReversalResponse" />
+    </operation>
+    <operation name="creditReversal">
+      <input message="tns:creditReversal" />
+      <output message="tns:creditReversalResponse" />
+    </operation>
+    <operation name="broadBandCredit">
+      <input message="tns:broadBandCredit" />
+      <output message="tns:broadBandCreditResponse" />
+    </operation>
+    <operation name="broadBandReversal">
+      <input message="tns:broadBandReversal" />
+      <output message="tns:broadBandReversalResponse" />
+    </operation>
+  </portType>
+  <binding name="econetvasSOAPBinding" type="tns:econetvas">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="balanceEnquiry">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/balanceEnquiry" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="billPay">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/billPay" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="deActivateCRBT">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/deActivateCRBT" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="activateCRBT">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/activateCRBT" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="billPayReversal">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/billPayReversal" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="creditSubscriber">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/creditSubscriber" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="debitSubscriber">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/debitSubscriber" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="txtCredit">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/txtCredit" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="txtReversal">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/txtReversal" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="creditReversal">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/creditReversal" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="broadBandCredit">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/broadBandCredit" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="broadBandReversal">
+      <soap:operation soapAction="http://econetvas.econet.co.zw/broadBandReversal" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="econetvas">
+    <port name="econetvasSOAP" binding="tns:econetvasSOAPBinding">
+      <soap:address location="http://192.168.100.27:9085/EconetVasWeb/econetvas" />
+    </port>
+  </service>
+</definitions>

@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="HOTWebServiceEconet_WebReference1_Telecel" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://192.168.16.126:8007/telecel.asmx</Value>
+    </Setting>
+    <Setting Name="HOTWebServiceEconet_WebReference1_Netone" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://192.168.16.126:8007/netone.asmx</Value>
+    </Setting>
+    <Setting Name="HOTWebServiceEconet_WebReference1_econetvas" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://192.168.100.27:9085/EconetVasWeb/econetvas</Value>
+    </Setting>
+    <Setting Name="HOTWebServiceEconet_zw_co_ai_africom_Service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://africom.ai.co.zw/Service.asmx</Value>
+    </Setting>
+    <Setting Name="HOTWebServiceEconet_WebReference2_econetvas" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://192.168.100.27:9085/EconetVasWeb/econetvas</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

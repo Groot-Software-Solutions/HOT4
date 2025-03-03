@@ -1,0 +1,44 @@
+﻿<form id="frmEditSub" class="span4"> 
+	Subscriber Name <br /> 
+	<div class="input-control text ">
+		<input name = "txtSubName" id ="txtSubName" type="text" placeholder="Name"/>
+		<button class="btn-clear" tabindex="-1" type="button"/>
+	</div>
+	Subscriber Number <br /> 
+	<div class="input-control text"> 
+		<input name="txtPhoneNumber" id="txtPhoneNumber" type="text" placeholder="Phone Number"/>
+		<button class="btn-clear" tabindex="-1" type="button"/>
+	</div> 	
+</form>
+
+
+<script>
+
+    var addsubvalidator = $("#frmEditSub").validate({
+        rules: {
+            txtSubName: {
+                required: true,
+                minlength: 4
+            },
+            txtPhoneNumber: {
+                required: true,
+                phonesZim: true
+            }
+        },
+        messages: {
+
+            txtSubName: {
+                required: "Enter Subscriber's Name",
+                rangelength: jQuery.format("Enter at least {0} characters")
+            },
+            txtPhoneNumber: {
+                required: "Provide subscriber phone number",
+                phonesZim: ("Enter a valid phone number")
+            }
+        },
+        errorPlacement: function (error, element) {
+            error.appendTo(element.parent());
+        }
+    });
+	
+</script>

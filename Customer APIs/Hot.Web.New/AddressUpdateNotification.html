@@ -1,0 +1,67 @@
+﻿<div>
+    <p>Please confirm that your contact details are still valid. </p>
+    <p>
+        <table id="tblAccountinfo" class="no-borders no-bottom-margin">
+            <tr><td style="width:18%"></td><td></td><td style="width:18%"></td><td></td></tr>
+            <tr>
+                <td><h5>Account Name</h5></td>
+                <td colspan="3">
+                    <span id="atxtAccountName"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><h5>Address</h5></td>
+                <td colspan="3">
+                    <span id="atxtAddress1"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><h5>Surburb</h5></td>
+                <td>
+                    <span id="atxtAddress2"></span> 
+                </td>
+                
+                <td><h5>City</h5></td>
+                <td>
+                    <span id="atxtCity"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><h5>ID Number</h5></td>
+                <td>
+                    <span id="atxtNationalID"></span> 
+                </td>
+                <td><h5>VAT Number</h5></td>
+                <td>
+                    <span id="atxtVatNumber"></span> 
+                </td>
+            </tr>
+
+            <tr>
+                <td><h5>Contact Name</h5></td>
+                <td>
+                       <span id="atxtContactName"></span>
+                </td>
+                <td><h5>Phone Number</h5></td>
+                <td>
+                       <span id="atxtContactNumber"></span> 
+                </td>
+            </tr>
+            <tr>
+                <td><h5>Email</h5></td>
+                <td colspan="2">
+                    <span id="atxtEmail"></span>
+                </td>
+                <td></td>
+            </tr>            
+        </table>
+
+    </p>
+
+</div>
+<script>
+
+    $('#tblAccountinfo').ready(function () {
+        loadUpdateAccountInfo();
+    });
+</script>

@@ -1,0 +1,203 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Project\\hot4.latest\\Customer APIs\\Hot.API.V3\\src\\Hot.Web.API\\Hot.Web.Api.csproj": {}
+  },
+  "projects": {
+    "D:\\Project\\hot4.latest\\Customer APIs\\Hot.API.V3\\src\\Hot.Web.API.Contracts\\Hot.Web.Api.Contracts.csproj": {
+      "version": "0.1.3",
+      "restore": {
+        "projectUniqueName": "D:\\Project\\hot4.latest\\Customer APIs\\Hot.API.V3\\src\\Hot.Web.API.Contracts\\Hot.Web.Api.Contracts.csproj",
+        "projectName": "Hot.Web.Api.Contracts",
+        "projectPath": "D:\\Project\\hot4.latest\\Customer APIs\\Hot.API.V3\\src\\Hot.Web.API.Contracts\\Hot.Web.Api.Contracts.csproj",
+        "packagesPath": "C:\\Users\\Sarbjeet\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\hot4.latest\\Customer APIs\\Hot.API.V3\\src\\Hot.Web.API.Contracts\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Sarbjeet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Project\\hot4.latest\\Customer APIs\\Hot.API.V3\\src\\Hot.Web.API\\Hot.Web.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Project\\hot4.latest\\Customer APIs\\Hot.API.V3\\src\\Hot.Web.API\\Hot.Web.Api.csproj",
+        "projectName": "Hot.Web.Api",
+        "projectPath": "D:\\Project\\hot4.latest\\Customer APIs\\Hot.API.V3\\src\\Hot.Web.API\\Hot.Web.Api.csproj",
+        "packagesPath": "C:\\Users\\Sarbjeet\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\hot4.latest\\Customer APIs\\Hot.API.V3\\src\\Hot.Web.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Sarbjeet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "D:\\Project\\hot4.latest\\Customer APIs\\Hot.API.V3\\src\\Hot.Web.Api.Contracts\\Hot.Web.Api.Contracts.csproj": {
+                "projectPath": "D:\\Project\\hot4.latest\\Customer APIs\\Hot.API.V3\\src\\Hot.Web.Api.Contracts\\Hot.Web.Api.Contracts.csproj"
+              },
+              "D:\\Project\\hot4.latest\\Customer APIs\\Hot\\Hot.Application\\Hot.Application.csproj": {
+                "projectPath": "D:\\Project\\hot4.latest\\Customer APIs\\Hot\\Hot.Application\\Hot.Application.csproj"
+              },
+              "D:\\Project\\hot4.latest\\Customer APIs\\Hot\\Hot.Domain\\Hot.Domain.csproj": {
+                "projectPath": "D:\\Project\\hot4.latest\\Customer APIs\\Hot\\Hot.Domain\\Hot.Domain.csproj"
+              },
+              "D:\\Project\\hot4.latest\\Customer APIs\\Hot\\Hot.External\\Hot.External.csproj": {
+                "projectPath": "D:\\Project\\hot4.latest\\Customer APIs\\Hot\\Hot.External\\Hot.External.csproj"
+              },
+              "D:\\Project\\hot4.latest\\Customer APIs\\Hot\\Hot.Infrastructure\\Hot.Infrastructure.csproj": {
+                "projectPath": "D:\\Project\\hot4.latest\\Customer APIs\\Hot\\Hot.Infrastructure\\Hot.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AspNetCore.HealthChecks.UI.Client": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.6.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+F:\Hot4\Hot4.Latest\src\Customer APIs\hot.backend.all\hot.data\obj\Debug\Hot.Data.vbproj.AssemblyReference.cache
+F:\Hot4\Hot4.Latest\src\Customer APIs\hot.backend.all\hot.data\obj\Debug\Hot.Data.Resources.resources
+F:\Hot4\Hot4.Latest\src\Customer APIs\hot.backend.all\hot.data\obj\Debug\Hot.Data.vbproj.GenerateResource.cache
+F:\Hot4\Hot4.Latest\src\Customer APIs\hot.backend.all\hot.data\obj\Debug\Hot.Data.vbproj.CoreCompileInputs.cache
+F:\Hot4\Hot4.Latest\src\Customer APIs\hot.backend.all\hot.data\bin\Debug\Hot.Data.dll
+F:\Hot4\Hot4.Latest\src\Customer APIs\hot.backend.all\hot.data\bin\Debug\Hot.Data.pdb
+F:\Hot4\Hot4.Latest\src\Customer APIs\hot.backend.all\hot.data\bin\Debug\HOT4.Common.xml
+F:\Hot4\Hot4.Latest\src\Customer APIs\hot.backend.all\hot.data\bin\Debug\Newtonsoft.Json.dll
+F:\Hot4\Hot4.Latest\src\Customer APIs\hot.backend.all\hot.data\bin\Debug\Newtonsoft.Json.xml
+F:\Hot4\Hot4.Latest\src\Customer APIs\hot.backend.all\hot.data\obj\Debug\Hot.Data.vbproj.CopyComplete
+F:\Hot4\Hot4.Latest\src\Customer APIs\hot.backend.all\hot.data\obj\Debug\Hot.Data.dll
+F:\Hot4\Hot4.Latest\src\Customer APIs\hot.backend.all\hot.data\obj\Debug\HOT4.Common.xml
+F:\Hot4\Hot4.Latest\src\Customer APIs\hot.backend.all\hot.data\obj\Debug\Hot.Data.pdb

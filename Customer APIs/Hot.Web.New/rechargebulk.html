@@ -1,0 +1,299 @@
+﻿<div id="frmBulkLoader">
+    <div>
+        Please paste your list of recharges below. <br />
+                                                   <small>
+                                                       <b>Format Details</b>
+                                                       <br />One recharge per line
+                                                       <br />Mobile number followed by amount separated by space, comma or any other delimitor
+                                                       <br /><strong>e.g. [Mobile Number] [Amount] or [Mobile Number] [Data Bundle Product Code]</strong>
+                                                       <br />To recharge USD airtime or bundles, Enter mobile number followed by USD amount separated, comma or any other delimitor.
+                                                       <br /> <strong>e.g  [Mobile Number] [USD][Amount] or [Mobile Number] [USD][Data Bundle Product Code]</strong>
+
+                                                       <br /><a href="javascript:showDataBundles();" style="font-size:10px;" id="btnShowcheatsheet">View Data Bundle CheatSheet</a>
+
+                                                   </small>
+    </div>
+    
+    <div id="data" style="display:none; overflow:auto; height:250px;">
+        <a href="javascript:hideDataBundles();" style="font-size:10px;">Hide Data Bundle CheatSheet</a>
+        <table class="hovered span8" id="lstData">
+            <caption>ZiG Data Bundles Available </caption>
+            <thead>
+                <tr> <th scope="col">Network</th> <th scope="col">Name</th><th scope="col">Product Code</th><th scope="col">Price</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <table class="hovered span8" id="lstDataUSD">
+            <caption>USD Data Bundles Available </caption>
+            <thead>
+                <tr> <th scope="col">Network</th> <th scope="col">Name</th><th scope="col">Product Code</th><th scope="col">Price</th> </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <br />
+    <div>
+        <p>Recharge Data</p>
+        <textarea id="bulkData" rows="8" cols="100"></textarea>
+        <br />
+        <br />
+        <span>
+            <button id="btnBulkLoad" class=" button bg-color-greenLight"><i class="icon-forward"></i> Load Recharges</button>
+        </span>
+    </div>
+</div>
+<div id="frmBulkPreview" style="display:none;overflow:auto; height:450px;">
+    <table class="hovered span8" id="lstPreviewBulk">
+        <caption> Recharges List Preview </caption>
+        <thead>
+            <tr> <th scope="col">Phone Number</th><th scope="col">Product</th><th scope="col">Amount</th><th>Value</th> </tr>
+        </thead>
+        <tbody id="previewBulk"></tbody>
+        <tfoot><tr><td colspan="2">Total:</td><td id="txtBulkTotal">0.00</td><td></td></tr></tfoot>
+    </table>
+    <br />
+    <br />
+    <span><button id="btnBulkCancel" class=" button bg-color-orange"><i class="icon-arrow-left"></i> Back</button></span>
+    <span class="place-right"><button id="btnBulkConfirm" class=" button bg-color-greenLight"><i class="icon-checkmark"></i> Confirm Recharges</button></span>
+
+</div>
+<div id="frmRechargeLog" style="display:none;overflow:auto; height:450px;">
+    <table class="hovered span8" id="rechargelog">
+        <caption> Recharge Log </caption>
+        <thead>
+            <tr> <th scope="col">Subscriber Name</th> <th scope="col">Phone Number</th><th scope="col">Amount</th><th scope="col">Status</th> </tr>
+        </thead>
+        <tbody id="rechargeslog"></tbody>
+    </table>
+</div>
+
+<style>
+    #rechargelog tr th:nth-child(1), #lstPreviewBulk tr th:nth-child(4), #previewBulk tr td:nth-child(4) {
+        display: none;
+    }
+
+     #lstPreviewBulk tfoot tr td, #previewBulk tr td:nth-child(3) {
+        text-align: right;
+    }
+
+    #lstPreviewBulk tfoot tr td {
+        padding-right: 10px;
+    }
+    #lstData tr td, #lstData tr th, #lstDataUSD tr td, #lstDataUSD tr th {
+        line-height: 5px;
+        font-size: 9px;
+    }
+    #lstData caption, #lstDataUSD caption {
+        text-align: left;
+        font-size: 12px;
+    }
+
+</style>
+
+<script>
+    var BundlesLoaded = false;
+    function fillBundleList() {
+        if (xBundles == undefined) {
+            setTimeout(function () { fillBundleList(); }, 500);
+            return;
+        };
+        if (!BundlesLoaded ) {
+            for (var key in xBundles) {
+                $('#lstData tbody').append("<tr><td>" + xBundles[key].Network + "</td><td>" + xBundles[key].Name + "</td><td>" + xBundles[key].ProductCode + "</td><td>" + parseFloat(xBundles[key].Amount / 100) + "</td></tr>");
+            }
+            for (var key in xBundlesUSD) {
+                $('#lstDataUSD tbody').append("<tr><td>" + xBundlesUSD[key].Network + "</td><td>" + xBundlesUSD[key].Name + "</td><td>" + xBundlesUSD[key].ProductCode + "</td><td>" + parseFloat(xBundlesUSD[key].Amount / 100) + "</td></tr>");
+            }
+            BundlesLoaded = true;
+        }
+    }
+
+    function showDataBundles() {
+        fillBundleList();
+        $("#btnShowcheatsheet").hide();
+        $('#data').show()
+    }
+
+    function hideDataBundles() {
+        $("#btnShowcheatsheet").show();
+        $('#data').hide()
+    }
+
+
+    function ParseData() {
+        var lines = $('#bulkData').val().split("\n");
+        $('#previewBulk').html('');
+        jQuery.each(lines, function (r,line) {
+            ParseLine(line);
+        });
+    }
+
+    function ParseLine(line) {
+
+        // Find delimitor
+        var delimitor = '';  // Default Delimiter
+        var delimitors = [ ',', '\t', ';', ' '];
+        jQuery.each(delimitors, function (k,dm) {
+            if (line.split(dm).length == 2 ) delimitor = dm;
+        });
+        if (delimitor == '') return;
+
+        // Extract data
+        if (line.split(delimitor).length == 2)
+        {
+            var mobile = line.split(delimitor)[0];
+            var amount = line.split(delimitor)[1];
+            if (validNumber(mobile) && validAmount(amount)) {
+                $('#previewBulk').append(
+                    '<tr><td>' + line.split(delimitor)[0].replace(/[^0-9]/g, "") + '</td><td>' +
+                    ((isUSDAmount(amount) || isUSDProductCode(amount)) ? "USD" : "ZiG") +
+                    ((isProductCode(amount) || isUSDProductCode(amount))
+                        ? isUSDProductCode(amount)
+                            ? (' - ' + xBundlesUSD[amount].Name)
+                            : (' - ' + xBundles[amount].Name) 
+                        : ' - Airtime') + '</td><td>' + 
+                    ((isProductCode(amount) || isUSDProductCode(amount))
+                        ? isUSDProductCode(amount)
+                            ?  (xBundlesUSD[amount].Amount / 100).toFixed(2)
+                            :  (xBundles[amount].Amount / 100).toFixed(2) 
+                        : parseFloat(
+                            isUSDAmount(line.split(delimitor)[1])
+                                ? line.split(delimitor)[1].replace(/[^0-9.]/g, "")
+                                : line.split(delimitor)[1]
+                        ).toFixed(2) 
+                    ) + '</td><td>' + line.split(delimitor)[1] +'</td></tr>');
+            }
+        }
+
+    }
+
+    function ProcessBulkRecharges() {
+        var AccessCode = siteCookie("UID");
+        var Password = siteCookie("Pwd");
+        var delay = 0;
+        $('#previewBulk tr').each(function () {
+            var Mobile = $('td', this)[0].innerHTML;
+            var Amount = $('td', this)[3].innerHTML;
+            var bundlerecharge = isProductCode(Amount);
+            var isUSDBundleRecharge = isUSDProductCode(Amount);
+            var isUSDTransaction = isUSDAmount(Amount);
+            var minRecharge = 0.10;
+            var TranLimit = 200000;
+            delay += 225;
+            if (bundlerecharge)
+            {
+                setTimeout(function () {
+                    Recharge_Data($("#rechargeslog"), '', Mobile, Amount, AccessCode, Password);
+                }, delay);
+            } else if (isUSDBundleRecharge) {
+                setTimeout(function () {
+                    Recharge_DataUSD($("#rechargeslog"), '', Mobile, Amount, AccessCode, Password);
+                }, delay);
+            }
+            else if(isUSDTransaction)
+            { 
+                delay += 500;
+                var ramount = number_amount(Amount);
+                setTimeout(function () {
+                    if (Mobile.startsWith('071') && (ramount in xNetoneAirtimeCodes)) {
+                        Recharge_DataUSD($("#rechargeslog"), '', Mobile, xNetoneAirtimeCodes[ramount], AccessCode, Password);
+                    } else {
+                        Recharge_USD($("#rechargeslog"), '', Mobile, ramount, AccessCode, Password); 
+                    } 
+                }, delay);
+            }
+            else
+            {
+                if (Amount > TranLimit) {
+                    var amountOutstanding = Amount;
+                    var count = 0;
+
+                    while (amountOutstanding > 0) {
+                        let rechargeAmount = 0;
+                        if (amountOutstanding > (TranLimit - ((count > 0 ? minRecharge : 0) + (count * 0.01)))) {
+                            rechargeAmount = (TranLimit - ((count > 0 ? minRecharge : 0) + (count * 0.01)));
+                        } else {
+                            rechargeAmount = amountOutstanding;
+                        }
+                        rechargeAmount = parseFloat(rechargeAmount).toFixed(2);
+                        setTimeout(function () {
+                            Recharge($("#rechargeslog"), '', Mobile, rechargeAmount, AccessCode, Password);
+                        }, (delay + (1250 * count)));
+                        amountOutstanding = (amountOutstanding - rechargeAmount).toFixed(2);
+                        count += 1;
+                        delay += 375;
+                    }
+                } else {
+                    setTimeout(function () {
+                        Recharge($("#rechargeslog"), '', Mobile, Amount, AccessCode, Password);
+                    }, delay);
+                }
+            }
+           
+
+        });
+    }
+
+    function validNumber(text) {
+        return /^([0|2|+][2|6]?[3]?)(7(7|8|1|3)\d|86(44|77))(\d\d\d\d\d\d)$/.test(text.replace(/[^0-9]/g, ""));
+    }
+
+    function validAmount(text) { 
+        var result = /^(USD\d*(|(.\d{1,2}$))$)|\d*(\.\d\d?\b)*$/.test(text);
+        if (result) return true;
+        return isProductCode(text) || isUSDProductCode(text); 
+    }
+
+    function isProductCode(text) {
+        return (text in xBundles);
+        //return /^(([F][D|W|M][B])|([W](([A](D|W|M)[B])|P(D(1|10|35)|M6|WB18)))|([D])(([W][B])|([D]([B]|([M][B]))))(([1|2][G])+|(\d+))|(S(DB(20|35|45)|M(B(220|450)|S(D(15|5(|0))|W(2(00|50)|500)))|WB(140|300|65)))|PWB(8|15|25|50)\b)/i.test(text);
+    }
+
+    function isUSDProductCode(text) {
+        return (text in xBundlesUSD);
+       // return /^((B(OJ(10|25|7|)(US|U1|U5)|JOU5))|(DDBUS(1|2))|(D(VMU(13|25)|WBUS(2|3))))/i.test(text);
+    }
+    function isUSDAmount(text) {
+        return /^U(|S(|D))\d*(|(.\d{1,2}$))$/i.test(text);
+    }
+
+    function previewStatusDetails() {
+        if ($('#previewBulk tr').length == 0) {
+            $('#btnBulkConfirm').hide();
+        } else {
+            $('#btnBulkConfirm').show();
+        }
+        
+        var sum = 0;
+        $('#previewBulk tr td:nth-child(4)').each(function () {
+            var value = $(this).text();
+            if (isUSDAmount(value)) value = value.replace(/[^0-9.]/g, "");
+            if (value.length != 0) {
+                if (!isNaN(value)) sum += parseFloat(value);
+                if (isNaN(value)) sum += isUSDProductCode(value)
+                    ? (isNaN(getBundleCostUSD(value)) ? 0 : parseFloat(getBundleCostUSD(value)))
+                    : (isNaN(getBundleCost(value)) ? 0 : parseFloat(getBundleCost(value))); 
+            }
+        });
+        $('#txtBulkTotal')[0].innerHTML = sum.toFixed(2);
+    }
+
+    $('#btnBulkLoad').click(function (e) {
+        ParseData();
+        $('#frmBulkLoader').hide();
+        $('#frmBulkPreview').show();
+        previewStatusDetails();
+    });
+
+    $('#btnBulkCancel').click(function (e) {
+        $('#frmBulkLoader').show();
+        $('#frmBulkPreview').hide();
+    });
+
+    $('#btnBulkConfirm').click(function (e) {
+        ProcessBulkRecharges();
+        $('#frmRechargeLog').show();
+        $('#frmBulkPreview').hide();
+    });
+
+</script>

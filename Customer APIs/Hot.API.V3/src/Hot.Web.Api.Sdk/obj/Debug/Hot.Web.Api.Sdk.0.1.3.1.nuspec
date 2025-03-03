@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Hot.Web.Api.Sdk</id>
+    <version>0.1.3.1</version>
+    <title>Hot Recharge API SDK</title>
+    <authors>Hot.Web.Api.Sdk</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>hot-icon.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://hot-api-v3.readme.io/</projectUrl>
+    <description>Hot Recharge SDK for version 3.0 API. Hot recharge allows recharging of Zimbabwean Airtime on all networks including Econet, Netone, Telecel &amp; more. Utility payments are also supported for  ZETDC, Nyaradzo &amp; Telone</description>
+    <tags>hotrecharge airtime econet netone telecel telone zimbabwe</tags>
+    <repository type="git" commit="ad83cd2376a83a95d8916bbf5c2c9ff6c0df06f4" />
+    <dependencies>
+      <group targetFramework="net7.0">
+        <dependency id="Hot.Web.Api.Contracts" version="0.1.3" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration" version="8.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Binder" version="8.0.2" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.DependencyInjection" version="8.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Abstractions" version="8.0.1" exclude="Build,Analyzers" />
+        <dependency id="Refit" version="7.1.2" exclude="Build,Analyzers" />
+        <dependency id="Refit.HttpClientFactory" version="7.1.2" exclude="Build,Analyzers" />
+        <dependency id="System.IdentityModel.Tokens.Jwt" version="8.0.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="F:\Hot4\Hot4.Latest\src\Customer APIs\Hot.API.V3\src\Hot.Web.Api.Sdk\bin\Debug\net7.0\Hot.Web.Api.Sdk.dll" target="lib\net7.0\Hot.Web.Api.Sdk.dll" />
+    <file src="F:\Hot4\Hot4.Latest\src\Customer APIs\Hot.API.V3\src\Hot.Web.Api.Sdk\docs\README.md" target="\README.md" />
+    <file src="F:\Hot4\Hot4.Latest\src\Customer APIs\Hot.API.V3\src\Hot.Web.Api.Sdk\docs\hot-icon.png" target="\hot-icon.png" />
+  </files>
+</package>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="JuiceRecharge">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AgentCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MPin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetMobile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Amount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="JuiceRechargeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="JuiceRechargeResult" type="tns:TopupResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TopupResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="0" maxOccurs="1" name="agentCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="source" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="vendortransid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="vendorcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="productcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="destination" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="agenttransid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="amount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pramt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="poamt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="transid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="walletBalance" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="preWalletBalance" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fee" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="processingfee" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="range" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="servicetax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ecess" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="hcess" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="entax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="vat" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="clienttype" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="resultcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="resultdescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="requestcts" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="responsects" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="responseValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comments" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="smsval" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="oprwallet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="preoprwallet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="customerId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="customerAccountId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="refillId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pgAuthId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pgtransname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="servicename" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="posCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="servicetype" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pgtransId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="channelId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="validity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pre_balance" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="post_balance" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="circleid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="distributerid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="authId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExtensionDataObject" />
+      <s:element name="JuiceBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AgentCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MPin" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="JuiceBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="JuiceBalanceResult" type="tns:BalanceResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BalanceResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="0" maxOccurs="1" name="agentcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="agentname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="source" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="destination" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="agenttransid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="vendorcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="amount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="transid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="resultcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="resultdescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="requestcts" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="responsects" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="clienttype" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="responsevalue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comments" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="JuiceRechargeSoapIn">
+    <wsdl:part name="parameters" element="tns:JuiceRecharge" />
+  </wsdl:message>
+  <wsdl:message name="JuiceRechargeSoapOut">
+    <wsdl:part name="parameters" element="tns:JuiceRechargeResponse" />
+  </wsdl:message>
+  <wsdl:message name="JuiceBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:JuiceBalance" />
+  </wsdl:message>
+  <wsdl:message name="JuiceBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:JuiceBalanceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TelecelSoap">
+    <wsdl:operation name="JuiceRecharge">
+      <wsdl:input message="tns:JuiceRechargeSoapIn" />
+      <wsdl:output message="tns:JuiceRechargeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="JuiceBalance">
+      <wsdl:input message="tns:JuiceBalanceSoapIn" />
+      <wsdl:output message="tns:JuiceBalanceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TelecelSoap" type="tns:TelecelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="JuiceRecharge">
+      <soap:operation soapAction="http://tempuri.org/JuiceRecharge" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="JuiceBalance">
+      <soap:operation soapAction="http://tempuri.org/JuiceBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TelecelSoap12" type="tns:TelecelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="JuiceRecharge">
+      <soap12:operation soapAction="http://tempuri.org/JuiceRecharge" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="JuiceBalance">
+      <soap12:operation soapAction="http://tempuri.org/JuiceBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Telecel">
+    <wsdl:port name="TelecelSoap" binding="tns:TelecelSoap">
+      <soap:address location="http://192.168.16.126:8007/telecel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TelecelSoap12" binding="tns:TelecelSoap12">
+      <soap12:address location="http://192.168.16.126:8007/telecel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

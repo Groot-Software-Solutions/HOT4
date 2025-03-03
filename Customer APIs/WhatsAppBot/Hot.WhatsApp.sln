@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WhatsAppAPI\WebAPI.csproj", "{58FA7B01-4EE8-49E4-9930-B301D1150640}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{CB5F752A-5AD2-4640-BEB4-3AC8D4A3268E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{30B71F91-3CCB-47B6-A021-F8EBAC0AAA82}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhatsAppTests", "WhatsAppTests\WhatsAppTests.csproj", "{E5905441-454D-451F-80F5-918A3FCD2859}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{1D7F4883-9074-4421-BB91-6BEF289A7DD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hot.API.Interface", "..\Hot.API.Interface\Hot.API.Interface\Hot.API.Interface.csproj", "{0772FB26-AF41-48F6-B163-2D49024A55A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58FA7B01-4EE8-49E4-9930-B301D1150640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58FA7B01-4EE8-49E4-9930-B301D1150640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58FA7B01-4EE8-49E4-9930-B301D1150640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58FA7B01-4EE8-49E4-9930-B301D1150640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB5F752A-5AD2-4640-BEB4-3AC8D4A3268E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB5F752A-5AD2-4640-BEB4-3AC8D4A3268E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB5F752A-5AD2-4640-BEB4-3AC8D4A3268E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB5F752A-5AD2-4640-BEB4-3AC8D4A3268E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30B71F91-3CCB-47B6-A021-F8EBAC0AAA82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30B71F91-3CCB-47B6-A021-F8EBAC0AAA82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30B71F91-3CCB-47B6-A021-F8EBAC0AAA82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30B71F91-3CCB-47B6-A021-F8EBAC0AAA82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5905441-454D-451F-80F5-918A3FCD2859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5905441-454D-451F-80F5-918A3FCD2859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5905441-454D-451F-80F5-918A3FCD2859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5905441-454D-451F-80F5-918A3FCD2859}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D7F4883-9074-4421-BB91-6BEF289A7DD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D7F4883-9074-4421-BB91-6BEF289A7DD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D7F4883-9074-4421-BB91-6BEF289A7DD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D7F4883-9074-4421-BB91-6BEF289A7DD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0772FB26-AF41-48F6-B163-2D49024A55A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0772FB26-AF41-48F6-B163-2D49024A55A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0772FB26-AF41-48F6-B163-2D49024A55A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0772FB26-AF41-48F6-B163-2D49024A55A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1388B823-0A96-46F3-A924-5B430F670412}
+	EndGlobalSection
+EndGlobal

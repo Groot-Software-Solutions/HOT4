@@ -1,0 +1,175 @@
+﻿<form id="frmEditUser" class="span6"> 
+	<table class=" no-borders">
+		<tr>
+			<td>
+				<strong><small>User</small></strong>
+			</td> 
+			<td>
+				<div class="input-control text no-bottom-margin"> 
+					<input name="txtUsername" id="txtUsername" type="text" placeholder="John Doe"/>
+					<button class="btn-clear" tabindex="-1" type="button">
+				</div> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<strong><small>Access Type</small></strong>
+			</td> 
+			<td>
+				<div class="input-control select no-bottom-margin"> 
+					<select name="txtType" id ="txtType" on > 
+						<option value="2">Internet</option> 
+						<option value="1">Mobile</option> 
+					</select>
+				</div> 
+			</td>
+		</tr>
+		<tr class="grpEmail">
+			<td> 
+				<strong><small>Email</small></strong>
+			</td>
+			<td>
+				<div class="input-control text no-bottom-margin"> 
+					<input name="txtEmail" id ="txtEmail" type="text" placeholder="hot@hot.co.zw">
+					<button class="btn-clear" tabindex="-1" type="button" />
+				</div> 
+			</td>
+		<tr>
+		<tr class="grpMobile">
+			<td> 
+				<strong><small>Mobile</small></strong>
+			</td>
+			<td>
+				<div class="input-control text no-bottom-margin"> 
+					<input name="txtMobile" id ="txtMobile" type="text" placeholder="0772 000 000">
+					<button class="btn-clear" tabindex="-1" type="button" />
+				</div> 
+			</td>
+		<tr>
+        <tr class="grpEmail" >
+            <td>
+				<strong><small>Sales Password Required</small></strong>
+			</td> 
+			<td>
+				<label class="input-control checkbox" >
+                    <input type="checkbox" name="txtSalesPassword" id ="txtSalesPassword" >
+                    <span class="helper"></span>
+                   </label>
+			</td>
+        
+        </tr>
+		<tr class="grpShowPass">
+			<td colspan="2" style="text-align:center;"><button id="btnEditPassword" onclick="javascript: editPassword();return false;"><i class="icon-key"></i>Change Password</button></td>
+		</tr>
+		<tr class="grpPasswords">
+			<td>
+				<strong><small>Password</small></strong>
+			</td>
+			<td>
+				<div class="input-control password no-bottom-margin">
+					<input name="txtPassword" id ="txtPassword" type="password" placeholder="Enter password" class="ignore">
+					<button class="btn-reveal" tabindex="-1" type="button"></button>
+				</div>
+			</td>
+		</tr>
+		<tr class="grpPasswords">
+			<td>
+				<strong><small>Confirm</small></strong>
+			</td>
+			<td>
+				<div class="input-control password no-bottom-margin">
+			<input name="txtConfirm" id="txtConfirm" type="password" placeholder="Confirm" class="ignore">
+			<button class="btn-reveal" tabindex="-1" type="button"></button>
+		</div>
+			</td>
+		</tr>		
+		
+	</table>	
+</form>
+
+<script>
+ 
+ editUserValidator = $( "#frmEditUser" ).validate({
+		ignore: ".ignore",
+		rules: {
+			txtUsername: {
+			required: true,
+			minlength: 6
+			},			
+			txtEmail: {
+				required: true,
+				email: true,
+				minlength: 6
+			},
+			txtPassword: {
+				required: true,
+				minlength: 4
+			},
+			txtConfirm: {
+				required: true,
+				minlength: 4,
+				equalTo: "#txtPassword"
+			},
+			txtMobile: {
+				required:true,
+				phonesZim: true
+			}
+		},
+		messages: {
+			
+			txtUsername: {
+				required: "Enter the User's Name",
+				rangelength:   jQuery.format("Enter at least {0} characters")
+			},			
+			txtPassword: {
+				required: "Provide a password",
+				rangelength: jQuery.format("Enter at least {0} characters")
+			},
+			txtConfirm: {
+				required: "Repeat your password",
+				minlength: jQuery.format("Enter at least {0} characters"),
+				equalTo: "Enter the same password as above"
+			},
+			txtEmail: {
+				required: "Enter your email address",
+				minlength: "Enter a valid email address",				
+			}
+		},
+		errorPlacement: function(error, element) {			
+				error.appendTo ( element.parent() );			
+		}
+		
+	});
+
+ $( "#frmEditUser" ).ready(function() {
+	$(".grpPasswords").hide();	
+	$('#txtType').on('change', function() {		
+		setChannel(this.value);
+		editPassword();
+	});
+});
+ function setChannel(ChannelID) {
+ 		switch(ChannelID ){
+			case "1":				
+				$("#txtEmail").addClass("ignore");				
+				$(".grpEmail").hide();
+                
+				$("#txtMobile").removeClass("ignore");
+				$(".grpMobile").show();
+				break;
+			default:
+				$("#txtEmail").removeClass("ignore");				
+				$(".grpEmail").show();
+               
+				$("#txtMobile").addClass("ignore");
+				$(".grpMobile").hide();						
+		};
+ }
+ function editPassword () {
+	$(".grpShowPass").hide(150);
+	$(".grpPasswords").show(350);
+	$("#txtPassword, #txtConfirm").removeClass("ignore");			
+	return false;
+ }
+
+</script>

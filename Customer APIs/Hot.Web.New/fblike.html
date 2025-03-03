@@ -1,0 +1,62 @@
+﻿<div id="fb-root"></div>
+<script>    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=538648886250768";
+        fjs.parentNode.insertBefore(js, fjs);
+    } (document, 'script', 'facebook-jssdk'));</script>
+
+<div class="fb-like" data-href="https://www.facebook.com/HOTRecharge" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+<form id="frmFBLike" class="span4"> 
+	Email Address <br /> 
+	<div class="input-control text ">
+		<input name = "txtSubName" id ="txtSubName" type="email" placeholder="hot@hot.co.zw"/>
+		<button class="btn-clear" tabindex="-1" type="button"/>
+	</div>
+	Contact Number <br /> 
+	<div class="input-control text"> 
+		<input name="txtPhoneNumber" id="txtPhoneNumber" type="text" placeholder="Phone Number"/>
+		<button class="btn-clear" tabindex="-1" type="button"/>
+	</div>
+    <label class="input-control checkbox">
+	    <input name="terms" type="checkbox" id="terms" >
+	    <span class="helper">
+		    <small>Send me promotional offers from HOT Recharge. You can unsubscribe at any time.</small>
+	    </span>
+    </label> 	
+</form>
+
+
+<script>
+
+    var addfbvalidator = $("#frmFBLike").validate({
+        rules: {
+            txtSubName: {
+                required: true,
+                minlength: 4
+            },
+            txtPhoneNumber: {
+                required: true,
+                phonesZim: true
+            },
+            terms:"required"
+        },
+        messages: {
+
+            txtSubName: {
+                required: "Enter a Email Address",
+                rangelength: jQuery.format("Enter at least {0} characters")
+            },
+            txtPhoneNumber: {
+                required: "Provide subscriber phone number",
+                phonesZim: ("Enter a valid phone number")
+            },
+            terms: "To receive the 10c airtime you must subscribe to the promotional offers"
+        },
+        errorPlacement: function (error, element) {
+            error.appendTo(element.parent());
+        }
+    });
+	
+</script>

@@ -1,0 +1,2 @@
+Public Class RechargeResponse
+End Class

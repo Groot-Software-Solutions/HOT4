@@ -1,0 +1,13 @@
+F:\Hot4\Hot4.Latest\src\Customer APIs\Hot-Api-Gateway\Hot.Api.Gateway\Hot.Api.Gateway\Hot.Api.Gateway.Common\bin\Debug\net7.0\Hot.Api.Gateway.Common.deps.json
+F:\Hot4\Hot4.Latest\src\Customer APIs\Hot-Api-Gateway\Hot.Api.Gateway\Hot.Api.Gateway\Hot.Api.Gateway.Common\bin\Debug\net7.0\Hot.Api.Gateway.Common.dll
+F:\Hot4\Hot4.Latest\src\Customer APIs\Hot-Api-Gateway\Hot.Api.Gateway\Hot.Api.Gateway\Hot.Api.Gateway.Common\bin\Debug\net7.0\Hot.Api.Gateway.Common.pdb
+F:\Hot4\Hot4.Latest\src\Customer APIs\Hot-Api-Gateway\Hot.Api.Gateway\Hot.Api.Gateway\Hot.Api.Gateway.Common\obj\Debug\net7.0\Hot.Api.Gateway.Common.csproj.AssemblyReference.cache
+F:\Hot4\Hot4.Latest\src\Customer APIs\Hot-Api-Gateway\Hot.Api.Gateway\Hot.Api.Gateway\Hot.Api.Gateway.Common\obj\Debug\net7.0\Hot.Api.Gateway.Common.GeneratedMSBuildEditorConfig.editorconfig
+F:\Hot4\Hot4.Latest\src\Customer APIs\Hot-Api-Gateway\Hot.Api.Gateway\Hot.Api.Gateway\Hot.Api.Gateway.Common\obj\Debug\net7.0\Hot.Api.Gateway.Common.AssemblyInfoInputs.cache
+F:\Hot4\Hot4.Latest\src\Customer APIs\Hot-Api-Gateway\Hot.Api.Gateway\Hot.Api.Gateway\Hot.Api.Gateway.Common\obj\Debug\net7.0\Hot.Api.Gateway.Common.AssemblyInfo.cs
+F:\Hot4\Hot4.Latest\src\Customer APIs\Hot-Api-Gateway\Hot.Api.Gateway\Hot.Api.Gateway\Hot.Api.Gateway.Common\obj\Debug\net7.0\Hot.Api.Gateway.Common.csproj.CoreCompileInputs.cache
+F:\Hot4\Hot4.Latest\src\Customer APIs\Hot-Api-Gateway\Hot.Api.Gateway\Hot.Api.Gateway\Hot.Api.Gateway.Common\obj\Debug\net7.0\Hot.Api.Gateway.Common.sourcelink.json
+F:\Hot4\Hot4.Latest\src\Customer APIs\Hot-Api-Gateway\Hot.Api.Gateway\Hot.Api.Gateway\Hot.Api.Gateway.Common\obj\Debug\net7.0\Hot.Api.Gateway.Common.dll
+F:\Hot4\Hot4.Latest\src\Customer APIs\Hot-Api-Gateway\Hot.Api.Gateway\Hot.Api.Gateway\Hot.Api.Gateway.Common\obj\Debug\net7.0\refint\Hot.Api.Gateway.Common.dll
+F:\Hot4\Hot4.Latest\src\Customer APIs\Hot-Api-Gateway\Hot.Api.Gateway\Hot.Api.Gateway\Hot.Api.Gateway.Common\obj\Debug\net7.0\Hot.Api.Gateway.Common.pdb
+F:\Hot4\Hot4.Latest\src\Customer APIs\Hot-Api-Gateway\Hot.Api.Gateway\Hot.Api.Gateway\Hot.Api.Gateway.Common\obj\Debug\net7.0\ref\Hot.Api.Gateway.Common.dll

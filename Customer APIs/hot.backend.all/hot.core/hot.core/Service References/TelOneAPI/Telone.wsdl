@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetAvailableBundles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAvailableBundlesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAvailableBundlesResult" type="tns:GetBundleResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetBundleResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="List" type="tns:ArrayOfBroadbandProductItem" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BaseResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ReplyCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReplyMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBroadbandProductItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BroadbandProductItem" nillable="true" type="tns:BroadbandProductItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BroadbandProductItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ProductId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAvailableBundlesUSD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAvailableBundlesUSDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAvailableBundlesUSDResult" type="tns:GetBundleResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBalanceResult" type="tns:AccountBalanceResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AccountBalanceResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseResponse">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:ArrayOfAccountBalance" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfAccountBalance">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AccountBalance" nillable="true" type="tns:AccountBalance" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AccountBalance">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MerchantId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Service" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreditLimit" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Currency" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBalanceUSD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBalanceUSDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBalanceUSDResult" type="tns:AccountBalanceResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifiyUserAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifiyUserAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerifiyUserAccountResult" type="tns:VerifyAccountResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VerifyAccountResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:CustomerAccountResponse" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CustomerAccountResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountAddress" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EndUserVoiceBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EndUserVoiceBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EndUserVoiceBalanceResult" type="tns:CustomerVoiceBalanceResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CustomerVoiceBalanceResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseResponse">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:QueryCustomerVoiceBalanceResponse" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="QueryCustomerVoiceBalanceResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResultHeaderField" type="tns:Resultheaderfield" />
+          <s:element minOccurs="0" maxOccurs="1" name="QueryBalanceResultField" type="tns:ArrayOfQuerybalanceresultfield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Resultheaderfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="VersionField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResultCodeField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MsgLanguageCodeField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResultDescField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdditionalPropertyField" type="tns:ArrayOfAdditionalpropertyfield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAdditionalpropertyfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Additionalpropertyfield" nillable="true" type="tns:Additionalpropertyfield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Additionalpropertyfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CodeField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValueField" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfQuerybalanceresultfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Querybalanceresultfield" nillable="true" type="tns:Querybalanceresultfield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Querybalanceresultfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AcctKeyField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BalanceResultField" type="tns:ArrayOfBalanceresultfield" />
+          <s:element minOccurs="0" maxOccurs="1" name="OutStandingListField" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountCreditField" type="tns:ArrayOfAccountcreditfield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBalanceresultfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Balanceresultfield" nillable="true" type="tns:Balanceresultfield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Balanceresultfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BalanceTypeField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BalanceTypeNameField" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalAmountField" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepositFlagField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RefundFlagField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrencyIDField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BalanceDetailField" type="tns:ArrayOfBalancedetailfield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBalancedetailfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Balancedetailfield" nillable="true" type="tns:Balancedetailfield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Balancedetailfield">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BalanceInstanceIDField" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="AmountField" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InitialAmountField" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="EffectiveTimeField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExpireTimeField" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAccountcreditfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Accountcreditfield" nillable="true" type="tns:Accountcreditfield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Accountcreditfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CreditLimitTypeField" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditLimitTypeNameField" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCreditAmountField" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalUsageAmountField" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalRemainAmountField" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrencyIDField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditAmountInfoField" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BulkAdslPurchaseBroadband">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ProductId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RechargeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PurchaseBroadbandProductsResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MerchantReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Vouchers" type="tns:ArrayOfVoucher" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVoucher">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Voucher" nillable="true" type="tns:Voucher" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Voucher">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ProductId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BatchNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SerialNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BulkAdslPurchaseBroadbandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BulkAdslPurchaseBroadbandResult" type="tns:BulkPurchaseBroadbandResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BulkPurchaseBroadbandResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:PurchaseBroadbandProductsResponse" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="RechargeAccountAdsl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="productId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RechargeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RechargeAdslAccountResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MerchantReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Voucher" type="tns:ArrayOfVoucher" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RechargeAccountAdslResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RechargeAccountAdslResult" type="tns:RechargeAccountResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RechargeAccountResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:RechargeAdslAccountResponse" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="RechargeAccountAdslUSD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="productId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RechargeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RechargeAccountAdslUSDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RechargeAccountAdslUSDResult" type="tns:RechargeAccountResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PayBill">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="RechargeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PayBillResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Return_description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Return_result" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Return_message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Return_code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Balance" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PayBillResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PayBillResult" type="tns:PayAccountBillResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PayAccountBillResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:PayBillResponse" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="RechargeAccountVoip">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="RechargeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VoipRechargeResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MerchantReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderNumer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RechargeResult" type="tns:Rechargeresult" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Rechargeresult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResultHeaderField" type="tns:Resultheaderfield" />
+          <s:element minOccurs="0" maxOccurs="1" name="RechargeResultField" type="tns:Rechargeresultfield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Rechargeresultfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RechargeSerialNoField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BalanceChgInfoField" type="tns:ArrayOfBalancechginfofield" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoanChgInfoField" type="tns:Loanchginfofield" />
+          <s:element minOccurs="0" maxOccurs="1" name="RechargeBonusField" type="tns:Rechargebonusfield" />
+          <s:element minOccurs="0" maxOccurs="1" name="LifeCycleChgInfoField" type="tns:Lifecyclechginfofield" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditChgInfoField" type="tns:ArrayOfCreditchginfofield" />
+          <s:element minOccurs="0" maxOccurs="1" name="FaceValueField" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBalancechginfofield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Balancechginfofield" nillable="true" type="tns:Balancechginfofield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Balancechginfofield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BalanceTypeField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BalanceIDField" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BalanceIDFieldSpecified" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="BalanceTypeNameField" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OldBalanceAmtField" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NewBalanceAmtField" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrencyIDField" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Loanchginfofield">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OldLoanAmtField" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NewLoanAmtField" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoanPaymentAmtField" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoanInterestAmtField" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrencyIDField" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Rechargebonusfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FreeUnitItemListField" type="tns:ArrayOfFreeunititemlistfield" />
+          <s:element minOccurs="0" maxOccurs="1" name="BalanceListField" type="tns:ArrayOfBalancelistfield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFreeunititemlistfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Freeunititemlistfield" nillable="true" type="tns:Freeunititemlistfield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Freeunititemlistfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FreeUnitIDField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FreeUnitTypeField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FreeUnitTypeNameField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MeasureUnitField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MeasureUnitNameField" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BonusAmtField" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="EffectiveTimeField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExpireTimeField" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBalancelistfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Balancelistfield" nillable="true" type="tns:Balancelistfield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Balancelistfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BalanceTypeField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BalanceIDField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BalanceTypeNameField" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BonusAmtField" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrencyIDField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EffectiveTimeField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExpireTimeField" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Lifecyclechginfofield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OldLifeCycleStatusField" type="tns:ArrayOfOldlifecyclestatusfield" />
+          <s:element minOccurs="0" maxOccurs="1" name="NewLifeCycleStatusField" type="tns:ArrayOfNewlifecyclestatusfield" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddValidityField" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOldlifecyclestatusfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Oldlifecyclestatusfield" nillable="true" type="tns:Oldlifecyclestatusfield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Oldlifecyclestatusfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="StatusNameField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusExpireTimeField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusIndexField" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfNewlifecyclestatusfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Newlifecyclestatusfield" nillable="true" type="tns:Newlifecyclestatusfield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Newlifecyclestatusfield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="StatusNameField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusExpireTimeField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusIndexField" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCreditchginfofield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Creditchginfofield" nillable="true" type="tns:Creditchginfofield" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Creditchginfofield">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CreditLimitIDField" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreditLimitIDFieldSpecified" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditLimitTypeField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditLimitTypeNameField" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OldLeftCreditAmtField" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NewLeftCreditAmtField" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MeasureUnitField" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RechargeAccountVoipResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RechargeAccountVoipResult" type="tns:RechargeVoipResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RechargeVoipResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:VoipRechargeResponse" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAvailableBundlesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAvailableBundles" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableBundlesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAvailableBundlesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableBundlesUSDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAvailableBundlesUSD" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableBundlesUSDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAvailableBundlesUSDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBalance" />
+  </wsdl:message>
+  <wsdl:message name="GetBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBalanceUSDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBalanceUSD" />
+  </wsdl:message>
+  <wsdl:message name="GetBalanceUSDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBalanceUSDResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifiyUserAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:VerifiyUserAccount" />
+  </wsdl:message>
+  <wsdl:message name="VerifiyUserAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:VerifiyUserAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="EndUserVoiceBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:EndUserVoiceBalance" />
+  </wsdl:message>
+  <wsdl:message name="EndUserVoiceBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:EndUserVoiceBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="BulkAdslPurchaseBroadbandSoapIn">
+    <wsdl:part name="parameters" element="tns:BulkAdslPurchaseBroadband" />
+  </wsdl:message>
+  <wsdl:message name="BulkAdslPurchaseBroadbandSoapOut">
+    <wsdl:part name="parameters" element="tns:BulkAdslPurchaseBroadbandResponse" />
+  </wsdl:message>
+  <wsdl:message name="RechargeAccountAdslSoapIn">
+    <wsdl:part name="parameters" element="tns:RechargeAccountAdsl" />
+  </wsdl:message>
+  <wsdl:message name="RechargeAccountAdslSoapOut">
+    <wsdl:part name="parameters" element="tns:RechargeAccountAdslResponse" />
+  </wsdl:message>
+  <wsdl:message name="RechargeAccountAdslUSDSoapIn">
+    <wsdl:part name="parameters" element="tns:RechargeAccountAdslUSD" />
+  </wsdl:message>
+  <wsdl:message name="RechargeAccountAdslUSDSoapOut">
+    <wsdl:part name="parameters" element="tns:RechargeAccountAdslUSDResponse" />
+  </wsdl:message>
+  <wsdl:message name="PayBillSoapIn">
+    <wsdl:part name="parameters" element="tns:PayBill" />
+  </wsdl:message>
+  <wsdl:message name="PayBillSoapOut">
+    <wsdl:part name="parameters" element="tns:PayBillResponse" />
+  </wsdl:message>
+  <wsdl:message name="RechargeAccountVoipSoapIn">
+    <wsdl:part name="parameters" element="tns:RechargeAccountVoip" />
+  </wsdl:message>
+  <wsdl:message name="RechargeAccountVoipSoapOut">
+    <wsdl:part name="parameters" element="tns:RechargeAccountVoipResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TeloneSoap">
+    <wsdl:operation name="GetAvailableBundles">
+      <wsdl:input message="tns:GetAvailableBundlesSoapIn" />
+      <wsdl:output message="tns:GetAvailableBundlesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableBundlesUSD">
+      <wsdl:input message="tns:GetAvailableBundlesUSDSoapIn" />
+      <wsdl:output message="tns:GetAvailableBundlesUSDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <wsdl:input message="tns:GetBalanceSoapIn" />
+      <wsdl:output message="tns:GetBalanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBalanceUSD">
+      <wsdl:input message="tns:GetBalanceUSDSoapIn" />
+      <wsdl:output message="tns:GetBalanceUSDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifiyUserAccount">
+      <wsdl:input message="tns:VerifiyUserAccountSoapIn" />
+      <wsdl:output message="tns:VerifiyUserAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EndUserVoiceBalance">
+      <wsdl:input message="tns:EndUserVoiceBalanceSoapIn" />
+      <wsdl:output message="tns:EndUserVoiceBalanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BulkAdslPurchaseBroadband">
+      <wsdl:input message="tns:BulkAdslPurchaseBroadbandSoapIn" />
+      <wsdl:output message="tns:BulkAdslPurchaseBroadbandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RechargeAccountAdsl">
+      <wsdl:input message="tns:RechargeAccountAdslSoapIn" />
+      <wsdl:output message="tns:RechargeAccountAdslSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RechargeAccountAdslUSD">
+      <wsdl:input message="tns:RechargeAccountAdslUSDSoapIn" />
+      <wsdl:output message="tns:RechargeAccountAdslUSDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PayBill">
+      <wsdl:input message="tns:PayBillSoapIn" />
+      <wsdl:output message="tns:PayBillSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RechargeAccountVoip">
+      <wsdl:input message="tns:RechargeAccountVoipSoapIn" />
+      <wsdl:output message="tns:RechargeAccountVoipSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TeloneSoap" type="tns:TeloneSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAvailableBundles">
+      <soap:operation soapAction="http://tempuri.org/GetAvailableBundles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableBundlesUSD">
+      <soap:operation soapAction="http://tempuri.org/GetAvailableBundlesUSD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <soap:operation soapAction="http://tempuri.org/GetBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalanceUSD">
+      <soap:operation soapAction="http://tempuri.org/GetBalanceUSD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifiyUserAccount">
+      <soap:operation soapAction="http://tempuri.org/VerifiyUserAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndUserVoiceBalance">
+      <soap:operation soapAction="http://tempuri.org/EndUserVoiceBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BulkAdslPurchaseBroadband">
+      <soap:operation soapAction="http://tempuri.org/BulkAdslPurchaseBroadband" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeAccountAdsl">
+      <soap:operation soapAction="http://tempuri.org/RechargeAccountAdsl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeAccountAdslUSD">
+      <soap:operation soapAction="http://tempuri.org/RechargeAccountAdslUSD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PayBill">
+      <soap:operation soapAction="http://tempuri.org/PayBill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeAccountVoip">
+      <soap:operation soapAction="http://tempuri.org/RechargeAccountVoip" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TeloneSoap12" type="tns:TeloneSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAvailableBundles">
+      <soap12:operation soapAction="http://tempuri.org/GetAvailableBundles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableBundlesUSD">
+      <soap12:operation soapAction="http://tempuri.org/GetAvailableBundlesUSD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <soap12:operation soapAction="http://tempuri.org/GetBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalanceUSD">
+      <soap12:operation soapAction="http://tempuri.org/GetBalanceUSD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifiyUserAccount">
+      <soap12:operation soapAction="http://tempuri.org/VerifiyUserAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndUserVoiceBalance">
+      <soap12:operation soapAction="http://tempuri.org/EndUserVoiceBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BulkAdslPurchaseBroadband">
+      <soap12:operation soapAction="http://tempuri.org/BulkAdslPurchaseBroadband" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeAccountAdsl">
+      <soap12:operation soapAction="http://tempuri.org/RechargeAccountAdsl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeAccountAdslUSD">
+      <soap12:operation soapAction="http://tempuri.org/RechargeAccountAdslUSD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PayBill">
+      <soap12:operation soapAction="http://tempuri.org/PayBill" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeAccountVoip">
+      <soap12:operation soapAction="http://tempuri.org/RechargeAccountVoip" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Telone">
+    <wsdl:port name="TeloneSoap" binding="tns:TeloneSoap">
+      <soap:address location="http://127.0.0.1:8017/Telone.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TeloneSoap12" binding="tns:TeloneSoap12">
+      <soap12:address location="http://127.0.0.1:8017/Telone.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

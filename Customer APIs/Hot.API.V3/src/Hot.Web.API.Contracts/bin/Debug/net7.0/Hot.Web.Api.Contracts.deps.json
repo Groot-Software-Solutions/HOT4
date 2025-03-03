@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "Hot.Web.Api.Contracts/0.1.3.0": {
+        "runtime": {
+          "Hot.Web.Api.Contracts.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Hot.Web.Api.Contracts/0.1.3.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

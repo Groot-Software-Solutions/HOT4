@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://hot.co.zw:8007/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://hot.co.zw:8007/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://hot.co.zw:8007/">
+      <s:element name="RechargeBundle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetMobile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProductCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Amount" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RechargeID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RechargeBundleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RechargeBundleResult" type="tns:RechargeResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RechargeResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="WalletBalance" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="InitialBalance" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="FinalBalance" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="ReplyMessage" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Window" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SMS" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="RechargeID" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Response">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ReplyCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReplyMsg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AgentReference" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RechargeUSDBundle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetMobile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProductCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Amount" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RechargeID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RechargeUSDBundleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RechargeUSDBundleResult" type="tns:RechargeResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RechargeMobile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetMobile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Amount" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RechargeID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RechargeMobileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RechargeMobileResult" type="tns:RechargeResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RechargeMobileUSD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetMobile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Amount" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RechargeID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RechargeMobileUSDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RechargeMobileUSDResult" type="tns:RechargeBundledResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RechargeBundledResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RechargeResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Recharges" type="tns:ArrayOfRechargeResponse" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfRechargeResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RechargeResponse" nillable="true" type="tns:RechargeResponse" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UserBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetMobile" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserBalanceResult" type="tns:EndUserBalanceResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EndUserBalanceResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MobileBalance" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="WindowPeriod" nillable="true" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBalanceResult" type="tns:WalletBalanceResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WalletBalanceResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="WalletBalance" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetUSDBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUSDBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUSDBalanceResult" type="tns:WalletBalanceResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryRecharge">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AgentReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryRechargeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryRechargeResult" type="tns:RechargeResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BulkPinSale">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="BrandId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Denomination" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RechargeID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BulkPinSaleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BulkPinSaleResult" type="tns:BulkEvdResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BulkEvdResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ReplyCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReplyMsg" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="WalletBalance" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Discount" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pins" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="AgentReference" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RechargeID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="QueryEvdStock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryEvdStockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryEvdStockResult" type="tns:QueryEvdResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="QueryEvdResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="InStock" type="tns:ArrayOfPinStockModel" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfPinStockModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PinStockModel" nillable="true" type="tns:PinStockModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PinStockModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BrandId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BrandName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PinValue" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Stock" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="QueryEvdTransaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RechargeId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryEvdTransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryEvdTransactionResult" type="tns:BulkEvdResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBundles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBundlesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBundlesResult" type="tns:ArrayOfBundleProduct" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBundleProduct">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BundleProduct" nillable="true" type="tns:BundleProduct" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BundleProduct">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Bundle">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="BundleId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="BrandId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Network" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Bundle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProductCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ValidityPeriod" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RechargeBundleSoapIn">
+    <wsdl:part name="parameters" element="tns:RechargeBundle" />
+  </wsdl:message>
+  <wsdl:message name="RechargeBundleSoapOut">
+    <wsdl:part name="parameters" element="tns:RechargeBundleResponse" />
+  </wsdl:message>
+  <wsdl:message name="RechargeUSDBundleSoapIn">
+    <wsdl:part name="parameters" element="tns:RechargeUSDBundle" />
+  </wsdl:message>
+  <wsdl:message name="RechargeUSDBundleSoapOut">
+    <wsdl:part name="parameters" element="tns:RechargeUSDBundleResponse" />
+  </wsdl:message>
+  <wsdl:message name="RechargeMobileSoapIn">
+    <wsdl:part name="parameters" element="tns:RechargeMobile" />
+  </wsdl:message>
+  <wsdl:message name="RechargeMobileSoapOut">
+    <wsdl:part name="parameters" element="tns:RechargeMobileResponse" />
+  </wsdl:message>
+  <wsdl:message name="RechargeMobileUSDSoapIn">
+    <wsdl:part name="parameters" element="tns:RechargeMobileUSD" />
+  </wsdl:message>
+  <wsdl:message name="RechargeMobileUSDSoapOut">
+    <wsdl:part name="parameters" element="tns:RechargeMobileUSDResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:UserBalance" />
+  </wsdl:message>
+  <wsdl:message name="UserBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:UserBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBalance" />
+  </wsdl:message>
+  <wsdl:message name="GetBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUSDBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUSDBalance" />
+  </wsdl:message>
+  <wsdl:message name="GetUSDBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUSDBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryRechargeSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryRecharge" />
+  </wsdl:message>
+  <wsdl:message name="QueryRechargeSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryRechargeResponse" />
+  </wsdl:message>
+  <wsdl:message name="BulkPinSaleSoapIn">
+    <wsdl:part name="parameters" element="tns:BulkPinSale" />
+  </wsdl:message>
+  <wsdl:message name="BulkPinSaleSoapOut">
+    <wsdl:part name="parameters" element="tns:BulkPinSaleResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryEvdStockSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryEvdStock" />
+  </wsdl:message>
+  <wsdl:message name="QueryEvdStockSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryEvdStockResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryEvdTransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryEvdTransaction" />
+  </wsdl:message>
+  <wsdl:message name="QueryEvdTransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryEvdTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBundlesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBundles" />
+  </wsdl:message>
+  <wsdl:message name="GetBundlesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBundlesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="NetoneSoap">
+    <wsdl:operation name="RechargeBundle">
+      <wsdl:input message="tns:RechargeBundleSoapIn" />
+      <wsdl:output message="tns:RechargeBundleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RechargeUSDBundle">
+      <wsdl:input message="tns:RechargeUSDBundleSoapIn" />
+      <wsdl:output message="tns:RechargeUSDBundleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RechargeMobile">
+      <wsdl:input message="tns:RechargeMobileSoapIn" />
+      <wsdl:output message="tns:RechargeMobileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RechargeMobileUSD">
+      <wsdl:input message="tns:RechargeMobileUSDSoapIn" />
+      <wsdl:output message="tns:RechargeMobileUSDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserBalance">
+      <wsdl:input message="tns:UserBalanceSoapIn" />
+      <wsdl:output message="tns:UserBalanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <wsdl:input message="tns:GetBalanceSoapIn" />
+      <wsdl:output message="tns:GetBalanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUSDBalance">
+      <wsdl:input message="tns:GetUSDBalanceSoapIn" />
+      <wsdl:output message="tns:GetUSDBalanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryRecharge">
+      <wsdl:input message="tns:QueryRechargeSoapIn" />
+      <wsdl:output message="tns:QueryRechargeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BulkPinSale">
+      <wsdl:input message="tns:BulkPinSaleSoapIn" />
+      <wsdl:output message="tns:BulkPinSaleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryEvdStock">
+      <wsdl:input message="tns:QueryEvdStockSoapIn" />
+      <wsdl:output message="tns:QueryEvdStockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryEvdTransaction">
+      <wsdl:input message="tns:QueryEvdTransactionSoapIn" />
+      <wsdl:output message="tns:QueryEvdTransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBundles">
+      <wsdl:input message="tns:GetBundlesSoapIn" />
+      <wsdl:output message="tns:GetBundlesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetoneSoap" type="tns:NetoneSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RechargeBundle">
+      <soap:operation soapAction="http://hot.co.zw:8007/RechargeBundle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeUSDBundle">
+      <soap:operation soapAction="http://hot.co.zw:8007/RechargeUSDBundle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeMobile">
+      <soap:operation soapAction="http://hot.co.zw:8007/RechargeMobile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeMobileUSD">
+      <soap:operation soapAction="http://hot.co.zw:8007/RechargeMobileUSD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserBalance">
+      <soap:operation soapAction="http://hot.co.zw:8007/UserBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <soap:operation soapAction="http://hot.co.zw:8007/GetBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUSDBalance">
+      <soap:operation soapAction="http://hot.co.zw:8007/GetUSDBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryRecharge">
+      <soap:operation soapAction="http://hot.co.zw:8007/QueryRecharge" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BulkPinSale">
+      <soap:operation soapAction="http://hot.co.zw:8007/BulkPinSale" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryEvdStock">
+      <soap:operation soapAction="http://hot.co.zw:8007/QueryEvdStock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryEvdTransaction">
+      <soap:operation soapAction="http://hot.co.zw:8007/QueryEvdTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBundles">
+      <soap:operation soapAction="http://hot.co.zw:8007/GetBundles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetoneSoap12" type="tns:NetoneSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RechargeBundle">
+      <soap12:operation soapAction="http://hot.co.zw:8007/RechargeBundle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeUSDBundle">
+      <soap12:operation soapAction="http://hot.co.zw:8007/RechargeUSDBundle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeMobile">
+      <soap12:operation soapAction="http://hot.co.zw:8007/RechargeMobile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeMobileUSD">
+      <soap12:operation soapAction="http://hot.co.zw:8007/RechargeMobileUSD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserBalance">
+      <soap12:operation soapAction="http://hot.co.zw:8007/UserBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <soap12:operation soapAction="http://hot.co.zw:8007/GetBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUSDBalance">
+      <soap12:operation soapAction="http://hot.co.zw:8007/GetUSDBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryRecharge">
+      <soap12:operation soapAction="http://hot.co.zw:8007/QueryRecharge" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BulkPinSale">
+      <soap12:operation soapAction="http://hot.co.zw:8007/BulkPinSale" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryEvdStock">
+      <soap12:operation soapAction="http://hot.co.zw:8007/QueryEvdStock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryEvdTransaction">
+      <soap12:operation soapAction="http://hot.co.zw:8007/QueryEvdTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBundles">
+      <soap12:operation soapAction="http://hot.co.zw:8007/GetBundles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Netone">
+    <wsdl:port name="NetoneSoap" binding="tns:NetoneSoap">
+      <soap:address location="http://127.0.0.1:8017/netone.asmx" />
+    </wsdl:port>
+    <wsdl:port name="NetoneSoap12" binding="tns:NetoneSoap12">
+      <soap12:address location="http://127.0.0.1:8017/netone.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

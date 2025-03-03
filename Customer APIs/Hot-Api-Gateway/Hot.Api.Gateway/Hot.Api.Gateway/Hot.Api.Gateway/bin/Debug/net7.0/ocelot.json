@@ -1,0 +1,161 @@
+{
+
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5236"
+  },
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/v3/swagger/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.10.31.60",
+          "Port": 8030
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v3/swagger/{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v3/swagger/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.10.31.60",
+          "Port": 8030
+        }
+      ],
+      "UpstreamPathTemplate": "/swagger{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v3/identity/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.10.31.60",
+          "Port": 8030
+        }
+      ],
+      "UpstreamPathTemplate": "/identity/login",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v3/identity/refresh",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.10.31.60",
+          "Port": 8030
+        }
+      ],
+      "UpstreamPathTemplate": "/identity/refresh",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v3/products{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.10.31.60",
+          "Port": 8030
+        }
+      ],
+      "UpstreamPathTemplate": "/products{everything}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "HotAPIv3",
+        "AllowedScopes": []
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 60,
+        "Region": "Information"
+      }
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/v3/products/recharge",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.10.31.60",
+          "Port": 8030
+        }
+      ],
+      "UpstreamPathTemplate": "/products/recharge",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "HotAPIv3",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/query/transaction/{AgentReference}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "127.0.0.1",
+          "Port": 8016
+        }
+      ],
+      "UpstreamPathTemplate": "/query/transaction/{AgentReference}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "HotAPIv3",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v3/query/stock{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.10.31.60",
+          "Port": 8030
+        }
+      ],
+      "UpstreamPathTemplate": "/query/stock{everything}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "HotAPIv3",
+        "AllowedScopes": []
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 60,
+        "Region": "Information"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v3/query/customer/{ProductId}/{AccountNumber}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.10.31.60",
+          "Port": 8030
+        }
+      ],
+      "UpstreamPathTemplate": "/query/customer/{ProductId}/{AccountNumber}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "HotAPIv3",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v3/account/balance{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.10.31.60",
+          "Port": 8030
+        }
+      ],
+      "UpstreamPathTemplate": "/account/balance{everything}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "HotAPIv3",
+        "AllowedScopes": []
+      }
+    }
+  ]
+}

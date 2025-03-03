@@ -1,0 +1,294 @@
+body {
+    background-color: #fff;
+}
+.retail 
+{
+    display:none;
+    }
+.hidden {
+    display: none !important;
+}
+
+#hotback {
+	position:fixed;
+	z-index:0;
+	background-size:100%;
+	background-repeat: no-repeat;
+	height:100%;
+	width:100%;
+}
+.margin-top-none {
+	margin-top:-10px !important;
+	margin-bottom:10px !important;
+}
+.margin-bottom-none {
+	margin-bottom:0px !important;
+}
+.width-full {
+	width: 100% !important;
+}
+
+.metrouicss .page {
+    width: 950px ;
+    margin: auto;
+    background-color: rgba(250,250,250,.25);
+}
+
+.metrouicss .page-sidebar a:hover {
+background-color: #BD2424 !important;
+color: #ffffff !important;
+}
+.browsers-icons img {
+    float: left;
+    margin-right: 20px;
+}
+
+#brand-name {
+    line-height: 24px;
+    margin-top: 2px;
+}
+
+hr {
+    border: 0;
+    border-bottom: 1px #ddd dotted;
+    color: #ddd;
+    background-color: #ddd;
+}
+#subscriber1 .checkbox { margin-bottom:0px; }
+#subscriber1 a { color:black; }
+#subscriber1 thead > tr > td { font-weight:bold; }
+#subscriber1 .highlighted { background: yellow; }
+
+#users1 .checkbox { margin-bottom:0px; }
+#users1 a { color:black; }
+#users1 thead > tr > td { font-weight:bold; }
+#users1 .highlighted { background: yellow; }
+
+label.error {
+background: url('../images/unchecked.gif') no-repeat;
+padding-left: 16px;
+margin-left: .3em;
+background-position-y: 3px;
+}
+label.valid {
+background: url('../images/checked.gif') no-repeat;
+display: block;
+width: 16px;
+height: 16px;
+background-position-y: 3px;
+}
+.notify {
+position:fixed;
+z-index:3000;
+opacity:.9;
+width: 50%;
+top: 0px;
+transition:0.5s ;
+}
+.notify:hover {
+opacity:1;
+transition:0.5s ;
+}
+.feedback > li {
+    width:265px !important;
+}
+.smallul  small > li {
+	font-size:11px !important;
+	line-height: 15px;
+}
+
+#accountinfo tbody > tr > td {
+padding-right: 0px;
+text-align: right;
+}
+.no-borders tbody > tr > td { 
+border-right: none !important;
+border-bottom: none !important;
+border-left: none !important;
+border-top: none !important;
+border:none !important; }
+
+.no-padding tbody > tr > td {
+    padding: 0px !important;
+}
+
+.no-bottom-margin {
+margin-bottom: 0px !important;
+}
+.hoverresponce:hover {
+	-webkit-box-shadow:  0px 2px 10px 0px rgba(0, 0, 0, .3);      
+        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, .3);      
+		}
+#carousel1 {
+    height: 273px;
+}
+
+#page-index .carousel .control {
+    top: auto;
+    left: auto;
+    bottom: -10px;
+}
+#page-index .carousel .control.left {
+    right: 100px;
+}
+#page-index .carousel .control.right {
+    right: 30px;
+}
+#page-subs {
+	min-height:525px;
+}
+
+.metrouicss .charms,
+.metrouicss .app-bar,
+.metrouicss .message-dialog,
+.metrouicss .error-bar,
+.metrouicss .warning-bar,
+.metrouicss .info-bar {
+    position: absolute;
+}
+
+@media (min-width: 980px) {
+    #hmHero
+        {
+        width:630px; }
+    #promo-logo-med{margin-top: -20px;width: 480px;float: right;margin-bottom: -30px;}
+        } 
+
+@media (min-width: 768px) and (max-width: 979px) {
+    .metrouicss .page {
+        width: 724px;
+    }
+    .metrouicss .hero-unit > img {
+        zoom: .6;
+    }
+    .metrouicss .browsers-icons img {
+        zoom: .8;
+    }
+    #hmHero {
+        width:724px; 
+    }
+    #hmLogin {
+        float: left !important;
+        margin-left: 0px;
+   }
+   #promo-logo-med
+   {
+       margin-top: 20px;
+width: 300px;
+float: right;
+margin-bottom: -30px;
+   }
+}
+
+@media (max-width: 767px) {
+    .metrouicss .page {
+        width: 100%;
+    }
+
+    .metrouicss .hero-unit > img {
+        zoom: .6;
+    }
+
+    .metrouicss .modern-ui-logo {
+        width: 24px;
+        height: 24px;
+    }
+    .metrouicss .github-info {
+        margin-top: 5px;
+    }
+
+    .metrouicss a, .metrouicss .link {
+        font-size: 9pt;
+    }
+
+    .metrouicss h3 {
+        line-height: 11px;
+    }
+
+    .metrouicss .no-mobile {
+        display: none;
+    }
+
+    .metrouicss #carousel1 {
+        height: 300px !important;
+    }
+    #hmLogin {
+        float: left !important;
+   }
+   #promo-logo-med
+   {
+     margin-top: 60px;
+width: 370px;
+margin-left: 120px;
+margin-right: 250px;
+float: left;
+
+   }
+   
+}
+
+@media (max-width: 480px) {
+    .metrouicss .hero-unit img {
+        display: none;
+    }
+
+    .metrouicss #jetbrains {
+        display: none;
+    }
+    .metrouicss #brand-name {
+        display: none;
+    }
+   
+}
+
+#networkStatus {
+			list-style: none;
+			padding-top:5px;
+		}
+		#networkStatus li {
+			font-size: 15px;
+			line-height:15px;
+			  padding: 0px 20px 2px 5px;
+		}
+		#networkStatus i {
+			float: right;
+		}
+		
+.promo-logo-text{font-size:12px;padding: 5px 0px 0px 5px; color: white;}
+.promo-image-header{text-align:center; width:100%;}
+#promo-anniversary  
+{
+    margin:0px 0;
+    padding:0;
+    list-style: 1 inside none;}
+#promo-anniversary li { 
+    text-indent: -1.2em;
+    margin-left: 2.4em;
+    font-size: 13px;
+line-height: 17px;
+    }
+    
+    .metrouicss .nav-bar .nav-bar-inner > ul.menu > li{margin-right: 0px !important}
+.rotate90 {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+}
+.rotate180 {
+    -ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+}
+.rotate270 {
+    -ms-transform: rotate(270deg); /* IE 9 */
+    -webkit-transform: rotate(270deg); /* Chrome, Safari, Opera */
+    transform: rotate(270deg);
+}
+
+#tBalance td {
+    font-size: 13px; 
+}
+
+#btnManageUsers{
+    display:none;
+}

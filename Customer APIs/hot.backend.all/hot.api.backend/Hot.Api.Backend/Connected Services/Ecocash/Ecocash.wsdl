@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Charge">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="account" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="mobileNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="reference" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="OnBehalfOf" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChargeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChargeResult" type="tns:EcocashResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EcocashResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ValidResponse" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseData" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorData" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:Transaction" />
+          <s:element minOccurs="0" maxOccurs="1" name="List" type="tns:ArrayOfTransaction" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Transaction">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientCorrelator" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndTime" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartTime" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="NotifyUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EndUserId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServerReferenceCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionOperationStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentAmount" type="tns:PaymentAmountResponse" />
+          <s:element minOccurs="0" maxOccurs="1" name="EcocashReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MerchantCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MerchantPin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MerchantNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NotificationFormat" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OriginalServerReferenceCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrencyCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="tns:DateTimeOffset" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="tns:DateTimeOffset" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PaymentAmountResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalAmountCharged" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DateTimeOffset" />
+      <s:complexType name="ArrayOfTransaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Transaction" nillable="true" type="tns:Transaction" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Refund">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="account" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="mobileNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="reference" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="ecocashReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefundResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RefundResult" type="tns:EcocashResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Query">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="account" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="mobileNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="reference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryResult" type="tns:EcocashResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="List">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="account" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="mobileNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListResult" type="tns:EcocashResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ChargeSoapIn">
+    <wsdl:part name="parameters" element="tns:Charge" />
+  </wsdl:message>
+  <wsdl:message name="ChargeSoapOut">
+    <wsdl:part name="parameters" element="tns:ChargeResponse" />
+  </wsdl:message>
+  <wsdl:message name="RefundSoapIn">
+    <wsdl:part name="parameters" element="tns:Refund" />
+  </wsdl:message>
+  <wsdl:message name="RefundSoapOut">
+    <wsdl:part name="parameters" element="tns:RefundResponse" />
+  </wsdl:message>
+  <wsdl:message name="QuerySoapIn">
+    <wsdl:part name="parameters" element="tns:Query" />
+  </wsdl:message>
+  <wsdl:message name="QuerySoapOut">
+    <wsdl:part name="parameters" element="tns:QueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListSoapIn">
+    <wsdl:part name="parameters" element="tns:List" />
+  </wsdl:message>
+  <wsdl:message name="ListSoapOut">
+    <wsdl:part name="parameters" element="tns:ListResponse" />
+  </wsdl:message>
+  <wsdl:portType name="EcocashSoap">
+    <wsdl:operation name="Charge">
+      <wsdl:input message="tns:ChargeSoapIn" />
+      <wsdl:output message="tns:ChargeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Refund">
+      <wsdl:input message="tns:RefundSoapIn" />
+      <wsdl:output message="tns:RefundSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <wsdl:input message="tns:QuerySoapIn" />
+      <wsdl:output message="tns:QuerySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="List">
+      <wsdl:input message="tns:ListSoapIn" />
+      <wsdl:output message="tns:ListSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EcocashSoap" type="tns:EcocashSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Charge">
+      <soap:operation soapAction="http://tempuri.org/Charge" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Refund">
+      <soap:operation soapAction="http://tempuri.org/Refund" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <soap:operation soapAction="http://tempuri.org/Query" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="List">
+      <soap:operation soapAction="http://tempuri.org/List" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EcocashSoap12" type="tns:EcocashSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Charge">
+      <soap12:operation soapAction="http://tempuri.org/Charge" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Refund">
+      <soap12:operation soapAction="http://tempuri.org/Refund" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <soap12:operation soapAction="http://tempuri.org/Query" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="List">
+      <soap12:operation soapAction="http://tempuri.org/List" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Ecocash">
+    <wsdl:port name="EcocashSoap" binding="tns:EcocashSoap">
+      <soap:address location="http://127.0.0.1:8017/Ecocash.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EcocashSoap12" binding="tns:EcocashSoap12">
+      <soap12:address location="http://127.0.0.1:8017/Ecocash.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://hot.co.zw:8007/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://hot.co.zw:8007/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://hot.co.zw:8007/">
+      <s:element name="Recharge">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetMobile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BundleCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RechargeId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="Currency" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RechargeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RechargeResult" type="tns:LoadDataResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LoadDataResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DataResponse" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DataResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProviderReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Serial" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StatusCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="RawResponseData" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InitialWalletBalance" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FinalWalletBalance" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RechargeAirtime">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetMobile" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="RechargeId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="Currency" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RechargeAirtimeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RechargeAirtimeResult" type="tns:LoadAirtimeResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LoadAirtimeResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DataResponse" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Currency" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBalanceResult" type="tns:AccountBalanceResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AccountBalanceResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AccountBalances" type="tns:ArrayOfAccountBalance" />
+          <s:element minOccurs="0" maxOccurs="1" name="RawResponseData" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAccountBalance">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AccountBalance" nillable="true" type="tns:AccountBalance" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AccountBalance">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Currency" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountType" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBundles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBundlesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBundlesResult" type="tns:ArrayOfBundleProduct" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBundleProduct">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BundleProduct" nillable="true" type="tns:BundleProduct" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BundleProduct">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Bundle">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="BundleId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="BrandId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Network" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Bundle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProductCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ValidityPeriod" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RechargeSoapIn">
+    <wsdl:part name="parameters" element="tns:Recharge" />
+  </wsdl:message>
+  <wsdl:message name="RechargeSoapOut">
+    <wsdl:part name="parameters" element="tns:RechargeResponse" />
+  </wsdl:message>
+  <wsdl:message name="RechargeAirtimeSoapIn">
+    <wsdl:part name="parameters" element="tns:RechargeAirtime" />
+  </wsdl:message>
+  <wsdl:message name="RechargeAirtimeSoapOut">
+    <wsdl:part name="parameters" element="tns:RechargeAirtimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBalance" />
+  </wsdl:message>
+  <wsdl:message name="GetBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBundlesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBundles" />
+  </wsdl:message>
+  <wsdl:message name="GetBundlesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBundlesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="EconetBundleSoap">
+    <wsdl:operation name="Recharge">
+      <wsdl:input message="tns:RechargeSoapIn" />
+      <wsdl:output message="tns:RechargeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RechargeAirtime">
+      <wsdl:input message="tns:RechargeAirtimeSoapIn" />
+      <wsdl:output message="tns:RechargeAirtimeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <wsdl:input message="tns:GetBalanceSoapIn" />
+      <wsdl:output message="tns:GetBalanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBundles">
+      <wsdl:input message="tns:GetBundlesSoapIn" />
+      <wsdl:output message="tns:GetBundlesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EconetBundleSoap" type="tns:EconetBundleSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Recharge">
+      <soap:operation soapAction="http://hot.co.zw:8007/Recharge" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeAirtime">
+      <soap:operation soapAction="http://hot.co.zw:8007/RechargeAirtime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <soap:operation soapAction="http://hot.co.zw:8007/GetBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBundles">
+      <soap:operation soapAction="http://hot.co.zw:8007/GetBundles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EconetBundleSoap12" type="tns:EconetBundleSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Recharge">
+      <soap12:operation soapAction="http://hot.co.zw:8007/Recharge" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeAirtime">
+      <soap12:operation soapAction="http://hot.co.zw:8007/RechargeAirtime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <soap12:operation soapAction="http://hot.co.zw:8007/GetBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBundles">
+      <soap12:operation soapAction="http://hot.co.zw:8007/GetBundles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EconetBundle">
+    <wsdl:port name="EconetBundleSoap" binding="tns:EconetBundleSoap">
+      <soap:address location="http://127.0.0.1:8017/econetbundle.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EconetBundleSoap12" binding="tns:EconetBundleSoap12">
+      <soap12:address location="http://127.0.0.1:8017/econetbundle.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

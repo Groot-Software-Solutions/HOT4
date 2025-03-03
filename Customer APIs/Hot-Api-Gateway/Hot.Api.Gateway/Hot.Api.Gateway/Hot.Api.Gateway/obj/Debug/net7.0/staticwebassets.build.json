@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "PUcTlChVse+KAJjKgJiCkc9kAb2HOD/MlpCJR36vZN0=",
+  "Source": "Hot.Api.Gateway",
+  "BasePath": "_content/Hot.Api.Gateway",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

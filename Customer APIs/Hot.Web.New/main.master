@@ -1,0 +1,513 @@
+﻿<%@ Master Language="VB" CodeFile="main.master.vb" Inherits="main" %>
+<!-- Header File -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+<head runat="server">
+<script language="JavaScript">
+    function redirectHttpToHttps() {
+        var httpURL = window.location.hostname + window.location.pathname + window.location.search;
+        if (window.location.hostname != 'ssl.hot.co.zw' || window.location.protocol != "https:") {
+            httpURL = 'ssl.hot.co.zw' + window.location.pathname + window.location.search;
+            var httpsURL = "https://" + httpURL;
+            window.location = httpsURL;
+        }
+    }
+   redirectHttpToHttps(); 
+</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="Use HOT recharge to Credit cellular prepaid airtime for Econet, NetOne & Telecel.  also Zesa, TelOne & more anywhere, anytime by SMS, USSD, website or a partner">
+    <meta name="author" content="Comm Shop(Kurt Rietz)">
+    <meta name="keywords" content="recharge, airtime, zimbabwe, econet, telecel, netone, africom, topup, hot, hotrecharge, commshop, comm shop, mobile, phone, connectivity, webservice, corporate, organisation, employee, managed airtime ">
+    
+    <link rel="shortcut icon" href="./images/hoticon.ico" />
+    <link href="css/modern.css" rel="stylesheet">
+    <link href="css/modern-responsive.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+    <link href="js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/assets/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="js/assets/jquery.mousewheel.min.js"></script>
+    <script type="text/javascript" src="js/assets/moment.js"></script>
+    <script type="text/javascript" src="js/assets/moment_langs.js"></script>
+    <script type="text/javascript" src="js/assets/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/assets/site.js?1.42"></script>
+    <script type="text/javascript" src="js/assets/data.js?1.42"></script>
+    
+	<script type="text/javascript" src="js/validate/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/validate/additional-methods.min.js"></script>
+	
+    <script type="text/javascript" src="js/modern/dropdown.js"></script>
+    <script type="text/javascript" src="js/modern/accordion.js"></script>
+    <script type="text/javascript" src="js/modern/buttonset.js"></script>
+    <script type="text/javascript" src="js/modern/carousel.js"></script>
+    <script type="text/javascript" src="js/modern/input-control.js"></script>
+    <script type="text/javascript" src="js/modern/pagecontrol.js"></script>
+    <script type="text/javascript" src="js/modern/rating.js"></script>
+    <script type="text/javascript" src="js/modern/slider.js"></script>
+    <script type="text/javascript" src="js/modern/tile-slider.js"></script>
+    <script type="text/javascript" src="js/modern/tile-drag.js"></script>
+    <script type="text/javascript" src="js/modern/calendar.js"></script>
+    <script type="text/javascript" src="js/modern/dialog.js"></script>    
+
+    <title>Hot Recharge</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <!-- start new assets -->
+
+    <!-- Favicon -->
+<link rel="icon" type="image/png" sizes="56x56" href="asset/images/fav-icon/icon.png">
+<!-- bootstrap CSS -->
+<link rel="stylesheet" href="asset/css/bootstrap.min.css" type="text/css" media="all">
+<!-- carousel CSS -->
+<link rel="stylesheet" href="asset/css/owl.carousel.min.css" type="text/css" media="all">
+<!-- animate CSS -->
+<link rel="stylesheet" href="asset/css/animate.css" type="text/css" media="all">
+<!-- font-awesome CSS -->
+<link rel="stylesheet" href="asset/css/all.min.css" type="text/css" media="all">
+<!-- font-flaticon CSS -->
+<link rel="stylesheet" href="asset/css/flaticon.css" type="text/css" media="all">
+<!-- theme-default CSS -->
+<link rel="stylesheet" href="asset/css/theme-default.css" type="text/css" media="all">
+<!-- meanmenu CSS -->
+<link rel="stylesheet" href="asset/css/meanmenu.min.css" type="text/css" media="all">
+<!-- transitions CSS -->
+<link rel="stylesheet" href="asset/css/owl.transitions.css" type="text/css" media="all">
+<!-- venobox CSS -->
+<link rel="stylesheet" href="venobox/venobox.css" type="text/css" media="all">
+<!-- bootstrap icons -->
+<link rel="stylesheet" href="asset/css/bootstrap-icons.css" type="text/css" media="all">
+<!-- Slick Slider -->
+<link rel="stylesheet" type="text/css" href="asset/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="asset/slick/slick-theme.css">
+<!-- Main Style CSS -->
+<link rel="stylesheet" href="asset/css/style.css" type="text/css" media="all">
+<!-- Dropdown CSS -->
+<link rel="stylesheet" href="asset/css/dropdown.css" type="text/css" media="all">
+<!-- responsive CSS -->
+<link rel="stylesheet" href="asset/css/responsive.css" type="text/css" media="all">
+<!-- modernizr js -->
+<script src="asset/js/vendor/modernizr-3.5.0.min.js"></script>
+
+
+    <!-- end new assets -->
+
+	<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Hot Recharge",
+  "url": "https://hot.co.zw",
+  "image": "https://ssl.hot.co.zw/",
+  "description": "Use HOT recharge to Credit cellular prepaid airtime for Econet, NetOne & Telecel.  also Zesa, TelOne & more anywhere, anytime by SMS, USSD, website or a partner",
+  "priceRange": "$",
+  "address": {
+    "@type": "31 Clairwood Rd Alexandra Park",
+    "addressLocality": "Harare",
+    "addressRegion": "Harare Province",
+    "addressCountry": "Zimbabwe"
+  },
+  "paymentAccepted": [
+    "Cash",
+    "Mobile Money"
+	"Bank Deposit"
+	"Bank Transfer"
+  ],
+  "serviceArea": "Zimbabwe",
+  "servesCuisine": [
+    "Airtime Top up Services",
+    "Utility Payments"
+  ]
+}
+</script>
+</head>
+
+
+
+
+
+    	<!--==================================================-->
+	<!-- Start Topbar Area -->
+	<!--==================================================-->
+	<div class="topbar-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="topbar-items">
+						<ul>
+							<li class="line"><i class="bi bi-telephone-fill"></i> <a href="tel:*180#">SMS:180 / USSD *180#</a></li>
+						</ul>
+						
+					</div>					
+				</div>
+
+				<div class="col-lg-5">
+				<p style="color: white; font-family:Korataki; font-size: 22px;">Get Airtime! Anytime! Anywhere!</p>
+					</div>
+
+				<div class="col-lg-3">
+					<div class="topbar-social">
+						<h4>Follow our social feeds:</h4>
+						<ul>
+							<li><a target="_blank" href="https://www.facebook.com/HOTRecharge"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a target="_blank" href="https://twitter.com/HotRecharge"><i class="fab fa-twitter"></i></a></li>
+							<li><a target="_blank" href="https://www.instagram.com/hotrecharge1/?fbclid=IwAR2c6MQJG_Rq63DaHGIVlA2zTGObuMYYybxco2iJCtF6HNmRFEuBU1l0z04"><i class="fab fa-instagram"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--==================================================-->
+	<!-- End Topbar Area -->
+	<!--==================================================-->
+
+
+<!--==================================================-->
+	<!-- Start Header Area -->
+	<!--==================================================-->
+	<header class="header-area" id="sticky-header">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-4">
+					<div class="logo">
+						<a href="index.aspx"><img class="place-left" src="asset/images/hot-logo.png" alt=""></a>
+					</div>
+				</div>
+				<div class="col-lg-8">
+					<div class="header-menu">
+						<ul>
+							<li><a href="index.aspx">Home </a>
+								
+							</li>
+						
+
+
+
+
+							<li class="recharge-ui"><a href="selftopup.aspx">Self Topup</a></li>
+
+								<li><a href="#">About us <i class="bi bi-plus"></i></a>
+					<div class="sub-menu">
+						<ul>
+							<li><a href="aboutus.aspx">Who we are</a></li>
+						
+							<li><a href="faq.aspx">FAQs</a></li>
+							<li><a href="downloads.aspx">Downloads</a></li>
+							<li><a href="help.aspx">Contact us</a></li>
+							
+						</ul>
+					</div>
+				</li>
+
+
+										<li><a href="#">Services <i class="bi bi-plus"></i></a>
+				<div class="sub-menu">
+					<ul>
+						<li><a href="services.aspx">Corporates</a></li>
+						<li><a href="vendor.aspx">Vendors</a></li>
+						<li><a href="aggregators.aspx">Aggregators</a></li>
+						
+						
+					</ul>
+				</div>
+</li>
+														<li class="loggedin"><a href="#">My Account <i class="bi bi-plus"></i></a>
+				<div class="sub-menu">
+								<ul>
+									<li class="loggedin"><a href="myaccount.aspx">My Account</a></li>
+									<li class="loggedin dealer recharge-ui"><a href="subscribers.aspx">Subscribers</a></li>
+									<li class="loggedin retail recharge-ui" style="display:none;"><a href="pos.aspx">Point of Sales</a></li>
+									<li class="loggedin dealer recharge-ui"><a href="#" id="quickrecharge">Quick Recharge</a></li>
+									<li class="loggedin retail" style="display:none;"><a href="Transactions.aspx">Transactions</a></li>
+								</ul>
+				</div>
+</li>
+
+						</ul>
+						<div class="header-right">
+							
+							
+							
+						</div>
+
+						<div class="header-right">
+
+							<div class="Hot-btn">
+				
+							<li id="account-info" class="loggedout menu place-right"><a href="index.aspx#login">Login/Signup</a></li>
+							</div>
+							
+							
+							<div class="Hot-btn">
+							<li id="account-info" class="loggedin menu place-right"><a href="javascript:logout();">Logout</a></li>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<script type="text/javascript">                
+
+</script>
+
+	<!--  Mobile Menu Area -->
+	<div class="mobile-menu-area sticky-menu" id="navbar">
+		<div class="mobile-menu">
+			<div class="mobile-logo">
+				<a href="index.aspx"><img src="asset/images/hot_logo.jpg" alt=""></a>
+			</div>
+			<div class="side-menu-info">
+				<div class="sidebar-menu">
+					<a class="navSidebar-button" href="#"><i class="bi bi-justify-right"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--==================================================-->
+	<!-- End Header Area -->
+	<!--==================================================-->
+<body class="metrouicss" onload="prettyPrint()">
+<div id="fb-root"></div>
+<div id="hotback"></div>
+
+<div class="page">
+  <div class="notify" >
+		<div id="notification" class="notices span5 place-right"  style="display:none;" >
+			<div class="bg-color-green">
+				<a href='javascript:$("#notification").hide(250);' class="close"></a>
+				<div class="notice-icon"> <i class="icon-info-2"></i> </div>
+				<div class="notice-image"> <i class="icon-award-stroke icon-3x"></i> </div>
+				<div class="notice-header" id="notification-header"> Information Header </div>
+				<div class="notice-text" id="notification-message"> </div>
+			</div>
+		</div>
+		<div id="alert" class="notices span5 place-right" style="display:none;">
+			<div class="bg-color-orange">
+				<a href='javascript:$("#alert").hide(250);' class="close"></a>
+				<div class="notice-icon"> <i class="icon-alarm"></i> </div>
+				<div class="notice-image"> <i class="icon-warning icon-3x"></i> </div>
+				<div class="notice-header" id="alert-header"> Alert Header </div>
+				<div class="notice-text" id="alert-message"> </div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript">                
+
+                        </script>
+<!-- Header File End-->
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+
+
+<!-- Footer File -->
+<script type="text/javascript" src="js/google-code-prettify/prettify.js"></script>
+
+		<!--==================================================-->
+	<!-- Start Sidebar Area -->
+	<!--==================================================-->
+	<div class="sidebar-group info-group">
+		<div class="sidebar-widget">
+			<div class="sidebar-widget-container">
+				<div class="widget-heading">
+					<a href="#" class="close-side-widget">
+						<i class="bi bi-x-lg"></i>
+					</a>
+				</div>
+				<div class="sidebar-textwidget">
+					<div class="sidebar-info-contents">
+						<div class="content-inner">
+							<div class="sidebar-logo">
+								<a href="index.aspx"><img src="asset/images/logo.png" alt="logo"></a>
+							</div>
+							<div class="sidebar-widget-menu">
+						<ul>
+								<li class="dropdown"><a href="index.aspx" data-toggle="dropdown">Home </a></li>
+
+								<li class="dropdown"><a href="selftopup.aspx" data-toggle="dropdown">Self Topup </a></li>
+								
+								
+									
+									<li class="dropdown"><a href="#project" data-toggle="dropdown">About Us <i
+												class="icon-arrow"></i></a>
+										<ul class="dropdown-menu">
+											<li><a href="aboutus.aspx">Who We Are</a></li>
+											<li><a href="faq.aspx">FAQs</a></li>
+											<li><a href="downloads.aspx">Downloads</a></li>
+											<li><a href="help.aspx">Contact Us</a></li>
+											
+										</ul>
+									</li>
+
+								<li class="dropdown"><a href="#project" data-toggle="dropdown">Our Services <i
+										class="icon-arrow"></i></a>
+								<ul class="dropdown-menu">
+									<li><a href="services.aspx">Corporates</a></li>
+									<li><a href="vendor.aspx">Vendors</a></li>
+									<li><a href="aggregators.aspx">Aggregators</a></li>
+									
+									
+								</ul>
+				</li>
+							<li class="loggedin dropdown"><a href="#project" data-toggle="dropdown">My Account<i
+										class="icon-arrow"></i> </a>
+			
+								<ul class="dropdown-menu">
+									<li class="loggedin"><a href="myaccount.aspx">My Account</a></li>
+									<li class="loggedin dealer"><a href="subscribers.aspx">Subscribers</a></li>
+									<li class="loggedin retail" style="display:none;"><a href="pos.aspx">Point of Sales</a></li>
+									<li class="loggedin dealer"><a href="#" id="quickrecharge">Quick Recharge</a></li>
+									<li class="loggedin retail" style="display:none;"><a href="Transactions.aspx">Transactions</a></li>
+								</ul>
+			
+</li>
+									
+									<li class="dropdown"><a href="contact.apsx" data-toggle="dropdown">Contact Us</a></li>
+								</ul>
+							</div>
+		
+					</div>
+													<div class="Hot-btn">
+				
+<li id="account-info" class="loggedin menu place-right"><a href="javascript:logout();">Logout</a></li>
+</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--==================================================-->
+	<!-- End Sidebar Area -->
+	<!--==================================================-->
+
+  <!--==================================================-->
+<!-- Start Footer Area -->
+<!--==================================================-->
+<div class="footer-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-2 col-md-6">
+				<div class="footer-wiget wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1s">
+					<div class="footer-wiget-title">
+						<h4>Quick link</h4>
+					</div>
+					<div class="footer-wiget-menu">
+						<ul>
+							<li><a href="aboutus.aspx">About Us</a></li>
+							<li><a href="services.aspx">Corporate Services</a></li>
+							<li><a href="vendor.aspx">Vendor Services</a></li>
+							<li><a href="aggregators.aspx">Aggregator Services</a></li>
+				
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="footer-wiget inner2 wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="1s">
+					<div class="footer-wiget-title">
+						<h4 style="font-size: 17px;">Follow Our Social Feeds</h4>
+					</div>
+					<div class="footer-wiget-menu">
+						<ul>
+							<li><a target="_blank" href="https://www.facebook.com/HOTRecharge">Facebook</a></li>
+							<li><a target="_blank" href="https://www.instagram.com/hotrecharge1/?fbclid=IwAR2c6MQJG_Rq63DaHGIVlA2zTGObuMYYybxco2iJCtF6HNmRFEuBU1l0z04">Instagram</a></li>
+							<li><a target="_blank" href="https://www.linkedin.com/company/hot-recharge/">LinkedIn</a></li>
+							<li><a target="_blank" href="https://twitter.com/HotRecharge">Twitter (X)</a></li>
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="footer-wiget inner">
+					<div class="footer-wiget-logo">
+						<a href="index.html"><img src="asset/images/18y.png" alt=""></a>
+					</div>
+					
+					
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 pr-0">
+				<div class="footer-wiget inner3 wow fadeInUp" data-wow-delay="0.8s" data-wow-duration="1s">
+					<div class="footer-wiget-title">
+						<h4>Contact us</h4>
+					</div>
+					<div class="company-work-hour">
+						<ul style="width:360px">
+							<li>31 Clairwood Rd
+								Alexandra Park Harare<span class="table-text"></span></li>
+							<li>Tel: <span>(+263) 242 700 007 / 242 700 413
+							         </span></li>
+							<li>Phone: <span> (+263) 772 929 223 / 716 047 130</span></li>
+							<li>Whatsapp: <span> (+263) 772 929 223</span></li>
+							<li class="table-brb">Email <span class="style">register@hot.co.zw</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--==================================================-->
+<!-- End Footer Area -->
+<!--==================================================-->
+
+
+
+    </div>
+
+    </body>
+</html>
+<!-- Footer File end -->
+
+<!-- jquery js -->
+
+
+<!-- bootstrap js -->
+<script src="asset/js/bootstrap.min.js"></script>
+
+<!-- carousel js -->
+<script src="asset/js/owl.carousel.min.js"></script>
+
+<!-- counterup js -->
+<script src="asset/js/jquery.counterup.min.js"></script>
+
+
+
+<!-- wow js -->
+<script src="asset/js/wow.min.js"></script>
+
+<!-- imagesloaded js -->
+<script src="asset/js/imagesloaded.pkgd.min.js"></script>
+
+<!-- venobox js -->
+<script src="venobox/venobox.js"></script>
+
+<!--  animated-text js -->
+<script src="asset/js/animated-text.js"></script>
+
+<!-- venobox min js -->
+<script src="venobox/venobox.min.js"></script>
+
+<!-- isotope js -->
+<script src="asset/js/isotope.pkgd.min.js"></script>
+
+<!-- jquery meanmenu js -->
+<script src="asset/js/jquery.meanmenu.js"></script>
+
+<script src="asset/js/jquery.barfiller.js"></script>
+<!-- jquery js -->
+
+<!-- ragrslider js -->
+<script src="asset/js/rangeslider.js"></script>
+
+<!-- ragrslider js -->
+<script src="asset/js/mixitup.min.js"></script>
+
+<!-- theme js -->
+<script src="asset/js/theme.js"></script>
+

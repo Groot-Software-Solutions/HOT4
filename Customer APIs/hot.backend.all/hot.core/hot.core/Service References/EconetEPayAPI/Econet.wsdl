@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://econetvas.econet.co.zw/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://econetvas.econet.co.zw/" />
+      <s:element name="RechargeMobile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TargetMobile" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RechargeMobileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RechargeMobileResult" type="s1:CreditResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DebitMobile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TargetMobile" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DebitMobileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DebitMobileResult" type="s1:DebitResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EndUserBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TargetMobile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EndUserBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EndUserBalanceResult" type="s1:BalanceResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RechargeReversal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TargetMobile" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RechargeReversalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RechargeReversalResult" type="s1:CreditReversalResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://econetvas.econet.co.zw/">
+      <s:complexType name="CreditResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="creditReq" type="s1:CreditRequest" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="responseCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="narrative" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="initialBalance" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="daysAdded" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="finalBalance" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="expiryDate" type="s:date" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CreditRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="reference" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="amount" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="targetMobileNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="serviceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="serviceProviderId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="sourceMobileNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="numberOfDays" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="password" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DebitResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="debitReq" type="s1:DebitRequest" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="responseCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="narrative" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="initialBalance" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="finalBalance" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="expiryDate" type="s:date" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DebitRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="reference" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="amount" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="serviceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="serviceProviderId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="sourceMobileNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="targetMobileNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BalanceResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="balanceRequest" type="s1:BalanceRequest" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="currentBalance" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="classOfService" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="responseCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="narrative" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="maximumCredit" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="expiryDate" type="s:date" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="minimumTopup" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="suscriberType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="maximumTopup" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="activationDate" type="s:date" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="platform" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="dedicatedAccountNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="dedicatedAccountBalance" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BalanceRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="mobileNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="serviceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="serviceProviderId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="dedicatedAccount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CreditReversalResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="responseCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="narrative" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="originalCreditRequest" type="s1:CreditRequest" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="initialBalance" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="finalBalance" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="numberOfDays" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RechargeMobileSoapIn">
+    <wsdl:part name="parameters" element="tns:RechargeMobile" />
+  </wsdl:message>
+  <wsdl:message name="RechargeMobileSoapOut">
+    <wsdl:part name="parameters" element="tns:RechargeMobileResponse" />
+  </wsdl:message>
+  <wsdl:message name="DebitMobileSoapIn">
+    <wsdl:part name="parameters" element="tns:DebitMobile" />
+  </wsdl:message>
+  <wsdl:message name="DebitMobileSoapOut">
+    <wsdl:part name="parameters" element="tns:DebitMobileResponse" />
+  </wsdl:message>
+  <wsdl:message name="EndUserBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:EndUserBalance" />
+  </wsdl:message>
+  <wsdl:message name="EndUserBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:EndUserBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="RechargeReversalSoapIn">
+    <wsdl:part name="parameters" element="tns:RechargeReversal" />
+  </wsdl:message>
+  <wsdl:message name="RechargeReversalSoapOut">
+    <wsdl:part name="parameters" element="tns:RechargeReversalResponse" />
+  </wsdl:message>
+  <wsdl:portType name="EconetSoap">
+    <wsdl:operation name="RechargeMobile">
+      <wsdl:input message="tns:RechargeMobileSoapIn" />
+      <wsdl:output message="tns:RechargeMobileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DebitMobile">
+      <wsdl:input message="tns:DebitMobileSoapIn" />
+      <wsdl:output message="tns:DebitMobileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EndUserBalance">
+      <wsdl:input message="tns:EndUserBalanceSoapIn" />
+      <wsdl:output message="tns:EndUserBalanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RechargeReversal">
+      <wsdl:input message="tns:RechargeReversalSoapIn" />
+      <wsdl:output message="tns:RechargeReversalSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EconetSoap" type="tns:EconetSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RechargeMobile">
+      <soap:operation soapAction="http://tempuri.org/RechargeMobile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DebitMobile">
+      <soap:operation soapAction="http://tempuri.org/DebitMobile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndUserBalance">
+      <soap:operation soapAction="http://tempuri.org/EndUserBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeReversal">
+      <soap:operation soapAction="http://tempuri.org/RechargeReversal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EconetSoap12" type="tns:EconetSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RechargeMobile">
+      <soap12:operation soapAction="http://tempuri.org/RechargeMobile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DebitMobile">
+      <soap12:operation soapAction="http://tempuri.org/DebitMobile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndUserBalance">
+      <soap12:operation soapAction="http://tempuri.org/EndUserBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeReversal">
+      <soap12:operation soapAction="http://tempuri.org/RechargeReversal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Econet">
+    <wsdl:port name="EconetSoap" binding="tns:EconetSoap">
+      <soap:address location="http://localhost:63582/Econet.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EconetSoap12" binding="tns:EconetSoap12">
+      <soap12:address location="http://localhost:63582/Econet.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,42 @@
+<div class="padding10">
+<div id="frmQuickRetail"> 
+	Number to Recharge <br> 
+	<div class="input-control text" > 
+		<input type="text" placeholder="Recharge Number" name="txtQuickRechargeNumber" id="txtQuickRechargeNumber" /> 
+		<button class="btn-clear" tabindex="-1" type="button"/>
+	</div>
+	<div class="input-control text"> 
+		<input type="text" placeholder="Recharge Amount" name="txtQuickRechargeAmt" id="txtQuickRechargeAmt" /> 
+		<button class="btn-clear" tabindex="-1" type="button"/>
+	</div> 
+	<input  type="button" value="Recharge" onclick="javascript:submit();" /> 
+</div>
+	<table class="hovered" id="quickrechargelog" style="display:none;"> 
+		<caption> Recharge Log </caption> 
+		<thead> 
+			<tr> <th scope="col">Subscriber Name</th> <th scope="col">Phone Number</th><th scope="col">Amount</th><th scope="col">Status</th> </tr> 
+		</thead> 
+		<tbody id="quickrechargelogbody"> 
+			
+		</tbody> 
+	</table> 
+</div>
+
+<script>
+function submit() {
+	if ($("#txtQuickRechargeNumber").val().length > 6) {
+		quickrecharges();
+	}
+}
+
+function quickrecharges () {
+	var AccessCode = siteCookie("UID");
+	var Amount = $("#txtQuickRechargeAmt").val().replace(/[^0-9.]/g, "");
+	var Password = siteCookie("Pwd");	
+	var Subscriber = $("#txtQuickRechargeNumber").val().replace(/[^0-9]/g,"");
+	Recharge($("#quickrechargelogbody"),"Retail",Subscriber,Amount,AccessCode,Password);		
+	$('#quickrechargelog').show(100);
+
+} 
+
+</script>
