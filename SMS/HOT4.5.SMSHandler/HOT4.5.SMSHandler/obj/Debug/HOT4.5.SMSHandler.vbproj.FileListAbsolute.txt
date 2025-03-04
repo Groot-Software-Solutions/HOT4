@@ -1,0 +1,5 @@
+D:\Project\hot4.latest\SMS\HOT4.5.SMSHandler\HOT4.5.SMSHandler\obj\Debug\HOT4.5.SMSHandler.vbproj.AssemblyReference.cache
+D:\Project\hot4.latest\SMS\HOT4.5.SMSHandler\HOT4.5.SMSHandler\obj\Debug\HOT4._5.SMSHandler.Resources.resources
+D:\Project\hot4.latest\SMS\HOT4.5.SMSHandler\HOT4.5.SMSHandler\obj\Debug\HOT4._5.SMSHandler.ProjectInstaller.resources
+D:\Project\hot4.latest\SMS\HOT4.5.SMSHandler\HOT4.5.SMSHandler\obj\Debug\HOT4.5.SMSHandler.vbproj.GenerateResource.cache
+D:\Project\hot4.latest\SMS\HOT4.5.SMSHandler\HOT4.5.SMSHandler\obj\Debug\HOT4.5.SMSHandler.vbproj.CoreCompileInputs.cache

@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "Hot4._6.SMSHandler": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

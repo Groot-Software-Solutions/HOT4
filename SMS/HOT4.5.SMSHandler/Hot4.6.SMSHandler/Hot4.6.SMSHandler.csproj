@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>dotnet-Hot4._6.SMSHandler-03A58815-6466-4D34-A29B-0EF8B1B2319D</UserSecretsId>
+    <RootNamespace>Hot.SMSHandler</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup> 
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="5.0.1" />
+ 
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\HOT6\Hot.Application\Hot.Application.csproj" />
+    <ProjectReference Include="..\..\..\..\HOT6\Hot.Domain\Hot.Domain.csproj" />
+    <ProjectReference Include="..\..\..\..\HOT6\Hot.Infrastructure\Hot.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>
