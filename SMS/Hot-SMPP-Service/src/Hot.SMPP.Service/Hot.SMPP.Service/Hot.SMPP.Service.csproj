@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -15,4 +15,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Hot.SMPP\Hot.SMPP.csproj" />
   </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="D:\Project\HOT4-latest\HOT4\Commons\HotCoreV3\Hot\Hot.Application\Hot.Application.csproj"/>
+		<!--<ProjectReference Include="D:\Project\HOT4-latest\HOT4\SMS\Commons\HotCoreV3\Hot\Hot.Domain\Hot.Domain.csproj" />-->
+		<ProjectReference Include="D:\Project\HOT4-latest\HOT4\Commons\HotCoreV3\Hot\Hot.Infrastructure\Hot.Infrastructure.csproj" />
+	</ItemGroup>
+
 </Project>

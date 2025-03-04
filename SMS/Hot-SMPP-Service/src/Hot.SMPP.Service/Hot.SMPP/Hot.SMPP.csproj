@@ -10,10 +10,12 @@
     <PackageReference Include="Inetlab.SMPP" Version="2.9.26" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Hot\Hot.Application\Hot.Application.csproj" />
-    <ProjectReference Include="..\..\..\..\Hot\Hot.Domain\Hot.Domain.csproj" />
-    <ProjectReference Include="..\..\..\..\Hot\Hot.Infrastructure\Hot.Infrastructure.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="D:\Project\HOT4-latest\HOT4\Commons\HotCoreV3\Hot\Hot.Application\Hot.Application.csproj"/>
+		<ProjectReference Include="D:\Project\HOT4-latest\HOT4\Commons\HotCoreV3\Hot\Hot.Infrastructure\Hot.Infrastructure.csproj" />
+	</ItemGroup>
+	
+	
+
 
 </Project>
