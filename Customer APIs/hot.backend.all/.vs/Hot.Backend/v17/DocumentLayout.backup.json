@@ -1,14 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Project\\hot4.latest\\Customer APIs\\hot.backend.all\\",
+  "WorkspaceRootPath": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\hot.backend.all\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8FAC39C1-07EB-4321-A770-23749E7C2393}|hot.api.backend\\Hot.Api.Backend\\Hot.Api.Backend.vbproj|d:\\project\\hot4.latest\\customer apis\\hot.backend.all\\hot.api.backend\\hot.api.backend\\global.asax.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{8FAC39C1-07EB-4321-A770-23749E7C2393}|hot.api.backend\\Hot.Api.Backend\\Hot.Api.Backend.vbproj|D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\hot.backend.all\\hot.api.backend\\hot.api.backend\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{8FAC39C1-07EB-4321-A770-23749E7C2393}|hot.api.backend\\Hot.Api.Backend\\Hot.Api.Backend.vbproj|solutionrelative:hot.api.backend\\hot.api.backend\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97E60367-A583-4A21-8531-0B711460BEED}|hot.data\\Hot.Data.vbproj|d:\\project\\hot4-latest\\hot4\\customer apis\\hot.backend.all\\hot.data\\xlog.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{97E60367-A583-4A21-8531-0B711460BEED}|hot.data\\Hot.Data.vbproj|solutionrelative:hot.data\\xlog.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FAC39C1-07EB-4321-A770-23749E7C2393}|hot.api.backend\\Hot.Api.Backend\\Hot.Api.Backend.vbproj|D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\hot.backend.all\\hot.api.backend\\hot.api.backend\\global.asax.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{8FAC39C1-07EB-4321-A770-23749E7C2393}|hot.api.backend\\Hot.Api.Backend\\Hot.Api.Backend.vbproj|solutionrelative:hot.api.backend\\hot.api.backend\\global.asax.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97E60367-A583-4A21-8531-0B711460BEED}|hot.data\\Hot.Data.vbproj|D:\\Project\\hot4.latest\\Customer APIs\\hot.backend.all\\hot.data\\xlog.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{97E60367-A583-4A21-8531-0B711460BEED}|hot.data\\Hot.Data.vbproj|solutionrelative:hot.data\\xlog.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{8FAC39C1-07EB-4321-A770-23749E7C2393}|hot.api.backend\\Hot.Api.Backend\\Hot.Api.Backend.vbproj|D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\hot.backend.all\\hot.api.backend\\hot.api.backend\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{8FAC39C1-07EB-4321-A770-23749E7C2393}|hot.api.backend\\Hot.Api.Backend\\Hot.Api.Backend.vbproj|solutionrelative:hot.api.backend\\hot.api.backend\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FAC39C1-07EB-4321-A770-23749E7C2393}|hot.api.backend\\Hot.Api.Backend\\Hot.Api.Backend.vbproj|D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\hot.backend.all\\hot.api.backend\\hot.api.backend\\app_start\\filterconfig.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{8FAC39C1-07EB-4321-A770-23749E7C2393}|hot.api.backend\\Hot.Api.Backend\\Hot.Api.Backend.vbproj|solutionrelative:hot.api.backend\\hot.api.backend\\app_start\\filterconfig.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +30,73 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FilterConfig.vb",
+              "DocumentMoniker": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\hot.backend.all\\hot.api.backend\\Hot.Api.Backend\\App_Start\\FilterConfig.vb",
+              "RelativeDocumentMoniker": "hot.api.backend\\Hot.Api.Backend\\App_Start\\FilterConfig.vb",
+              "ToolTip": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\hot.backend.all\\hot.api.backend\\Hot.Api.Backend\\App_Start\\FilterConfig.vb",
+              "RelativeToolTip": "hot.api.backend\\Hot.Api.Backend\\App_Start\\FilterConfig.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-03-03T11:47:16.808Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "packages.config",
+              "DocumentMoniker": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\hot.backend.all\\hot.api.backend\\Hot.Api.Backend\\packages.config",
+              "RelativeDocumentMoniker": "hot.api.backend\\Hot.Api.Backend\\packages.config",
+              "ToolTip": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\hot.backend.all\\hot.api.backend\\Hot.Api.Backend\\packages.config",
+              "RelativeToolTip": "hot.api.backend\\Hot.Api.Backend\\packages.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-03-03T11:37:09.108Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Global.asax.vb",
-              "DocumentMoniker": "D:\\Project\\hot4.latest\\Customer APIs\\hot.backend.all\\hot.api.backend\\Hot.Api.Backend\\Global.asax.vb",
-              "RelativeDocumentMoniker": "hot.api.backend\\Hot.Api.Backend\\Global.asax.vb",
-              "ToolTip": "D:\\Project\\hot4.latest\\Customer APIs\\hot.backend.all\\hot.api.backend\\Hot.Api.Backend\\Global.asax.vb",
-              "RelativeToolTip": "hot.api.backend\\Hot.Api.Backend\\Global.asax.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-02-28T10:17:23.543Z",
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\hot.backend.all\\hot.api.backend\\Hot.Api.Backend\\Web.config",
+              "RelativeDocumentMoniker": "hot.api.backend\\Hot.Api.Backend\\Web.config",
+              "ToolTip": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\hot.backend.all\\hot.api.backend\\Hot.Api.Backend\\Web.config",
+              "RelativeToolTip": "hot.api.backend\\Hot.Api.Backend\\Web.config",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-03-03T11:37:04.226Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Global.asax.vb",
+              "DocumentMoniker": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\hot.backend.all\\hot.api.backend\\Hot.Api.Backend\\Global.asax.vb",
+              "RelativeDocumentMoniker": "hot.api.backend\\Hot.Api.Backend\\Global.asax.vb",
+              "ToolTip": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\hot.backend.all\\hot.api.backend\\Hot.Api.Backend\\Global.asax.vb",
+              "RelativeToolTip": "hot.api.backend\\Hot.Api.Backend\\Global.asax.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-02-28T10:17:23.543Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "xLog.vb",
-              "DocumentMoniker": "D:\\Project\\hot4.latest\\Customer APIs\\hot.backend.all\\hot.data\\xLog.vb",
+              "DocumentMoniker": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\hot.backend.all\\hot.data\\xLog.vb",
               "RelativeDocumentMoniker": "hot.data\\xLog.vb",
-              "ToolTip": "D:\\Project\\hot4.latest\\Customer APIs\\hot.backend.all\\hot.data\\xLog.vb",
+              "ToolTip": "D:\\Project\\HOT4-latest\\HOT4\\Customer APIs\\hot.backend.all\\hot.data\\xLog.vb",
               "RelativeToolTip": "hot.data\\xLog.vb",
-              "ViewState": "AgIAAMcAAAAAAAAAAAAAANMAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAUwMsAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-02-28T06:48:47.89Z"
+              "WhenOpened": "2025-02-28T06:48:47.89Z",
+              "EditorCaption": ""
             }
           ]
         }
